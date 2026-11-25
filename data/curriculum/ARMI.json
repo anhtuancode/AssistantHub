@@ -1,0 +1,167 @@
+{
+  "courseCode": "ARMI",
+  "courseName": "Robotics Arm Intensive",
+  "category": "ROBOTICS",
+  "cluster": "ARM",
+  "platform": "VEX GO",
+  "sessions": {
+    "1": {
+      "sessionNumber": 1,
+      "title": "Cổng vào thành phố",
+      "summary": "Khám phá đặc điểm đô thị thông minh, ứng dụng tự động hóa; thiết kế lắp ráp mô hình Cổng vào thành phố và lập trình hệ thống cổng thông minh tự động.",
+      "hardwareAndCommands": "02 động cơ, đèn LED Bumper, cảm biến mắt; thẻ lệnh hiển thị LED Bumper, câu lệnh điều kiện và vòng lặp.",
+      "objectives": [
+        "Nhận biết xu hướng phát triển đô thị thông minh",
+        "Hoàn thiện mô hình cổng thành phố kết hợp động cơ, LED Bumper và cảm biến mắt",
+        "Vận dụng thẻ lệnh điều kiện và vòng lặp điều khiển tự động"
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "2": {
+      "sessionNumber": 2,
+      "title": "Đồng hồ khổng lồ",
+      "summary": "Tìm hiểu cách bố trí bánh răng của đồng hồ; lắp ráp mô hình trang bị 02 động cơ, LED Bumper, cảm biến mắt và lập trình tự hoạt động.",
+      "hardwareAndCommands": "Hệ thống bánh răng đồng hồ, 02 động cơ, LED Bumper, cảm biến mắt; thẻ lệnh wait và vòng lặp.",
+      "objectives": [
+        "Giải thích cách bố trí bánh răng của đồng hồ",
+        "Vận dụng thành thạo thẻ lệnh wait và vòng lặp",
+        "Hoàn thành nhiệm vụ bài học"
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "3": {
+      "sessionNumber": 3,
+      "title": "Trạm dự báo ô nhiễm",
+      "summary": "Tìm hiểu vấn nạn ô nhiễm không khí và tiếng ồn ở các thành phố lớn; lắp ráp mô hình cảm biến và lập trình cảnh báo tự động.",
+      "hardwareAndCommands": "Cảm biến mắt, LED Bumper; câu lệnh điều kiện if ... else và vòng lặp.",
+      "objectives": [
+        "Hiểu vấn nạn ô nhiễm không khí và tiếng ồn đô thị",
+        "Hoàn thiện mô hình và vận dụng thành thạo thẻ lệnh if ... else và vòng lặp"
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "4": {
+      "sessionNumber": 4,
+      "title": "Công xưởng sáng tạo",
+      "summary": "Thảo luận nhóm lựa chọn mô hình Robot di chuyển linh hoạt theo chủ đề Thành phố hiện đại; lắp ráp, tối ưu và lập trình thi đấu giữa các nhóm.",
+      "hardwareAndCommands": "02 động cơ đối xứng, LED Bumper, cảm biến mắt; tổng hợp kiến thức lập trình các buổi trước.",
+      "objectives": [
+        "Ghi nhớ quy trình thiết kế, lắp ráp và tối ưu mô hình",
+        "Hoàn thiện lập trình Robot chủ đề Thành phố hiện đại và thi đấu nhóm"
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "5": {
+      "sessionNumber": 5,
+      "title": "Xe buýt tự vận hành",
+      "summary": "Tìm hiểu các loại xe tự vận hành trên thế giới; lắp ráp mô hình xe buýt tự di chuyển và tự động đóng-mở cửa; lập trình điều khiển.",
+      "hardwareAndCommands": "03 động cơ, LED Bumper, cảm biến mắt; thẻ lệnh di chuyển tới-lui, rẽ trái-phải, câu lệnh điều kiện if .. else và vòng lặp.",
+      "objectives": [
+        "Ghi nhớ thẻ lệnh lập trình di chuyển và vòng lặp",
+        "Lập trình xe buýt tự di chuyển và đóng-mở cửa với if .. else"
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "6": {
+      "sessionNumber": 6,
+      "title": "Xe gom rác tự động",
+      "summary": "Tìm hiểu vấn nạn ô nhiễm môi trường toàn cầu; lắp ráp mô hình xe gom rác và lập trình vận hành tự động theo cảm biến.",
+      "hardwareAndCommands": "03 động cơ, cảm biến mắt; câu lệnh điều kiện if .. else (tương tác cảm biến mắt) và vòng lặp.",
+      "objectives": [
+        "Trình bày nguyên nhân và ý tưởng hạn chế ô nhiễm môi trường",
+        "Vận dụng thẻ lệnh điều kiện if .. else và vòng lặp điều khiển xe gom rác"
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "7": {
+      "sessionNumber": 7,
+      "title": "Xe giải cứu thú cưng",
+      "summary": "Tìm hiểu cơ chế nâng đồ vật của xe nâng hàng; lắp ráp mô hình xe nâng giải cứu thú cưng và lập trình điều khiển nâng hạ tự động.",
+      "hardwareAndCommands": "03 động cơ, cảm biến mắt, nam châm điện; thẻ lệnh nam châm điện, câu lệnh điều kiện if-then, if-else, điều kiện lồng nhau và vòng lặp.",
+      "objectives": [
+        "Ghi nhớ quy trình lắp ráp cơ cấu nâng hạ",
+        "Vận dụng thẻ lệnh nam châm điện và câu lệnh điều kiện lồng nhau"
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "8": {
+      "sessionNumber": 8,
+      "title": "Công xưởng sáng tạo (Giải đề cuối khóa)",
+      "summary": "Ôn tập toàn bộ kiến thức lập trình; tham gia giải đề cuối khóa chủ đề Thành phố hiện đại; lên ý tưởng lắp ráp và lập trình vận hành mô hình.",
+      "hardwareAndCommands": "03 động cơ, nam châm điện, cảm biến mắt, LED Bumper; tổng hợp toàn bộ thẻ lệnh lập trình.",
+      "objectives": [
+        "Lên ý tưởng và lắp ráp mô hình hoàn chỉnh",
+        "Lập trình vận hành mô hình hoàn thành nhiệm vụ giải đề"
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "9": {
+      "sessionNumber": 9,
+      "title": "Trợ thủ trường học",
+      "summary": "Giới thiệu các Robot thông minh trên thế giới; lắp ráp mô hình Robot trợ thủ và lập trình di chuyển linh hoạt, né tránh vật cản.",
+      "hardwareAndCommands": "03 động cơ, cảm biến mắt, LED Bumper; thẻ lệnh điều kiện lồng nhau if .. else nhận biết màu sắc cảm biến mắt.",
+      "objectives": [
+        "Liệt kê các ứng dụng Robot thông minh",
+        "Hiểu và vận dụng câu lệnh điều kiện lồng nhau nhận biết màu sắc cảm biến mắt"
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "10": {
+      "sessionNumber": 10,
+      "title": "Xe vận chuyển thức ăn",
+      "summary": "Lắp ráp mô hình xe vận chuyển thức ăn sử dụng cơ cấu ròng rọc (mô phỏng tời nâng); lập trình di chuyển đồ vật tự động.",
+      "hardwareAndCommands": "Cơ cấu ròng rọc (tời nâng), cảm biến mắt, LED Bumper; câu lệnh điều kiện lồng nhau và vòng lặp.",
+      "objectives": [
+        "Ghi nhớ nguyên tắc hoạt động cảm biến mắt với ánh sáng",
+        "Hoàn thiện mô hình có cơ cấu ròng rọc và lập trình vận hành"
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "11": {
+      "sessionNumber": 11,
+      "title": "Trường học thông minh",
+      "summary": "Lắp ráp mô hình thùng rác tự động di chuyển; lập trình mô hình dò đường và di chuyển theo vạch màu (đỏ, xanh dương, xanh lá cây).",
+      "hardwareAndCommands": "03 động cơ, cảm biến mắt; thẻ lệnh nhận diện màu sắc, câu lệnh điều kiện lồng nhau và vòng lặp.",
+      "objectives": [
+        "Hoàn thiện mô hình thùng rác tự động",
+        "Vận dụng điều kiện lồng nhau và vòng lặp để lập trình di chuyển theo vạch màu"
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "12": {
+      "sessionNumber": 12,
+      "title": "Công xưởng sáng tạo (Tổng duyệt dự án)",
+      "summary": "Ôn tập kiến thức; thiết kế lắp ráp và lập trình mô hình giải đề cuối khóa chủ đề Thành phố hiện đại; hướng dẫn quy trình thuyết trình Demo.",
+      "hardwareAndCommands": "03 động cơ, nam châm điện, cảm biến mắt, LED Bumper; tổng hợp toàn bộ thẻ lệnh đã học.",
+      "objectives": [
+        "Hoàn thiện lắp ráp và lập trình mô hình dự án cuối khóa",
+        "Nắm vững quy trình Demo và các tiêu chí thuyết trình"
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "13": {
+      "sessionNumber": 13,
+      "title": "Demo Robot",
+      "summary": "Ôn tập kiến thức các thẻ lệnh đã học; thực hành thuyết trình sản phẩm dự án và luyện tập trả lời câu hỏi phản biện từ ban giám khảo.",
+      "hardwareAndCommands": "Sản phẩm Robot dự án cuối khóa và kỹ năng thuyết trình.",
+      "objectives": [
+        "Nắm vững kiến thức lập trình và cấu tạo sản phẩm để trả lời ban giám khảo",
+        "Hoàn thành thuyết trình thử tự tin, mạch lạc"
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    }
+  }
+}

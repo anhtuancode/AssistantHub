@@ -1,0 +1,319 @@
+{
+  "courseCode": "JSA",
+  "courseName": "Web Developer - Advanced",
+  "category": "CODING",
+  "platform": "HTML/CSS/JS",
+  "cluster": "WEB_JS",
+  "targetAge": "13 - 16 Tuổi",
+  "duration": "120 phút/buổi",
+  "version": "Ver 01 - 5.2024 (Hiệu lực)",
+  "sessions": {
+    "1": {
+      "sessionNumber": 1,
+      "title": "Hệ thống lưới trong thiết kế giao diện",
+      "summary": "Ôn tập kiến thức dàn trang và làm quen với hệ thống lưới 2 chiều CSS Grid; tìm hiểu kỹ thuật phân chia kích thước lưới (Grid Sizing với fr, minmax) và định vị phần tử (Grid Placement với grid-column, grid-row); thực hành tái hiện tác phẩm hội họa Mondrian-Style Painting.",
+      "hardwareAndCommands": "CSS Grid (display: grid, grid-template-columns, grid-template-rows, gap, grid-column, grid-row), đơn vị phân đoạn fr, hàm repeat().",
+      "objectives": [
+        "Kiến thức: Học viên hiểu rõ khái niệm và tầm quan trọng của CSS Grid; Học viên hiểu các thuộc tính cơ bản trong CSS Grid; Học viên hiểu cách thiết lập kích thước của các hàng và cột; Học viên nhớ cách định vị các phần tử trong lưới bằng các thuộc tính được cung cấp.",
+        "Kỹ năng: Học viên tạo ra một hệ thống lưới cơ bản bằng CSS Grid; Học viên sử dụng Grid Sizing để thiết lập kích thước các hàng và cột; Học viên định vị trí các phần tử trong hệ thống lưới."
+      ],
+      "knowledge": "Học viên hiểu rõ khái niệm và tầm quan trọng của CSS Grid; Học viên hiểu các thuộc tính cơ bản trong CSS Grid; Học viên hiểu cách thiết lập kích thước của các hàng và cột; Học viên nhớ cách định vị các phần tử trong lưới bằng các thuộc tính được cung cấp.",
+      "skills": "Học viên tạo ra một hệ thống lưới cơ bản bằng CSS Grid; Học viên sử dụng Grid Sizing để thiết lập kích thước các hàng và cột; Học viên định vị trí các phần tử trong hệ thống lưới.",
+      "lessonContent": [
+        "Ôn tập kiến thức.",
+        "Giới thiệu về display Grid.",
+        "Tìm hiểu về Grid Sizing và Grid Placement.",
+        "Thực hành xây dựng dự án Mondrian-Style Painting."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "2": {
+      "sessionNumber": 2,
+      "title": "Sức mạnh của ngôn ngữ lập trình JavaScript",
+      "summary": "Khám phá nguồn gốc, vai trò và sức mạnh của JavaScript trong lập trình web tương tác; làm quen với khai báo biến (let, const), quy tắc đặt tên camelCase và các kiểu dữ liệu nguyên thủy (String, Number, Boolean, undefined, null); giải quyết thử thách biến đổi chuỗi văn bản (String manipulation).",
+      "hardwareAndCommands": "Node.js / Chrome Console, từ khóa let, const, kiểu dữ liệu (String, Number, Boolean), phương thức chuỗi (toUpperCase(), toLowerCase(), slice()).",
+      "objectives": [
+        "Kiến thức: Học viên nhận thức được vai trò và ứng dụng của Javascript trong phát triển web; Học viên hiểu khái niệm về biến và quy tắc đặt tên biến trong Javascript; Học viên nhận biết cách sử dụng và thao tác cơ bản với từng kiểu dữ liệu.",
+        "Kỹ năng: Học viên vận dụng kiến thức về biến để khai báo và sử dụng biến trong các đoạn mã Javascript; Học viên phân tích và chọn lựa kiểu dữ liệu phù hợp cho các tình huống cụ thể; Học viên vận dụng kiến thức đã học để viết mã Javascript giải quyết bài toán thay đổi cách viết hoa của một chuỗi văn bản.",
+        "Thái độ: Học viên tham gia tích cực vào các hoạt động thảo luận và chia sẻ kiến thức với các bạn học và giảng viên."
+      ],
+      "knowledge": "Học viên nhận thức được vai trò và ứng dụng của Javascript trong phát triển web; Học viên hiểu khái niệm về biến và quy tắc đặt tên biến trong Javascript; Học viên nhận biết cách sử dụng và thao tác cơ bản với từng kiểu dữ liệu.",
+      "skills": "Học viên vận dụng kiến thức về biến để khai báo và sử dụng biến trong các đoạn mã Javascript; Học viên phân tích và chọn lựa kiểu dữ liệu phù hợp cho các tình huống cụ thể; Học viên vận dụng kiến thức đã học để viết mã Javascript giải quyết bài toán thay đổi cách viết hoa của một chuỗi văn bản.",
+      "attitude": "Học viên tham gia tích cực vào các hoạt động thảo luận và chia sẻ kiến thức với các bạn học và giảng viên.",
+      "lessonContent": [
+        "Tìm hiểu về Javascript: Nguồn gốc, công dụng.",
+        "Javascript Variables và quy tắc đặt tên.",
+        "Javascript Data Types.",
+        "Thử thách thay đổi cách viết hoa trong văn bản."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "3": {
+      "sessionNumber": 3,
+      "title": "Toán tử, câu điều kiện & vòng lặp",
+      "summary": "Nắm vững các loại toán tử số học, so sánh và logic trong JavaScript; làm chủ cấu trúc rẽ nhánh điều kiện (if-else, switch-case) và các vòng lặp (for, while) để tự động hóa xử lý luồng logic trong các bài toán thực tế.",
+      "hardwareAndCommands": "Toán tử (+, -, *, /, %, ===, !==, &&, ||, !), cấu trúc điều kiện if...else, vòng lặp for, while, vòng lặp kiểm soát luồng break, continue.",
+      "objectives": [
+        "Kiến thức: Học viên hiểu cách sử dụng từng loại toán tử trong các biểu thức; Học viên nhớ cách sử dụng câu điều kiện để kiểm tra và thực thi các đoạn mã khác nhau; Học viên nhớ cách sử dụng vòng lặp để lặp qua các tập hợp dữ liệu.",
+        "Kỹ năng: Học viên phân tích và chọn toán tử phù hợp cho từng tình huống cụ thể; Học viên vận dụng câu điều kiện để kiểm tra và thực thi các đoạn mã khác nhau dựa trên các điều kiện cụ thể.",
+        "Thái độ: Học viên sáng tạo và thử nghiệm các giải pháp lập trình mới dựa trên kiến thức về toán tử, câu điều kiện và vòng lặp."
+      ],
+      "los": "S.LO.I.01",
+      "knowledge": "Học viên hiểu cách sử dụng từng loại toán tử trong các biểu thức; Học viên nhớ cách sử dụng câu điều kiện để kiểm tra và thực thi các đoạn mã khác nhau; Học viên nhớ cách sử dụng vòng lặp để lặp qua các tập hợp dữ liệu.",
+      "skills": "Học viên phân tích và chọn toán tử phù hợp cho từng tình huống cụ thể; Học viên vận dụng câu điều kiện để kiểm tra và thực thi các đoạn mã khác nhau dựa trên các điều kiện cụ thể.",
+      "attitude": "Học viên sáng tạo và thử nghiệm các giải pháp lập trình mới dựa trên kiến thức về toán tử, câu điều kiện và vòng lặp.",
+      "lessonContent": [
+        "Tìm hiểu về toán tử trong Javascript.",
+        "Giới thiệu về câu điều kiện.",
+        "Tìm hiểu về vòng lặp.",
+        "Thực hành với bài toán thực tế."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "4": {
+      "sessionNumber": 4,
+      "title": "Array, Object & DOM",
+      "summary": "Làm quen với cấu trúc dữ liệu mảng (Array) và đối tượng (Object); thực hành trọn bộ thao tác CRUD dữ liệu; tiếp cận mô hình Document Object Model (DOM) để truy vấn và can thiệp động nội dung, kiểu dáng của trang web.",
+      "hardwareAndCommands": "Mảng Array (push, pop, splice, map), Đối tượng Object (key-value, dot notation), DOM API (document.querySelector, getElementById, innerHTML, style, classList).",
+      "objectives": [
+        "Kiến thức: Học viên nắm được khái niệm về Array & Object và các cú pháp đi kèm; Học viên nắm được vai trò của DOM & cách thao tác với DOM.",
+        "Kỹ năng: Học viên tạo, đọc, cập nhật, và xóa phần tử trong danh sách và đối tượng; Học viên thao tác với các phần tử DOM để thay đổi nội dung và kiểu dáng trang web.",
+        "Thái độ: Học viên đánh giá hiệu quả của việc sử dụng DOM để truy vấn và xử lý sự kiện tương tác giữa website với người dùng."
+      ],
+      "los": "S.LO.I.02",
+      "knowledge": "Học viên nắm được khái niệm về Array & Object và các cú pháp đi kèm; Học viên nắm được vai trò của DOM & cách thao tác với DOM.",
+      "skills": "Học viên tạo, đọc, cập nhật, và xóa phần tử trong danh sách và đối tượng; Học viên thao tác với các phần tử DOM để thay đổi nội dung và kiểu dáng trang web.",
+      "attitude": "Học viên đánh giá hiệu quả của việc sử dụng DOM để truy vấn và xử lý sự kiện tương tác giữa website với người dùng.",
+      "lessonContent": [
+        "Tìm hiểu về danh sách và đối tượng trong Javascript.",
+        "CRUD với danh sách và đối tượng.",
+        "Tìm hiểu về DOM trong lập trình web."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "5": {
+      "sessionNumber": 5,
+      "title": "Hàm & Checkpoint 1",
+      "summary": "Đóng gói và module hóa mã nguồn với hàm (Functions, Arrow Functions); thu thập và xác thực dữ liệu từ HTML Form; tìm hiểu cơ chế lưu trữ dữ liệu bền vững trên trình duyệt với LocalStorage; thực hiện bài kiểm tra định kỳ Checkpoint 1.",
+      "hardwareAndCommands": "Cú pháp khai báo hàm (function, arrow function () => {}), localStorage.setItem(), localStorage.getItem(), JSON.stringify(), JSON.parse(), sự kiện submit form.",
+      "objectives": [
+        "Kiến thức: Học viên hiểu được về khái niệm và cách sử dụng hàm; Học viên ôn tập lại kiến thức về HTML Form; Học viên sử dụng JavaScript để thu thập và xử lý dữ liệu từ HTML Form; Học viên biết tới localStorage và cách sử dụng.",
+        "Kỹ năng: Học viên viết các hàm để thao tác với danh sách & đối tượng; Học viên viết các hàm để thao tác với HTML, CSS; Học viên vận dụng JavaScript xử lý với HTML Form.",
+        "Thái độ: Học viên đánh giá hiệu quả của việc sử dụng hàm để giải quyết các vấn đề lập trình."
+      ],
+      "los": "S.LO.III.04, S.LO.V.03",
+      "knowledge": "Học viên hiểu được về khái niệm và cách sử dụng hàm; Học viên ôn tập lại kiến thức về HTML Form; Học viên sử dụng JavaScript để thu thập và xử lý dữ liệu từ HTML Form; Học viên biết tới localStorage và cách sử dụng.",
+      "skills": "Học viên viết các hàm để thao tác với danh sách & đối tượng; Học viên viết các hàm để thao tác với HTML, CSS; Học viên vận dụng JavaScript xử lý với HTML Form.",
+      "attitude": "Học viên đánh giá hiệu quả của việc sử dụng hàm để giải quyết các vấn đề lập trình.",
+      "lessonContent": [
+        "Tìm hiểu về hàm và ứng dụng.",
+        "Áp dụng thu thập dữ liệu người dùng qua HTML Form.",
+        "Giới thiệu kho lưu trữ dữ liệu cục bộ LocalStorage.",
+        "Thực hành làm bài kiểm tra checkpoint 1."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "6": {
+      "sessionNumber": 6,
+      "title": "MindX Cinema (Phần 1)",
+      "summary": "Làm quen với hệ thống quản lý phiên bản Git & GitHub và xuất bản web với GitHub Pages; khởi động dự án thực chiến MindX Cinema: thiết lập cấu trúc mã nguồn, lập trình giao diện trang chủ và hệ thống biểu mẫu Đăng ký/Đăng nhập người dùng.",
+      "hardwareAndCommands": "Git CLI (git init, add, commit, push), nền tảng GitHub, GitHub Pages, cấu trúc dự án phim MindX Cinema, lưu trữ thông tin đăng ký vào LocalStorage.",
+      "objectives": [
+        "Kiến thức: Học viên biết tới git, github và các thao tác cơ bản; Học viên biết tới github pages và công dụng; Học viên hiểu được cấu trúc và chức năng chính của dự án MindX Cinema.",
+        "Kỹ năng: Học viên thực hiện các thao tác cơ bản với Git và GitHub để quản lý phiên bản mã nguồn; Tạo và xử lý các form HTML cho chức năng đăng ký và đăng nhập người dùng; Học viên xây dựng giao diện trang chủ, đăng ký, đăng nhập.",
+        "Thái độ: Học viên đánh giá tầm quan trọng của việc quản lý phiên bản mã nguồn trong lập trình; Học viên tự tin triển khai các dự án cá nhân và chia sẻ mã nguồn trên GitHub."
+      ],
+      "los": "S.LO.I.03",
+      "knowledge": "Học viên biết tới git, github và các thao tác cơ bản; Học viên biết tới github pages và công dụng; Học viên hiểu được cấu trúc và chức năng chính của dự án MindX Cinema.",
+      "skills": "Học viên thực hiện các thao tác cơ bản với Git và GitHub để quản lý phiên bản mã nguồn; Tạo và xử lý các form HTML cho chức năng đăng ký và đăng nhập người dùng; Học viên xây dựng giao diện trang chủ, đăng ký, đăng nhập.",
+      "attitude": "Học viên đánh giá tầm quan trọng của việc quản lý phiên bản mã nguồn trong lập trình; Học viên tự tin triển khai các dự án cá nhân và chia sẻ mã nguồn trên GitHub.",
+      "lessonContent": [
+        "Giới thiệu git/github và các thao tác cơ bản.",
+        "Tìm hiểu về github page & deploy dự án.",
+        "Giới thiệu dự án MindX Cinema và tính Real World của dự án.",
+        "Thực hành lập trình giao diện: Register/Login, Home page."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "7": {
+      "sessionNumber": 7,
+      "title": "MindX Cinema (Phần 2)",
+      "summary": "Khám phá khái niệm Application Programming Interface (API) và cơ chế gọi API bất đồng bộ với fetch; lập trình trang Chi tiết phim (Movie Details), trang Tìm kiếm (Search) và Tin tức (News); tích hợp API 2embed để phát video phim trực tuyến.",
+      "hardwareAndCommands": "JavaScript Fetch API (fetch(), async/await, Promises), dữ liệu JSON từ TheMovieDB API / 2embed iframe player, quản lý trạng thái phiên đăng nhập người dùng.",
+      "objectives": [
+        "Kiến thức: Học viên hiểu được khái niệm và vai trò của API trong lập trình web; Học viên hiểu được cách thức xác thực người dùng; Học viên biết cách xử lý sự kiện người dùng để hiển thị thông tin chi tiết phim.",
+        "Kỹ năng: Học viên sử dụng LocalStorage để xác thực người dùng và quản lý trạng thái đăng nhập; Học viên tạo giao diện cho trang chi tiết phim và cập nhật thông tin chi tiết từ API; Học viên tạo giao diện trang Search Page; Học viên lập trình xem phim với API 2embed.",
+        "Thái độ: Học viên đánh giá tầm quan trọng của việc xác thực người dùng trong các ứng dụng web; Đánh giá hiệu quả của việc sử dụng API để hiển thị và quản lý dữ liệu hiển thị trên giao diện người dùng."
+      ],
+      "los": "S.LO.I.03",
+      "knowledge": "Học viên hiểu được khái niệm và vai trò của API trong lập trình web; Học viên hiểu được cách thức xác thực người dùng; Học viên biết cách xử lý sự kiện người dùng để hiển thị thông tin chi tiết phim.",
+      "skills": "Học viên sử dụng LocalStorage để xác thực người dùng và quản lý trạng thái đăng nhập; Học viên tạo giao diện cho trang chi tiết phim và cập nhật thông tin chi tiết từ API; Học viên tạo giao diện trang Search Page; Học viên lập trình xem phim với API 2embed.",
+      "attitude": "Học viên đánh giá tầm quan trọng của việc xác thực người dùng trong các ứng dụng web; Đánh giá hiệu quả của việc sử dụng API để hiển thị và quản lý dữ liệu hiển thị trên giao diện người dùng.",
+      "lessonContent": [
+        "Tìm hiểu về API và các cú pháp đi kèm.",
+        "Thực hành lập trình: Page chi tiết phim, Search Page & News Page, Movie controller."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "8": {
+      "sessionNumber": 8,
+      "title": "MindX Cinema (Phần 3)",
+      "summary": "Hoàn thiện dự án MindX Cinema: xử lý kiểm tra hợp lệ dữ liệu nhập (Input Validation), tối ưu Responsive hiển thị trên di động; tích hợp tính năng bình luận/đánh giá sao (Rating/Comment), nhúng chatbot AI hỗ trợ người dùng và deploy bản chính thức lên Internet.",
+      "hardwareAndCommands": "Form Input Validation, Responsive CSS Media Queries, tính năng Rating & Comments lưu LocalStorage, nhúng Chatbot AI Widget, deploy production GitHub Pages / Vercel.",
+      "objectives": [
+        "Kiến thức: Học viên biết cách xử lý dữ liệu đầu vào từ người dùng; Học viên hiểu được ứng dụng của botchat AI trong việc tương tác với người dùng; Học viên nắm được cách thức triển khai chức năng bình luận và đánh giá phim; Học viên biết cách deploy dự án lên Internet.",
+        "Kỹ năng: Học viên tạo giao diện và thực hiện chức năng tìm kiếm phim trên Search Page; Học viên thực hiện xử lý và kiểm tra dữ liệu đầu vào của người dùng trên các form; Học viên thực hiện Tích hợp botchat AI vào website và cấu hình botchat để tương tác với người dùng; Học viên thực hiện các bước deploy dự án lên Internet.",
+        "Thái độ: Học viên đánh giá được mức độ hoàn thiện dự án và đề xuất nâng cấp trong tương lai."
+      ],
+      "los": "S.LO.I.03",
+      "knowledge": "Học viên biết cách xử lý dữ liệu đầu vào từ người dùng; Học viên hiểu được ứng dụng của botchat AI trong việc tương tác với người dùng; Học viên nắm được cách thức triển khai chức năng bình luận và đánh giá phim; Học viên biết cách deploy dự án lên Internet.",
+      "skills": "Học viên tạo giao diện và thực hiện chức năng tìm kiếm phim trên Search Page; Học viên thực hiện xử lý và kiểm tra dữ liệu đầu vào của người dùng trên các form; Học viên thực hiện Tích hợp botchat AI vào website và cấu hình botchat để tương tác với người dùng; Học viên thực hiện các bước deploy dự án lên Internet.",
+      "attitude": "Học viên đánh giá được mức độ hoàn thiện dự án và đề xuất nâng cấp trong tương lai.",
+      "lessonContent": [
+        "Soát lỗi người dùng nhập dữ liệu.",
+        "Responsive website.",
+        "Comment/rating phim.",
+        "Deploy dự án lên Internet."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "9": {
+      "sessionNumber": 9,
+      "title": "Khám phá ý tưởng lập trình & Checkpoint 2",
+      "summary": "Khám phá các công nghệ AI tiên tiến hỗ trợ lập trình viên phát triển web nhanh chóng; lên ý tưởng thiết kế, kiến trúc dữ liệu và lập timeline chi tiết cho dự án web cá nhân cuối khóa; thực hiện bài kiểm tra định kỳ Checkpoint 2.",
+      "hardwareAndCommands": "Công cụ AI hỗ trợ lập trình (ChatGPT, GitHub Copilot, v0.dev), đề kiểm tra Checkpoint 2, bảng kế hoạch tiến độ phát triển dự án.",
+      "objectives": [
+        "Kiến thức: Học viên trình bày được về AI và ứng dụng AI trong lập trình; Học viên lấy ví dụ các AI phổ thông thường được dùng: Copilot, GPT.",
+        "Kỹ năng: Học viên áp dụng yếu tố AI trong quá trình xây dựng ý tưởng dự án cuối khóa và bảng quản lý tiến độ; Học viên thực hiện checkpoint 2.",
+        "Thái độ: Học viên sử dụng AI để đề xuất ý tưởng website cá nhân."
+      ],
+      "los": "S.LO.II.01, S.LO.IV.01, S.LO.IV.02, S.LO.V.01",
+      "knowledge": "Học viên trình bày được về AI và ứng dụng AI trong lập trình; Học viên lấy ví dụ các AI phổ thông thường được dùng: Copilot, GPT.",
+      "skills": "Học viên áp dụng yếu tố AI trong quá trình xây dựng ý tưởng dự án cuối khóa và bảng quản lý tiến độ; Học viên thực hiện checkpoint 2.",
+      "attitude": "Học viên sử dụng AI để đề xuất ý tưởng website cá nhân.",
+      "lessonContent": [
+        "Sơ lược về AI và ứng dụng trong lập trình.",
+        "Giới thiệu các AI phổ thông hỗ trợ web developer.",
+        "Lên ý tưởng dự án website cuối khóa.",
+        "Thực hành làm bài checkpoint 2."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "10": {
+      "sessionNumber": 10,
+      "title": "Thực hành xây dựng sản phẩm cuối khóa (Phần 1)",
+      "summary": "Bắt đầu giai đoạn hiện thực hóa dự án website cá nhân: khởi tạo cấu trúc thư mục, thiết lập mã nguồn với Git/GitHub, xây dựng layout trang chính với CSS Grid/Flexbox và các module HTML ngữ nghĩa.",
+      "hardwareAndCommands": "Khởi tạo Git repo, cấu trúc HTML5/CSS3/JavaScript, layout CSS Grid & Flexbox, quản lý phiên bản mã nguồn.",
+      "objectives": [
+        "Kiến thức: Học viên vận dụng kiến thức đã học.",
+        "Kỹ năng: Học viên thực hành xây dựng giao diện phần mềm.",
+        "Thái độ: Đánh giá được tiến độ của dự án so với timeline đề ra."
+      ],
+      "los": "S.LO.II.01",
+      "knowledge": "Học viên vận dụng kiến thức đã học.",
+      "skills": "Học viên thực hành xây dựng giao diện phần mềm.",
+      "attitude": "Đánh giá được tiến độ của dự án so với timeline đề ra.",
+      "lessonContent": [
+        "Kiểm tra tiến độ dự án cá nhân.",
+        "Xây dựng dự án cuối khóa theo timeline đặt ra."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "11": {
+      "sessionNumber": 11,
+      "title": "Thực hành xây dựng sản phẩm cuối khóa (Phần 2)",
+      "summary": "Tăng tốc phát triển logic JavaScript cho website: xử lý tương tác DOM, tích hợp lưu trữ dữ liệu LocalStorage và kết nối API bất đồng bộ (nếu có); hoàn thiện các biểu mẫu nhập liệu và chức năng động.",
+      "hardwareAndCommands": "Thao tác DOM động, xử lý sự kiện Event Listeners, Fetch API bất đồng bộ, lưu trữ và đồng bộ dữ liệu với LocalStorage.",
+      "objectives": [
+        "Kiến thức: Học viên vận dụng kiến thức đã học.",
+        "Kỹ năng: Học viên thực hành xây dựng giao diện phần mềm.",
+        "Thái độ: Đánh giá được tiến độ của dự án so với timeline đề ra."
+      ],
+      "los": "S.LO.II.01",
+      "knowledge": "Học viên vận dụng kiến thức đã học.",
+      "skills": "Học viên thực hành xây dựng giao diện phần mềm.",
+      "attitude": "Đánh giá được tiến độ của dự án so với timeline đề ra.",
+      "lessonContent": [
+        "Kiểm tra tiến độ sản phẩm cuối khóa.",
+        "Thực hành xây dựng giao diện phần mềm."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "12": {
+      "sessionNumber": 12,
+      "title": "Thực hành xây dựng sản phẩm cuối khóa (Phần 3)",
+      "summary": "Hoàn thiện toàn diện giao diện và tính năng: tối ưu hiển thị Responsive trên đa thiết bị, kiểm thử toàn diện các luồng chức năng (Functional Testing), rà soát và khắc phục triệt để các lỗi logic/giao diện.",
+      "hardwareAndCommands": "Responsive UI testing, kiểm thử chức năng và xử lý lỗi biên (Edge Cases), tối ưu hóa trải nghiệm người dùng UX/UI.",
+      "objectives": [
+        "Kiến thức: Học viên vận dụng kiến thức đã học.",
+        "Kỹ năng: Học viên thực hành xây dựng giao diện phần mềm.",
+        "Thái độ: Đánh giá được tiến độ của dự án so với timeline đề ra."
+      ],
+      "los": "S.LO.II.01",
+      "knowledge": "Học viên vận dụng kiến thức đã học.",
+      "skills": "Học viên thực hành xây dựng giao diện phần mềm.",
+      "attitude": "Đánh giá được tiến độ của dự án so với timeline đề ra.",
+      "lessonContent": [
+        "Kiểm tra tiến độ sản phẩm cuối khóa.",
+        "Thực hành xây dựng giao diện phần mềm."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "13": {
+      "sessionNumber": 13,
+      "title": "Nghiệm thu sản phẩm",
+      "summary": "Nghiệm thu sản phẩm web và xuất bản dự án chính thức lên Internet (GitHub Pages / Vercel / Netlify); thiết kế và duyệt slide báo cáo tốt nghiệp (Canva / Google Slides); tập dượt thuyết trình và phản biện thử trước lớp.",
+      "hardwareAndCommands": "Deploy production website (Vercel / Netlify / GitHub Pages), bài trình chiếu Canva/PowerPoint, kỹ năng thuyết trình công nghệ.",
+      "objectives": [
+        "Kiến thức: Học viên vận dụng kiến thức đã học.",
+        "Kỹ năng: Học viên thực hành xây dựng giao diện phần mềm.",
+        "Thái độ: Đánh giá được tiến độ của dự án so với timeline đề ra."
+      ],
+      "los": "S.LO.III.01",
+      "knowledge": "Học viên vận dụng kiến thức đã học.",
+      "skills": "Học viên thực hành xây dựng giao diện phần mềm.",
+      "attitude": "Đánh giá được tiến độ của dự án so với timeline đề ra.",
+      "lessonContent": [
+        "Nghiệm thu sản phẩm web và deploy cơ bản.",
+        "Hoàn thiện và kiểm duyệt slide.",
+        "Thuyết trình thử."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "14": {
+      "sessionNumber": 14,
+      "title": "Thuyết trình cuối khóa",
+      "summary": "Tổ chức buổi báo cáo tốt nghiệp dự án website Web Developer Advanced; học viên tự tin trình bày demo trực tiếp website hoạt động trên Internet trước ban giám khảo và phụ huynh; giải trình giải pháp kỹ thuật JavaScript, trả lời phản biện và nhận chứng chỉ tốt nghiệp.",
+      "hardwareAndCommands": "Kỹ năng thuyết trình trước đám đông, demo website live trên trình duyệt, trả lời câu hỏi phản biện từ hội đồng chuyên môn.",
+      "objectives": [
+        "Kiến thức: Trình bày được các kiến thức đã học được áp dụng vào trong dự án.",
+        "Kỹ năng: Thực hiện thuyết trình sản phẩm cá nhân.",
+        "Thái độ: Đánh giá được sản phẩm của bản thân so với sản phẩm khác."
+      ],
+      "los": "S.LO.III.01",
+      "knowledge": "Trình bày được các kiến thức đã học được áp dụng vào trong dự án.",
+      "skills": "Thực hiện thuyết trình sản phẩm cá nhân.",
+      "attitude": "Đánh giá được sản phẩm của bản thân so với sản phẩm khác.",
+      "lessonContent": [
+        "Nghiệm thu sản phẩm web và deploy cơ bản.",
+        "Hoàn thiện và kiểm duyệt slide.",
+        "Thuyết trình thử."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    }
+  }
+}

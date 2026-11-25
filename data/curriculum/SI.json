@@ -1,0 +1,341 @@
+{
+  "courseCode": "SI",
+  "courseName": "Scratch Creator - Intensive",
+  "category": "CODING",
+  "platform": "Scratch / Micro:bit / MakeCode",
+  "cluster": "SCRATCH",
+  "targetAge": "8 - 10 tuổi",
+  "duration": "120 phút/buổi",
+  "version": "Ver 2026",
+  "studentBookUrl": "https://drive.google.com/file/d/12p8sHSFUmlrbyEkyTFKBOAw4V_ZSYmpc/view",
+  "sessions": {
+    "1": {
+      "sessionNumber": 1,
+      "title": "Làm quen với Micro:bit",
+      "summary": "Tìm hiểu nội quy, lộ trình khóa học và khái niệm giáo dục STEM; làm quen với bảng mạch Micro:bit cùng các thành phần phần cứng; cài đặt Scratch Link và kết nối Micro:bit điều khiển nhân vật trong Scratch; làm quen giao diện lập trình MakeCode, mô phỏng và nạp chương trình đầu tiên vào mạch Micro:bit.",
+      "hardwareAndCommands": "Bảng mạch Micro:bit, cáp kết nối máy tính, phần mềm Scratch Link, extension Micro:bit trên Scratch, môi trường lập trình Microsoft MakeCode.",
+      "objectives": [
+        "Kiến thức: Trình bày khái niệm STEM; Mô tả chức năng cơ bản các bộ phận trên Micro:bit; Phân biệt các khu vực của giao diện MakeCode và quy trình kết nối Scratch Link.",
+        "Kỹ năng: Cài đặt Scratch Link, thêm extension và ghép nối Micro:bit; Lập trình nhân vật di chuyển qua Micro:bit; Tạo, mô phỏng, nạp và lưu chương trình MakeCode.",
+        "Thái độ: Tuân thủ nội quy an toàn thiết bị; Chủ động quan sát, kiểm tra kết quả trên mô phỏng và thiết bị thật; Hứng thú khám phá ứng dụng công nghệ."
+      ],
+      "knowledge": "Trình bày được khái niệm STEM và vai trò của hoạt động thực hành trong STEM; Mô tả được chức năng cơ bản của các bộ phận trên bảng mạch Micro:bit; Phân biệt được các khu vực chính của giao diện MakeCode và quy trình kết nối Scratch Link.",
+      "skills": "Thực hiện được việc cài đặt Scratch Link, thêm extension Micro:bit và ghép nối thiết bị; Lập trình được nhân vật Scratch di chuyển bằng phím bấm; Tạo, mô phỏng, nạp và lưu được một chương trình MakeCode đơn giản.",
+      "attitude": "Tuân thủ nội quy lớp học và quy tắc sử dụng thiết bị điện tử an toàn; Chủ động quan sát, đặt câu hỏi và kiểm tra kết quả trên mô phỏng lẫn thiết bị thật; Hứng thú khám phá ứng dụng của Micro:bit trong các sản phẩm công nghệ.",
+      "lessonContent": [
+        "Tìm hiểu nội quy lớp học, lộ trình khóa học và các mốc Checkpoint 1, Checkpoint 2, thuyết trình cuối khóa.",
+        "Tìm hiểu khái niệm STEM và cách vận dụng Khoa học, Công nghệ, Kỹ thuật, Toán học để giải quyết vấn đề thực tế.",
+        "Nhận biết bảng mạch Micro:bit và các thành phần chính ở mặt trước, mặt sau của thiết bị.",
+        "Cài đặt Scratch Link, thêm tiện ích Micro:bit và ghép nối Micro:bit với dự án Scratch.",
+        "Ôn tập lập trình nhân vật Scratch di chuyển bằng phím bấm và thực hành điều khiển nhân vật qua Micro:bit.",
+        "Làm quen với giao diện MakeCode: trình mô phỏng, khu vực thẻ lệnh, khu vực lập trình và các công cụ quản lý dự án.",
+        "Thực hành ghép nối, nạp chương trình vào Micro:bit và lưu file dự án về máy tính."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "2": {
+      "sessionNumber": 2,
+      "title": "Game với Micro:bit",
+      "summary": "Ôn tập phần cứng Micro:bit; trải nghiệm và phân tích game Pacman trên ma trận LED 5x5; làm quen nhóm lệnh Game trong MakeCode (tạo sprite nhân vật, thức ăn, quái vật); ứng dụng cảm biến gia tốc (Accelerometer) để điều khiển Pacman qua thao tác nghiêng mạch; lập trình thuật toán đuổi bắt, tính điểm và xử lý Game Over.",
+      "hardwareAndCommands": "Cảm biến gia tốc tích hợp (tilt x/y, acceleration), ma trận LED 5x5, nhóm lệnh Game MakeCode (create sprite, move, change x/y, touching, score, game over).",
+      "objectives": [
+        "Kiến thức: Giải thích vai trò của biến và sprite trong nhóm Game MakeCode; Trình bày cách cảm biến gia tốc phản ánh độ nghiêng x, y; Mô tả logic tọa độ, va chạm và kết thúc game.",
+        "Kỹ năng: Khởi tạo sprite Pacman, Ghost, Food trên LED 5x5; Lập trình Pacman di chuyển bằng cảm biến gia tốc và Ghost đuổi theo; Lập trình cơ chế ăn mồi, tăng điểm và kết thúc game.",
+        "Thái độ: Kiên trì kiểm thử từng chức năng; Chủ động phân tích lỗi dựa trên tọa độ sprite; Tích cực trao đổi giải pháp cùng bạn học."
+      ],
+      "knowledge": "Giải thích được vai trò của biến và sprite trong nhóm lệnh Game của MakeCode; Trình bày được cách cảm biến gia tốc phản ánh độ nghiêng theo trục x, y; Mô tả được logic so sánh tọa độ, va chạm, tăng điểm và kết thúc game.",
+      "skills": "Khởi tạo được các sprite Pacman, Ghost và Food trên ma trận LED; Lập trình được Pacman di chuyển bằng cảm biến gia tốc và Ghost đuổi theo Pacman; Lập trình được cơ chế ăn Food, tăng điểm, đặt lại vị trí và điều kiện kết thúc game.",
+      "attitude": "Kiên trì kiểm thử từng chức năng trước khi ghép thành trò chơi hoàn chỉnh; Chủ động phân tích lỗi dựa trên tọa độ và trạng thái của các sprite; Tích cực trao đổi giải pháp với bạn học trong quá trình thực hành.",
+      "lessonContent": [
+        "Ôn tập các bộ phận và cảm biến được tích hợp trên bảng mạch Micro:bit.",
+        "Trải nghiệm game Pacman trên Micro:bit và phân tích nhân vật.",
+        "Tạo biến và khởi tạo các sprite nhân vật tại những vị trí khác nhau trên ma trận LED 5x5.",
+        "Sử dụng cảm biến gia tốc để điều khiển Pacman bằng thao tác nghiêng bảng mạch.",
+        "So sánh tọa độ để lập trình Ghost di chuyển dần về phía Pacman.",
+        "Xử lý va chạm Pacman - Food: tăng điểm, đặt Food ở vị trí ngẫu nhiên và đặt lại vị trí Ghost.",
+        "Xử lý điều kiện kết thúc game và kiểm thử trò chơi hoàn chỉnh."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "3": {
+      "sessionNumber": 3,
+      "title": "Cảm biến trên Micro:bit (Phần 1)",
+      "summary": "Khám phá các cảm biến tích hợp sẵn trên Micro:bit; lập trình nhiệt kế điện tử đo nhiệt độ môi trường; khai thác cảm biến từ trường làm la bàn số nhận biết 4 hướng (Đông - Tây - Nam - Bắc); tìm hiểu cảm biến âm thanh (Microphone) và lập trình đèn LED thông minh tự động bật/tắt khi có tiếng vỗ tay.",
+      "hardwareAndCommands": "Cảm biến nhiệt độ (temperature), la bàn số (compass heading), micro cảm biến âm thanh (sound level, on loud sound), câu lệnh điều kiện phân loại khoảng giá trị (If Else If).",
+      "objectives": [
+        "Kiến thức: Trình bày chức năng của cảm biến nhiệt độ, la bàn và âm thanh; Giải thích ý nghĩa giá trị góc phương vị và mức âm thanh; Hiểu cách dùng điều kiện chuyển dữ liệu cảm biến thành hành vi.",
+        "Kỹ năng: Lập trình nhiệt kế hiển thị nhiệt độ trên LED; Lập trình la bàn số nhận diện 4 hướng; Lập trình đèn LED phản hồi theo tiếng vỗ tay.",
+        "Thái độ: Cẩn thận khi đo và đối chiếu số liệu cảm biến; Chủ động thử nhiều điều kiện môi trường; Tích cực kiểm thử và tinh chỉnh ngưỡng kích hoạt."
+      ],
+      "knowledge": "Trình bày được chức năng của cảm biến nhiệt độ, la bàn và cảm biến âm thanh; Giải thích được ý nghĩa của giá trị nhiệt độ, góc phương vị và mức âm thanh; Mô tả được cách dùng câu lệnh điều kiện để chuyển dữ liệu cảm biến thành hành vi của thiết bị.",
+      "skills": "Lập trình được nhiệt kế hiển thị nhiệt độ trên Micro:bit; Lập trình được la bàn nhận biết bốn hướng cơ bản; Lập trình được đèn LED phản hồi với mức âm thanh hoặc tiếng vỗ tay.",
+      "attitude": "Cẩn thận khi đo, quan sát và đối chiếu dữ liệu cảm biến; Chủ động thử nhiều điều kiện môi trường để đánh giá độ ổn định của chương trình; Tích cực kiểm thử và điều chỉnh ngưỡng phù hợp.",
+      "lessonContent": [
+        "Khám phá cảm biến nhiệt độ và lập trình Micro:bit hoạt động như một chiếc nhiệt kế.",
+        "Khám phá la bàn, giá trị góc phương vị và cách nhận biết bốn hướng Đông, Tây, Nam, Bắc.",
+        "Vận dụng câu lệnh điều kiện để phân loại khoảng góc và hiển thị hướng tương ứng.",
+        "Tìm hiểu vị trí, nguyên lý hoạt động và đèn báo của cảm biến âm thanh trên Micro:bit.",
+        "Đọc mức âm thanh và kiểm tra phản hồi của cảm biến.",
+        "Lập trình mô phỏng đèn LED tự động bật/tắt bằng tiếng vỗ tay."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "4": {
+      "sessionNumber": 4,
+      "title": "Cảm biến trên Micro:bit (Phần 2)",
+      "summary": "Tìm hiểu cơ chế cảm biến ánh sáng (Light Level) từ ma trận LED; xử lý ngưỡng sáng/tối tự động bật đèn; làm quen với mạch mở rộng phần cứng (MakerEdu Shield) và các cổng cắm tín hiệu/nguồn; thực hành đấu nối module đèn giao thông ngoài và lập trình chu kỳ đèn giao thông sử dụng Hàm (Function).",
+      "hardwareAndCommands": "Cảm biến ánh sáng (light level), mạch mở rộng MakerEdu, module LED giao thông (Đỏ, Vàng, Xanh), chân cắm GPIO (digital write pin), khối lệnh Hàm (Function).",
+      "objectives": [
+        "Kiến thức: Giải thích cơ chế đo ánh sáng của Micro:bit; Trình bày vai trò câu lệnh If Else xử lý ngưỡng cảm biến; Nhận biết chức năng mạch mở rộng MakerEdu, cổng Servo/GPIO/LED.",
+        "Kỹ năng: Lập trình kiểm tra mức sáng và hiển thị trạng thái; Kết nối mạch mở rộng và module LED giao thông theo sơ đồ; Điều khiển chu kỳ đèn giao thông bằng hàm.",
+        "Thái độ: Kết nối phần cứng đúng kỹ thuật an toàn; Quan sát cẩn thận chiều chân cắm và nguồn điện; Kiểm thử cẩn thận từng module."
+      ],
+      "knowledge": "Giải thích được cơ chế đo ánh sáng bằng ma trận LED của Micro:bit; Trình bày được vai trò của câu lệnh If...Else trong xử lý ngưỡng cảm biến; Nhận biết được chức năng cơ bản của mạch mở rộng MakerEdu, cổng Servo, cảm biến và LED.",
+      "skills": "Lập trình được chương trình kiểm tra mức sáng và hiển thị phản hồi phù hợp; Kết nối được Micro:bit với mạch mở rộng và module theo sơ đồ; Điều khiển được LED giao thông.",
+      "attitude": "Thực hiện kết nối phần cứng đúng quy trình, không cắm/rút thiết bị khi chưa kiểm tra; Cẩn thận quan sát chiều cổng, chân tín hiệu và nguồn điện; Chủ động kiểm thử từng module trước khi ghép thành hệ thống.",
+      "lessonContent": [
+        "Tìm hiểu cách Micro:bit đo cường độ ánh sáng.",
+        "Đọc giá trị mức sáng và vận dụng câu lệnh If...Else để phân loại trạng thái sáng/tối.",
+        "Lập trình và kiểm thử chương trình cảm biến ánh sáng.",
+        "Làm quen với mạch mở rộng và chức năng của các cổng kết nối module.",
+        "Thực hành ghép nối Micro:bit với mạch mở rộng.",
+        "Nhận biết và ghép nối module LED giao thông.",
+        "Thực hành lập trình tín hiệu đèn giao thông và ứng dụng Function trong lập trình."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "5": {
+      "sessionNumber": 5,
+      "title": "",
+      "summary": "",
+      "hardwareAndCommands": "",
+      "objectives": [],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "6": {
+      "sessionNumber": 6,
+      "title": "Cánh cửa thông minh (Phần 1)",
+      "summary": "Khám phá dự án Smart Door (Cánh cửa thông minh); tìm hiểu nguyên lý cảm biến từ trường (Magnetic Force) và nam châm cửa; lập trình hệ thống chuông báo động phát hiện xâm nhập; làm quen với động cơ Servo 180 độ, cách đấu nối với mạch mở rộng và lập trình điều khiển góc quay đóng/mở cửa chính xác.",
+      "hardwareAndCommands": "Cảm biến từ trường tích hợp (magnetic force), nam châm từ, động cơ Servo (SG90), mạch mở rộng MakerEdu, lệnh servo write pin to angle.",
+      "objectives": [
+        "Kiến thức: Giải thích nguyên lý phát hiện nam châm của cảm biến từ trường; Mô tả quan hệ giữa vị trí cửa và cường độ từ trường; Trình bày đặc điểm, góc quay và ứng dụng của Servo.",
+        "Kỹ năng: Đọc dữ liệu từ trường; Lập trình chuông cảnh báo mở cửa theo ngưỡng từ trường; Kết nối và điều khiển góc quay Servo qua MakeCode.",
+        "Thái độ: Cẩn thận với nam châm và động cơ; Chủ động hiệu chỉnh ngưỡng theo thực tế; Hợp tác hiệu quả trong nhóm."
+      ],
+      "knowledge": "Giải thích được nguyên lý phát hiện nam châm của cảm biến từ trường; Mô tả được quan hệ giữa vị trí cửa và cường độ từ trường đo được; Trình bày được đặc điểm, góc quay và ứng dụng cơ bản của động cơ Servo.",
+      "skills": "Đọc và kiểm tra được dữ liệu từ trường trên Micro:bit; Lập trình được cảnh báo khi cửa mở dựa trên ngưỡng từ trường; Kết nối và điều khiển được Servo thông qua mạch mở rộng và MakeCode.",
+      "attitude": "Cẩn thận khi sử dụng nam châm, dây nối và động cơ; Chủ động hiệu chỉnh ngưỡng dựa trên dữ liệu thực tế; Hợp tác phân công người lắp ráp, lập trình và kiểm thử trong nhóm.",
+      "lessonContent": [
+        "Trải nghiệm mô hình Cánh cửa thông minh: cửa mở bằng nút bấm và phát báo động khi cửa bị mở.",
+        "Tìm hiểu vị trí, chức năng và dữ liệu của cảm biến từ trường trên Micro:bit.",
+        "Đo cường độ từ trường và phân tích sự khác nhau khi Micro:bit ở gần hoặc xa nam châm.",
+        "Lập trình phát hiện trạng thái cửa mở và kích hoạt cảnh báo.",
+        "Tìm hiểu động cơ Servo, góc quay và các ứng dụng cần chuyển động chính xác.",
+        "Kết nối Micro:bit, mạch mở rộng, Servo và các module liên quan.",
+        "Thêm extension Servo trên MakeCode và lập trình điều khiển góc quay của Servo."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "7": {
+      "sessionNumber": 7,
+      "title": "Cánh cửa thông minh (Phần 2)",
+      "summary": "Lập trình điều khiển đóng/mở cửa thủ công bằng nút bấm A và B; tìm hiểu nguyên lý phát/nhận sóng âm của cảm biến siêu âm (Ultrasonic Sensor); kết nối cảm biến với mạch mở rộng và lập trình cửa tự động mở khi phát hiện người đến gần, tự động đóng lại khi rời xa; giới thiệu cảm biến báo cháy hồng ngoại.",
+      "hardwareAndCommands": "Động cơ Servo, cảm biến siêu âm Ultrasonic (HC-SR04/Sonar extension), cảm biến lửa hồng ngoại (Flame Sensor), mạch mở rộng MakerEdu.",
+      "objectives": [
+        "Kiến thức: Trình bày quan hệ giữa góc quay Servo và trạng thái cửa; Giải thích nguyên lý phát/nhận sóng âm và khoảng cách đo của cảm biến siêu âm.",
+        "Kỹ năng: Lập trình đóng/mở cửa bằng nút A/B; Kết nối và đọc khoảng cách từ cảm biến siêu âm; Lập trình cửa tự động thông minh theo ngưỡng khoảng cách.",
+        "Thái độ: Thử nghiệm cảm biến theo quy trình an toàn; Chủ động hiệu chỉnh khoảng cách ngưỡng; Tuân thủ tuyệt đối quy định an toàn phòng cháy."
+      ],
+      "knowledge": "Trình bày được quan hệ giữa góc quay Servo và trạng thái đóng/mở của cửa; Giải thích được nguyên lý và phạm vi đo của cảm biến siêu âm.",
+      "skills": "Lập trình được cửa đóng/mở bằng nút A, nút B; Kết nối và đọc được khoảng cách từ cảm biến siêu âm; Lập trình được cửa tự động hoạt động theo ngưỡng khoảng cách.",
+      "attitude": "Thực hiện thử nghiệm cảm biến theo quy trình và giữ khoảng cách an toàn; Chủ động hiệu chỉnh ngưỡng để giảm đóng/mở sai; Tuân thủ hướng dẫn an toàn, không tự ý thử cảm biến lửa bằng ngọn lửa thật.",
+      "lessonContent": [
+        "Ôn tập điều khiển góc Servo và lập trình cửa đóng/mở bằng nút A, nút B.",
+        "Thiết lập góc Servo cho trạng thái đóng và mở.",
+        "Tìm hiểu nguyên lý đo khoảng cách của cảm biến siêu âm.",
+        "Kết nối cảm biến siêu âm với mạch mở rộng.",
+        "Lập trình đọc, hiển thị và kiểm tra giá trị khoảng cách.",
+        "Xây dựng cửa tự động mở khi phát hiện người/vật tiến đến gần và đóng lại khi rời xa.",
+        "Tìm hiểu sơ lược cảm biến lửa dùng mắt thu hồng ngoại."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "8": {
+      "sessionNumber": 8,
+      "title": "Cánh cửa thông minh (Phần 3)",
+      "summary": "Tích hợp Trí tuệ nhân tạo (AI) vào hệ thống phần cứng Micro:bit; sử dụng Google Teachable Machine thu thập dữ liệu hình ảnh qua webcam và huấn luyện mô hình phân loại; kết nối mô hình AI với bảng mạch Micro:bit thông qua nền tảng Teachable Micro:bit; lập trình cửa thông minh nhận diện khuôn mặt hoặc cử chỉ người dùng được cấp quyền.",
+      "hardwareAndCommands": "Google Teachable Machine, nền tảng Teachable Micro:bit (Web Serial API / Bluetooth), Webcam, động cơ Servo và mạch Micro:bit.",
+      "objectives": [
+        "Kiến thức: Mô tả các bước thu thập dữ liệu, huấn luyện và xuất mô hình AI; Giải thích vai trò của tập dữ liệu đa dạng; Trình bày cơ chế AI gửi tín hiệu điều khiển Micro:bit.",
+        "Kỹ năng: Tạo và huấn luyện mô hình AI phân loại hình ảnh; Kết nối mô hình AI với Micro:bit; Lập trình cửa tự động mở khi AI nhận diện đúng đối tượng.",
+        "Thái độ: Thu thập dữ liệu có trách nhiệm; Kiên trì bổ sung dữ liệu cải thiện độ chính xác; Đánh giá đúng giới hạn và sai số của AI."
+      ],
+      "knowledge": "Mô tả được các bước thu thập dữ liệu, huấn luyện và xuất mô hình Teachable Machine; Giải thích được vai trò của lớp dữ liệu, số lượng mẫu và sự đa dạng của hình ảnh; Trình bày được cách mô hình AI gửi kết quả nhận diện để điều khiển dự án Micro:bit.",
+      "skills": "Tạo và huấn luyện được mô hình phân loại hai lớp; Xuất được mô hình TensorFlow.js và kiểm tra trên nền tảng Teachable Micro:bit; Tích hợp được kết quả nhận diện vào logic đóng/mở cửa.",
+      "attitude": "Thu thập dữ liệu có trách nhiệm; Kiên trì bổ sung dữ liệu khi mô hình dự đoán chưa chính xác; Chủ động đánh giá giới hạn và sai số của mô hình AI.",
+      "lessonContent": [
+        "Làm quen với Teachable Machine và quy trình tạo mô hình AI phân loại hình ảnh.",
+        "Tạo các lớp dữ liệu, thu thập hình ảnh bằng webcam và bảo đảm dữ liệu đủ đa dạng.",
+        "Huấn luyện mô hình và kiểm tra kết quả dự đoán.",
+        "Nhập URL mô hình tại trang Teachable Micro:bit để kiểm tra kết quả và kết nối với Micro:bit.",
+        "Thực hiện nhiệm vụ nhận diện động tác giơ tay trái hoặc tay phải.",
+        "Vận dụng mô hình AI để đề xuất/triển khai cửa tự động nhận diện người hoặc khuôn mặt được cho phép."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "9": {
+      "sessionNumber": 9,
+      "title": "Kiểm tra cuối khóa và lên ý tưởng dự án",
+      "summary": "Hệ thống hóa toàn bộ kiến thức lập trình Micro:bit, cảm biến, động cơ và AI; hoàn thành bài kiểm tra cuối khóa (45 phút lý thuyết và thực hành); tìm hiểu lộ trình phát triển dự án công nghệ; thảo luận nhóm đề xuất ý tưởng sáng chế giải quyết bài toán thực tế và chuẩn bị vật liệu triển khai.",
+      "hardwareAndCommands": "Đề kiểm tra cuối khóa, bảng mạch Micro:bit và bộ kit cảm biến MakerEdu, phiếu đề xuất ý tưởng sáng chế công nghệ.",
+      "objectives": [
+        "Kiến thức: Hệ thống hóa kiến thức Micro:bit, cảm biến, mạch mở rộng và AI; Nắm vững timeline dự án cuối khóa; Xác định vấn đề thực tế và chức năng sản phẩm.",
+        "Kỹ năng: Hoàn thành bài kiểm tra cuối khóa xuất sắc; Xây dựng ý tưởng dự án có tính khả thi; Thuyết trình, lắng nghe phản biện và hoàn thiện đề cương dự án.",
+        "Thái độ: Trung thực, tự chủ trong làm bài; Tôn trọng ý tưởng sáng tạo của bạn bè; Có tinh thần trách nhiệm và cam kết tiến độ."
+      ],
+      "knowledge": "Hệ thống hóa được kiến thức và nguyên lý của các thành phần đã học trong khóa; Trình bày được timeline và các mốc cần hoàn thành của sản phẩm cuối khóa; Mô tả được vấn đề, người dùng và chức năng cốt lõi của ý tưởng dự án.",
+      "skills": "Hoàn thành được bài kiểm tra cuối khóa theo yêu cầu; Xây dựng được ý tưởng dự án có mục tiêu, chức năng và danh sách công cụ rõ ràng; Trình bày, phản biện và điều chỉnh được ý tưởng dựa trên góp ý.",
+      "attitude": "Trung thực và tự chủ trong kiểm tra; Cởi mở tiếp nhận phản hồi và tôn trọng ý tưởng của các nhóm khác; Có ý thức lập kế hoạch và cam kết tiến độ dự án.",
+      "lessonContent": [
+        "Ôn tập toàn bộ kiến thức về Micro:bit, MakeCode, cảm biến, Servo, mạch mở rộng và AI.",
+        "Thực hiện bài kiểm tra cuối khóa trong 45 phút gồm 10 câu trắc nghiệm và 1 bài thực hành.",
+        "Tìm hiểu timeline thực hiện sản phẩm cuối khóa và các mốc kiểm tra tiến độ.",
+        "Xác định công cụ, thiết bị, module và tài nguyên cần chuẩn bị cho dự án.",
+        "Tham khảo một số dự án sáng chế công nghệ sử dụng Micro:bit.",
+        "Đề xuất ý tưởng sản phẩm, xác định vấn đề thực tế và chức năng chính.",
+        "Chia sẻ ý tưởng với cả lớp, tiếp nhận góp ý và lựa chọn hướng triển khai."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "10": {
+      "sessionNumber": 10,
+      "title": "Dự án của em (Phần 1)",
+      "summary": "Bắt tay xây dựng phiên bản mẫu đầu tiên (Prototype) của dự án sáng chế; đấu nối phần cứng cảm biến và cơ cấu chấp hành; lập trình khối chức năng cốt lõi trên MakeCode; kiểm thử hoạt động ban đầu, ghi nhận lỗi kỹ thuật và tạo hình mô hình sản phẩm.",
+      "hardwareAndCommands": "Bảng mạch Micro:bit, mạch mở rộng, các module cảm biến và thiết bị đầu ra theo ý tưởng nhóm, vật liệu chế tạo mô hình (bìa carton, mô hình lắp ghép).",
+      "objectives": [
+        "Kiến thức: Trình bày mục tiêu, chức năng cốt lõi và tiêu chí sản phẩm; Mô tả liên hệ giữa cảm biến đầu vào, vi điều khiển và thiết bị đầu ra; Nhận diện rủi ro tiến độ.",
+        "Kỹ năng: Lập kế hoạch phân công công việc nhóm; Lắp ráp và lập trình prototype hoạt động được chức năng chính; Ghi nhận và khắc phục lỗi cơ bản.",
+        "Thái độ: Có tinh thần trách nhiệm với nhiệm vụ được giao; Hợp tác, hỗ trợ đồng đội; Kiên trì kiểm thử sản phẩm."
+      ],
+      "knowledge": "Trình bày được mục tiêu, chức năng cốt lõi và tiêu chí hoàn thành của dự án; Mô tả được mối liên hệ giữa cảm biến đầu vào, chương trình xử lý và thiết bị đầu ra; Nhận biết được các rủi ro có thể ảnh hưởng đến tiến độ.",
+      "skills": "Lập kế hoạch công việc trong buổi và cập nhật tiến độ nhóm; Xây dựng được prototype với các chức năng chính; Ghi nhận, phân loại và xử lý được lỗi cơ bản.",
+      "attitude": "Chủ động chịu trách nhiệm với phần việc được giao; Hợp tác hỗ trợ thành viên khi gặp khó khăn; Kiên trì kiểm thử và không bỏ qua lỗi ảnh hưởng đến chức năng chính.",
+      "lessonContent": [
+        "Báo cáo và nhận xét tiến độ sản phẩm cuối khóa theo timeline đã thống nhất.",
+        "Rà soát vấn đề, mục tiêu, chức năng chính và phân công nhiệm vụ của nhóm.",
+        "Xây dựng phiên bản prototype đầu tiên của sản phẩm.",
+        "Lập trình các chức năng cốt lõi và kết nối các thành phần phần cứng cần thiết.",
+        "Kiểm thử từng chức năng, ghi nhận lỗi và đề xuất hướng xử lý.",
+        "Bắt đầu hoàn thiện hình thức, trang trí và bố trí mô hình sản phẩm."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "11": {
+      "sessionNumber": 11,
+      "title": "Dự án của em (Phần 2)",
+      "summary": "Tiếp tục hoàn thiện các tính năng phụ trợ và tăng tính ổn định của thiết bị; tối ưu cơ cấu cơ khí, vị trí đặt cảm biến và đi dây gọn gàng; gia cố mô hình chắc chắn và mang tính thẩm mỹ cao; tổ chức kiểm thử chéo giữa các nhóm để thu thập ý kiến trải nghiệm và tối ưu hóa hệ thống.",
+      "hardwareAndCommands": "Tối ưu hóa mã nguồn MakeCode, gia cố đấu nối dây dẫn mạch mở rộng, cảm biến, cơ cấu chấp hành và kết cấu vật liệu mô hình.",
+      "objectives": [
+        "Kiến thức: Hiểu tiêu chí đánh giá độ ổn định của sản phẩm phần cứng kết hợp phần mềm; Phân tích nguyên nhân lỗi phần cứng/chương trình; Hiểu vai trò phản hồi người dùng.",
+        "Kỹ năng: Hoàn thiện tính năng theo checklist; Kiểm thử chéo và ghi nhận góp ý cải tiến; Gia cố, trang trí mô hình thẩm mỹ và tiện lợi khi thao tác.",
+        "Thái độ: Lắng nghe phản hồi trên tinh thần xây dựng; Giữ gìn bảo vệ thiết bị điện tử; Đồng lòng phối hợp hoàn thành sản phẩm."
+      ],
+      "knowledge": "Giải thích được tiêu chí đánh giá mức độ hoàn thiện và ổn định của sản phẩm; Phân tích được nguyên nhân lỗi từ phần cứng, dữ liệu cảm biến hoặc logic chương trình; Mô tả được vai trò của phản hồi người dùng trong cải tiến sản phẩm.",
+      "skills": "Hoàn thiện được các chức năng theo checklist; Kiểm thử chéo, ghi nhận phản hồi và ưu tiên lỗi cần sửa; Trang trí, gia cố và bố trí mô hình phù hợp với thao tác trải nghiệm.",
+      "attitude": "Tôn trọng phản hồi và trao đổi dựa trên bằng chứng kiểm thử; Cẩn thận bảo vệ thiết bị trong quá trình lắp ráp và trang trí; Chủ động hỗ trợ nhóm hoàn thành đúng tiến độ.",
+      "lessonContent": [
+        "Nhận xét tiến độ và đối chiếu sản phẩm với checklist chức năng.",
+        "Tiếp tục hoàn thiện các chức năng còn thiếu hoặc hoạt động chưa ổn định.",
+        "Tối ưu kết nối phần cứng, vị trí cảm biến và chuyển động của thiết bị đầu ra.",
+        "Hoàn thiện hình thức, trang trí và độ chắc chắn của mô hình.",
+        "Thực hiện kiểm thử chéo giữa các nhóm và thu thập phản hồi.",
+        "Sửa lỗi, cải tiến trải nghiệm sử dụng và cập nhật tiến độ dự án."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "12": {
+      "sessionNumber": 12,
+      "title": "Dự án của em (Phần 3)",
+      "summary": "Tổng duyệt và kiểm tra toàn diện hoạt động của sản phẩm trong các điều kiện thực tế và tình huống biên; xử lý triệt để các lỗi còn tồn đọng; hoàn tất trang trí và đóng gói mô hình; xây dựng kịch bản demo ngắn gọn giới thiệu vấn đề, giải pháp và nguyên lý hoạt động; sao lưu mã nguồn và thiết lập checklist thiết bị sẵn sàng cho buổi Demo.",
+      "hardwareAndCommands": "Kiểm thử toàn diện hệ thống phần cứng Micro:bit, nguồn pin/adapter dự phòng, lưu trữ mã nguồn .hex trên MakeCode, kịch bản demo sản phẩm.",
+      "objectives": [
+        "Kiến thức: Trình bày tiêu chí sẵn sàng xuất xưởng (Demo-ready) của sản phẩm công nghệ; Phân biệt kiểm thử chức năng và tình huống biên; Nắm vững cấu trúc bài demo.",
+        "Kỹ năng: Kiểm thử toàn diện và khắc phục lỗi phát sinh; Hoàn thiện thiết bị và sao lưu mã nguồn an toàn; Xây dựng kịch bản demo súc tích và phân vai trình diễn.",
+        "Thái độ: Có tinh thần trách nhiệm kiểm tra kỹ lưỡng; Điềm tĩnh xử lý lỗi kỹ thuật; Tự tin chuẩn bị chia sẻ giải pháp với mọi người."
+      ],
+      "knowledge": "Trình bày được tiêu chí sẵn sàng demo của một sản phẩm công nghệ; Phân biệt được kiểm thử chức năng, kiểm thử tình huống và kiểm tra hình thức; Mô tả được cấu trúc nội dung demo sản phẩm.",
+      "skills": "Thực hiện được kiểm thử toàn diện và xử lý lỗi còn lại; Hoàn thiện được sản phẩm, mã nguồn và bộ thiết bị đi kèm; Xây dựng được kịch bản demo ngắn, rõ ràng và có phân công người trình bày.",
+      "attitude": "Có trách nhiệm kiểm tra sản phẩm trước khi công bố; Bình tĩnh xử lý lỗi và ưu tiên tính ổn định hơn việc thêm chức năng mới; Tự tin chuẩn bị chia sẻ sản phẩm với người khác.",
+      "lessonContent": [
+        "Nhận xét tiến độ và xác định các hạng mục cuối cùng cần hoàn thiện.",
+        "Kiểm tra đầy đủ chức năng, kết nối và độ ổn định của sản phẩm.",
+        "Thử nghiệm sản phẩm theo các tình huống sử dụng bình thường và tình huống biên.",
+        "Sửa lỗi còn lại, tối ưu thao tác và hoàn thiện phần trang trí.",
+        "Chuẩn bị nội dung demo: vấn đề, giải pháp, cách hoạt động và điểm nổi bật.",
+        "Lưu bản dự phòng mã nguồn, chuẩn bị thiết bị và checklist cho buổi demo sản phẩm."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "13": {
+      "sessionNumber": 13,
+      "title": "Demo sản phẩm",
+      "summary": "Tìm hiểu kỹ năng thuyết trình và demo giới thiệu sản phẩm công nghệ; rèn luyện phong thái tự tin, giọng nói truyền cảm, ngôn ngữ cơ thể và cách tương tác trực quan với khán giả; các nhóm tiến hành demo thực tế mô hình, vận hành sản phẩm, trả lời câu hỏi phản biện từ thầy cô và bạn bè; chuẩn bị kế hoạch cho ngày hội Triển lãm Buổi 14.",
+      "hardwareAndCommands": "Vận hành mô hình sáng chế thực tế, bài trình chiếu thuyết trình (Canva/Slides), bảng poster mô tả dự án, kế hoạch setup gian hàng.",
+      "objectives": [
+        "Kiến thức: Trình bày cấu trúc 3 phần của bài thuyết trình sản phẩm; Nắm được yêu cầu giọng nói, cử chỉ, thời lượng; Nắm vững quy trình và timeline triển lãm.",
+        "Kỹ năng: Thuyết trình và demo sản phẩm lưu loát, mạch lạc; Vận hành thiết bị nhịp nhàng theo lời thuyết minh; Tiếp thu góp ý và điều chỉnh nội dung hoàn thiện hơn.",
+        "Thái độ: Tự tin, hòa nhã và tôn trọng người nghe; Có tinh thần cầu thị tiếp thu phản hồi; Đoàn kết chuẩn bị tốt nhất cho ngày hội triển lãm."
+      ],
+      "knowledge": "Trình bày được cấu trúc và các nguyên tắc cơ bản của một bài thuyết trình sản phẩm; Mô tả được yêu cầu về giọng nói, tư thế, ánh mắt, cử chỉ và thời lượng; Nêu được quy trình và timeline chuẩn bị triển lãm cuối khóa.",
+      "skills": "Xây dựng và trình bày được bài demo sản phẩm có mở đầu, nội dung chính và kết thúc; Vận hành sản phẩm đồng thời giải thích cách hoạt động; Trả lời câu hỏi, tiếp nhận nhận xét và điều chỉnh bài thuyết trình.",
+      "attitude": "Tự tin, bình tĩnh và tôn trọng người nghe; Lắng nghe phản hồi với tinh thần cầu thị; Chủ động hỗ trợ nhóm chuẩn bị sản phẩm và gian hàng đúng tiến độ.",
+      "lessonContent": [
+        "Tìm hiểu khái niệm thuyết trình và vai trò của thuyết trình trong giới thiệu sản phẩm.",
+        "Xác định đúng chủ đề, sắp xếp nội dung theo ba phần mở đầu, nội dung chính, kết thúc.",
+        "Luyện nói rõ ràng, mạch lạc, đủ lớn, tốc độ vừa phải và ngắt nghỉ hợp lý.",
+        "Rèn sự tự tin, ánh mắt, tư thế, nét mặt và cử chỉ phù hợp.",
+        "Chuẩn bị ý chính và luyện tập trước để bảo đảm đúng thời gian.",
+        "Các nhóm lần lượt demo sản phẩm, thuyết trình thử, trả lời câu hỏi và nhận nhận xét.",
+        "Chuẩn bị triển lãm và nắm timeline buổi 14: 20 phút setup, 20 phút chinh phục kiến thức, 60 phút triển lãm, 20 phút tổng kết."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "14": {
+      "sessionNumber": 14,
+      "title": "Triển lãm sản phẩm",
+      "summary": "Tổ chức ngày hội Triển lãm Sản phẩm Công nghệ (Science & Tech Fair); thiết lập gian hàng trải nghiệm tương tác; tham gia minigame củng cố kiến thức Micro:bit; học viên tự tin giới thiệu, hướng dẫn phụ huynh và khách tham quan trực tiếp trải nghiệm phát minh của mình; lắng nghe đánh giá từ Ban giám khảo và đón nhận giấy chứng nhận hoàn thành khóa học.",
+      "hardwareAndCommands": "Gian hàng triển lãm thực tế, mô hình sản phẩm hoàn thiện, poster dự án, minigame công nghệ, chứng chỉ tốt nghiệp khóa học.",
+      "objectives": [
+        "Kiến thức: Tổng hợp toàn diện kiến thức Micro:bit, cảm biến, cơ chế chấp hành và AI; Trình bày giải pháp sáng tạo của nhóm; Hiểu quy trình triển lãm công nghệ.",
+        "Kỹ năng: Bố trí và vận hành gian hàng trải nghiệm an toàn; Thuyết minh cuốn hút và hướng dẫn khách tham quan trải nghiệm; Tiếp nhận phản hồi đánh giá chuyên nghiệp.",
+        "Thái độ: Tự hào chia sẻ thành quả sau khóa học; Tôn trọng, cổ vũ sản phẩm của các nhóm bạn; Trân trọng hành trình sáng tạo và rèn luyện."
+      ],
+      "knowledge": "Hệ thống hóa được kiến thức về bảng mạch Micro:bit, cảm biến, thiết bị đầu ra và quy trình tạo dự án; Trình bày được vấn đề, giải pháp và nguyên lý hoạt động của sản phẩm nhóm; Mô tả được quy trình thuyết trình và tiếp nhận phản hồi tại triển lãm.",
+      "skills": "Thiết lập và vận hành được gian hàng, sản phẩm an toàn; Thuyết trình, demo, hướng dẫn khách mời trải nghiệm và trả lời câu hỏi; Ghi nhận, phân loại và phản hồi được nhận xét từ Ban giám khảo/khách mời.",
+      "attitude": "Tự tin chia sẻ thành quả học tập và tôn trọng sản phẩm của các nhóm; Lịch sự, chủ động hỗ trợ khách mời trải nghiệm; Trân trọng quá trình hợp tác, học hỏi và cải tiến sản phẩm.",
+      "lessonContent": [
+        "Thiết lập gian hàng, kiểm tra sản phẩm, nguồn điện, bảng tên và khu vực trải nghiệm.",
+        "Tham gia minigame chinh phục kiến thức về các bộ phận, cảm biến và chức năng của Micro:bit.",
+        "Thực hiện triển lãm sản phẩm theo quy trình: học viên trình bày, khách mời trải nghiệm, lắng nghe nhận xét và trả lời câu hỏi.",
+        "Vận hành sản phẩm an toàn, giải thích rõ vấn đề, giải pháp và cách hoạt động.",
+        "Tiếp nhận phản hồi từ Ban giám khảo và khách mời.",
+        "Tổng kết quá trình học, ghi nhận tiến bộ và trao thưởng."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    }
+  }
+}

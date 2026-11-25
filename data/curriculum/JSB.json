@@ -1,0 +1,326 @@
+{
+  "courseCode": "JSB",
+  "courseName": "Web Developer - Basic",
+  "category": "CODING",
+  "platform": "HTML/CSS/JS",
+  "cluster": "WEB_JS",
+  "targetAge": "13 - 16 Tuổi",
+  "duration": "120 phút/buổi",
+  "version": "Ver 01 - 5.2024 (Hiệu lực)",
+  "sessions": {
+    "1": {
+      "sessionNumber": 1,
+      "title": "Website hoạt động như thế nào",
+      "summary": "Tìm hiểu nguyên lý hoạt động của website, các tiêu chuẩn web W3C, URL và giao thức HTTPS; làm quen với môi trường lập trình VS Code và cú pháp HTML5 cơ bản; thực hành tạo trang web đầu tiên hiển thị thông tin cá nhân.",
+      "hardwareAndCommands": "Visual Studio Code, Live Server, tiêu chuẩn W3C, URL, HTTPS, cấu trúc thẻ HTML cơ bản (<!DOCTYPE html>, <html>, <head>, <body>, <h1>-<h6>, <p>).",
+      "objectives": [
+        "Kiến thức: Học viên trình bày được khái niệm về website và cách trang web hoạt động; Học sinh trình bày được các thẻ cơ bản của HTML.",
+        "Kỹ năng: Học viên thực hiện quản lý thư mục lập trình thông qua cách sắp xếp, đặt tên folder và file; Học viên thực hiện lập trình trang web hiển thị nội dung cơ bản.",
+        "Thái độ: Thiết kế được website hiển thị thông tin cá nhân cơ bản."
+      ],
+      "los": "S.LO.I.01, S.LO.III.01",
+      "knowledge": "Học viên trình bày được khái niệm về website và cách trang web hoạt động; Học sinh trình bày được các thẻ cơ bản của HTML.",
+      "skills": "Học viên thực hiện quản lý thư mục lập trình thông qua cách sắp xếp, đặt tên folder và file; Học viên thực hiện lập trình trang web hiển thị nội dung cơ bản.",
+      "attitude": "Thiết kế được website hiển thị thông tin cá nhân cơ bản.",
+      "lessonContent": [
+        "Tìm hiểu về các tiêu chuẩn, khái niệm website: W3C, URL và HTTPS.",
+        "Giới thiệu về HTML5 và cú pháp, các dạng thẻ.",
+        "Làm quen với IDE Visual Studio Code.",
+        "Tạo trang web hiển thị nội dung đơn giản."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "2": {
+      "sessionNumber": 2,
+      "title": "HTML bậc trung & Web nhiều trang",
+      "summary": "Khám phá các thẻ HTML danh sách, liên kết và chèn hình ảnh; làm quen với quy tắc căn lề chuẩn và cấu trúc thẻ lồng nhau; hiểu mối quan hệ giữa webpage và website để xây dựng dự án Portfolio Website đa trang liên kết hoàn chỉnh.",
+      "hardwareAndCommands": "Thẻ danh sách (<ul>, <ol>, <li>), thẻ liên kết <a>, thẻ hình ảnh <img>, đường dẫn tương đối/tuyệt đối, cấu trúc website đa trang.",
+      "objectives": [
+        "Kiến thức: Học viên trình bày được về các thẻ danh sách trong HTML; Học viên mô tả được cách căn chỉnh thụt lề và các thẻ lồng nhau; Học viên trình bày được khái niệm về website và webpage.",
+        "Kỹ năng: Học viên thực hiện lập trình dự án Portfolio Website với HTML.",
+        "Thái độ: Học viên thiết kế nội dung hiển thị lên website Portfolio."
+      ],
+      "los": "S.LO.III.01, S.LO.IV.01",
+      "knowledge": "Học viên trình bày được về các thẻ danh sách trong HTML; Học viên mô tả được cách căn chỉnh thụt lề và các thẻ lồng nhau; Học viên trình bày được khái niệm về website và webpage.",
+      "skills": "Học viên thực hiện lập trình dự án Portfolio Website với HTML.",
+      "attitude": "Học viên thiết kế nội dung hiển thị lên website Portfolio.",
+      "lessonContent": [
+        "Tìm hiểu về thẻ danh sách, thẻ đường dẫn và hình ảnh.",
+        "Căn chỉnh Thụt lề & Khái niệm thẻ lồng nhau.",
+        "Khái niệm website, webpage và mối quan hệ.",
+        "Thực hành xây dựng Project Portfolio Website."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "3": {
+      "sessionNumber": 3,
+      "title": "Trang trí cho Website như thế nào",
+      "summary": "Làm quen với ngôn ngữ định kiểu CSS; nắm vững các bộ chọn CSS Selectors và mô hình hộp CSS Box Model (content, padding, border, margin); sử dụng công cụ DevTools trên trình duyệt để kiểm tra và chỉnh sửa trực tiếp giao diện dự án MindX Page.",
+      "hardwareAndCommands": "CSS Selectors, CSS Box Model (margin, border, padding, content), Chrome DevTools (Inspect Elements), thuộc tính màu sắc, font chữ.",
+      "objectives": [
+        "Kiến thức: Học viên trình bày được về khái niệm CSS và các thuộc tính cơ bản; Học viên phân biệt môi trường thật/ảo khi tùy chỉnh giao diện web với devtools; Học viên trình bày về CSS Box Model và các phần tử trong 1 thẻ.",
+        "Kỹ năng: Học viên thực hiện fixbug và phát triển giao diện với devtools; Học viên thực hiện lập trình dự án MindX Page.",
+        "Thái độ: Phát triển các phiên bản mới hơn từ dự án mẫu."
+      ],
+      "los": "S.LO.II.01, S.LO.III.01, S.LO.IV.02",
+      "knowledge": "Học viên trình bày được về khái niệm CSS và các thuộc tính cơ bản; Học viên phân biệt môi trường thật/ảo khi tùy chỉnh giao diện web với devtools; Học viên trình bày về CSS Box Model và các phần tử trong 1 thẻ.",
+      "skills": "Học viên thực hiện fixbug và phát triển giao diện với devtools; Học viên thực hiện lập trình dự án MindX Page.",
+      "attitude": "Phát triển các phiên bản mới hơn từ dự án mẫu.",
+      "lessonContent": [
+        "Giới thiệu về CSS và các thuộc tính cơ bản.",
+        "Tìm hiểu về CSS Selectors để chọn phần tử HTML cụ thể.",
+        "Sử dụng Inspecting CSS tùy chỉnh giao diện tại trình duyệt.",
+        "Tìm hiểu về CSS Box Model.",
+        "Thực hành xây dựng dự án MindX Page."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "4": {
+      "sessionNumber": 4,
+      "title": "CSS bậc trung",
+      "summary": "Nghiên cứu sâu về độ ưu tiên (Specificity), tính kế thừa và các kỹ thuật kết hợp bộ chọn trong CSS; làm chủ thuộc tính định vị CSS Positioning (static, relative, absolute, fixed) để xây dựng bố cục chính xác cho dự án The Flag.",
+      "hardwareAndCommands": "CSS Specificity, Inheritance, Combinators, CSS Positioning (position: static | relative | absolute | fixed, top, bottom, left, right, z-index).",
+      "objectives": [
+        "Kiến thức: Học viên trình bày được về độ ưu tiên và tính kế thừa trong CSS; Học viên phân biệt Combining CSS Selectors và CSS Selectors trong xác định các phần tử được áp dụng.",
+        "Kỹ năng: Học viên thực hiện xây dựng dự án The Flag.",
+        "Thái độ: Học viên tùy biến thay đổi vị trí các phần tử phù hợp hơn trong trang web."
+      ],
+      "los": "S.LO.I.01, S.LO.III.01, S.LO.IV.02",
+      "knowledge": "Học viên trình bày được về độ ưu tiên và tính kế thừa trong CSS; Học viên phân biệt Combining CSS Selectors và CSS Selectors trong xác định các phần tử được áp dụng.",
+      "skills": "Học viên thực hiện xây dựng dự án The Flag.",
+      "attitude": "Học viên tùy biến thay đổi vị trí các phần tử phù hợp hơn trong trang web.",
+      "lessonContent": [
+        "Độ ưu tiên và tính kế thừa trong CSS.",
+        "Giới thiệu về CSS Positioning giúp định vị các phần tử trên trang web.",
+        "Thực hành dự án The Flag."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "5": {
+      "sessionNumber": 5,
+      "title": "CSS nâng cao & Checkpoint 1",
+      "summary": "Làm chủ kỹ thuật dàn trang hiện đại với CSS Flexbox và các thuộc tính căn chỉnh; tìm hiểu tư duy Responsive Web Design với Media Queries thích ứng đa kích thước màn hình; thực hiện bài kiểm tra định kỳ Checkpoint 1.",
+      "hardwareAndCommands": "CSS display, CSS Flexbox (display: flex, justify-content, align-items, flex-direction, flex-wrap), Responsive Media Queries (@media screen and (max-width: ...)).",
+      "objectives": [
+        "Kiến thức: Trình bày được về Responsive Web và cú pháp Media Queries; Trình bày được về CSS display và các thuộc tính đi kèm trong flexbox.",
+        "Kỹ năng: Học viên thực hiện làm bài kiểm tra giữa khóa lần 1.",
+        "Thái độ: Xây dựng giao diện website cá nhân phù hợp với yêu cầu bài kiểm tra."
+      ],
+      "los": "S.LO.I.01, S.LO.III.01",
+      "knowledge": "Trình bày được về Responsive Web và cú pháp Media Queries; Trình bày được về CSS display và các thuộc tính đi kèm trong flexbox.",
+      "skills": "Học viên thực hiện làm bài kiểm tra giữa khóa lần 1.",
+      "attitude": "Xây dựng giao diện website cá nhân phù hợp với yêu cầu bài kiểm tra.",
+      "lessonContent": [
+        "CSS display.",
+        "Giới thiệu Responsive website & cú pháp media queries.",
+        "Flexbox và các thuộc tính đi kèm.",
+        "Kiểm tra checkpoint 1."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "6": {
+      "sessionNumber": 6,
+      "title": "Bootstrap & Web Design (P1)",
+      "summary": "Tiếp cận khái niệm CSS Framework và làm quen với thư viện Bootstrap; tìm hiểu lý thuyết thiết kế web cơ bản và lý thuyết màu sắc (Color Theory); áp dụng hệ thống Grid System của Bootstrap để bắt đầu dự án Dog Lover (Phần 1).",
+      "hardwareAndCommands": "Thư viện Bootstrap (CDN), Bootstrap Grid System (container, row, col-*), Color Theory, Web Design UI principles.",
+      "objectives": [
+        "Kiến thức: Học viên trình bày được về khái niệm framework; Học viên giải quyết vấn đề về bố cục với Bootstrap; Học viên trình bày được khái niệm về web design và color theory.",
+        "Kỹ năng: Học viên áp dụng bootstrap xây dựng dự án theo mẫu.",
+        "Thái độ: Học viên đánh giá được mức độ phù hợp của sản phẩm so với mẫu."
+      ],
+      "los": "S.LO.I.01, S.LO.II.01, S.LO.III.01",
+      "knowledge": "Học viên trình bày được về khái niệm framework; Học viên giải quyết vấn đề về bố cục với Bootstrap; Học viên trình bày được khái niệm về web design và color theory.",
+      "skills": "Học viên áp dụng bootstrap xây dựng dự án theo mẫu.",
+      "attitude": "Học viên đánh giá được mức độ phù hợp của sản phẩm so với mẫu.",
+      "lessonContent": [
+        "Tìm hiểu khái niệm framework.",
+        "Giới thiệu về framework CSS Bootstrap và cách sử dụng.",
+        "Giới thiệu về khái niệm Web Design & Color Theory.",
+        "Giới thiệu dự án Dog Lover (p1)."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "7": {
+      "sessionNumber": 7,
+      "title": "Bootstrap & Web Design (P2)",
+      "summary": "Khám phá nghệ thuật Typography, nguyên tắc lựa chọn font chữ và phân cấp thị giác (Visual Hierarchy); kỹ thuật thu hút sự chú ý của người dùng (UI Attention Management); tiếp tục hoàn thiện giao diện dự án Dog Lover (Phần 2) với các component Bootstrap nâng cao.",
+      "hardwareAndCommands": "Google Fonts, Typography, Bootstrap Components (Navbar, Cards, Buttons, Carousel), Visual Hierarchy.",
+      "objectives": [
+        "Kiến thức: Học viên trình bày được về Typography và cách chọn Font chữ; Học viên trình bày được về quy tắc phân cấp trong bố cục: Kích thước, vị trí & màu sắc; Học viên giải thích được cách sử dụng \"ATTENTION\" để thiết kế giao diện người dùng UI hiệu quả.",
+        "Kỹ năng: Học viên thực hiện lập trình dự án Dog Social phần 2.",
+        "Thái độ: Học viên đánh giá được mức độ hoàn thiện của sản phẩm so với mẫu."
+      ],
+      "los": "S.LO.I.01, S.LO.II.01",
+      "knowledge": "Học viên trình bày được về Typography và cách chọn Font chữ; Học viên trình bày được về quy tắc phân cấp trong bố cục: Kích thước, vị trí & màu sắc; Học viên giải thích được cách sử dụng \"ATTENTION\" để thiết kế giao diện người dùng UI hiệu quả.",
+      "skills": "Học viên thực hiện lập trình dự án Dog Social phần 2.",
+      "attitude": "Học viên đánh giá được mức độ hoàn thiện của sản phẩm so với mẫu.",
+      "lessonContent": [
+        "Giới thiệu về Typography và cách chọn Font chữ.",
+        "Quy tắc phân cấp trong bố cục: Kích thước, vị trí & màu sắc.",
+        "Quản lý \"ATTENTION\" với thiết kế giao diện người dùng (UI) hiệu quả.",
+        "Thực hành xây dựng website: Dog Lover (p2)."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "8": {
+      "sessionNumber": 8,
+      "title": "Thu thập dữ liệu người dùng",
+      "summary": "Nắm vững kỹ thuật thu thập dữ liệu người dùng qua thẻ HTML <form> và các phương thức gửi nhận; thực hành sử dụng đa dạng kiểu <input>, <select>, <textarea> để thiết kế biểu mẫu đăng nhập và form thanh toán Marketplace chuyên nghiệp.",
+      "hardwareAndCommands": "Thẻ <form> (action, method GET/POST), các loại <input> (text, password, email, number, checkbox, radio, submit), <select>, <textarea>, thuộc tính required, placeholder.",
+      "objectives": [
+        "Kiến thức: Học viên trình bày được về thẻ form và các thuộc tính đi kèm.",
+        "Kỹ năng: Học viên thực hiện lập trình mẫu form đăng nhập đơn giản; Học viên thiết lập biểu mẫu thanh toán trên Marketplace.",
+        "Thái độ: Học viên sửa đổi giao diện và các trường nhập liệu tùy thuộc vào ý kiến cá nhân."
+      ],
+      "los": "S.LO.I.01",
+      "knowledge": "Học viên trình bày được về thẻ form và các thuộc tính đi kèm.",
+      "skills": "Học viên thực hiện lập trình mẫu form đăng nhập đơn giản; Học viên thiết lập biểu mẫu thanh toán trên Marketplace.",
+      "attitude": "Học viên sửa đổi giao diện và các trường nhập liệu tùy thuộc vào ý kiến cá nhân.",
+      "lessonContent": [
+        "Giới thiệu về thẻ Form và các thuộc tính, phương thức đi kèm.",
+        "Các dạng điều khiển nhập liệu với thẻ input.",
+        "Tạo một mẫu đăng nhập đơn giản.",
+        "Tạo biểu mẫu thanh toán trên Marketplace."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "9": {
+      "sessionNumber": 9,
+      "title": "Khám phá ý tưởng lập trình & Checkpoint 2",
+      "summary": "Tìm hiểu ứng dụng của trí tuệ nhân tạo (AI Tools: GitHub Copilot, ChatGPT) trong hỗ trợ lập trình web; xây dựng ý tưởng và lập timeline cho dự án website tốt nghiệp cuối khóa; thực hiện bài kiểm tra định kỳ Checkpoint 2.",
+      "hardwareAndCommands": "Công cụ AI hỗ trợ lập trình (ChatGPT, GitHub Copilot), kế hoạch phát triển dự án (Project Timeline), đề kiểm tra Checkpoint 2.",
+      "objectives": [
+        "Kiến thức: Học viên trình bày được về AI và ứng dụng AI trong lập trình; Học viên lấy ví dụ các AI phổ thông thường được dùng: Copilot, GPT.",
+        "Kỹ năng: Học viên áp dụng yếu tố AI trong quá trình xây dựng ý tưởng dự án cuối khóa và bảng quản lý tiến độ; Học viên thực hiện checkpoint 2.",
+        "Thái độ: Học viên sử dụng AI để đề xuất ý tưởng website cá nhân."
+      ],
+      "los": "S.LO.II.01, S.LO.IV.01, S.LO.IV.02, S.LO.V.01",
+      "knowledge": "Học viên trình bày được về AI và ứng dụng AI trong lập trình; Học viên lấy ví dụ các AI phổ thông thường được dùng: Copilot, GPT.",
+      "skills": "Học viên áp dụng yếu tố AI trong quá trình xây dựng ý tưởng dự án cuối khóa và bảng quản lý tiến độ; Học viên thực hiện checkpoint 2.",
+      "attitude": "Học viên sử dụng AI để đề xuất ý tưởng website cá nhân.",
+      "lessonContent": [
+        "Sơ lược về AI và ứng dụng trong lập trình.",
+        "Giới thiệu các AI phổ thông hỗ trợ web developer.",
+        "Lên ý tưởng dự án website cuối khóa.",
+        "Thực hành làm bài checkpoint 2."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "10": {
+      "sessionNumber": 10,
+      "title": "Thực hành xây dựng sản phẩm cuối khóa (Phần 1)",
+      "summary": "Bắt đầu giai đoạn hiện thực hóa dự án website cá nhân: rà soát kế hoạch theo timeline, khởi tạo cấu trúc thư mục dự án, xây dựng bộ khung HTML ngữ nghĩa và các trang chính của website.",
+      "hardwareAndCommands": "Cấu trúc dự án web (assets, css, js, html), semantic HTML5 tags (<header>, <nav>, <main>, <section>, <footer>), quản lý mã nguồn.",
+      "objectives": [
+        "Kiến thức: Học viên vận dụng kiến thức đã học.",
+        "Kỹ năng: Học viên thực hành xây dựng giao diện phần mềm.",
+        "Thái độ: Đánh giá được tiến độ của dự án so với timeline đề ra."
+      ],
+      "los": "S.LO.II.01",
+      "knowledge": "Học viên vận dụng kiến thức đã học.",
+      "skills": "Học viên thực hành xây dựng giao diện phần mềm.",
+      "attitude": "Đánh giá được tiến độ của dự án so với timeline đề ra.",
+      "lessonContent": [
+        "Kiểm tra tiến độ dự án cá nhân.",
+        "Xây dựng dự án cuối khóa theo timeline đặt ra."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "11": {
+      "sessionNumber": 11,
+      "title": "Thực hành xây dựng sản phẩm cuối khóa (Phần 2)",
+      "summary": "Tăng tốc phát triển giao diện dự án: hoàn thiện định kiểu CSS và Bootstrap, tối ưu hóa màu sắc, bố cục Flexbox và tích hợp các thành phần biểu mẫu tương tác cho trang web.",
+      "hardwareAndCommands": "CSS Styling, Bootstrap framework, Flexbox layouts, hoàn thiện các biểu mẫu tương tác Form.",
+      "objectives": [
+        "Kiến thức: Học viên vận dụng kiến thức đã học.",
+        "Kỹ năng: Học viên thực hành xây dựng giao diện phần mềm.",
+        "Thái độ: Đánh giá được tiến độ của dự án so với timeline đề ra."
+      ],
+      "los": "S.LO.II.01",
+      "knowledge": "Học viên vận dụng kiến thức đã học.",
+      "skills": "Học viên thực hành xây dựng giao diện phần mềm.",
+      "attitude": "Đánh giá được tiến độ của dự án so với timeline đề ra.",
+      "lessonContent": [
+        "Kiểm tra tiến độ sản phẩm cuối khóa.",
+        "Thực hành xây dựng giao diện phần mềm."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "12": {
+      "sessionNumber": 12,
+      "title": "Thực hành xây dựng sản phẩm cuối khóa (Phần 3)",
+      "summary": "Hoàn thiện các trang con và tính năng responsive cho toàn bộ website; kiểm tra hiển thị đồng bộ trên các thiết bị máy tính, máy tính bảng và điện thoại; tinh chỉnh trải nghiệm người dùng và sửa các lỗi hiển thị phát sinh.",
+      "hardwareAndCommands": "Responsive web testing (Mobile, Tablet, Desktop), Chrome DevTools device mode, tối ưu hiệu năng hình ảnh và bố cục.",
+      "objectives": [
+        "Kiến thức: Học viên vận dụng kiến thức đã học.",
+        "Kỹ năng: Học viên thực hành xây dựng giao diện phần mềm.",
+        "Thái độ: Đánh giá được tiến độ của dự án so với timeline đề ra."
+      ],
+      "los": "S.LO.II.01",
+      "knowledge": "Học viên vận dụng kiến thức đã học.",
+      "skills": "Học viên thực hành xây dựng giao diện phần mềm.",
+      "attitude": "Đánh giá được tiến độ của dự án so với timeline đề ra.",
+      "lessonContent": [
+        "Kiểm tra tiến độ sản phẩm cuối khóa.",
+        "Thực hành xây dựng giao diện phần mềm."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "13": {
+      "sessionNumber": 13,
+      "title": "Nghiệm thu sản phẩm",
+      "summary": "Nghiệm thu toàn diện website; xuất bản trang web trực tuyến lên internet (Deploy trên GitHub Pages / Vercel / Netlify); hoàn thiện slide thuyết trình báo cáo và tập dượt thuyết trình thử trước lớp.",
+      "hardwareAndCommands": "Nền tảng deploy website (GitHub Pages / Vercel / Netlify), công cụ thiết kế slide Canva/Google Slides, kỹ năng báo cáo sản phẩm.",
+      "objectives": [
+        "Kiến thức: Học viên vận dụng kiến thức đã học.",
+        "Kỹ năng: Học viên thực hành xây dựng giao diện phần mềm.",
+        "Thái độ: Đánh giá được tiến độ của dự án so với timeline đề ra."
+      ],
+      "los": "S.LO.III.01",
+      "knowledge": "Học viên vận dụng kiến thức đã học.",
+      "skills": "Học viên thực hành xây dựng giao diện phần mềm.",
+      "attitude": "Đánh giá được tiến độ của dự án so với timeline đề ra.",
+      "lessonContent": [
+        "Nghiệm thu sản phẩm web và deploy cơ bản.",
+        "Hoàn thiện và kiểm duyệt slide.",
+        "Thuyết trình thử."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "14": {
+      "sessionNumber": 14,
+      "title": "Thuyết trình cuối khóa",
+      "summary": "Tổ chức buổi báo cáo tốt nghiệp khóa học Web Developer Basic; học viên tự tin trình bày dự án website, demo trực tiếp trên internet trước ban giám khảo và phụ huynh; trả lời câu hỏi phản biện và nhận chứng chỉ tốt nghiệp.",
+      "hardwareAndCommands": "Kỹ năng thuyết trình trước đám đông, demo website live trên trình duyệt, trả lời câu hỏi phản biện từ hội đồng.",
+      "objectives": [
+        "Kiến thức: Trình bày được các kiến thức đã học được áp dụng vào trong dự án.",
+        "Kỹ năng: Thực hiện thuyết trình sản phẩm cá nhân.",
+        "Thái độ: Đánh giá được sản phẩm của bản thân so với sản phẩm khác."
+      ],
+      "los": "S.LO.III.01",
+      "knowledge": "Trình bày được các kiến thức đã học được áp dụng vào trong dự án.",
+      "skills": "Thực hiện thuyết trình sản phẩm cá nhân.",
+      "attitude": "Đánh giá được sản phẩm của bản thân so với sản phẩm khác.",
+      "lessonContent": [
+        "Nghiệm thu sản phẩm web và deploy cơ bản.",
+        "Hoàn thiện và kiểm duyệt slide.",
+        "Thuyết trình thử."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    }
+  }
+}

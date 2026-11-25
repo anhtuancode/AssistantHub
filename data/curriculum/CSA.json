@@ -1,0 +1,323 @@
+{
+  "courseCode": "CSA",
+  "courseName": "Computer Scientist - Advanced",
+  "category": "CODING",
+  "platform": "Computer Science",
+  "cluster": "COMPUTER_SCIENCE",
+  "targetAge": "14 - 18 Tuổi",
+  "duration": "120 phút/buổi",
+  "version": "Ver 01 - 2024 (Hiệu lực)",
+  "sessions": {
+    "1": {
+      "sessionNumber": 1,
+      "title": "Làm quen với dữ liệu",
+      "summary": "Làm quen với khoa học dữ liệu (Data Science): khám phá khái niệm, phân loại và ứng dụng thực tiễn của dữ liệu; tìm hiểu vòng đời phân tích dữ liệu (Data Analysis Lifecycle); thực hành phát biểu vấn đề xã hội và thiết lập câu hỏi thống kê cho Mini Project 1.",
+      "hardwareAndCommands": "Khoa học dữ liệu (Data Science), Vòng đời phân tích dữ liệu (Data Lifecycle), Phát biểu vấn đề (Problem Statement), Câu hỏi thống kê (Statistical Questions).",
+      "objectives": [
+        "Kiến thức: Trình bày khái niệm dữ liệu; Nhận diện được các ứng dụng của dữ liệu; Phân biệt được các lĩnh vực liên quan đến dữ liệu; Trình bày các bước trong vòng đời phân tích dữ liệu.",
+        "Kỹ năng: Thực hành đặt câu hỏi thống kê cho vấn đề.",
+        "Thái độ: Đánh giá vai trò của dữ liệu trong cuộc sống; Xây dựng phát biểu vấn đề ở mức độ cộng đồng."
+      ],
+      "los": "S.LO.I.04, S.LO.II.02",
+      "knowledge": "Trình bày khái niệm dữ liệu; Nhận diện được các ứng dụng của dữ liệu; Phân biệt được các lĩnh vực liên quan đến dữ liệu; Trình bày các bước trong vòng đời phân tích dữ liệu.",
+      "skills": "Thực hành đặt câu hỏi thống kê cho vấn đề.",
+      "attitude": "Đánh giá vai trò của dữ liệu trong cuộc sống; Xây dựng phát biểu vấn đề ở mức độ cộng đồng.",
+      "lessonContent": [
+        "Khái niệm dữ liệu.",
+        "Ứng dụng của dữ liệu.",
+        "Vòng đời Phân tích dữ liệu.",
+        "Phát biểu vấn đề và Câu hỏi thống kê.",
+        "Thực hành Mini Project 1: Phát biểu vấn đề và Đặt câu hỏi thống kê."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "2": {
+      "sessionNumber": 2,
+      "title": "Thu thập dữ liệu",
+      "summary": "Phân biệt dữ liệu định lượng và định tính; khám phá các kho dữ liệu mở uy tín (Kaggle, Data.gov); thiết lập môi trường nghiên cứu dữ liệu với Jupyter Notebook trên VS Code; cài đặt và sử dụng các thư viện cốt lõi pandas, numpy để thu thập dữ liệu cho Mini Project 1.",
+      "hardwareAndCommands": "Jupyter Notebook (.ipynb), pip install pandas numpy, cấu trúc dữ liệu mảng numpy array, nguồn dữ liệu mở (Open Data Sources), trích dẫn nguồn dữ liệu.",
+      "objectives": [
+        "Kiến thức: Liệt kê một số thư viện phân tích dữ liệu; Hiểu chức năng của thư viện pandas; Hiểu chức năng của Jupyter Notebook.",
+        "Kỹ năng: Phân biệt dữ liệu định tính và định lượng; Thực hành thu thập dữ liệu để trả lời cho câu hỏi thống kê; Sử dụng documentation của pandas; Thực hành cài đặt và sử dụng Jupyter Notebook.",
+        "Thái độ: Đánh giá mức độ quan trọng của đọc - hiểu documentation trong xây dựng phần mềm; Thu thập dữ liệu từ nguồn tin cậy và có trích dẫn."
+      ],
+      "los": "S.LO.I.04, S.LO.II.02, S.LO.II.03",
+      "knowledge": "Liệt kê một số thư viện phân tích dữ liệu; Hiểu chức năng của thư viện pandas; Hiểu chức năng của Jupyter Notebook.",
+      "skills": "Phân biệt dữ liệu định tính và định lượng; Thực hành thu thập dữ liệu để trả lời cho câu hỏi thống kê; Sử dụng documentation của pandas; Thực hành cài đặt và sử dụng Jupyter Notebook.",
+      "attitude": "Đánh giá mức độ quan trọng của đọc - hiểu documentation trong xây dựng phần mềm; Thu thập dữ liệu từ nguồn tin cậy và có trích dẫn.",
+      "lessonContent": [
+        "Dữ liệu Định lượng và Dữ liệu Định tính.",
+        "Tìm hiểu một số nguồn dữ liệu mở.",
+        "Các thư viện khoa học dữ liệu cho Python: Thư viện pandas và numpy.",
+        "Giới thiệu extension Jupyter Notebook.",
+        "Cài đặt thư viện bằng Jupyter Notebook.",
+        "Thực hành Mini Project 1: Thu thập dữ liệu."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "3": {
+      "sessionNumber": 3,
+      "title": "Đọc và lọc dữ liệu",
+      "summary": "Làm chủ 2 cấu trúc dữ liệu xương sống của Pandas: Series (1 chiều) và DataFrame (2 chiều dạng bảng); thực hành đọc dữ liệu từ tệp CSV/Excel; sử dụng các hàm thống kê mô tả (mean, median, mode) và các điều kiện lọc dữ liệu (Boolean Indexing, query, loc/iloc) trên Mini Project 1.",
+      "hardwareAndCommands": "Pandas (pd.Series, pd.DataFrame, pd.read_csv()), chỉ mục loc, iloc, lọc điều kiện boolean indexing, các hàm thống kê (.mean(), .median(), .mode(), .describe()).",
+      "objectives": [
+        "Kiến thức: Hiểu cấu trúc Pandas Series và liên hệ với dữ liệu dạng danh sách; Hiểu cấu trúc Pandas DataFrame và so sánh với dữ liệu dạng bảng; Liệt kê một số dạng dữ liệu pandas hỗ trợ.",
+        "Kỹ năng: Thực hành khởi tạo Series và DataFrame; Thực hành tạo - đọc file dữ liệu; Thực hành một số phương thức lọc dữ liệu và hàm thống kê cơ bản.",
+        "Thái độ: Kết hợp các bộ dữ liệu và lọc dữ liệu hợp lý."
+      ],
+      "los": "S.LO.I.04, S.LO.III.03",
+      "knowledge": "Hiểu cấu trúc Pandas Series và liên hệ với dữ liệu dạng danh sách; Hiểu cấu trúc Pandas DataFrame và so sánh với dữ liệu dạng bảng; Liệt kê một số dạng dữ liệu pandas hỗ trợ.",
+      "skills": "Thực hành khởi tạo Series và DataFrame; Thực hành tạo - đọc file dữ liệu; Thực hành một số phương thức lọc dữ liệu và hàm thống kê cơ bản.",
+      "attitude": "Kết hợp các bộ dữ liệu và lọc dữ liệu hợp lý.",
+      "lessonContent": [
+        "Pandas Series.",
+        "Các hàm thống kê: Mean, Median, Mode.",
+        "Pandas DataFrame.",
+        "Lọc dữ liệu.",
+        "Thực hành Mini Project 1: Đọc và lọc dữ liệu."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "4": {
+      "sessionNumber": 4,
+      "title": "Nhóm và sắp xếp dữ liệu",
+      "summary": "Kỹ thuật làm sạch dữ liệu (Data Cleaning): phát hiện và xử lý giá trị thiếu (missing values - dropna, fillna), dữ liệu trùng lặp (drop_duplicates) và ép kiểu dữ liệu; thực hành biến đổi cột với phương thức apply/lambda; gom nhóm dữ liệu (groupby) và sắp xếp đa tiêu chí (sort_values).",
+      "hardwareAndCommands": "Pandas Data Cleaning (.dropna(), .fillna(), .drop_duplicates(), .astype()), biến đổi hàm .apply(lambda), gom nhóm .groupby() kết hợp hàm tổng hợp (.agg(), .sum(), .count()), sắp xếp .sort_values().",
+      "objectives": [
+        "Kiến thức: Nhận biết các vấn đề về dữ liệu chưa sạch; Nhận biết nhu cầu biến đổi dữ liệu; Nhận biết nhu cầu nhóm dữ liệu; Nhận biết nhu cầu sắp xếp dữ liệu.",
+        "Kỹ năng: Áp dụng phương thức `apply` để biến đổi dữ liệu trong DataFrame; Áp dụng phương thức `groupby` để nhóm dữ liệu trong DataFrame; Áp dụng phương thức `sort_values` để sắp xếp dữ liệu trong DataFrame.",
+        "Thái độ: Kết hợp biến đổi - nhóm - sắp xếp hợp lý cho dự án."
+      ],
+      "los": "S.LO.I.04, S.LO.II.02",
+      "knowledge": "Nhận biết các vấn đề về dữ liệu chưa sạch; Nhận biết nhu cầu biến đổi dữ liệu; Nhận biết nhu cầu nhóm dữ liệu; Nhận biết nhu cầu sắp xếp dữ liệu.",
+      "skills": "Áp dụng phương thức `apply` để biến đổi dữ liệu trong DataFrame; Áp dụng phương thức `groupby` để nhóm dữ liệu trong DataFrame; Áp dụng phương thức `sort_values` để sắp xếp dữ liệu trong DataFrame.",
+      "attitude": "Kết hợp biến đổi - nhóm - sắp xếp hợp lý cho dự án.",
+      "lessonContent": [
+        "Biến đổi dữ liệu.",
+        "Nhóm và sắp xếp dữ liệu.",
+        "Xử lý các vấn đề với dữ liệu: thiếu dữ liệu, sai kiểu dữ liệu, trùng lặp dữ liệu,...",
+        "Thực hành Mini Project 1: Nhóm và sắp xếp dữ liệu."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "5": {
+      "sessionNumber": 5,
+      "title": "Kiểm tra Checkpoint 1",
+      "summary": "Thực hiện bài kiểm tra định kỳ Checkpoint 1 đánh giá toàn diện kỹ năng phân tích, làm sạch và xử lý dữ liệu với Pandas; các nhóm học viên tự tin thuyết trình báo cáo kết quả nghiên cứu bước đầu của Mini Project 1 trước lớp.",
+      "hardwareAndCommands": "Đề kiểm tra Checkpoint 1, kỹ năng thuyết trình khoa học dữ liệu, slide báo cáo Mini Project 1, bảo vệ kết quả phân tích số liệu.",
+      "objectives": [
+        "Kiến thức: Kiểm tra kiến thức của các buổi 1, 2, 3, 4.",
+        "Kỹ năng: Kiểm tra kỹ năng của các buổi 1, 2, 3, 4; Trình bày quá trình làm việc và kết quả tìm được từ Mini Project 1.",
+        "Thái độ: Có thái độ trung thực, cẩn thận; Xây dựng chương trình để giải quyết vấn đề; Đánh giá kết quả của các nhóm và cải thiện."
+      ],
+      "los": "S.LO.III.03, S.LO.III.04",
+      "knowledge": "Kiểm tra kiến thức của các buổi 1, 2, 3, 4.",
+      "skills": "Kiểm tra kỹ năng của các buổi 1, 2, 3, 4; Trình bày quá trình làm việc và kết quả tìm được từ Mini Project 1.",
+      "attitude": "Có thái độ trung thực, cẩn thận; Xây dựng chương trình để giải quyết vấn đề; Đánh giá kết quả của các nhóm và cải thiện.",
+      "lessonContent": [
+        "Kiểm tra Checkpoint 1.",
+        "Thuyết trình Mini Project 1."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "6": {
+      "sessionNumber": 6,
+      "title": "Trực quan hoá - Kể câu chuyện dữ liệu",
+      "summary": "Nghệ thuật kể chuyện bằng dữ liệu (Data Storytelling): làm quen với thư viện trực quan hóa Matplotlib; phân tích ý nghĩa và tình huống áp dụng các dạng biểu đồ chuyên dụng: biểu đồ đường (Line), cột (Bar), tần suất (Histogram), phân tán (Scatter) và hộp (Boxplot); hoàn thiện Mini Project 1 với các biểu đồ trực quan sắc nét.",
+      "hardwareAndCommands": "Thư viện Matplotlib (import matplotlib.pyplot as plt), plt.plot, plt.bar, plt.hist, plt.scatter, plt.boxplot, cấu hình tiêu đề (title, xlabel, ylabel, legend, grid).",
+      "objectives": [
+        "Kiến thức: Liệt kê một số kiểu trực quan hoá dữ liệu; Hiểu ý nghĩa và tình huống sử dụng của các loại biểu đồ: đường, cột, tần suất, phân tán.",
+        "Kỹ năng: Áp dụng thư viện matplotlib để vẽ biểu đồ; Phân tích tính chất - đặc điểm của bộ dữ liệu để chọn biểu đồ phù hợp; Thực hành vẽ biểu đồ bằng thư viện matplotlib.",
+        "Thái độ: Chọn lựa và kết hợp nhiều kiểu biểu đồ khác nhau để trực quan hoá hấp dẫn."
+      ],
+      "los": "S.LO.I.04, S.LO.II.02",
+      "knowledge": "Liệt kê một số kiểu trực quan hoá dữ liệu; Hiểu ý nghĩa và tình huống sử dụng của các loại biểu đồ: đường, cột, tần suất, phân tán.",
+      "skills": "Áp dụng thư viện matplotlib để vẽ biểu đồ; Phân tích tính chất - đặc điểm của bộ dữ liệu để chọn biểu đồ phù hợp; Thực hành vẽ biểu đồ bằng thư viện matplotlib.",
+      "attitude": "Chọn lựa và kết hợp nhiều kiểu biểu đồ khác nhau để trực quan hoá hấp dẫn.",
+      "lessonContent": [
+        "Giới thiệu thư viện: matplotlib.",
+        "Các kiểu trực quan hoá dữ liệu: Line Chart, Bar Chart, Histogram, Scatterplot, Boxplot.",
+        "Kể chuyện bằng dữ liệu.",
+        "Thực hành Mini Project 1: Trực quan hóa - kể câu chuyện dữ liệu."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "7": {
+      "sessionNumber": 7,
+      "title": "Phân tích dự đoán",
+      "summary": "Bước đầu tiếp cận Học máy (Machine Learning) với Mô hình Hồi quy tuyến tính (Linear Regression); hiểu bản chất phương trình đường thẳng y = ax + b và hàm mất mát; làm quen với thư viện Scikit-learn (sklearn); thực hành quy trình huấn luyện mô hình (model fitting) và dự đoán xu hướng trên tập dữ liệu thực tế.",
+      "hardwareAndCommands": "Scikit-learn (from sklearn.linear_model import LinearRegression), khởi tạo mô hình .fit(X, y), dự đoán .predict(X_new), hệ số hồi quy .coef_, hệ số chặn .intercept_.",
+      "objectives": [
+        "Kiến thức: Trình bày khái niệm mô hình tuyến tính; Hiểu bản chất toán học của mô hình tuyến tính; Liệt kê các ứng dụng của mô hình tuyến tính trong thực tế.",
+        "Kỹ năng: Thực hành huấn luyện mô hình với thư viện sklearn; Vận dụng mô hình tuyến tính để dự đoán trên tập dữ liệu.",
+        "Thái độ: Đánh giá mức độ phù hợp của mô hình tuyến tính với vấn đề cần giải quyết."
+      ],
+      "los": "S.LO.I.04, S.LO.IV.02, S.LO.IV.03",
+      "knowledge": "Trình bày khái niệm mô hình tuyến tính; Hiểu bản chất toán học của mô hình tuyến tính; Liệt kê các ứng dụng của mô hình tuyến tính trong thực tế.",
+      "skills": "Thực hành huấn luyện mô hình với thư viện sklearn; Vận dụng mô hình tuyến tính để dự đoán trên tập dữ liệu.",
+      "attitude": "Đánh giá mức độ phù hợp của mô hình tuyến tính với vấn đề cần giải quyết.",
+      "lessonContent": [
+        "Mô hình Tuyến tính (Linear regression).",
+        "Các bước huấn luyện mô hình tuyến tính.",
+        "Thư viện sklearn.",
+        "Thực hành lập trình và huấn luyện Mô hình tuyến tính."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "8": {
+      "sessionNumber": 8,
+      "title": "Phân tích dự đoán đa biến",
+      "summary": "Nâng cấp mô hình với Hồi quy tuyến tính đa biến (Multivariable Linear Regression) kết hợp nhiều yếu tố dự báo; nắm vững quy trình phân chia tập dữ liệu Huấn luyện và Kiểm thử (Train/Test Split); đánh giá hiệu suất mô hình với các chỉ số đo lường (MSE, RMSE, R-squared) và trực quan hóa tương quan biến.",
+      "hardwareAndCommands": "sklearn.model_selection.train_test_split, Multivariable Linear Regression, chỉ số đo lường sai số (Mean Squared Error - MSE, R2 score), biểu đồ trực quan hóa ma trận tương quan (Correlation heatmap/scatter).",
+      "objectives": [
+        "Kiến thức: Hiểu được quá trình huấn luyện và đánh giá mô hình để đảm bảo tính chính xác và khả năng tổng quát hóa của mô hình; Trình bày khái niệm mô hình tuyến tính đa biến; Hiểu bản chất toán học của mô hình tuyến tính đa biến.",
+        "Kỹ năng: Phân biệt một số chỉ số đánh giá hiệu suất mô hình và lựa chọn chỉ số phù hợp; Thực hành trực quan hoá mối quan hệ của các biến bằng matplotlib; Thực hành dự đoán bằng mô hình đa biến bằng sklearn.",
+        "Thái độ: Đánh giá mức độ phù hợp của mô hình tuyến tính với vấn đề cần giải quyết."
+      ],
+      "los": "S.LO.I.04, S.LO.IV.02, S.LO.IV.03",
+      "knowledge": "Hiểu được quá trình huấn luyện và đánh giá mô hình để đảm bảo tính chính xác và khả năng tổng quát hóa của mô hình; Trình bày khái niệm mô hình tuyến tính đa biến; Hiểu bản chất toán học của mô hình tuyến tính đa biến.",
+      "skills": "Phân biệt một số chỉ số đánh giá hiệu suất mô hình và lựa chọn chỉ số phù hợp; Thực hành trực quan hoá mối quan hệ của các biến bằng matplotlib; Thực hành dự đoán bằng mô hình đa biến bằng sklearn.",
+      "attitude": "Đánh giá mức độ phù hợp của mô hình tuyến tính với vấn đề cần giải quyết.",
+      "lessonContent": [
+        "Huấn luyện và Đánh giá (Training vs Testing).",
+        "Mô hình Tuyến tính Đa biến (Multivariable Linear Regression).",
+        "Biểu diễn mối quan hệ của các biến bằng thư viện matplotlib.",
+        "Thực hành lập trình và huấn luyện mô hình với thư viện scikit-learn."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "9": {
+      "sessionNumber": 9,
+      "title": "Kiểm tra Checkpoint 2",
+      "summary": "Thực hiện bài kiểm tra định kỳ Checkpoint 2 đánh giá năng lực trực quan hóa dữ liệu và xây dựng mô hình học máy dự đoán (Hồi quy tuyến tính đơn biến và đa biến); thuyết trình báo cáo kết quả Mini Project 2.",
+      "hardwareAndCommands": "Đề kiểm tra Checkpoint 2, bài thuyết trình Mini Project 2, bảo vệ mô hình dự đoán và giải trình các chỉ số đánh giá (R2, MSE).",
+      "objectives": [
+        "Kiến thức: Kiểm tra kiến thức của các buổi 6, 7, 8.",
+        "Kỹ năng: Kiểm tra kỹ năng của các buổi 6, 7, 8; Trình bày quá trình làm việc và kết quả tìm được từ Mini Project 2.",
+        "Thái độ: Có thái độ trung thực, cẩn thận; Xây dựng chương trình để giải quyết vấn đề; Đánh giá kết quả của các nhóm và cải thiện."
+      ],
+      "los": "S.LO.III.03, S.LO.III.04, S.LO.IV.02",
+      "knowledge": "Kiểm tra kiến thức của các buổi 6, 7, 8.",
+      "skills": "Kiểm tra kỹ năng của các buổi 6, 7, 8; Trình bày quá trình làm việc và kết quả tìm được từ Mini Project 2.",
+      "attitude": "Có thái độ trung thực, cẩn thận; Xây dựng chương trình để giải quyết vấn đề; Đánh giá kết quả của các nhóm và cải thiện.",
+      "lessonContent": [
+        "Kiểm tra Checkpoint 2.",
+        "Thuyết trình Mini Project 2."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "10": {
+      "sessionNumber": 10,
+      "title": "Thực hành xây dựng dự án cuối khoá",
+      "summary": "Khởi động dự án tốt nghiệp cuối khóa: xác định đề tài giải quyết vấn đề thực tiễn cộng đồng, đặt các câu hỏi thống kê then chốt; làm quen với framework Streamlit để chuyển đổi các script phân tích dữ liệu Python thành ứng dụng web tương tác trực quan.",
+      "hardwareAndCommands": "Thư viện Streamlit (import streamlit as st, st.title, st.write, st.sidebar, st.file_uploader), cấu trúc dự án ứng dụng web dữ liệu cuối khóa.",
+      "objectives": [
+        "Kiến thức: Hiểu vai trò của thư viện streamlit; Nhớ lại các kiến thức buổi 1, 2.",
+        "Kỹ năng: Thực hành sử dụng thư viện và nền tảng phù hợp để làm giao diện; Áp dụng kiến thức và kỹ năng đã học ở buổi 1, 2 để xây dựng vấn đề và đặt câu hỏi thống kê.",
+        "Thái độ: Sáng tạo dự án giải quyết vấn đề cộng đồng."
+      ],
+      "los": "S.LO.II.02, S.LO.II.03, S.LO.II.04, S.LO.IV.02, S.LO.V.04",
+      "knowledge": "Hiểu vai trò của thư viện streamlit; Nhớ lại các kiến thức buổi 1, 2.",
+      "skills": "Thực hành sử dụng thư viện và nền tảng phù hợp để làm giao diện; Áp dụng kiến thức và kỹ năng đã học ở buổi 1, 2 để xây dựng vấn đề và đặt câu hỏi thống kê.",
+      "attitude": "Sáng tạo dự án giải quyết vấn đề cộng đồng.",
+      "lessonContent": [
+        "Lên ý tưởng và lập kế hoạch cho dự án cuối khóa.",
+        "Thư viện streamlit xây dựng ứng dụng.",
+        "Xây dựng dự án cuối khoá: Đặt vấn đề và câu hỏi thống kê."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "11": {
+      "sessionNumber": 11,
+      "title": "Thực hành xây dựng dự án cuối khoá",
+      "summary": "Tiến hành thu thập bộ dữ liệu thực tế từ các nguồn mở tin cậy; thực hiện quy trình khám phá dữ liệu ban đầu (EDA) và tiền xử lý làm sạch dữ liệu chuyên sâu với Pandas để phục vụ cho các câu hỏi thống kê của dự án cuối khóa.",
+      "hardwareAndCommands": "Kỹ thuật Exploratory Data Analysis (EDA), làm sạch dữ liệu nâng cao, xử lý ngoại lai (Outliers), chuẩn bị dữ liệu đầu vào cho ứng dụng Streamlit.",
+      "objectives": [
+        "Kiến thức: Nhớ lại kiến thức buổi 2, 3.",
+        "Kỹ năng: Áp dụng kiến thức và kỹ năng đã học ở buổi 2, 3 để thu thập và phân tích dữ liệu.",
+        "Thái độ: Sáng tạo dự án giải quyết vấn đề cộng đồng."
+      ],
+      "los": "S.LO.II.02, S.LO.II.03, S.LO.II.04, S.LO.V.02, S.LO.V.04",
+      "knowledge": "Nhớ lại kiến thức buổi 2, 3.",
+      "skills": "Áp dụng kiến thức và kỹ năng đã học ở buổi 2, 3 để thu thập và phân tích dữ liệu.",
+      "attitude": "Sáng tạo dự án giải quyết vấn đề cộng đồng.",
+      "lessonContent": [
+        "Xây dựng dự án cuối khoá: Thu thập và phân tích dữ liệu."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "12": {
+      "sessionNumber": 12,
+      "title": "Thực hành xây dựng dự án cuối khoá",
+      "summary": "Huấn luyện mô hình học máy dự đoán tối ưu trên tập dữ liệu dự án; tích hợp hệ thống biểu đồ trực quan hóa dữ liệu đa dạng lên giao diện web Streamlit; cho phép người dùng nhập tham số tương tác và nhận kết quả dự đoán thời gian thực.",
+      "hardwareAndCommands": "Huấn luyện mô hình Scikit-learn, nhúng biểu đồ Matplotlib/Seaborn vào Streamlit (st.pyplot), các widget nhập liệu tương tác (st.slider, st.selectbox, st.number_input).",
+      "objectives": [
+        "Kiến thức: Nhớ lại kiến thức buổi 4, 6, 7.",
+        "Kỹ năng: Áp dụng kiến thức và kỹ năng đã học ở buổi 4, 6, 7 để xây dựng mô hình dự đoán và trực quan hoá dữ liệu.",
+        "Thái độ: Sáng tạo dự án giải quyết vấn đề cộng đồng."
+      ],
+      "los": "S.LO.II.02, S.LO.II.03, S.LO.II.04, S.LO.V.02, S.LO.V.04",
+      "knowledge": "Nhớ lại kiến thức buổi 4, 6, 7.",
+      "skills": "Áp dụng kiến thức và kỹ năng đã học ở buổi 4, 6, 7 để xây dựng mô hình dự đoán và trực quan hoá dữ liệu.",
+      "attitude": "Sáng tạo dự án giải quyết vấn đề cộng đồng.",
+      "lessonContent": [
+        "Xây dựng dự án cuối khoá: Xây dựng mô hình và trực quan hoá dữ liệu."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "13": {
+      "sessionNumber": 13,
+      "title": "Thực hành xây dựng dự án cuối khoá",
+      "summary": "Hoàn thiện cấu trúc câu chuyện dữ liệu (Data Storytelling) mạch lạc và thuyết phục cho dự án; thiết kế slide báo cáo tổng kết chuẩn chuyên nghiệp; tập dượt thuyết trình demo ứng dụng web Streamlit và tiếp thu phản hồi cải thiện từ giảng viên.",
+      "hardwareAndCommands": "Hoàn thiện web app Streamlit, bộ slide báo cáo chuyên đề khoa học dữ liệu, kỹ năng demo phần mềm và diễn giải kết quả phân tích số liệu.",
+      "objectives": [
+        "Kiến thức: Nhớ lại kiến thức buổi 4, 6, 7.",
+        "Kỹ năng: Áp dụng kiến thức và kỹ năng đã học ở buổi 4, 6, 7 để xây dựng mô hình dự đoán và trực quan hoá dữ liệu.",
+        "Thái độ: Sáng tạo dự án giải quyết vấn đề cộng đồng."
+      ],
+      "los": "S.LO.II.02, S.LO.II.03, S.LO.II.04, S.LO.V.02, S.LO.V.04",
+      "knowledge": "Nhớ lại kiến thức buổi 4, 6, 7.",
+      "skills": "Áp dụng kiến thức và kỹ năng đã học ở buổi 4, 6, 7 để xây dựng mô hình dự đoán và trực quan hoá dữ liệu.",
+      "attitude": "Sáng tạo dự án giải quyết vấn đề cộng đồng.",
+      "lessonContent": [
+        "Xây dựng dự án cuối khoá: Câu chuyện cho dự án cuối khoá.",
+        "Xây dựng bài thuyết trình."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "14": {
+      "sessionNumber": 14,
+      "title": "Thuyết trình dự án cuối khoá",
+      "summary": "Lễ báo cáo tốt nghiệp dự án khoa học dữ liệu Computer Scientist Advanced; học viên tự tin trình bày dự án, demo trực tiếp ứng dụng phân tích & dự đoán web Streamlit, trả lời các câu hỏi phản biện từ hội đồng chuyên môn và phụ huynh.",
+      "hardwareAndCommands": "Kỹ năng thuyết trình khoa học dữ liệu trước đám đông, demo ứng dụng tương tác trực tiếp, trả lời câu hỏi phản biện chuyên sâu.",
+      "objectives": [
+        "Kiến thức: Nhớ lại các kiến thức ở buổi 1-9.",
+        "Kỹ năng: Áp dụng kiến thức và kỹ năng đã học ở buổi 1-9 để giải thích mục tiêu - trình bày - phân tích kết quả của dự án.",
+        "Thái độ: Trình bày quá trình làm việc của dự án cuối khóa một cách tự tin và logic; Giao tiếp và trả lời câu hỏi một cách rõ ràng và hiệu quả để thuyết phục khán giả."
+      ],
+      "los": "S.LO.II.02, S.LO.II.03, S.LO.II.04, S.LO.V.02, S.LO.V.04",
+      "knowledge": "Nhớ lại các kiến thức ở buổi 1-9.",
+      "skills": "Áp dụng kiến thức và kỹ năng đã học ở buổi 1-9 để giải thích mục tiêu - trình bày - phân tích kết quả của dự án.",
+      "attitude": "Trình bày quá trình làm việc của dự án cuối khóa một cách tự tin và logic; Giao tiếp và trả lời câu hỏi một cách rõ ràng và hiệu quả để thuyết phục khán giả.",
+      "lessonContent": [
+        "Thuyết trình quá trình làm việc và trình bày kết quả.",
+        "Trả lời câu hỏi và tương tác với khán giả."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    }
+  }
+}

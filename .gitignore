@@ -1,0 +1,37 @@
+# Dependencies (Nặng)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Build & Cache
+.next/
+dist/
+build/
+.cache/
+
+# Bảo mật & Dữ liệu cá nhân (BẮT BUỘC CHẶN)
+.env
+.env.local
+.env.*.local
+auth_state.json
+*auth_state*.json
+src/automation/state/
+config.json
+user_config.json
+*.key
+*.pem
+
+# Playwright, Screenshots & Logs
+screenshots/
+src/automation/screenshots/
+test-results/
+playwright-report/
+logs/
+*.log
+
+# Hệ điều hành & IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

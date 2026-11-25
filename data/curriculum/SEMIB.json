@@ -1,0 +1,167 @@
+{
+  "courseCode": "SEMIB",
+  "courseName": "Semi Robotics Basic",
+  "category": "ROBOTICS",
+  "platform": "VEX IQ",
+  "cluster": "SEMI",
+  "sessions": {
+    "1": {
+      "sessionNumber": 1,
+      "title": "IQ - Ngôn ngữ ROBOT",
+      "summary": "Giới thiệu VEX IQ Kit và các chi tiết nhựa; trải nghiệm lắp ráp mô hình trực thăng; làm quen phần mềm VEXcode IQ (đặt tên, lưu/mở dự án) và thẻ lệnh hiển thị cho Brain.",
+      "hardwareAndCommands": "Bộ VEX IQ Kit, Brain; phần mềm VEXcode IQ, thẻ lệnh hiển thị màn hình Brain.",
+      "objectives": [
+        "Ghi nhớ các thành phần bộ kit VEX IQ",
+        "Hoàn thành lắp ráp mô hình trực thăng",
+        "Thao tác tắt mở nguồn Brain, kết nối VEXcode IQ và sử dụng chuột/bàn phím"
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1bAJ8x8NLs_xpKwyFtjqtzr_Q1roVO3Ag/edit?usp=sharing&ouid=111038164751870348560&rtpof=true&sd=true",
+      "reviewDocUrl": ""
+    },
+    "2": {
+      "sessionNumber": 2,
+      "title": "Chuyển động Robotic",
+      "summary": "Tìm hiểu lĩnh vực và ứng dụng Robotics; lắp ráp mô hình robot và lập trình di chuyển cơ bản (tới-lùi, rẽ trái-phải, di chuyển liên tục kết hợp lệnh wait); nạp và chạy chương trình.",
+      "hardwareAndCommands": "Mô hình robot cơ bản VEX IQ, Brain; thẻ lệnh di chuyển tới-lùi, rẽ trái-phải và lệnh wait.",
+      "objectives": [
+        "Ghi nhớ kiến thức lập trình cơ bản",
+        "Lắp ráp mô hình hoạt động hiệu quả",
+        "Thao tác bật/tắt nguồn Brain và kết nối VEXcode IQ"
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1DLLsL4IzFxeQoT-vVjzXdQoigiE4C29Z/edit#slide=id.p13",
+      "reviewDocUrl": "https://www.canva.com/design/DAGwS1UkUNg/oDOFIBFNe9igOF5gLFsapQ/edit?utm_content=DAGwS1UkUNg&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
+    },
+    "3": {
+      "sessionNumber": 3,
+      "title": "Tốc độ và sức mạnh",
+      "summary": "Tìm hiểu cơ cấu truyền động (bánh răng trục, bộ truyền động), M.A.D. Box và khái niệm vận tốc trong robotics; điều chỉnh thông số vận tốc lập trình và trải nghiệm VEXcode VR.",
+      "hardwareAndCommands": "Bánh răng trục, bộ truyền động, M.A.D. Box; thẻ lệnh thay đổi thông số vận tốc và ứng dụng VEXcode VR.",
+      "objectives": [
+        "Hiểu cơ cấu truyền động và cách tính/điều chỉnh vận tốc robot",
+        "Lắp ráp mô hình hoạt động hiệu quả và làm quen VEXcode VR"
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1mFzSkuvLgTVJWBHA6lD2I1o1uANgoV9_/edit#slide=id.p1",
+      "reviewDocUrl": "https://docs.google.com/document/d/1lka1YRv7g3ECiu-Tws_Hm9k3-7vtFhLd/edit?tab=t.0#heading=h.30j0zll"
+    },
+    "4": {
+      "sessionNumber": 4,
+      "title": "Công xưởng sáng tạo",
+      "summary": "Ôn tập cơ cấu truyền động, vận tốc, M.A.D. Box; áp dụng thiết kế và lập trình mô hình robot thực hiện các chức năng mong muốn.",
+      "hardwareAndCommands": "Cơ cấu truyền động, M.A.D. Box; tổng hợp thẻ lệnh di chuyển và điều chỉnh vận tốc.",
+      "objectives": [
+        "Ghi nhớ quy trình thiết kế, lắp ráp và tối ưu mô hình Robot",
+        "Vận dụng kiến thức lập trình điều khiển mô hình hoàn chỉnh"
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/16GnFOhq8PbXlFm78cMO3IN0nlJVihtGZ/edit#slide=id.p1",
+      "reviewDocUrl": "https://docs.google.com/document/d/1ocb_KlcKeZXQ1aWOHmaZX-bFfkJ9g1e1/edit?tab=t.0#heading=h.30j0zll"
+    },
+    "5": {
+      "sessionNumber": 5,
+      "title": "Chạm và di chuyển",
+      "summary": "Giới thiệu cảm biến chạm Bumper Switch, cấu tạo và nguyên lý hoạt động; lập trình với thẻ lệnh điều kiện if..else kiểm tra trạng thái cảm biến chạm.",
+      "hardwareAndCommands": "Cảm biến chạm Bumper Switch; câu lệnh điều kiện if..else và vòng lặp.",
+      "objectives": [
+        "Hiểu cấu tạo và nguyên lý Bumper Switch",
+        "Vận dụng thẻ lệnh điều kiện if..else xử lý tương tác va chạm"
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1A2xjrebd6Ualx3A7EzbIzqKbpV9OwJr4/edit#slide=id.p1",
+      "reviewDocUrl": "https://docs.google.com/document/d/1BgQ-3yJJoHtu5Qopegm82rp2zJ7jojUF/edit?tab=t.0#heading=h.30j0zll"
+    },
+    "6": {
+      "sessionNumber": 6,
+      "title": "Khoảng cách bao xa",
+      "summary": "Tìm hiểu nguyên lý cảm biến khoảng cách (Distance Sensor); lập trình nhận biết kích thước vật hiển thị lên màn hình Brain và tự động dừng/tránh vật cản.",
+      "hardwareAndCommands": "Cảm biến khoảng cách (Distance Sensor), màn hình Brain; thẻ lệnh đo khoảng cách và điều kiện tránh vật cản.",
+      "objectives": [
+        "Nắm được công dụng cảm biến khoảng cách và áp dụng lập trình nhận biết kích thước/tránh vật cản",
+        "Lắp ráp mô hình hoạt động hiệu quả"
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1LHSxvy578tA6sjuFP8Grh5qNEMYE5cPg/edit?usp=sharing&ouid=111038164751870348560&rtpof=true&sd=true",
+      "reviewDocUrl": ""
+    },
+    "7": {
+      "sessionNumber": 7,
+      "title": "Robot nhận tín hiệu như thế nào?",
+      "summary": "Tìm hiểu cảm biến quang học (Optical Sensor) nhận biết vật thể và màu sắc; lập trình phát hiện màu sắc hiển thị kết quả lên màn hình Brain hoặc Touch LED.",
+      "hardwareAndCommands": "Cảm biến quang học (Optical Sensor), Touch LED, màn hình Brain; thẻ lệnh nhận diện màu sắc và vật thể.",
+      "objectives": [
+        "Hiểu nguyên lý cảm biến quang học nhận biết màu sắc",
+        "Lập trình mô hình phản hồi tín hiệu qua màn hình Brain hoặc Touch LED"
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1Hp4F2rY941kUpF-zPY05QrSx4J_aoI53/edit?usp=sharing&ouid=111038164751870348560&rtpof=true&sd=true",
+      "reviewDocUrl": ""
+    },
+    "8": {
+      "sessionNumber": 8,
+      "title": "Công xưởng sáng tạo",
+      "summary": "Ôn tập cơ cấu truyền động, vận tốc, M.A.D. Box, vòng lặp, cảm biến chạm và if...else; thiết kế lắp ráp mô hình robot theo ý tưởng sản phẩm cuối khóa.",
+      "hardwareAndCommands": "Cơ cấu truyền động, cảm biến chạm, M.A.D. Box; thẻ lệnh vòng lặp và điều kiện if...else.",
+      "objectives": [
+        "Thiết kế và lập trình mô hình robot thực hiện chức năng mong muốn",
+        "Định hình ý tưởng cho sản phẩm dự án"
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1O-z7s2QqkZf7P7jvV5ET2BiFI3gqutj1/edit?slide=id.p1#slide=id.p1",
+      "reviewDocUrl": ""
+    },
+    "9": {
+      "sessionNumber": 9,
+      "title": "Hành trình tự động",
+      "summary": "Ôn tập vòng lặp, cảm biến quang học và if...else; áp dụng toán tử vào lập trình mô hình robot tự động thực hiện nhiệm vụ.",
+      "hardwareAndCommands": "Cảm biến quang học (Optical Sensor); các thẻ lệnh toán tử, vòng lặp và điều kiện if...else.",
+      "objectives": [
+        "Vận dụng toán tử kết hợp cảm biến quang học vào lập trình robot",
+        "Hoàn thiện mô hình vận hành tự động hiệu quả"
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1D_rDM6ZpPMMibR4axXg1zN11o7IsqN1E/edit?usp=sharing&ouid=111038164751870348560&rtpof=true&sd=true",
+      "reviewDocUrl": ""
+    },
+    "10": {
+      "sessionNumber": 10,
+      "title": "Tín hiệu thông minh",
+      "summary": "Ôn tập vòng lặp, cảm biến quang học và if...else; áp dụng thẻ lệnh LOCK vào lập trình điều khiển mô hình robot thông minh.",
+      "hardwareAndCommands": "Cảm biến quang học, Brain VEX IQ; thẻ lệnh LOCK, vòng lặp và điều kiện if...else.",
+      "objectives": [
+        "Hiểu và áp dụng thẻ lệnh LOCK vào lập trình robot",
+        "Thành thạo kết nối Brain và vận hành mô hình"
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1uCqyKdhqBBbk6PIFLeDPjL7Zd9qvmv3v/edit?slide=id.p1#slide=id.p1",
+      "reviewDocUrl": ""
+    },
+    "11": {
+      "sessionNumber": 11,
+      "title": "Sáng tạo mô hình",
+      "summary": "Ôn tập công dụng các linh kiện trong bộ Kit VEX IQ; lên ý tưởng, xây dựng mô hình và chuẩn bị dàn ý thuyết trình cho sản phẩm cuối khóa.",
+      "hardwareAndCommands": "Bộ Kit VEX IQ đầy đủ; tổng hợp linh kiện, cảm biến và động cơ.",
+      "objectives": [
+        "Hoàn thành ý tưởng và lắp ráp mô hình sản phẩm cuối khóa",
+        "Chuẩn bị nội dung thuyết trình theo dàn ý"
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1T3ZZd6lvDCtkZxy16uoJlPFsywFCbQmb/edit?slide=id.p1#slide=id.p1",
+      "reviewDocUrl": "https://www.canva.com/design/DAGkzDd1nIU/DGo7whySGvMTjFCqu-lcKw/edit?utm_content=DAGkzDd1nIU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
+    },
+    "12": {
+      "sessionNumber": 12,
+      "title": "Công xưởng sáng tạo",
+      "summary": "Ôn tập kiến thức đã học; thiết kế mô hình giải đề cuối khóa, lập trình vận hành và hướng dẫn quy trình thuyết trình Demo.",
+      "hardwareAndCommands": "03 động cơ, nam châm điện, cảm biến, LED; tổng hợp thẻ lệnh lập trình VEXcode IQ.",
+      "objectives": [
+        "Hoàn thiện lắp ráp và lập trình mô hình giải đề cuối khóa",
+        "Nắm rõ quy trình Demo và tiêu chí thuyết trình"
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1Oh8FfFVzij06KiQgF_Kt1XaF50N-4XIo/edit?slide=id.p1#slide=id.p1",
+      "reviewDocUrl": "https://www.canva.com/design/DAG8qqycsjs/UcENguKm9feby8UJZ1Oasg/edit?utm_content=DAG8qqycsjs&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
+    },
+    "13": {
+      "sessionNumber": 13,
+      "title": "Demo Robot",
+      "summary": "Hoàn thiện mô hình và chuẩn bị thuyết trình nhóm; luyện tập thuyết trình sản phẩm và trả lời câu hỏi phản biện từ ban giám khảo.",
+      "hardwareAndCommands": "Sản phẩm Robot VEX IQ dự án cuối khóa và kỹ năng thuyết trình.",
+      "objectives": [
+        "Nắm rõ kiến thức để trả lời câu hỏi từ ban giám khảo",
+        "Hoàn thành thuyết trình thử tự tin, mạch lạc"
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1Qs4Is_Fawxw8IlTbHt8cZvE-5uJ37TgG/edit?slide=id.p4#slide=id.p4",
+      "reviewDocUrl": "https://canva.link/mj4htkfhsork51m"
+    }
+  }
+}

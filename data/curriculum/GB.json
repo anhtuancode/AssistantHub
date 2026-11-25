@@ -1,0 +1,304 @@
+{
+  "courseCode": "GB",
+  "courseName": "Game Creator - Basic",
+  "category": "CODING",
+  "platform": "GameMaker",
+  "cluster": "GAMEMAKER",
+  "targetAge": "9 - 15 Tuổi",
+  "duration": "120 phút/buổi",
+  "sessions": {
+    "1": {
+      "sessionNumber": 1,
+      "title": "Sức mạnh công cụ Gamemaker 2.0",
+      "summary": "Làm quen với công cụ phát triển trò chơi chuyên nghiệp GameMaker 2.0; khám phá các khái niệm nền tảng trong game: Sprite, Object, Event, Action, Room và Background; nhập tài nguyên đồ họa từ bên ngoài; thực hành lập trình sự kiện điều khiển nhân vật di chuyển với hướng (Direction) và tốc độ (Speed) trong trò chơi King Fish.",
+      "hardwareAndCommands": "Môi trường GameMaker 2.0, Sprite, Object, Room, Background; sự kiện Event (Create, Step, Key Down/Pressed), khối lệnh Action: Set Direction, Set Speed.",
+      "objectives": [
+        "Kiến thức: Trình bày tính ứng dụng của GameMaker; Xác định các vùng làm việc chính; Nắm vững các thành phần cốt lõi của game: Sprite, Object, Room.",
+        "Kỹ năng: Khởi tạo nhân vật và phông nền từ nguồn ngoài; Sử dụng Event và Action lập trình nhân vật di chuyển; Sử dụng khối lệnh Set Direction, Set Speed và kiểm thử game.",
+        "Thái độ: Hứng thú làm quen công cụ thiết kế game chuyên nghiệp và chủ động khám phá giao diện."
+      ],
+      "los": "SLO.I.1, SLO.II.1, SLO.III.1, SLO.III.2, SLO.IV.1, SLO.V.1",
+      "knowledge": "Trình bày được tính ứng dụng của nền tảng Gamemaker; Xác định được các vùng làm việc chính của Gamemaker; Trình bày được các bước khởi tạo nhân vật và phông nền từ nguồn ngoài vào công cụ; Trình bày được các thành phần chính của game: Sprite, Object, Room.",
+      "skills": "Thực hiện được khởi tạo nhân vật và phông nền từ nguồn ngoài; Sử dụng được phần lập trình sự kiện Event và Action để lập trình nhân vật di chuyển; Sử dụng được khối lệnh Action set Direction và set Speed; Sử dụng được nút play trên thanh công cụ để kiểm thử trò chơi.",
+      "attitude": "Hứng thú khám phá môi trường làm game chuyên nghiệp GameMaker và có ý thức rèn luyện tư duy thiết kế trò chơi.",
+      "lessonContent": [
+        "Tìm hiểu về công cụ sáng tạo trò chơi Gamemaker.",
+        "Các khái niệm cơ bản trong Gamemaker: sprite, object, event, action, room, background.",
+        "Thực hành trải nghiệm lập trình trò chơi King Fish."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "2": {
+      "sessionNumber": 2,
+      "title": "Xây dựng logic game với Alarm",
+      "summary": "Tìm hiểu cơ chế hoạt động của GameMaker thông qua tốc độ khung hình (FPS - Frame per second) và hệ tọa độ Oxy; tìm hiểu sự kiện hẹn giờ Alarm và kỹ năng ghi chú (Comment) mã lệnh; thực hành sử dụng Action Create Instance kết hợp Alarm để sinh ra các nhân vật phụ tự động tại các vị trí ngẫu nhiên trong game King Fish.",
+      "hardwareAndCommands": "Hệ tọa độ Oxy trong GameMaker, cơ chế FPS (Room Speed), sự kiện hẹn giờ Alarm Event, Action Create Instance, Set Alarm, khối lệnh Comment.",
+      "objectives": [
+        "Kiến thức: Hiểu cơ chế hoạt động của game qua FPS; Nắm vững quy luật hệ tọa độ Oxy; Hiểu nguyên lý hoạt động của sự kiện hẹn giờ Alarm.",
+        "Kỹ năng: Lập trình sinh nhân vật phụ tự động với Action Create Instance; Thiết lập Alarm đếm ngược thời gian kích hoạt sự kiện; Viết comment ghi chú rõ ràng.",
+        "Thái độ: Rèn luyện tính cẩn thận khi tính toán tọa độ Oxy và thời gian hẹn giờ trong trò chơi."
+      ],
+      "los": "SLO.I.1, SLO.I.2, SLO.II.1, SLO.III.1, SLO.III.2, SLO.III.3, SLO.IV.1, SLO.IV.2",
+      "knowledge": "Cách xử lý các logic có trong trò chơi như tạo ra các nhân vật phụ; Xử lý hẹn giờ và thời gian trong trò chơi; Cách thức Gamemaker thật sự hoạt động thông qua fps.",
+      "skills": "Thực hành lập trình nhân vật phụ; Thiết lập được alarm và hẹn giờ sự kiện trong game; Tạo ra nhân vật phụ bằng Action Create Instance và xác định vị trí với tọa độ x, y.",
+      "attitude": "Rèn luyện tính cẩn thận khi tính toán tọa độ Oxy và thời gian hẹn giờ trong trò chơi.",
+      "lessonContent": [
+        "Tìm hiểu khái niệm Frame per second (fps), tọa độ Oxy trong Gamemaker.",
+        "Giới thiệu Alarm, comment trên câu lệnh.",
+        "Thực hành các khái niệm trên trong game King Fish."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "3": {
+      "sessionNumber": 3,
+      "title": "Điều kiện va chạm, cá lớn ăn cá bé",
+      "summary": "Tìm hiểu khái niệm đường dẫn chuyển động (Path) trong GameMaker; kết hợp Path và Alarm để đàn cá bơi theo quỹ đạo định sẵn liên tục; xây dựng hệ thống chuyển phòng chơi (Room Navigation) với các nút bấm Start/Restart và hiệu ứng phóng to/thu nhỏ nhân vật.",
+      "hardwareAndCommands": "Tài nguyên Path (Start Path, End Path), Collision Event (xử lý va chạm), Room Actions (Go to Next Room, Restart Room), nút bấm UI.",
+      "objectives": [
+        "Kiến thức: Nắm vững khái niệm và thuộc tính của Path; Hiểu các sự kiện nút bấm UI, cơ chế chuyển đổi phòng chơi (Rooms).",
+        "Kỹ năng: Tạo đường dẫn Path và gán chuyển động cho đàn cá; Kết hợp Alarm sinh cá theo lộ trình; Lập trình nút bấm chuyển phòng chơi mượt mà.",
+        "Thái độ: Kiên trì điều chỉnh đường dẫn Path mượt mà và sắp xếp các Room hợp lý."
+      ],
+      "los": "SLO.I.1, SLO.I.2, SLO.II.1, SLO.III.1, SLO.III.2, SLO.IV.1, SLO.IV.2",
+      "knowledge": "Khái niệm, cách sử dụng path; Các sự kiện nút bấm, chuyển phòng, phóng to, thu nhỏ.",
+      "skills": "Thực hành tạo path và áp dụng cho nhân vật phụ, kết hợp alarm để sinh ra đàn cá liên tục; Tạo các nút bấm giữa các phòng chơi, thực hành chuyển phòng chơi.",
+      "attitude": "Kiên trì điều chỉnh đường dẫn Path mượt mà và sắp xếp các Room hợp lý.",
+      "lessonContent": [
+        "Tạo path và đặt alarm để sinh ra đàn cá liên tục.",
+        "Tạo các phòng chơi và chuyển giữa các phòng."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "4": {
+      "sessionNumber": 4,
+      "title": "Điều kiện tiến hóa, trở thành vua cá",
+      "summary": "Làm quen với khái niệm Biến số (Variables) và cấu trúc rẽ nhánh điều kiện If...Else trong GameMaker; ứng dụng biến số để theo dõi điểm số, kích thước và lập trình cơ chế tiến hóa tăng cấp (Level Up) cho cá nhân vật chính khi ăn đủ số cá nhỏ; tích hợp hiệu ứng âm thanh nhạc nền, âm thanh ăn mồi và sự kiện thắng/thua.",
+      "hardwareAndCommands": "Khối lệnh Biến (Assign Variable, Test Variable), cấu trúc điều kiện If...Else, Sound Actions (Play Audio, Loop Audio), sprite transform (image_xscale, image_yscale).",
+      "objectives": [
+        "Kiến thức: Hiểu khái niệm biến số và cấu trúc điều kiện If Else; Trình bày cơ chế tăng cấp (Level Up) cho nhân vật; Hiểu quy trình tích hợp âm thanh vào game.",
+        "Kỹ năng: Lập trình điều kiện tiến hóa cá nhân vật chính; Xử lý va chạm tương ứng từng cấp độ cá; Thêm âm thanh nhạc nền, tiếng ăn mồi và điều kiện thắng/thua.",
+        "Thái độ: Tỉ mỉ kiểm tra các nhánh điều kiện if-else và cân bằng độ khó của game."
+      ],
+      "los": "SLO.I.1, SLO.I.2, SLO.II.1, SLO.III.1, SLO.III.3, SLO.IV.1, SLO.IV.2, SLO.V.1",
+      "knowledge": "Hiểu khái niệm biến số, cấu trúc điều kiện if else; Trình bày được cách tăng level cho nhân vật; Trình bày cách đưa âm thanh vào game.",
+      "skills": "Lập trình điều kiện tiến hóa cá nhân vật chính; Lập trình điều kiện va chạm cá tiến hóa; Lập trình âm thanh và thêm điều kiện thắng thua.",
+      "attitude": "Tỉ mỉ kiểm tra các nhánh điều kiện if-else và cân bằng độ khó của game.",
+      "lessonContent": [
+        "Khái niệm biến số, cấu trúc điều kiện if else.",
+        "Áp dụng biến, if else lập trình tăng level cho nhân vật.",
+        "Lập trình âm thanh cho game."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "5": {
+      "sessionNumber": 5,
+      "title": "Workshop: Dùng AI tạo hình ảnh cho game",
+      "summary": "Thực hiện bài kiểm tra định kỳ Checkpoint 1 đánh giá kiến thức lập trình GameMaker từ buổi 1 đến 4; khám phá tổng quan về ngành công nghiệp phát triển game hiện đại; tìm hiểu và thực hành sử dụng công cụ AI (Microsoft Copilot / Image Creator) viết prompt tạo tài nguyên Sprite nhân vật, quái vật và phông nền cho trò chơi.",
+      "hardwareAndCommands": "Đề kiểm tra Checkpoint 1, công cụ AI tạo ảnh (Copilot / Bing Image Creator), kỹ thuật viết Prompt cho game assets, xuất nhập ảnh vào GameMaker Sprite Editor.",
+      "objectives": [
+        "Kiến thức: Trình bày quy trình sử dụng AI Copilot tạo hình ảnh cho game; Hiểu tổng quan các vị trí trong ngành công nghiệp game.",
+        "Kỹ năng: Hoàn thành bài kiểm tra Checkpoint 1 nghiêm túc; Viết câu lệnh nhắc (Prompt) tạo tài nguyên đồ họa game độc đáo bằng AI.",
+        "Thái độ: Đánh giá được tiềm năng ứng dụng công nghệ AI tạo tài nguyên mỹ thuật trong phát triển game."
+      ],
+      "los": "SLO.III.1, SLO.IV.1, SLO.V.1",
+      "knowledge": "Trình bày cách sử dụng công cụ Copilot để tạo hình ảnh trong game; Hiểu về các khâu cơ bản trong ngành công nghiệp game.",
+      "skills": "Thực hiện bài kiểm tra định kỳ - checkpoint 1; Thực hiện viết prompt tạo hình ảnh bằng công cụ AI.",
+      "attitude": "Đánh giá được tiềm năng ứng dụng công nghệ AI tạo tài nguyên mỹ thuật trong phát triển game.",
+      "lessonContent": [
+        "Kiểm tra checkpoint.",
+        "Tìm hiểu cách sử dụng Copilot để tạo hình ảnh.",
+        "Tìm hiểu đôi chút về ngành công nghiệp game."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "6": {
+      "sessionNumber": 6,
+      "title": "Làm chủ bầu trời với animation",
+      "summary": "Bắt đầu dự án game không chiến 'Space Shooter'; ôn tập điều khiển di chuyển nhân vật máy bay; tìm hiểu kỹ thuật nhập chuỗi ảnh chuyển động (Strip Image) tạo hoạt ảnh mượt mà; sử dụng tọa độ góc hướng (image_angle / direction) để xoay hình ảnh phi cơ theo hướng bay; làm quen với công cụ Timeline điều phối các pha chuyển động phức tạp của kẻ địch.",
+      "hardwareAndCommands": "Kỹ thuật Strip Image trong Sprite Editor, tọa độ góc hướng (0 - 360 độ, image_angle), công cụ Timeline trong GameMaker, sự kiện di chuyển tàu vũ trụ.",
+      "objectives": [
+        "Kiến thức: Trình bày cách nhập strip image tạo animation; Nắm vững quy tắc tọa độ hướng góc trong GameMaker; Hiểu khái niệm và công dụng của Timeline.",
+        "Kỹ năng: Thêm và tối ưu chuỗi ảnh strip image; Xoay hướng hình ảnh nhân vật chính xác; Thiết lập các mốc bước di chuyển với Timeline.",
+        "Thái độ: Rèn luyện sự kiên nhẫn khi xử lý hoạt ảnh (Animation) và các mốc thời gian chuyển động."
+      ],
+      "los": "SLO.I.1, SLO.I.2, SLO.II.1, SLO.III.1, SLO.III.3, SLO.IV.1, SLO.IV.2, SLO.V.1",
+      "knowledge": "Trình bày cách thêm ảnh với strip image; Nắm được tọa độ hướng trong Gamemaker; Trình bày khái niệm, cách sử dụng timeline.",
+      "skills": "Thêm ảnh với strip image; Đặt được hướng hình ảnh đúng; Làm theo hướng dẫn với timeline.",
+      "attitude": "Rèn luyện sự kiên nhẫn khi xử lý hoạt ảnh (Animation) và các mốc thời gian chuyển động.",
+      "lessonContent": [
+        "Ôn tập lập trình di chuyển.",
+        "Sử dụng tọa độ hướng để thay đổi hình ảnh nhân vật.",
+        "Sử dụng timeline quyết định cách di chuyển của nhân vật phụ."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "7": {
+      "sessionNumber": 7,
+      "title": "Phân chia màn chơi, sải cánh cùng đồng đội",
+      "summary": "Nâng cấp các tính năng chiến đấu trong game Space Shooter: bổ sung kỹ năng đặc biệt (Skill) kích hoạt có thời gian hồi chiêu (Cooldown) bằng Alarm và Biến số; vận dụng cấu trúc If...Else kiểm tra điều kiện năng lượng; lập trình các đợt kẻ địch xuất hiện theo Path có thuộc tính Absolute; thiết kế mở rộng các màn chơi (Levels) nối tiếp nhau.",
+      "hardwareAndCommands": "Biến tự tạo (cooldown, energy, hp), thuộc tính Absolute của Path, sự kiện bấm phím kích hoạt kỹ năng, cấu trúc If...Else lồng nhau, quản lý Room.",
+      "objectives": [
+        "Kiến thức: Trình bày cách vận dụng biến tự tạo; Hiểu ý nghĩa thuộc tính Absolute trong Path; Nắm vững cách lồng ghép câu điều kiện If Else.",
+        "Kỹ năng: Lập trình chức năng kích hoạt kỹ năng đặc biệt có kiểm tra điều kiện; Tạo đường bay của kẻ địch bằng Path; Bổ sung các màn chơi mới.",
+        "Thái độ: Hào hứng bổ sung các kỹ năng chiến đấu độc đáo và thiết kế các đợt tấn công thử thách."
+      ],
+      "los": "LO 1.01",
+      "knowledge": "Trình bày được cách vận dụng biến tự tạo vào lập trình; Trình bày ý nghĩa thuộc tính absolute trong path; Trình bày lại cách sử dụng if else.",
+      "skills": "Thực hiện chức năng đặt câu hỏi if khi sử dụng kỹ năng; Thêm được các kỹ năng cho người chơi.",
+      "attitude": "Hào hứng bổ sung các kỹ năng chiến đấu độc đáo và thiết kế các đợt tấn công thử thách.",
+      "lessonContent": [
+        "Thêm các chức năng cho trò chơi với alarm, variable.",
+        "Thêm kẻ địch và ôn tập path.",
+        "Thêm các màn chơi cần thiết."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "8": {
+      "sessionNumber": 8,
+      "title": "Vượt qua thử thách với thuật toán",
+      "summary": "Xây dựng hành vi thông minh (AI Behavior) cho quái vật và Boss thông qua Timeline điều phối các kiểu bắn đạn và di chuyển linh hoạt; tìm hiểu thuộc tính Persistent duy trì dữ liệu người chơi xuyên suốt các Room; tích hợp hệ thống âm thanh tiếng súng, vụ nổ, nhạc nền; đóng gói hoàn thiện trò chơi Space Shooter.",
+      "hardwareAndCommands": "Thuộc tính Persistent của Object, Timeline cho Boss/Quái vật, hệ thống âm thanh đa kênh (Audio Streams), chuyển màn chơi hoàn chỉnh.",
+      "objectives": [
+        "Kiến thức: Trình bày cách sử dụng và mục tiêu của Timeline; Hiểu ý nghĩa và ứng dụng của thuộc tính Persistent trong quản lý nhân vật xuyên phòng.",
+        "Kỹ năng: Xây dựng trí thông minh và quy luật tấn công cho kẻ thù qua Timeline; Hoàn thiện âm thanh, chuyển màn và đóng gói trò chơi Space Shooter.",
+        "Thái độ: Tỉ mỉ kiểm thử tương tác game và hoàn thiện sản phẩm đạt độ hoàn chỉnh cao."
+      ],
+      "los": "LO 1.01",
+      "knowledge": "Trình bày được cách sử dụng timeline và mục tiêu sử dụng; Trình bày ý nghĩa của thuộc tính persistent.",
+      "skills": "Thực hiện xây dựng trí thông minh cho kẻ thù thông qua timeline; Ôn tập chuyển màn, thêm âm thanh trò chơi; Hoàn thành game Space Shooter.",
+      "attitude": "Tỉ mỉ kiểm thử tương tác game và hoàn thiện sản phẩm đạt độ hoàn chỉnh cao.",
+      "lessonContent": [
+        "Thêm các màn chơi.",
+        "Thêm trí tuệ kẻ thù với timeline.",
+        "Thêm âm thanh trò chơi."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "9": {
+      "sessionNumber": 9,
+      "title": "Lên ý tưởng sản phẩm cuối khóa",
+      "summary": "Thực hiện bài kiểm tra định kỳ lần 2 (Checkpoint 2) tổng hợp kiến thức lập trình GameMaker (Alarm, Path, Timeline, Biến, Âm thanh); tìm hiểu bảng tiêu chí đánh giá sản phẩm cuối khóa (Rubric); brainstorming ý tưởng, chọn thể loại game và lập bản thiết kế Game Design Document (GDD) cá nhân.",
+      "hardwareAndCommands": "Đề kiểm tra Checkpoint 2, bảng tiêu chí đánh giá sản phẩm cuối khóa, tài liệu phác thảo Game Design Document (GDD).",
+      "objectives": [
+        "Kiến thức: Trình bày được bảng tiêu chí đánh giá sản phẩm cuối khóa là căn cứ tính điểm dự án cá nhân.",
+        "Kỹ năng: Hoàn thành bài kiểm tra định kỳ Checkpoint 2 nghiêm túc; Tìm kiếm ý tưởng và lập bản kế hoạch phát triển game cá nhân.",
+        "Thái độ: Chủ động, nghiêm túc trong kiểm tra và sáng tạo trong việc đề xuất ý tưởng game cá nhân."
+      ],
+      "knowledge": "Trình bày được bảng tiêu chí đánh giá sản phẩm cuối khóa là căn cứ tính điểm dự án cá nhân.",
+      "skills": "Thực hiện kiểm tra định kỳ lần 2 - checkpoint 2; Thực hiện tìm kiếm ý tưởng xây dựng dự án cá nhân.",
+      "attitude": "Chủ động, nghiêm túc trong kiểm tra và sáng tạo trong việc đề xuất ý tưởng game cá nhân.",
+      "lessonContent": [
+        "Thực hiện bài kiểm tra định kỳ lần 2 - checkpoint 2.",
+        "Tìm hiểu tiêu chí đánh giá sản phẩm cuối khóa.",
+        "Thực hành tìm kiếm ý tưởng xây dựng dự án cá nhân."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "10": {
+      "sessionNumber": 10,
+      "title": "Thực hành hoàn thiện sản phẩm cuối khóa (Phần 1)",
+      "summary": "Bắt tay xây dựng dự án game cá nhân trong GameMaker; tạo Sprite, Object và thiết kế Room chơi chính; lập trình cơ chế di chuyển của nhân vật chính, xử lý góc quay và va chạm cơ bản theo kế hoạch đã vạch ra.",
+      "hardwareAndCommands": "Sprite Editor, Room Editor, Object Events (Create, Step, Key Events), cơ chế điều khiển di chuyển nhân vật.",
+      "objectives": [
+        "Kiến thức: Trình bày tầm quan trọng của việc lập kế hoạch và phân bổ thời gian thực hiện dự án game.",
+        "Kỹ năng: Thiết lập Sprite, Room và lập trình các chức năng di chuyển cốt lõi cho nhân vật chính.",
+        "Thái độ: Đánh giá tiến độ của dự án so với timeline đề ra và chủ động thực hiện."
+      ],
+      "knowledge": "Trình bày được tầm quan trọng của việc lập kế hoạch trong việc thực hiện dự án.",
+      "skills": "Thực hiện lập trình các chức năng chính cho dự án.",
+      "attitude": "Đánh giá được tiến độ của dự án so với timeline đề ra.",
+      "lessonContent": [
+        "Thực hiện lập trình các chức năng chính cho dự án theo kịch bản game đã chọn."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "11": {
+      "sessionNumber": 11,
+      "title": "Thực hành hoàn thiện sản phẩm cuối khóa (Phần 2)",
+      "summary": "Tiếp tục lập trình các cơ chế tương tác phức tạp: lập trình kẻ địch tự động (với Path, Alarm hoặc Timeline), cơ chế bắn đạn, tính điểm số, thanh máu (HP) và xử lý va chạm sát thương; kiểm thử và sửa lỗi logic chương trình.",
+      "hardwareAndCommands": "Sự kiện va chạm (Collision), Alarm, Path, Biến số HP/Score, cơ chế sinh quái vật và bắn đạn.",
+      "objectives": [
+        "Kiến thức: Hiểu tầm quan trọng của việc bám sát kế hoạch và kiểm thử liên tục từng tính năng.",
+        "Kỹ năng: Lập trình AI kẻ địch, cơ chế chiến đấu/tính điểm và xử lý tương tác va chạm; gỡ lỗi chương trình.",
+        "Thái độ: Kiên trì thử nghiệm, tìm và sửa lỗi logic phát sinh trong game."
+      ],
+      "knowledge": "Trình bày được tầm quan trọng của việc lập kế hoạch trong việc thực hiện dự án.",
+      "skills": "Thực hiện lập trình các chức năng chính cho dự án.",
+      "attitude": "Đánh giá được tiến độ của dự án so với timeline đề ra.",
+      "lessonContent": [
+        "Tiếp tục thực hiện lập trình các cơ chế chiến đấu, kẻ địch và hoàn thiện logic trò chơi."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "12": {
+      "sessionNumber": 12,
+      "title": "Thực hành hoàn thiện sản phẩm cuối khóa (Phần 3)",
+      "summary": "Hoàn thiện tổng thể sản phẩm game: thiết kế giao diện Menu bắt đầu, phòng Game Over, phòng Chiến thắng (Victory); lồng ghép âm thanh nhạc nền và hiệu ứng âm thanh tương tác; cân bằng độ khó của game và kiểm thử toàn diện.",
+      "hardwareAndCommands": "Phòng Menu/GameOver/Victory, nút bấm điều hướng Room, Sound system, cân bằng thông số game (Balancing).",
+      "objectives": [
+        "Kiến thức: Hiểu tầm quan trọng của việc hoàn thiện trải nghiệm người dùng và giao diện đầu cuối của game.",
+        "Kỹ năng: Lập trình hệ thống giao diện Menu/GameOver, hoàn thiện âm thanh và tinh chỉnh độ khó trò chơi.",
+        "Thái độ: Trau chuốt tính thẩm mỹ và tính hoàn thiện của sản phẩm game cá nhân."
+      ],
+      "knowledge": "Trình bày được tầm quan trọng của việc lập kế hoạch trong việc thực hiện dự án.",
+      "skills": "Thực hiện lập trình các chức năng chính cho dự án.",
+      "attitude": "Đánh giá được tiến độ của dự án so với timeline đề ra.",
+      "lessonContent": [
+        "Lập trình hoàn thiện hệ thống phòng chơi, giao diện và hiệu ứng âm thanh cho toàn bộ game."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "13": {
+      "sessionNumber": 13,
+      "title": "Nghiệm thu sản phẩm",
+      "summary": "Tổng duyệt và nghiệm thu toàn diện sản phẩm game cá nhân; đóng gói sản phẩm game ra file cài đặt / thực thi (.exe / .zip); thiết kế slide thuyết trình giới thiệu dự án (Canva / PowerPoint / Google Slides) và luyện tập kỹ năng báo cáo sản phẩm trước lớp.",
+      "hardwareAndCommands": "Đóng gói game GameMaker (Create Executable), công cụ thiết kế bài thuyết trình (Canva/Google Slides), kỹ năng thuyết trình sản phẩm số.",
+      "objectives": [
+        "Kiến thức: Trình bày tầm quan trọng của việc nghiệm thu sản phẩm và lập kế hoạch thuyết trình chuyên nghiệp.",
+        "Kỹ năng: Đóng gói hoàn chỉnh file game độc lập; Thiết kế bài trình chiếu ấn tượng và tập dượt thuyết trình.",
+        "Thái độ: Tự tin và chủ động hoàn tất những khâu chuẩn bị cuối cùng cho buổi báo cáo."
+      ],
+      "knowledge": "Trình bày được tầm quan trọng của việc lập kế hoạch trong việc thực hiện dự án.",
+      "skills": "Thực hiện lập trình các chức năng chính cho dự án; Thực hiện thiết kế bài trình chiếu.",
+      "attitude": "Đánh giá được tiến độ của dự án so với timeline đề ra.",
+      "lessonContent": [
+        "Thực hiện lập trình cho dự án.",
+        "Hoàn thiện và đóng gói sản phẩm.",
+        "Thiết kế bài trình chiếu hỗ trợ thuyết trình."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "14": {
+      "sessionNumber": 14,
+      "title": "Thuyết trình cuối khóa",
+      "summary": "Tổ chức buổi báo cáo thuyết trình dự án game cuối khóa; học viên tự tin trình diễn demo game GameMaker cá nhân trước phụ huynh và hội đồng giám khảo; trả lời câu hỏi phản biện, nhận đánh giá chuyên môn và đón nhận chứng chỉ hoàn thành khóa học.",
+      "hardwareAndCommands": "Kỹ năng thuyết trình trước đám đông, trình diễn demo gameplay trực tiếp, trả lời câu hỏi phản biện từ ban giám khảo.",
+      "objectives": [
+        "Kiến thức: Trình bày mạch lạc các kiến thức lập trình GameMaker và tư duy thiết kế game đã áp dụng vào dự án.",
+        "Kỹ năng: Tự tin thuyết trình sản phẩm, demo gameplay mượt mà và trả lời phản biện lưu loát.",
+        "Thái độ: Đánh giá khách quan sản phẩm của bản thân và tôn trọng, cổ vũ thành quả sáng tạo của bạn bè."
+      ],
+      "knowledge": "Trình bày được các kiến thức đã học được áp dụng vào trong dự án.",
+      "skills": "Thực hiện thuyết trình sản phẩm cá nhân.",
+      "attitude": "Đánh giá được sản phẩm của bản thân so với sản phẩm khác.",
+      "lessonContent": [
+        "Thực hiện thuyết trình giới thiệu dự án cá nhân trước thầy cô và phụ huynh."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    }
+  }
+}

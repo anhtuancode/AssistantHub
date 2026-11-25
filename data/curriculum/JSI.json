@@ -1,0 +1,304 @@
+{
+  "courseCode": "JSI",
+  "courseName": "Web Developer - Intensive",
+  "category": "CODING",
+  "platform": "HTML/CSS/JS",
+  "cluster": "WEB_JS",
+  "targetAge": "13 - 16 Tuổi",
+  "duration": "120 phút/buổi",
+  "version": "Ver 1 - 10.2024 (Hiệu lực)",
+  "sessions": {
+    "1": {
+      "sessionNumber": 1,
+      "title": "Ôn tập kiến thức",
+      "summary": "Ôn tập và củng cố kiến thức nền tảng HTML, CSS, JavaScript và cơ chế giao tiếp API; thực hành xây dựng dự án Pokemon Wiki với tính năng gọi API dữ liệu; làm quen với mô hình phát triển NextGen và bộ tiêu chí đánh giá sản phẩm cuối khóa.",
+      "hardwareAndCommands": "HTML5, CSS3, JavaScript ES6, Fetch API (GET request), PokéAPI, mô hình kiến trúc Frontend-Backend NextGen.",
+      "objectives": [
+        "Kiến thức: Học viên nhớ lại kiến thức cơ bản về HTML, CSS, và JavaScript; Học viên hiểu được cấu trúc và chức năng của trang web từ frontend đến backend.",
+        "Kỹ năng: Học viên vận dụng kiến thức để tạo và sửa đổi các thành phần HTML và CSS; Học viên phân tích luồng dữ liệu từ người dùng tới máy chủ và lưu trữ trong cơ sở dữ liệu.",
+        "Thái độ: Học viên đánh giá sự quan trọng của việc nắm vững kiến thức cơ bản trong việc xây dựng dự án lớn."
+      ],
+      "los": "S.LO.I.01",
+      "knowledge": "Học viên nhớ lại kiến thức cơ bản về HTML, CSS, và JavaScript; Học viên hiểu được cấu trúc và chức năng của trang web từ frontend đến backend.",
+      "skills": "Học viên vận dụng kiến thức để tạo và sửa đổi các thành phần HTML và CSS; Học viên phân tích luồng dữ liệu từ người dùng tới máy chủ và lưu trữ trong cơ sở dữ liệu.",
+      "attitude": "Học viên đánh giá sự quan trọng của việc nắm vững kiến thức cơ bản trong việc xây dựng dự án lớn.",
+      "lessonContent": [
+        "Ôn tập kiến thức về HTML, CSS, Javascript.",
+        "Ôn tập kiến thức về API và xử lý request cơ bản.",
+        "Thực hành xây dựng dự án Pokemon Wiki với xử lý API.",
+        "Giới thiệu mô hình NextGen và tiêu chí đánh giá sản phẩm cuối khóa."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "2": {
+      "sessionNumber": 2,
+      "title": "JavaScript chuyên sâu và hơn thế nữa",
+      "summary": "Tiếp cận các chuẩn cú pháp hiện đại của JavaScript ES6 (let, const, arrow functions); nắm vững cú pháp và cơ chế hoạt động của các phương thức xử lý mảng nâng cao (map, filter, find); ứng dụng giải quyết bài toán phân tích và xử lý bảng điểm trường học thực tế.",
+      "hardwareAndCommands": "JavaScript ES6, Arrow Functions, Array Methods (map(), filter(), find()), xử lý và biến đổi cấu trúc dữ liệu JSON.",
+      "objectives": [
+        "Kiến thức: Học sinh hiểu các cải tiến trong ES6 như `let`, `const`, arrow functions; Học sinh nhớ cú pháp và cách sử dụng các phương thức `map`, `filter`, và `find`; Học sinh hiểu quy trình xử lý dữ liệu trong danh sách bằng các phương thức ES6.",
+        "Kỹ năng: Học sinh vận dụng các phương thức `map`, `filter`, và `find` để thao tác với dữ liệu mảng; Học sinh phân tích các bài toán liên quan đến xử lý dữ liệu; Học sinh thực hiện và kiểm tra các thao tác xử lý dữ liệu theo yêu cầu bài toán thực tế.",
+        "Thái độ: Học viên đánh giá được tính hiệu quả của các phương thức `map`, `filter`, và `find` trong việc xử lý dữ liệu."
+      ],
+      "los": "S.LO.I.02",
+      "knowledge": "Học sinh hiểu các cải tiến trong ES6 như `let`, `const`, arrow functions; Học sinh nhớ cú pháp và cách sử dụng các phương thức `map`, `filter`, và `find`; Học sinh hiểu quy trình xử lý dữ liệu trong danh sách bằng các phương thức ES6.",
+      "skills": "Học sinh vận dụng các phương thức `map`, `filter`, và `find` để thao tác với dữ liệu mảng; Học sinh phân tích các bài toán liên quan đến xử lý dữ liệu; Học sinh thực hiện và kiểm tra các thao tác xử lý dữ liệu theo yêu cầu bài toán thực tế.",
+      "attitude": "Học viên đánh giá được tính hiệu quả của các phương thức `map`, `filter`, và `find` trong việc xử lý dữ liệu.",
+      "lessonContent": [
+        "Giới thiệu ES6 và ứng dụng.",
+        "Tìm hiểu về Array method: map, filter, find.",
+        "Thực hành với bài toán xử lý dữ liệu điểm trường học."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "3": {
+      "sessionNumber": 3,
+      "title": "Firebase và thiết lập máy chủ",
+      "summary": "Ôn tập mô hình Client-Server trong ứng dụng web; làm quen với nền tảng điện toán đám mây Firebase (Firestore, Authentication); thực hành tạo Firebase Project, tích hợp Firebase SDK vào mã nguồn và khởi động dự án thực chiến Coffee Management.",
+      "hardwareAndCommands": "Mô hình Client-Server, Firebase Console, Firebase SDK (firebase/app), cấu hình firebaseConfig, khởi tạo dự án Coffee Management.",
+      "objectives": [
+        "Kiến thức: Học viên hiểu cơ bản về Firebase, các dịch vụ như Firestore và Firebase Authentication; Nhớ các bước thiết lập Firebase và kết nối máy chủ với dự án web.",
+        "Kỹ năng: Học viên vận dụng kiến thức để thiết lập Firebase trong dự án, bao gồm tạo project và tích hợp với ứng dụng web; Học viên thực hành xây dựng dự án Coffee Management.",
+        "Thái độ: Học viên đánh giá vai trò của các dịch vụ đám mây như Firebase trong việc tối ưu hóa quản lý và lưu trữ dữ liệu."
+      ],
+      "los": "S.LO.I.04, S.LO.IV.03, S.LO.IV.04, S.LO.V.04",
+      "knowledge": "Học viên hiểu cơ bản về Firebase, các dịch vụ như Firestore và Firebase Authentication; Nhớ các bước thiết lập Firebase và kết nối máy chủ với dự án web.",
+      "skills": "Học viên vận dụng kiến thức để thiết lập Firebase trong dự án, bao gồm tạo project và tích hợp với ứng dụng web; Học viên thực hành xây dựng dự án Coffee Management.",
+      "attitude": "Học viên đánh giá vai trò của các dịch vụ đám mây như Firebase trong việc tối ưu hóa quản lý và lưu trữ dữ liệu.",
+      "lessonContent": [
+        "Ôn tập về client/server.",
+        "Tìm hiểu về Firebase và kết nối với dự án website.",
+        "Giới thiệu dự án Coffee management."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "4": {
+      "sessionNumber": 4,
+      "title": "Firebase và xác thực người dùng",
+      "summary": "Hoàn thiện giao diện Đăng ký / Đăng nhập cho dự án Coffee Management; tích hợp dịch vụ Firebase Authentication với các phương thức xác thực Email/Password và Google Auth; xử lý kiểm soát lỗi form, quản lý phiên đăng nhập/đăng xuất (SignOut) và thiết lập phân quyền người dùng (Guest/Admin).",
+      "hardwareAndCommands": "Firebase Authentication, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, phân quyền Guest / Admin.",
+      "objectives": [
+        "Kiến thức: Học viên hiểu được khái niệm và tầm quan trọng của Firebase Authentication; Học viên được biết tới các phương thức xác thực người dùng (Email/Password, Google Auth) và cách tích hợp vào dự án; Học viên biết cách hoạt động của hệ thống phân quyền (guest và admin) trong ứng dụng.",
+        "Kỹ năng: Học viên vận dụng Firebase để cấu hình và tích hợp tính năng đăng ký, đăng nhập vào website; Phân tích cách thức phân quyền giữa guest và admin để đảm bảo tính bảo mật và chức năng của hệ thống; Xây dựng chức năng cơ bản liên quan đến xác thực người dùng và đặt hàng.",
+        "Thái độ: Học viên đánh giá được về tính bảo mật của hệ thống xác thực người dùng trong website."
+      ],
+      "los": "S.LO.IV.04, S.LO.IV.05, S.LO.V.04",
+      "knowledge": "Học viên hiểu được khái niệm và tầm quan trọng của Firebase Authentication; Học viên được biết tới các phương thức xác thực người dùng (Email/Password, Google Auth) và cách tích hợp vào dự án; Học viên biết cách hoạt động của hệ thống phân quyền (guest và admin) trong ứng dụng.",
+      "skills": "Học viên vận dụng Firebase để cấu hình và tích hợp tính năng đăng ký, đăng nhập vào website; Phân tích cách thức phân quyền giữa guest và admin để đảm bảo tính bảo mật và chức năng của hệ thống; Xây dựng chức năng cơ bản liên quan đến xác thực người dùng và đặt hàng.",
+      "attitude": "Học viên đánh giá được về tính bảo mật của hệ thống xác thực người dùng trong website.",
+      "lessonContent": [
+        "Hoàn thiện giao diện login/Register Coffee management.",
+        "Giới thiệu các phương thức authentication trên Firebase.",
+        "Thực hành lập trình tính năng soát lỗi và xác thực người dùng.",
+        "Thiết kế nút đăng xuất và lập trình tính năng SignOut."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "5": {
+      "sessionNumber": 5,
+      "title": "Firebase và cơ sở dữ liệu trực tuyến",
+      "summary": "Khám phá hệ cơ sở dữ liệu NoSQL với Cloud Firestore và lưu trữ hình ảnh đám mây Cloudinary; lập trình trọn bộ tính năng CRUD quản lý đơn hàng Coffee Management; deploy ứng dụng web lên Firebase Hosting và hoàn thành bài kiểm tra Checkpoint 1.",
+      "hardwareAndCommands": "Cloud Firestore (collection, doc, setDoc, getDocs, updateDoc, deleteDoc), Cloudinary API lưu trữ ảnh, Firebase Hosting deploy, đề kiểm tra Checkpoint 1.",
+      "objectives": [
+        "Kiến thức: Học viên hiểu khái niệm về Firebase Firestore và Cloudinary; Học viên biết cách tạo và quản lý cơ sở dữ liệu trực tuyến bằng Firestore; Học viên nắm được cách liên kết dữ liệu giữa Firestore và Cloudinary (liên kết hình ảnh với đơn hàng).",
+        "Kỹ năng: Học viên vận dụng Firebase Firestore để lưu trữ và quản lý dữ liệu đơn hàng; Học viên vận dụng Cloudinary để lưu trữ và truy xuất hình ảnh đồ uống; Học viên phân tích và cập nhật trạng thái đơn hàng (đang order, đã xác nhận, đã thanh toán).",
+        "Thái độ: Học viên đánh giá được tính hiệu quả của việc sử dụng cơ sở dữ liệu trực tuyến trong quản lý đơn hàng."
+      ],
+      "los": "S.LO.IV.04, S.LO.IV.05, S.LO.V.04",
+      "knowledge": "Học viên hiểu khái niệm về Firebase Firestore và Cloudinary; Học viên biết cách tạo và quản lý cơ sở dữ liệu trực tuyến bằng Firestore; Học viên nắm được cách liên kết dữ liệu giữa Firestore và Cloudinary (liên kết hình ảnh với đơn hàng).",
+      "skills": "Học viên vận dụng Firebase Firestore để lưu trữ và quản lý dữ liệu đơn hàng; Học viên vận dụng Cloudinary để lưu trữ và truy xuất hình ảnh đồ uống; Học viên phân tích và cập nhật trạng thái đơn hàng (đang order, đã xác nhận, đã thanh toán).",
+      "attitude": "Học viên đánh giá được tính hiệu quả của việc sử dụng cơ sở dữ liệu trực tuyến trong quản lý đơn hàng.",
+      "lessonContent": [
+        "Giới thiệu về hệ cơ sở dữ liệu và tầm quan trọng trong lập trình.",
+        "Tìm hiểu về Firebase Firestore và kết nối với dự án web.",
+        "Thực hành lập trình CRUD order với Coffee management.",
+        "Deploy dự án Firebase.",
+        "Thực hành làm bài kiểm tra checkpoint 1."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "6": {
+      "sessionNumber": 6,
+      "title": "Lên ý tưởng và mô hình phát triển",
+      "summary": "Ứng dụng trợ lý AI (Microsoft Copilot) để khảo sát, khơi gợi và hoàn thiện ý tưởng sản phẩm web cuối khóa; tìm hiểu mô hình phát triển phần mềm Waterfall; xây dựng tài liệu đặc tả yêu cầu và bảng kế hoạch quản lý tiến độ dự án cá nhân.",
+      "hardwareAndCommands": "Trợ lý AI Microsoft Copilot, mô hình phát triển phần mềm Waterfall, bảng kế hoạch quản lý tiến độ dự án (Gantt chart/Timeline).",
+      "objectives": [
+        "Kiến thức: Học viên nắm được mô hình quản lý dự án Waterfall; Học viên nhớ các bước trong quá trình xây dựng dự án web.",
+        "Kỹ năng: Học viên phân tích ý tưởng dự án và chọn lọc nội dung phù hợp; Học viên lên kế hoạch quản lý tiến độ dự án.",
+        "Thái độ: Học viên sáng tạo ý tưởng dự án và tìm kiếm giải pháp gợi ý từ AI; Học viên đánh giá tính khả thi của các bước quản lý dự án."
+      ],
+      "los": "S.LO.II.02, S.LO.III.04, S.LO.III.05, S.LO.V.03, S.LO.V.05",
+      "knowledge": "Học viên nắm được mô hình quản lý dự án Waterfall; Học viên nhớ các bước trong quá trình xây dựng dự án web.",
+      "skills": "Học viên phân tích ý tưởng dự án và chọn lọc nội dung phù hợp; Học viên lên kế hoạch quản lý tiến độ dự án.",
+      "attitude": "Học viên sáng tạo ý tưởng dự án và tìm kiếm giải pháp gợi ý từ AI; Học viên đánh giá tính khả thi của các bước quản lý dự án.",
+      "lessonContent": [
+        "Sử dụng AI Microsoft Copilot để tìm kiếm các ý tưởng và mô tả dự án theo chủ đề.",
+        "Giới thiệu mô hình quản lý dự án Waterfall kèm ứng dụng.",
+        "Xây dựng bảng quản lý tiến độ dự án dựa trên mô hình Waterfall."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "7": {
+      "sessionNumber": 7,
+      "title": "Thiết kế giao diện website (Phần 1)",
+      "summary": "Khai thác công cụ AI và nền tảng thiết kế màu sắc (Color Hunt, Colour Combination) để xây dựng bảng màu và bố cục UI chuẩn; bắt tay vào lập trình hiện thực hóa các trang giao diện đầu tiên theo kế hoạch, hoàn thành tối thiểu 30% UI dự án web.",
+      "hardwareAndCommands": "Công cụ phối màu Color Hunt / Colour Combination, AI UI layout generator, HTML5 Semantic, CSS Grid & Flexbox layout.",
+      "objectives": [
+        "Kiến thức: Học viên được ôn tập khái niệm về template layout và nguyên tắc phối màu.",
+        "Kỹ năng: Vận dụng AI, Internet để tìm template và thiết kế giao diện; Phân tích sự phù hợp của màu sắc với giao diện.",
+        "Thái độ: Sáng tạo trong việc chọn màu sắc và thiết kế layout."
+      ],
+      "los": "S.LO.II.03, S.LO.V.03",
+      "knowledge": "Học viên được ôn tập khái niệm về template layout và nguyên tắc phối màu.",
+      "skills": "Vận dụng AI, Internet để tìm template và thiết kế giao diện; Phân tích sự phù hợp của màu sắc với giao diện.",
+      "attitude": "Sáng tạo trong việc chọn màu sắc và thiết kế layout.",
+      "lessonContent": [
+        "Sử dụng AI để tìm kiếm các template bố cục phù hợp với mô tả dự án.",
+        "Sử dụng AI Color Hunt, Colour Combination cho phép tạo và kiểm tra sự kết hợp màu sắc.",
+        "Thực hành lập trình các giao diện được liệt kê trong bảng quản lý tiến độ.",
+        "Xây dựng tối thiểu 30% UI website."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "8": {
+      "sessionNumber": 8,
+      "title": "",
+      "summary": "",
+      "hardwareAndCommands": "",
+      "objectives": [],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "9": {
+      "sessionNumber": 9,
+      "title": "",
+      "summary": "",
+      "hardwareAndCommands": "",
+      "objectives": [],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "10": {
+      "sessionNumber": 10,
+      "title": "Xây dựng tính năng website (Phần 1)",
+      "summary": "Hoàn thiện responsive đa thiết bị cho toàn bộ giao diện; tích hợp dự án với Firebase cá nhân: kết nối Firebase Auth và Cloud Firestore; cấu hình công cụ đo lường Google Analytics và lập trình luồng xác thực tài khoản người dùng (hoàn thành tối thiểu 30% tính năng).",
+      "hardwareAndCommands": "CSS Media Queries (Responsive Design), Firebase Auth SDK, Cloud Firestore database, Google Analytics SDK.",
+      "objectives": [
+        "Kiến thức: Học viên vận dụng kiến thức đã học; Học viên hiểu khái niệm về Firebase và xác thực người dùng.",
+        "Kỹ năng: Học viên vận dụng Firebase để kết nối dự án và thiết lập xác thực; Học viên thực hành xây dựng tính năng trang web; Học viên phân tích cách làm website responsive.",
+        "Thái độ: Học viên đánh giá tính bảo mật của hệ thống xác thực; Học viên sáng tạo trong việc triển khai Google Analytics cho website."
+      ],
+      "los": "S.LO.I.02, S.LO.I.03, S.LO.V.03",
+      "knowledge": "Học viên vận dụng kiến thức đã học; Học viên hiểu khái niệm về Firebase và xác thực người dùng.",
+      "skills": "Học viên vận dụng Firebase để kết nối dự án và thiết lập xác thực; Học viên thực hành xây dựng tính năng trang web; Học viên phân tích cách làm website responsive.",
+      "attitude": "Học viên đánh giá tính bảo mật của hệ thống xác thực; Học viên sáng tạo trong việc triển khai Google Analytics cho website.",
+      "lessonContent": [
+        "Đóng gói giao diện website và tiến hành responsive.",
+        "Kết nối dự án với Firebase cá nhân.",
+        "Thiết lập kết nối xác thực người dùng và database.",
+        "Thiết lập Google Analytics phân tích trải nghiệm khách hàng trong dự án.",
+        "Thực hành lập trình tính năng xác thực người dùng.",
+        "Hoàn thành tối thiểu 30% tính năng dự án web."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "11": {
+      "sessionNumber": 11,
+      "title": "Xây dựng tính năng website (Phần 2)",
+      "summary": "Vận dụng trợ lý AI Microsoft Copilot để viết các hàm logic nghiệp vụ phức tạp; tích hợp widget AI Chatbot thông minh hỗ trợ khách hàng và xử lý các lỗi tương tác phát sinh; tiếp tục hoàn thiện các tính năng cốt lõi (đạt tối thiểu 60% tiến độ tính năng).",
+      "hardwareAndCommands": "Microsoft Copilot trợ giúp code JS, nhúng AI Chatbot Widget (Dialogflow / Coze / Chatbase), xử lý ngoại lệ và bắt lỗi JavaScript.",
+      "objectives": [
+        "Kiến thức: Học viên vận dụng kiến thức đã học; Học viên hiểu cách tích hợp AI chatbot vào website.",
+        "Kỹ năng: Học viên thực hành xây dựng tính năng trang web; Học viên vận dụng AI hỗ trợ lập trình tính năng mới; Học viên phân tích hiệu quả và tương tác của các tính năng.",
+        "Thái độ: Học viên sáng tạo trong cách tích hợp và tối ưu tính năng chatbot."
+      ],
+      "los": "S.LO.I.02, S.LO.I.03, S.LO.V.03",
+      "knowledge": "Học viên vận dụng kiến thức đã học; Học viên hiểu cách tích hợp AI chatbot vào website.",
+      "skills": "Học viên thực hành xây dựng tính năng trang web; Học viên vận dụng AI hỗ trợ lập trình tính năng mới; Học viên phân tích hiệu quả và tương tác của các tính năng.",
+      "attitude": "Học viên sáng tạo trong cách tích hợp và tối ưu tính năng chatbot.",
+      "lessonContent": [
+        "Hướng dẫn sử dụng AI Microsoft Copilot xây dựng các hàm xử lý tính năng trong dự án.",
+        "Hướng dẫn tích hợp AI Chatbot và xử lý lỗi phát sinh (Phần 1).",
+        "Thực hành lập trình các tính năng phù hợp theo mô tả trong bảng quản lý tiến độ.",
+        "Hoàn thành tối thiểu 60% tính năng dự án web."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "12": {
+      "sessionNumber": 12,
+      "title": "Xây dựng tính năng website (Phần 3)",
+      "summary": "Tập trung hoàn thiện tối thiểu 90% tính năng nghiệp vụ của dự án; tối ưu hóa kịch bản phản hồi cho AI Chatbot; triển khai xuất bản chính thức website lên Internet qua Firebase Hosting; khám phá công cụ AI hỗ trợ tạo slide báo cáo tốt nghiệp.",
+      "hardwareAndCommands": "Firebase CLI (firebase deploy, Firebase Hosting), tối ưu AI Chatbot, công cụ AI Slide Generator (Gamma.app / Canva Magic Design).",
+      "objectives": [
+        "Kiến thức: Học viên vận dụng kiến thức đã học; Học viên nhớ quy trình deploy dự án lên Firebase.",
+        "Kỹ năng: Học viên vận dụng kỹ năng deploy để triển khai dự án lên Internet; Học viên phân tích và khắc phục lỗi sau khi triển khai.",
+        "Thái độ: Học viên đánh giá toàn bộ dự án về tính năng và giao diện."
+      ],
+      "los": "S.LO.I.04, S.LO.I.05, S.LO.V.03, S.LO.II.05",
+      "knowledge": "Học viên vận dụng kiến thức đã học; Học viên nhớ quy trình deploy dự án lên Firebase.",
+      "skills": "Học viên vận dụng kỹ năng deploy để triển khai dự án lên Internet; Học viên phân tích và khắc phục lỗi sau khi triển khai.",
+      "attitude": "Học viên đánh giá toàn bộ dự án về tính năng và giao diện.",
+      "lessonContent": [
+        "Thực hành lập trình các tính năng phù hợp theo mô tả trong bảng quản lý tiến độ.",
+        "Hoàn thành tối thiểu 90% tính năng dự án.",
+        "Hướng dẫn tích hợp AI Chatbot và xử lý lỗi phát sinh (Phần 2).",
+        "Hướng dẫn deploy dự án Firebase lên Internet.",
+        "Giới thiệu AI slide generator hỗ trợ xây dựng slide cuối khóa."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "13": {
+      "sessionNumber": 13,
+      "title": "Nghiệm thu sản phẩm",
+      "summary": "Tổng nghiệm thu toàn bộ tính năng và giao diện dự án web; rà soát đường dẫn deploy thực tế; hoàn thiện bài trình chiếu slide báo cáo tốt nghiệp; tập dượt thuyết trình demo và tiếp nhận góp ý chỉnh sửa từ giảng viên.",
+      "hardwareAndCommands": "Nghiệm thu hệ thống web production, bộ slide thuyết trình (Canva/Google Slides), kỹ năng demo sản phẩm công nghệ và phản biện thử.",
+      "objectives": [
+        "Kiến thức: Học viên vận dụng kiến thức đã học.",
+        "Kỹ năng: Học viên thực hành xây dựng giao diện phần mềm.",
+        "Thái độ: Học viên đánh giá được mức độ hoàn thiện của dự án cá nhân và đề xuất cải thiện, phát triển trong tương lai; Học viên sáng tạo trong việc trình bày sản phẩm cuối khóa."
+      ],
+      "los": "S.LO.I.03, S.LO.I.04, S.LO.II.04, S.LO.V.03",
+      "knowledge": "Học viên vận dụng kiến thức đã học.",
+      "skills": "Học viên thực hành xây dựng giao diện phần mềm.",
+      "attitude": "Học viên đánh giá được mức độ hoàn thiện của dự án cá nhân và đề xuất cải thiện, phát triển trong tương lai; Học viên sáng tạo trong việc trình bày sản phẩm cuối khóa.",
+      "lessonContent": [
+        "Nghiệm thu sản phẩm web và deploy cơ bản.",
+        "Hoàn thiện và kiểm duyệt slide.",
+        "Thuyết trình thử."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "14": {
+      "sessionNumber": 14,
+      "title": "Thuyết trình cuối khóa",
+      "summary": "Học viên tự tin thuyết trình báo cáo sản phẩm Web Developer Intensive trước hội đồng chuyên môn và phụ huynh; demo trực tiếp website hoạt động trên Internet, giải trình kiến trúc Firebase/JavaScript và bảo vệ thành công dự án tốt nghiệp.",
+      "hardwareAndCommands": "Kỹ năng thuyết trình công nghệ trước đám đông, demo website live trên Firebase Hosting, trả lời câu hỏi phản biện của hội đồng.",
+      "objectives": [
+        "Kiến thức: Vận dụng kiến thức đã học.",
+        "Kỹ năng: Trình bày sản phẩm cuối khóa.",
+        "Thái độ: Học viên bảo vệ sản phẩm cuối khóa."
+      ],
+      "los": "S.LO.I.02, S.LO.I.03, S.LO.III.03, S.LO.IV.05",
+      "knowledge": "Vận dụng kiến thức đã học.",
+      "skills": "Trình bày sản phẩm cuối khóa.",
+      "attitude": "Học viên bảo vệ sản phẩm cuối khóa.",
+      "lessonContent": [
+        "Thuyết trình quá trình làm việc và trình bày kết quả.",
+        "Trả lời câu hỏi và tương tác với khán giả & giám khảo."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    }
+  }
+}

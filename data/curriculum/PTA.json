@@ -1,0 +1,186 @@
+{
+  "courseCode": "PTA",
+  "courseName": "App Producer - Advance (Python OOP & PyQt6)",
+  "category": "CODING",
+  "platform": "Python / OOP / PyQt6",
+  "cluster": "PYTHON",
+  "studentBookUrl": "https://drive.google.com/file/d/176xv8AqZVlbyYdL77kpLnb_tqu4hO0l0/view",
+  "sessions": {
+    "1": {
+      "sessionNumber": 1,
+      "title": "Ôn tập cú pháp Python",
+      "summary": "Ôn tập tổng hợp kiến thức lập trình Python cơ bản bao gồm nhập/xuất dữ liệu, câu lệnh rẽ nhánh, vòng lặp, danh sách (List) và hàm (Function).",
+      "hardwareAndCommands": "Python, VSCode; cú pháp nhập/xuất (input/print), câu lệnh rẽ nhánh if-elif-else, vòng lặp for/while, danh sách và hàm.",
+      "objectives": [
+        "Trình bày và áp dụng lại kiến thức lập trình Python cơ bản.",
+        "Thực hành lập trình sử dụng nhập/xuất, câu lệnh rẽ nhánh, vòng lặp, danh sách và hàm.",
+        "Áp dụng cú pháp Python để giải quyết vấn đề."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "2": {
+      "sessionNumber": 2,
+      "title": "Làm quen với Lớp và Đối tượng",
+      "summary": "Tìm hiểu khái niệm lập trình hướng đối tượng (OOP), đối tượng (biến có giá trị phức hợp), lớp (khuôn tạo ra đối tượng) và hướng dẫn khởi tạo lớp, đối tượng trong Python.",
+      "hardwareAndCommands": "Lập trình hướng đối tượng (OOP), từ khóa class, thuộc tính (Attributes), khởi tạo lớp và đối tượng.",
+      "objectives": [
+        "Định nghĩa lập trình hướng đối tượng, phân biệt đối tượng với biến thường và hiểu ý nghĩa của lớp.",
+        "Thực hành tạo lớp và khởi tạo đối tượng trong Python.",
+        "Thiết kế lớp dựa trên mô tả thuộc tính của đối tượng."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "3": {
+      "sessionNumber": 3,
+      "title": "Phương thức và kế thừa",
+      "summary": "Tìm hiểu cách xây dựng phương thức trong lớp, vai trò từ khóa self, hàm khởi tạo __init__() và khái niệm, tính chất của tính kế thừa trong lập trình hướng đối tượng.",
+      "hardwareAndCommands": "Phương thức (Methods), từ khóa self, hàm khởi tạo __init__(), tính kế thừa (Inheritance) trong Python OOP.",
+      "objectives": [
+        "Trình bày cách xây dựng phương thức trong lớp, nhận biết vai trò từ khóa self và hàm __init__().",
+        "Phân tích cơ chế kế thừa và hiểu các tính chất của tính kế thừa trong OOP.",
+        "Vận dụng phương thức và kế thừa vào bài toán lập trình hướng đối tượng."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "4": {
+      "sessionNumber": 4,
+      "title": "Làm quen với PyQt",
+      "summary": "Ôn tập kiến thức Lớp và Đối tượng; giới thiệu vai trò và cách cài đặt thư viện PyQt6 cùng công cụ thiết kế giao diện đồ họa Qt Designer.",
+      "hardwareAndCommands": "Thư viện PyQt6, công cụ Qt Designer, môi trường phát triển ứng dụng giao diện đồ họa (GUI) Python.",
+      "objectives": [
+        "Ôn lại kiến thức về Lớp và Đối tượng trong Python.",
+        "Hiểu vai trò và cách cài đặt thư viện PyQt trong môi trường Python.",
+        "Thực hành cài đặt và làm quen công cụ Qt Designer để thiết kế giao diện người dùng."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "5": {
+      "sessionNumber": 5,
+      "title": "Xây dựng thành phần trong giao diện (Checkpoint 1)",
+      "summary": "Kiểm tra đánh giá kiến thức Lớp và Đối tượng (Checkpoint 1); giới thiệu các thành phần giao diện cơ bản (Widgets), phương thức và thuộc tính của Widgets.",
+      "hardwareAndCommands": "Widgets cơ bản trong PyQt6 / Qt Designer (Label, LineEdit, PushButton, CheckBox...), thuộc tính và phương thức của Widget.",
+      "objectives": [
+        "Kiểm tra, phân tích kiến thức về Lớp và Đối tượng trong Python một cách trung thực, cẩn thận.",
+        "Định nghĩa được Widget và áp dụng các phương thức, thuộc tính cơ bản của Widget.",
+        "Thực hành tạo các thành phần giao diện cơ bản trên Qt Designer."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "6": {
+      "sessionNumber": 6,
+      "title": "Tùy chỉnh phong cách các thành phần giao diện",
+      "summary": "Hướng dẫn kết nối file giao diện (.ui) với chương trình Python; tìm hiểu cách tùy chỉnh kiểu dáng (QSS/StyleSheet) trong Qt Designer và thực hành xây dựng trang đăng nhập, đăng ký.",
+      "hardwareAndCommands": "Kết nối file .ui với Python (uic/loadUi), thuộc tính kiểu dáng StyleSheet (QSS) trong Qt Designer, giao diện Đăng nhập & Đăng ký.",
+      "objectives": [
+        "Mô tả được cách kết nối file giao diện với chương trình Python và liệt kê các thuộc tính kiểu dáng cơ bản.",
+        "Áp dụng tùy chỉnh kiểu dáng và giao diện trực quan trong Qt Designer.",
+        "Thực hành xây dựng giao diện sản phẩm số với trang đăng nhập và đăng ký."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "7": {
+      "sessionNumber": 7,
+      "title": "Giao diện và sự kiện",
+      "summary": "Lập trình thao tác xử lý sự kiện (Signals & Slots) cho các thành phần PyQt, xử lý sự kiện trang đăng nhập, phân tích sự kiện trang giao diện và tạo cửa sổ thông báo (QMessageBox).",
+      "hardwareAndCommands": "Cơ chế Signals & Slots trong PyQt6, phương thức xử lý sự kiện nút bấm/nhập liệu, hộp thoại thông báo QMessageBox.",
+      "objectives": [
+        "Trình bày được cơ chế sự kiện trong lập trình ứng dụng và khái niệm cửa sổ thông báo.",
+        "Thực hành xử lý sự kiện thông qua phương thức và tạo hộp thoại thông báo.",
+        "Thực hành xây dựng hoàn chỉnh giao diện trang chủ và trang thông tin."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "8": {
+      "sessionNumber": 8,
+      "title": "Phân chia bố cục cho giao diện",
+      "summary": "Tìm hiểu khái niệm bố cục trình bày giao diện (Layouts); khám phá các kiểu bố cục thông dụng hỗ trợ bởi PyQt6 và áp dụng thiết kế sản phẩm bằng Qt Designer kết hợp PyQt.",
+      "hardwareAndCommands": "Các bộ quản lý bố cục PyQt6 (QVBoxLayout, QHBoxLayout, QGridLayout, QFormLayout) trên Qt Designer.",
+      "objectives": [
+        "Phân loại các loại bố cục thông dụng và phân tích bố cục giao diện của sản phẩm thực tế.",
+        "Thực hành thiết kế giao diện áp dụng bố cục hợp lý, cân đối trên Qt Designer và PyQt."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "9": {
+      "sessionNumber": 9,
+      "title": "Kiểm tra kiến thức PyQt (Checkpoint 2)",
+      "summary": "Kiểm tra đánh giá kiến thức và thao tác trên công cụ thiết kế giao diện, các loại bố cục, khởi tạo thuộc tính/phương thức Widget, xử lý sự kiện với hộp thoại và giới thiệu công cụ AI Uizard.",
+      "hardwareAndCommands": "Tổng hợp Qt Designer, Layouts, Widgets, Signals & Slots, QMessageBox và công cụ AI tạo giao diện Uizard.",
+      "objectives": [
+        "Củng cố và kiểm tra kiến thức xây dựng giao diện hoàn chỉnh với thư viện PyQt.",
+        "Thành thạo thao tác thiết kế bố cục, thuộc tính Widget và xử lý tương tác sự kiện.",
+        "Làm quen công cụ AI Uizard hỗ trợ phác thảo giao diện từ mô tả."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "10": {
+      "sessionNumber": 10,
+      "title": "Lên ý tưởng phần mềm cuối khóa",
+      "summary": "Tổng quan yêu cầu buổi Demo sản phẩm cuối khóa; hướng dẫn học sinh lên ý tưởng dự án cá nhân, ứng dụng công cụ AI Uizard phác thảo giao diện và lập kế hoạch phát triển sản phẩm.",
+      "hardwareAndCommands": "Quy trình phát triển phần mềm cuối khóa, công cụ AI Uizard, lập kế hoạch tính năng và thiết kế giao diện dự án.",
+      "objectives": [
+        "Trình bày được thông tin, yêu cầu buổi sản phẩm cuối khóa và các bước trong kế hoạch phát triển sản phẩm.",
+        "Thiết kế ý tưởng và xây dựng kế hoạch phát triển phần mềm cuối khóa khả thi."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "11": {
+      "sessionNumber": 11,
+      "title": "Thực hành xây dựng giao diện phần mềm",
+      "summary": "Kiểm tra tiến độ dự án cá nhân và hướng dẫn học viên thực hành xây dựng các màn hình giao diện chính cho phần mềm cuối khóa bằng Qt Designer & PyQt6.",
+      "hardwareAndCommands": "Qt Designer, PyQt6 Layouts & Widgets; thiết kế giao diện đa màn hình cho sản phẩm cuối khóa.",
+      "objectives": [
+        "Vận dụng tổng hợp các kiến thức thiết kế giao diện đã học.",
+        "Thực hành xây dựng hoàn thiện giao diện phần mềm đúng tiến độ dự án cá nhân."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "12": {
+      "sessionNumber": 12,
+      "title": "Thực hành xây dựng giao diện phần mềm (Tiếp theo)",
+      "summary": "Tiếp tục kiểm tra tiến độ dự án cá nhân; tinh chỉnh thẩm mỹ, bố cục và hoàn thiện toàn bộ hệ thống giao diện của phần mềm cuối khóa.",
+      "hardwareAndCommands": "Qt Designer, StyleSheet (QSS), PyQt6; hoàn thiện giao diện sản phẩm cuối khóa.",
+      "objectives": [
+        "Vận dụng các kiến thức đã học để tối ưu trải nghiệm và thẩm mỹ giao diện.",
+        "Hoàn tất phần giao diện phần mềm để chuẩn bị ghép nối logic tính năng."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "13": {
+      "sessionNumber": 13,
+      "title": "Thực hành xây dựng tính năng phần mềm",
+      "summary": "Hướng dẫn học viên lập trình xử lý logic, kết nối dữ liệu và hoàn thiện các tính năng cốt lõi của phần mềm cuối khóa; hướng dẫn tạo bản trình chiếu thuyết trình.",
+      "hardwareAndCommands": "Python OOP, PyQt6 Signals & Slots, xử lý dữ liệu và logic chức năng phần mềm; chuẩn bị Slide thuyết trình.",
+      "objectives": [
+        "Thực hành lập trình và hoàn thiện các tính năng hoạt động của phần mềm cuối khóa.",
+        "Tạo bản trình chiếu giới thiệu sản phẩm chuẩn bị cho buổi Demo."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "14": {
+      "sessionNumber": 14,
+      "title": "Thuyết trình sản phẩm cuối khóa",
+      "summary": "Học viên trình bày, chạy thử (Demo) sản phẩm phần mềm cuối khóa trước lớp và giáo viên; giải thích cấu trúc mã nguồn và trả lời câu hỏi phản biện.",
+      "hardwareAndCommands": "Sản phẩm phần mềm Python + PyQt6 hoàn chỉnh và kỹ năng thuyết trình Demo.",
+      "objectives": [
+        "Vận dụng các kiến thức đã học để giải thích cách hoạt động của phần mềm.",
+        "Trình bày sản phẩm cuối khóa tự tin, mạch lạc và hoàn thành buổi Demo."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    }
+  }
+}

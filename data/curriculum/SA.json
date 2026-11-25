@@ -1,0 +1,326 @@
+{
+  "courseCode": "SA",
+  "courseName": "Scratch Creator - Advanced",
+  "category": "CODING",
+  "platform": "Scratch",
+  "cluster": "SCRATCH",
+  "targetAge": "8 - 10 Tuổi",
+  "duration": "120 phút/buổi",
+  "version": "Ver1 – 5.2024",
+  "studentBookUrl": "https://drive.google.com/file/d/1cg4ATUu-5fiTA6Re3FMi807dcFb-uajy/view",
+  "sessions": {
+    "1": {
+      "sessionNumber": 1,
+      "title": "AI trong cuộc sống",
+      "summary": "Giới thiệu tổng quan khóa học Scratch Advanced; ôn tập kiến thức nền tảng Scratch Basic; tìm hiểu ứng dụng thực tiễn của Trí tuệ nhân tạo (AI) và mô hình Nhà thông minh (Smart Home); thực hành sử dụng thẻ lệnh hỏi đáp (Ask and Answer) để lập trình điều khiển các thiết bị trong dự án 'Nhà thông minh'.",
+      "hardwareAndCommands": "Thẻ lệnh Cảm biến hỏi đáp (ask ... and wait, answer), câu lệnh điều kiện (if then else), biến số, giao diện điều khiển Nhà thông minh.",
+      "objectives": [
+        "Kiến thức: Liệt kê được ít nhất 05 ứng dụng của AI trong cuộc sống; Trình bày ít nhất 03 điểm khác biệt của cuộc sống khi có và không có AI.",
+        "Kỹ năng: Sử dụng thẻ lệnh đặt câu hỏi để lập trình ra lệnh cho ngôi nhà; Lập trình hoàn thiện các chức năng cho dự án 'Nhà thông minh'.",
+        "Thái độ: Đánh giá được tầm quan trọng của AI trong cuộc sống hằng ngày."
+      ],
+      "los": "SLO.IV.3, SLO.V.4",
+      "knowledge": "Liệt kê được ít nhất 05 ứng dụng của AI trong cuộc sống; Trình bày được ít nhất 03 điểm khác biệt của cuộc sống khi có và không có sự xuất hiện của AI.",
+      "skills": "Thực hiện sử dụng thẻ lệnh đặt câu hỏi để lập trình ra lệnh cho ngôi nhà; Thực hiện lập trình được các chức năng cho dự án 'Nhà thông minh'.",
+      "attitude": "Đánh giá được tầm quan trọng của AI trong cuộc sống hằng ngày.",
+      "lessonContent": [
+        "Giới thiệu tổng quan khóa học Scratch Advanced, các mốc thời gian quan trọng và nhắc lại nội quy của lớp học.",
+        "Ôn tập các khái niệm cơ bản về Scratch Basic.",
+        "Tìm hiểu về ứng dụng của AI trong các mặt của cuộc sống.",
+        "Tìm hiểu về nhà thông minh và xu hướng của tương lai.",
+        "Lập trình xây dựng các chức năng cho dự án 'Nhà thông minh'."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "2": {
+      "sessionNumber": 2,
+      "title": "Hành trình bí ngô (Phần 1)",
+      "summary": "Tìm hiểu về quy trình trồng trọt và bảo vệ mùa màng của người nông dân; phân tích kịch bản trò chơi 'Hành trình bí ngô'; lập trình giao diện trò chơi và cơ chế điều khiển nhân vật chính di chuyển 8 hướng mượt mà bằng phím WASD (kèm xử lý di chuyển đường chéo); xây dựng các nhân vật phụ.",
+      "hardwareAndCommands": "Khối lệnh Motion (change x/y by), phím bấm điều khiển WASD, thuật toán di chuyển 8 hướng và xử lý hướng đi chéo, thiết kế phông nền và nhân vật phụ.",
+      "objectives": [
+        "Kiến thức: Liệt kê ít nhất 05 tác nhân gây hại cho cây Bí ngô; Phân tích chức năng của nhân vật và phông nền trong dự án 'Hành trình bí ngô'.",
+        "Kỹ năng: Lập trình giao diện trò chơi; Lập trình điều khiển nhân vật đi 8 hướng cơ bản; Xây dựng các nhân vật phụ cho trò chơi.",
+        "Thái độ: Sáng tạo các tài nguyên đồ họa để cá nhân hóa dự án."
+      ],
+      "los": "SLO.I.4, SLO.V.2",
+      "knowledge": "Liệt kê được ít nhất 05 tác nhân gây hại cho cây Bí ngô mà người nông dân cần thực hiện bảo vệ; Phân tích được chức năng của nhân vật, phông nền trong dự án mẫu 'Hành trình bí ngô'.",
+      "skills": "Thực hiện phân tích lập trình giao diện cho trò chơi; Thực hiện lập trình điều khiển nhân vật đi 8 hướng cơ bản; Thực hiện xây dựng các nhân vật phụ cho trò chơi.",
+      "attitude": "Sáng tạo các tài nguyên để cá nhân hóa dự án.",
+      "lessonContent": [
+        "Tìm hiểu về công việc của người nông dân khi trồng và thu hoạch Bí ngô.",
+        "Thực hành phân tích dự án 'Hành trình bí ngô'.",
+        "Thực hành lập trình tạo giao diện cho trò chơi.",
+        "Thực hành lập trình điều khiển nhân vật bằng các phím WASD và xử lý hướng đi chéo cho nhân vật chính.",
+        "Thực hành lập trình cho các nhân vật phụ cho trò chơi."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "3": {
+      "sessionNumber": 3,
+      "title": "Hành trình bí ngô (Phần 2)",
+      "summary": "Tìm hiểu hiệu ứng rê chuột (Hover Effect) và vai trò nâng cao trải nghiệm người dùng; lập trình hiệu ứng Hover cho các nút Menu (Play, Setting, Guide); thiết lập cơ chế tính điểm, xử lý va chạm thu thập bí ngô và chướng ngại vật; xây dựng hiệu ứng di chuyển, ẩn hiện và sự kiện Game Over.",
+      "hardwareAndCommands": "Hiệu ứng Hover (touching mouse-pointer? set size to %), biến số điểm, cảm biến va chạm, thẻ lệnh ẩn/hiện (show/hide), sự kiện kết thúc game.",
+      "objectives": [
+        "Kiến thức: Ôn tập các dạng hiệu ứng; Trình bày ý nghĩa thẻ lệnh thay đổi kích thước nhân vật; Trình bày ý nghĩa và công dụng của hiệu ứng hover.",
+        "Kỹ năng: Tạo hiệu ứng hover cho các nút Menu; Xử lý va chạm, tính điểm và sự kiện kết thúc game; Tạo hiệu ứng di chuyển và ẩn hiện cho nhân vật.",
+        "Thái độ: Đánh giá được vai trò của hiệu ứng hover trong việc nâng cao trải nghiệm người dùng."
+      ],
+      "los": "SLO.I.4, SLO.V.2",
+      "knowledge": "Ôn tập về ý nghĩa của các dạng hiệu ứng đã học; Trình bày được ý nghĩa của thẻ lệnh thay đổi kích thước nhân vật; Trình bày được ý nghĩa và công dụng của hiệu ứng hover.",
+      "skills": "Thực hiện tạo hiệu ứng hover cho nút Setting, Play và Guide; Thực hiện xử lý va chạm, tạo cơ chế điểm số cho dự án và xây dựng được sự kiện kết thúc trò chơi; Thực hiện tạo hiệu ứng di chuyển cho nhân vật Farmer; Thực hiện tạo hiệu ứng ẩn - hiện cho nhân vật Pumpkin, Enemy, Water.",
+      "attitude": "Đánh giá được vai trò của hiệu ứng hover trong việc nâng cao trải nghiệm người dùng.",
+      "lessonContent": [
+        "Tìm hiểu về hiệu ứng hover và công dụng của hiệu ứng hover.",
+        "Thực hành lập trình tạo hiệu ứng Hover cho các nút tại giao diện Menu.",
+        "Thực hành tạo cơ chế điểm số cho dự án và sự kiện kết thúc trò chơi.",
+        "Thực hành tạo các hiệu ứng di chuyển cho các nhân vật.",
+        "Ôn tập và thực hiện tạo hiệu ứng ẩn - hiện cho các nhân vật."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "4": {
+      "sessionNumber": 4,
+      "title": "Hành trình bí ngô (Phần 3)",
+      "summary": "Làm quen với cấu trúc dữ liệu Danh sách (List), phân biệt Danh sách với Biến số; tìm hiểu các thẻ lệnh tương tác với List; lập trình chức năng thêm, xóa, lưu trữ bảng xếp hạng điểm số (High Score); tích hợp âm thanh nền, hiệu ứng âm thanh va chạm và giao diện Cài đặt (Setting).",
+      "hardwareAndCommands": "Khối lệnh Danh sách (List: add to list, delete of list, insert at, item of, length of), biến âm lượng (volume), bảng điểm cao, giao diện Setting.",
+      "objectives": [
+        "Kiến thức: Trình bày điểm khác biệt giữa danh sách (List) và biến; Trình bày ý nghĩa 03 thẻ lệnh cơ bản tương tác với List.",
+        "Kỹ năng: Lập trình chức năng thêm - xóa phần tử trong danh sách; Tạo bảng điểm cao cho dự án; Lập trình giao diện Setting tùy chỉnh âm lượng và độ khó.",
+        "Thái độ: Đánh giá được tầm quan trọng của bảng điểm trong trải nghiệm trò chơi."
+      ],
+      "los": "SLO.I.4, SLO.V.2",
+      "knowledge": "Trình bày được điểm khác biệt giữa danh sách và biến; Trình bày được ý nghĩa của 03 thẻ lệnh cơ bản tương tác với List.",
+      "skills": "Thực hiện lập trình được các chức năng thêm - xóa các phần tử trong danh sách; Thực hiện tạo bảng điểm cho dự án; Thực hiện lập trình tạo giao diện Setting với chức năng thay đổi âm lượng và độ khó.",
+      "attitude": "Đánh giá được tầm quan trọng của bảng điểm trong dự án.",
+      "lessonContent": [
+        "Tìm hiểu về danh sách (list) và cấu tạo của danh sách.",
+        "Tìm hiểu về các thẻ lệnh tương tác với danh sách.",
+        "Thực hành lập trình thêm - xóa các phần tử trong danh sách.",
+        "Thực hành tạo danh sách điểm số cho dự án.",
+        "Thực hành xử lý âm thanh nền và âm thanh va chạm cho dự án."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "5": {
+      "sessionNumber": 5,
+      "title": "Workshop kỹ năng",
+      "summary": "Thực hiện bài kiểm tra định kỳ lần 1 (Checkpoint 1) đánh giá kiến thức lập trình Scratch từ buổi 1 đến 4; khám phá khái niệm Machine Learning và công cụ Google Teachable Machine; thực hành thu thập tập dữ liệu (dataset) từ webcam và huấn luyện mô hình AI phân loại hình ảnh/cử chỉ.",
+      "hardwareAndCommands": "Bài kiểm tra Checkpoint 1, công cụ Google Teachable Machine, Webcam, tập dữ liệu hình ảnh (Dataset), quy trình 05 bước huấn luyện mô hình AI (Training Model).",
+      "objectives": [
+        "Kiến thức: Trình bày khái niệm cơ bản của AI; Liệt kê ít nhất 03 ứng dụng thực tế của AI; Trình bày 05 bước huấn luyện mô hình AI bằng Teachable Machine.",
+        "Kỹ năng: Hoàn thành bài kiểm tra định kỳ Checkpoint 1 nghiêm túc; Thực hành huấn luyện thành công mô hình AI nhận diện cử chỉ/hình ảnh từ webcam.",
+        "Thái độ: Đánh giá được tiềm năng và tầm quan trọng của AI trong đời sống hiện đại."
+      ],
+      "los": "SLO.III.1, SLO.V.2",
+      "knowledge": "Trình bày được khái niệm cơ bản của Trí tuệ nhân tạo; Liệt kê được ít nhất 03 ứng dụng của AI trong cuộc sống; Trình bày được 05 bước training model AI bằng Teachable Machine.",
+      "skills": "Thực hiện bài kiểm tra định kỳ - checkpoint 1; Thực hiện tạo model AI với dataset được lấy từ webcam.",
+      "attitude": "Đánh giá được tầm quan trọng của AI trong cuộc sống.",
+      "lessonContent": [
+        "Thực hiện bài kiểm tra định kỳ lần 1 - Checkpoint 1.",
+        "Tìm hiểu về Trí tuệ nhân tạo (AI).",
+        "Tìm hiểu về Teachable Machine và cách để training model AI.",
+        "Thực hành training model AI với dataset được lấy từ webcam."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "6": {
+      "sessionNumber": 6,
+      "title": "Chinh phục Vũ Môn (Phần 1)",
+      "summary": "Tìm hiểu tích truyện dân gian 'Cá chép vượt Vũ Môn hóa rồng'; phân tích kịch bản dự án game tương tác AI; thực hành huấn luyện mô hình AI nhận diện cử chỉ đầu/tay; tích hợp mô hình AI vào Scratch (nền tảng Raise) và lập trình điều khiển nhân vật Cá chép thông qua dữ liệu nhận diện AI thời gian thực.",
+      "hardwareAndCommands": "Nền tảng Raise Scratch mở rộng AI, kết nối mô hình Teachable Machine, khối lệnh nhận dữ liệu phân loại AI (AI Prediction/Confidence), điều khiển chuyển động theo cử chỉ.",
+      "objectives": [
+        "Kiến thức: Trình bày ý nghĩa văn hóa 'Cá chép vượt Vũ Môn'; Phân tích chức năng của nhân vật và phông nền trong dự án 'Chinh phục Vũ Môn'.",
+        "Kỹ năng: Huấn luyện mô hình AI điều khiển; Sử dụng thông số trả về từ mô hình AI để lập trình điều khiển nhân vật cá chép.",
+        "Thái độ: Đánh giá được tính tối ưu và độ chính xác của mô hình AI khi tích hợp vào nền tảng Raise."
+      ],
+      "los": "SLO.I.4, SLO.V.2",
+      "knowledge": "Trình bày sơ lược về văn hóa 'Cá chép vượt Vũ Môn' trong văn hóa dân gian; Phân tích được chức năng của nhân vật, phông nền trong dự án 'Chinh phục Vũ Môn'.",
+      "skills": "Thực hiện training model AI để điều khiển nhân vật cá chép; Thực hiện sử dụng thông số trả về từ model AI để lập trình điều khiển nhân vật cá chép.",
+      "attitude": "Đánh giá được sự tối ưu của model AI khi áp dụng vào nền tảng Raise.",
+      "lessonContent": [
+        "Tìm hiểu về câu chuyện 'Cá chép vượt Vũ Môn'.",
+        "Tìm hiểu về dự án 'Chinh phục Vũ Môn'.",
+        "Thực hiện training model AI điều khiển nhân vật cá chép.",
+        "Thực hành sử dụng các thông số trả về từ model AI để lập trình điều khiển nhân vật cá chép."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "7": {
+      "sessionNumber": 7,
+      "title": "Chinh phục Vũ Môn (Phần 2)",
+      "summary": "Làm quen với khái niệm Hàm tự tạo (My Blocks / Khối của tôi) và tham số truyền vào; xây dựng khối lệnh đếm ngược thời gian tái sử dụng; lập trình hiệu ứng phông nền cuộn (Parallax Scrolling) và chướng ngại vật di chuyển liên tục; điều chỉnh tốc độ trò chơi thông qua biến 'speed' và bảng Setting.",
+      "hardwareAndCommands": "Khối của tôi (My Blocks: define block, tham số đầu vào inputs), hiệu ứng cuộn cảnh (Scrolling Background), biến tốc độ 'speed', giao diện Setting.",
+      "objectives": [
+        "Kiến thức: Trình bày chức năng, ứng dụng của My Blocks; Hiểu vai trò của tham số/biến đầu vào trong hàm tự tạo.",
+        "Kỹ năng: Tạo đồng hồ đếm ngược bằng My Blocks; Lập trình giao diện trò chơi và xử lý tốc độ cho chướng ngại vật/phông nền qua biến 'speed'.",
+        "Thái độ: Đánh giá được tính tối ưu, sự gọn gàng của mã nguồn khi sử dụng My Blocks."
+      ],
+      "los": "SLO.I.4, SLO.V.2",
+      "knowledge": "Trình bày được chức năng và ứng dụng của My Blocks; Trình bày được vai trò của các biến đầu vào trong My Blocks.",
+      "skills": "Thực hành tạo đồng hồ đếm ngược với My Blocks; Thực hành lập trình tạo giao diện trò chơi; Thực hành lập trình xử lý tốc độ cho chướng ngại vật và phông nền thông qua biến 'speed'.",
+      "attitude": "Đánh giá được tính tối ưu thẻ lệnh khi sử dụng My Blocks.",
+      "lessonContent": [
+        "Tìm hiểu về My Blocks và chức năng của My Blocks.",
+        "Lập trình tạo giao diện cơ bản cho dự án 'Chinh phục Vũ Môn'.",
+        "Lập trình cho chướng ngại vật và phông nền di chuyển.",
+        "Lập trình xử lý tốc độ cho chướng ngại vật và phông nền.",
+        "Lập trình thiết lập giao diện Setting với tính năng thay đổi giá trị 'speed'."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "8": {
+      "sessionNumber": 8,
+      "title": "Chinh phục Vũ Môn (Phần 3)",
+      "summary": "Tối ưu hóa giao diện hiển thị biến số thông qua nhân vật đồ họa (Custom UI); thiết kế và lập trình thanh máu (Health Bar) sinh động bằng chuyển đổi trang phục; xây dựng hệ thống tính điểm, lưu điểm số cao nhất; hoàn thiện, kiểm thử và đóng gói sản phẩm game AI 'Chinh phục Vũ Môn'.",
+      "hardwareAndCommands": "Thanh máu đồ họa (Health Bar/Costumes), biến mạng sống (Lives/HP), lưu trữ điểm số, âm thanh chiến thắng/thất bại, đóng gói hoàn chỉnh game.",
+      "objectives": [
+        "Kiến thức: Trình bày cơ chế thiết kế thanh máu và tối ưu hiển thị thông số trò chơi bằng trang phục nhân vật.",
+        "Kỹ năng: Lập trình thanh máu đồ họa phản hồi va chạm; Lưu trữ và hiển thị điểm số; Hoàn thiện và đóng gói dự án 'Chinh phục Vũ Môn'.",
+        "Thái độ: Trau chuốt tính thẩm mỹ và trải nghiệm của sản phẩm game hoàn chỉnh."
+      ],
+      "los": "SLO.I.4, SLO.V.2",
+      "knowledge": "Trình bày được cách tối ưu dạng hiển thị của biến thông qua nhân vật và cơ chế tạo thanh máu bằng trang phục.",
+      "skills": "Lập trình tạo thanh máu phản hồi va chạm; Lập trình lưu điểm số và hoàn thiện đóng gói dự án 'Chinh phục Vũ Môn'.",
+      "attitude": "Đánh giá và nâng cao chất lượng trải nghiệm của sản phẩm hoàn thiện.",
+      "lessonContent": [
+        "Tối ưu dạng hiển thị của biến thông qua nhân vật.",
+        "Lập trình tạo thanh máu và tạo hiệu ứng cho thanh máu bằng các trang phục của nhân vật.",
+        "Lập trình lưu điểm số cho dự án.",
+        "Hoàn thiện và đóng gói dự án 'Chinh phục Vũ Môn'."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "9": {
+      "sessionNumber": 9,
+      "title": "Công xưởng phát minh",
+      "summary": "Thực hiện bài kiểm tra định kỳ lần 2 (Checkpoint 2) tổng kết kiến thức nâng cao (List, My Blocks, tích hợp AI); tìm hiểu bộ tiêu chí đánh giá sản phẩm cuối khóa Scratch Advanced; lên ý tưởng và lập kế hoạch xây dựng dự án cá nhân có ứng dụng AI/Machine Learning.",
+      "hardwareAndCommands": "Bài kiểm tra Checkpoint 2, tiêu chí đánh giá sản phẩm (Rubric), biểu mẫu kế hoạch phát triển dự án công nghệ cá nhân.",
+      "objectives": [
+        "Kiến thức: Trình bày được bảng tiêu chí đánh giá sản phẩm cuối khóa là căn cứ tính điểm dự án cá nhân.",
+        "Kỹ năng: Hoàn thành bài kiểm tra Checkpoint 2 nghiêm túc; Thực hành tìm kiếm ý tưởng và lập kế hoạch phát triển dự án cá nhân.",
+        "Thái độ: Lựa chọn công cụ hỗ trợ quản lý tiến độ dự án phù hợp và chủ động."
+      ],
+      "los": "SLO.IV.2, SLO.V.2",
+      "knowledge": "Trình bày được bảng tiêu chí đánh giá sản phẩm cuối khóa là căn cứ tính điểm dự án cá nhân.",
+      "skills": "Thực hiện kiểm tra định kỳ lần 2 - checkpoint 2; Thực hiện tìm kiếm ý tưởng xây dựng dự án cá nhân.",
+      "attitude": "Lựa chọn được công cụ hỗ trợ quản lý tiến độ của dự án.",
+      "lessonContent": [
+        "Thực hiện bài kiểm tra định kỳ lần 2 - checkpoint 2.",
+        "Tìm hiểu tiêu chí đánh giá sản phẩm cuối khóa.",
+        "Thực hành tìm kiếm ý tưởng xây dựng dự án cá nhân."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "10": {
+      "sessionNumber": 10,
+      "title": "Dự án của em (Phần 1)",
+      "summary": "Bắt tay xây dựng dự án cá nhân Scratch Advanced; chuẩn bị đồ họa, tập dữ liệu huấn luyện AI (nếu có); lập trình khung điều khiển và các chức năng cốt lõi theo kế hoạch đề ra.",
+      "hardwareAndCommands": "Thiết kế giao diện, huấn luyện mô hình AI, các khối lệnh chuyển động, cảm biến và cấu trúc điều khiển chính.",
+      "objectives": [
+        "Kiến thức: Trình bày tầm quan trọng của việc lập kế hoạch và phân bổ thời gian dự án.",
+        "Kỹ năng: Thực hiện lập trình các chức năng cốt lõi cho dự án theo đúng kế hoạch.",
+        "Thái độ: Chủ động đối chiếu tiến độ thực tế với timeline đề ra."
+      ],
+      "los": "SLO.I.4",
+      "knowledge": "Trình bày được tầm quan trọng của việc lập kế hoạch trong việc thực hiện dự án.",
+      "skills": "Thực hiện lập trình các chức năng chính cho dự án.",
+      "attitude": "Đánh giá được tiến độ của dự án so với timeline đề ra.",
+      "lessonContent": [
+        "Thực hiện lập trình các chức năng chính cho dự án theo kịch bản đã lựa chọn."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "11": {
+      "sessionNumber": 11,
+      "title": "Dự án của em (Phần 2)",
+      "summary": "Tiếp tục hoàn thiện các tính năng nâng cao: tích hợp danh sách (List), sử dụng My Blocks tối ưu mã nguồn, kết nối tương tác AI/Webcam; kiểm thử tính năng và xử lý lỗi kỹ thuật.",
+      "hardwareAndCommands": "Cấu trúc List, My Blocks, biến số, cảm biến va chạm nâng cao, hiệu ứng đồ họa và âm thanh.",
+      "objectives": [
+        "Kiến thức: Trình bày tầm quan trọng của việc kiểm thử và tối ưu thuật toán trong dự án.",
+        "Kỹ năng: Lập trình hoàn thiện các tính năng nâng cao và sửa lỗi logic phát sinh.",
+        "Thái độ: Tự giác đánh giá tiến độ và kiên trì khắc phục lỗi chương trình."
+      ],
+      "los": "SLO.I.4",
+      "knowledge": "Trình bày được tầm quan trọng của việc lập kế hoạch trong việc thực hiện dự án.",
+      "skills": "Thực hiện lập trình các chức năng chính cho dự án.",
+      "attitude": "Đánh giá được tiến độ của dự án so với timeline đề ra.",
+      "lessonContent": [
+        "Tiếp tục thực hiện lập trình các tính năng nâng cao và kiểm thử chức năng của dự án."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "12": {
+      "sessionNumber": 12,
+      "title": "Dự án của em (Phần 3)",
+      "summary": "Hoàn thiện toàn bộ sản phẩm; xây dựng các màn chơi chuyển cảnh, giao diện Menu/Setting/Game Over; hoàn thiện âm thanh và trau chuốt hiệu ứng hover, thanh máu, bảng điểm.",
+      "hardwareAndCommands": "Chuyển cảnh bằng phát tin, giao diện Menu/Setting/Credits, nhạc nền và âm thanh tương tác, trau chuốt UX/UI.",
+      "objectives": [
+        "Kiến thức: Trình bày được tầm quan trọng của việc trau chuốt giao diện và trải nghiệm người dùng.",
+        "Kỹ năng: Hoàn thiện đồng bộ các màn chơi, hiệu ứng chuyển cảnh và âm thanh cho sản phẩm.",
+        "Thái độ: Đánh giá tiến độ so với timeline và nỗ lực hoàn thiện sản phẩm đạt chuẩn chất lượng."
+      ],
+      "los": "SLO.I.4",
+      "knowledge": "Trình bày được tầm quan trọng của việc lập kế hoạch trong việc thực hiện dự án.",
+      "skills": "Thực hiện lập trình các chức năng chính cho dự án.",
+      "attitude": "Đánh giá được tiến độ của dự án so với timeline đề ra.",
+      "lessonContent": [
+        "Hoàn thiện các màn chơi, giao diện chuyển cảnh và trau chuốt trải nghiệm người dùng."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "13": {
+      "sessionNumber": 13,
+      "title": "Nghiệm thu sản phẩm",
+      "summary": "Tiến hành nghiệm thu chất lượng sản phẩm cuối khóa; hoàn tất đóng gói file dự án; xây dựng bài trình chiếu thuyết trình (Canva/Google Slides) và luyện tập kỹ năng báo cáo, trả lời câu hỏi.",
+      "hardwareAndCommands": "Đóng gói sản phẩm Scratch (.sb3), công cụ trình chiếu Canva/Google Slides, kỹ năng thuyết trình sản phẩm công nghệ.",
+      "objectives": [
+        "Kiến thức: Trình bày tầm quan trọng của việc nghiệm thu sản phẩm và lập kế hoạch thuyết trình.",
+        "Kỹ năng: Hoàn thiện đóng gói sản phẩm dự án; Thiết kế bài trình chiếu thuyết trình sinh động.",
+        "Thái độ: Tự tin và chủ động chuẩn bị cho buổi báo cáo sản phẩm trước phụ huynh."
+      ],
+      "los": "SLO.I.4, SLO.V.3",
+      "knowledge": "Trình bày được tầm quan trọng của việc lập kế hoạch trong việc thực hiện dự án.",
+      "skills": "Thực hiện lập trình các chức năng chính cho dự án; Thực hiện thiết kế bài trình chiếu.",
+      "attitude": "Đánh giá được tiến độ của dự án so với timeline đề ra.",
+      "lessonContent": [
+        "Thực hiện lập trình cho dự án.",
+        "Hoàn thiện và đóng gói sản phẩm.",
+        "Thiết kế bài trình chiếu hỗ trợ thuyết trình."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "14": {
+      "sessionNumber": 14,
+      "title": "Thuyết trình cuối khóa",
+      "summary": "Tổ chức buổi báo cáo thuyết trình cuối khóa; học viên tự tin trình bày sản phẩm Scratch Advanced tích hợp AI trước phụ huynh và hội đồng giám khảo; trả lời câu hỏi phản biện và nhận chứng chỉ hoàn thành khóa học.",
+      "hardwareAndCommands": "Kỹ năng thuyết trình trước đám đông, demo sản phẩm thực tế, trả lời câu hỏi phản biện và nhận xét đánh giá.",
+      "objectives": [
+        "Kiến thức: Trình bày các kiến thức lập trình và kỹ thuật AI đã được áp dụng vào sản phẩm.",
+        "Kỹ năng: Tự tin thuyết trình sản phẩm cá nhân, demo tính năng và phản biện lưu loát.",
+        "Thái độ: Đánh giá khách quan sản phẩm của bản thân và trân trọng thành quả của các bạn."
+      ],
+      "los": "SLO.V.3",
+      "knowledge": "Trình bày được các kiến thức đã học được áp dụng vào trong dự án.",
+      "skills": "Thực hiện thuyết trình sản phẩm cá nhân.",
+      "attitude": "Đánh giá được sản phẩm của bản thân so với sản phẩm khác.",
+      "lessonContent": [
+        "Thực hiện thuyết trình giới thiệu dự án cá nhân trước thầy cô và phụ huynh."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    }
+  }
+}

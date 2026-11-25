@@ -1,0 +1,288 @@
+{
+  "categories": {
+    "ROBOTICS": {
+      "name": "Robotics",
+      "clusters": {
+        "PRE": {
+          "name": "Robotics Pre (VEX GO)",
+          "platform": "VEX GO",
+          "courses": [
+            "PREB",
+            "PREA",
+            "PREI"
+          ],
+          "studentBookUrl": ""
+        },
+        "ARM": {
+          "name": "Robotics Arm (VEX GO)",
+          "platform": "VEX GO",
+          "courses": [
+            "ARMB",
+            "ARMA",
+            "ARMI"
+          ],
+          "studentBookUrl": ""
+        },
+        "SEMI": {
+          "name": "Robotics Semi (VEX IQ)",
+          "platform": "VEX IQ",
+          "courses": [
+            "SEMIB",
+            "SEMIA",
+            "SEMII"
+          ],
+          "studentBookUrl": ""
+        }
+      }
+    },
+    "CODING": {
+      "name": "Coding - C4K",
+      "clusters": {
+        "SCRATCH": {
+          "name": "Scratch (SB - SA - SI)",
+          "platform": "Scratch",
+          "courses": [
+            "SB",
+            "SA",
+            "SI"
+          ],
+          "studentBookUrl": ""
+        },
+        "GAMEMAKER": {
+          "name": "Game Maker (GB - GA - GI)",
+          "platform": "GameMaker",
+          "courses": [
+            "GB",
+            "GA",
+            "GI"
+          ],
+          "studentBookUrl": ""
+        },
+        "PYTHON": {
+          "name": "Python (PTB - PTA - PTI)",
+          "platform": "Python",
+          "courses": [
+            "PTB",
+            "PTA",
+            "PTI"
+          ],
+          "studentBookUrl": ""
+        },
+        "WEB_JS": {
+          "name": "Web / JavaScript (JSB - JSA - JSI)",
+          "platform": "HTML/CSS/JS",
+          "courses": [
+            "JSB",
+            "JSA",
+            "JSI"
+          ],
+          "studentBookUrl": ""
+        },
+        "COMPUTER_SCIENCE": {
+          "name": "Computer Science (CSB - CSA - CSI)",
+          "platform": "Computer Science",
+          "courses": [
+            "CSB",
+            "CSA",
+            "CSI"
+          ],
+          "studentBookUrl": ""
+        }
+      }
+    }
+  },
+  "courseAliases": {
+    "PREB": {
+      "code": "PREB",
+      "name": "Robotics Pre Basic",
+      "category": "ROBOTICS",
+      "platform": "VEX GO",
+      "cluster": "PRE",
+      "file": "PREB.json"
+    },
+    "PREA": {
+      "code": "PREA",
+      "name": "Robotics Pre Advance",
+      "category": "ROBOTICS",
+      "platform": "VEX GO",
+      "cluster": "PRE",
+      "file": "PREA.json"
+    },
+    "PREI": {
+      "code": "PREI",
+      "name": "Robotics Pre Intensive",
+      "category": "ROBOTICS",
+      "platform": "VEX GO",
+      "cluster": "PRE",
+      "file": "PREI.json"
+    },
+    "ARMB": {
+      "code": "ARMB",
+      "name": "Robotics Arm Basic",
+      "category": "ROBOTICS",
+      "platform": "VEX GO",
+      "cluster": "ARM",
+      "file": "ARMB.json"
+    },
+    "ARMA": {
+      "code": "ARMA",
+      "name": "Robotics Arm Advance",
+      "category": "ROBOTICS",
+      "platform": "VEX GO",
+      "cluster": "ARM",
+      "file": "ARMA.json"
+    },
+    "ARMI": {
+      "code": "ARMI",
+      "name": "Robotics Arm Intensive",
+      "category": "ROBOTICS",
+      "platform": "VEX GO",
+      "cluster": "ARM",
+      "file": "ARMI.json"
+    },
+    "SEMIB": {
+      "code": "SEMIB",
+      "name": "Semi Robotics Basic",
+      "category": "ROBOTICS",
+      "platform": "VEX IQ",
+      "cluster": "SEMI",
+      "file": "SEMIB.json"
+    },
+    "SEMIA": {
+      "code": "SEMIA",
+      "name": "Semi Robotics Advanced",
+      "category": "ROBOTICS",
+      "platform": "VEX IQ",
+      "cluster": "SEMI",
+      "file": "SEMIA.json"
+    },
+    "SEMII": {
+      "code": "SEMII",
+      "name": "Robotics Semi Intensive",
+      "category": "ROBOTICS",
+      "platform": "VEX IQ",
+      "cluster": "SEMI",
+      "file": "SEMII.json"
+    },
+    "SB": {
+      "code": "SB",
+      "name": "Scratch Creator - Basic",
+      "category": "CODING",
+      "platform": "Scratch",
+      "cluster": "SCRATCH",
+      "file": "SB.json"
+    },
+    "SA": {
+      "code": "SA",
+      "name": "Scratch Creator - Advanced",
+      "category": "CODING",
+      "platform": "Scratch",
+      "cluster": "SCRATCH",
+      "file": "SA.json"
+    },
+    "SI": {
+      "code": "SI",
+      "name": "Scratch Creator - Intensive",
+      "category": "CODING",
+      "platform": "Scratch",
+      "cluster": "SCRATCH",
+      "file": "SI.json"
+    },
+    "GB": {
+      "code": "GB",
+      "name": "Game Creator - Basic",
+      "category": "CODING",
+      "platform": "GameMaker",
+      "cluster": "GAMEMAKER",
+      "file": "GB.json"
+    },
+    "GA": {
+      "code": "GA",
+      "name": "Game Creator - Advanced",
+      "category": "CODING",
+      "platform": "GameMaker",
+      "cluster": "GAMEMAKER",
+      "file": "GA.json"
+    },
+    "GI": {
+      "code": "GI",
+      "name": "Game Creator - Intensive",
+      "category": "CODING",
+      "platform": "GameMaker",
+      "cluster": "GAMEMAKER",
+      "file": "GI.json"
+    },
+    "PTB": {
+      "code": "PTB",
+      "name": "App Producer - Basic (Python)",
+      "category": "CODING",
+      "platform": "Python / VSCode",
+      "cluster": "PYTHON",
+      "file": "PTB.json"
+    },
+    "PTA": {
+      "code": "PTA",
+      "name": "App Producer - Advance (Python OOP & PyQt6)",
+      "category": "CODING",
+      "platform": "Python / OOP / PyQt6",
+      "cluster": "PYTHON",
+      "file": "PTA.json"
+    },
+    "PTI": {
+      "code": "PTI",
+      "name": "App Producer - Intensive",
+      "category": "CODING",
+      "platform": "Python / PyQt6",
+      "cluster": "PYTHON",
+      "file": "PTI.json"
+    },
+    "JSB": {
+      "code": "JSB",
+      "name": "Web Developer - Basic",
+      "category": "CODING",
+      "platform": "HTML/CSS/JS",
+      "cluster": "WEB_JS",
+      "file": "JSB.json"
+    },
+    "JSA": {
+      "code": "JSA",
+      "name": "Web Developer - Advanced",
+      "category": "CODING",
+      "platform": "HTML/CSS/JS",
+      "cluster": "WEB_JS",
+      "file": "JSA.json"
+    },
+    "JSI": {
+      "code": "JSI",
+      "name": "Web Developer - Intensive",
+      "category": "CODING",
+      "platform": "HTML/CSS/JS",
+      "cluster": "WEB_JS",
+      "file": "JSI.json"
+    },
+    "CSB": {
+      "code": "CSB",
+      "name": "Computer Scientist - Basic",
+      "category": "CODING",
+      "platform": "Computer Science",
+      "cluster": "COMPUTER_SCIENCE",
+      "file": "CSB.json"
+    },
+    "CSA": {
+      "code": "CSA",
+      "name": "Computer Scientist - Advanced",
+      "category": "CODING",
+      "platform": "Computer Science",
+      "cluster": "COMPUTER_SCIENCE",
+      "file": "CSA.json"
+    },
+    "CSI": {
+      "code": "CSI",
+      "name": "Computer Scientist - Intensive",
+      "category": "CODING",
+      "platform": "Computer Science",
+      "cluster": "COMPUTER_SCIENCE",
+      "file": "CSI.json"
+    }
+  }
+}

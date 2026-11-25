@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MindX Assistant — Trợ lý Giáo viên v1.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Sidebar Navigation (Cố định bên trái - Đúng 6 mục theo chuẩn) -->
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="brand-logo">MX</div>
+        <div class="brand-info">
+          <h2>MindX Assistant</h2>
+          <span>Trợ lý Giáo viên v1.0</span>
+        </div>
+      </div>
+
+      <nav class="nav-menu">
+        <button class="nav-btn active" data-tab="tab-config">
+          <span class="icon">⚙️</span>
+          <span class="label">Cấu hình</span>
+        </button>
+        <button class="nav-btn" data-tab="tab-classes">
+          <span class="icon">🗂️</span>
+          <span class="label">Lớp & Buổi học</span>
+        </button>
+        <button class="nav-btn" data-tab="tab-students">
+          <span class="icon">👥</span>
+          <span class="label">Học viên</span>
+        </button>
+        <button class="nav-btn" data-tab="tab-review">
+          <span class="icon">✍️</span>
+          <span class="label">Duyệt & Lưu</span>
+        </button>
+        <button class="nav-btn" data-tab="tab-curriculum">
+          <span class="icon">📖</span>
+          <span class="label">Giáo trình</span>
+        </button>
+        <button class="nav-btn" data-tab="tab-zalo">
+          <span class="icon">💬</span>
+          <span class="label">Báo bài Zalo</span>
+        </button>
+        <button class="nav-btn" data-tab="tab-teacher-point">
+          <span class="icon">⭐</span>
+          <span class="label">Teacher Point</span>
+          <span id="sidebar-tp-badge" class="tag tag-red" style="display: none; font-size: 10px; padding: 1px 6px;"></span>
+        </button>
+      </nav>
+
+      <div class="sidebar-footer" style="padding-top: 14px; text-align: left;">
+        <div class="dpapi-badge">
+          <span class="dot"></span> Bảo mật cục bộ
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Header Bar -->
+      <header class="topbar">
+        <div class="topbar-title">
+          <h1 id="page-title">Cấu hình & Bảo mật</h1>
+          <p id="page-subtitle">Quản lý thông tin tài khoản LMS MindX và cấu hình Google Gemini API.</p>
+        </div>
+        <div>
+          <button type="button" id="btn-open-log-drawer" class="btn-log-counter">
+            <span>🕒</span> Nhật ký (<span id="log-counter-number">0</span>)
+          </button>
+        </div>
+      </header>
+
+      <!-- View Containers -->
+      <div class="content-body">
+        
+        <!-- ========================================================
+             PAGE 1: CẤU HÌNH & BẢO MẬT (Tham khảo Hình số 1)
+             ======================================================== -->
+        <section id="tab-config" class="tab-pane active">
+          <div class="config-grid">
+            <!-- Card A: Tài khoản LMS MindX -->
+            <div class="card">
+              <div class="card-header space-between">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span style="font-size: 16px;">🔗</span>
+                  <h3 style="margin: 0;">Tài khoản LMS MindX</h3>
+                </div>
+                <span class="tag tag-blue" style="font-size: 11px;">Kết nối tự động LMS</span>
+              </div>
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="cfg-lms-url">Địa chỉ Portal / LMS MindX</label>
+                  <select id="cfg-lms-url" class="form-control">
+                    <option value="https://lms.mindx.edu.vn">https://lms.mindx.edu.vn (LMS Học viên & GV)</option>
+                    <option value="https://base.mindx.edu.vn">https://base.mindx.edu.vn (Base SSO)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="cfg-lms-email">Tài khoản / Email / Mã NV</label>
+                  <input type="text" id="cfg-lms-email" class="form-control" placeholder="tuanna3@mindx.net.vn">
+                </div>
+                <div class="form-group">
+                  <label for="cfg-lms-name">Họ và tên Giáo viên chủ nhiệm</label>
+                  <input type="text" id="cfg-lms-name" class="form-control" placeholder="Ví dụ: Nguyễn Anh Tuấn">
+                </div>
+                <div class="form-group">
+                  <label for="cfg-lms-pass">Mật khẩu (Bảo mật cục bộ)</label>
+                  <div class="password-input-wrapper">
+                    <input type="password" id="cfg-lms-pass" class="form-control" placeholder="••••••••••••••">
+                    <button type="button" id="btn-toggle-lms-pass" class="password-toggle-btn" title="Ẩn/Hiện mật khẩu">👁️</button>
+                  </div>
+                </div>
+
+                <div style="margin-top: 14px; display: flex; align-items: center; justify-content: space-between;">
+                  <span id="cfg-lms-status" class="tag tag-gray" style="display: none;"></span>
+                  <button type="button" id="btn-cfg-login-lms" class="btn btn-secondary btn-sm" style="display: inline-flex; align-items: center; gap: 6px;">
+                    <span>🌐</span> Mở trình duyệt & Đăng nhập LMS
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card B: Google Gemini API -->
+            <div class="card">
+              <div class="card-header space-between">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                  <span style="font-size: 16px;">💡</span>
+                  <h3 style="margin: 0;">Google Gemini API</h3>
+                </div>
+                <span class="tag tag-green" style="font-size: 11px;">@google/genai SDK</span>
+              </div>
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="cfg-gemini-key">Gemini API Key (Bảo mật cục bộ)</label>
+                  <div class="password-input-wrapper">
+                    <input type="password" id="cfg-gemini-key" class="form-control" placeholder="AIzaSy••••••••••••••••••••••••••••••••">
+                    <button type="button" id="btn-toggle-gemini-key" class="password-toggle-btn" title="Ẩn/Hiện API Key">👁️</button>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="cfg-gemini-model">Mô hình AI</label>
+                  <select id="cfg-gemini-model" class="form-control">
+                    <option value="gemini-1.5-flash">Gemini 1.5 Flash (Mặc định - Khuyên dùng)</option>
+                    <option value="gemini-2.0-flash">Gemini 2.0 Flash (Tốc độ cao)</option>
+                    <option value="gemini-1.5-pro">Gemini 1.5 Pro (Phân tích sâu)</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="cfg-gemini-style">Phong cách nhận xét</label>
+                  <select id="cfg-gemini-style" class="form-control">
+                    <option value="standard">Chuẩn mực sư phạm MindX (Toàn diện, ân cần)</option>
+                    <option value="inspiring">Khen ngợi & Truyền cảm hứng sáng tạo</option>
+                    <option value="practical">Tập trung kỹ năng thực hành và câu lệnh</option>
+                  </select>
+                </div>
+
+                <div style="margin-top: 14px; display: flex; align-items: center; justify-content: space-between;">
+                  <span id="cfg-ai-status" class="tag tag-gray" style="display: none;"></span>
+                  <button type="button" id="btn-cfg-test-ai" class="btn btn-secondary btn-sm" style="display: inline-flex; align-items: center; gap: 6px;">
+                    <span>⚡</span> Kiểm tra kết nối AI
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             PAGE 2: LỚP & BUỔI HỌC (Tham khảo chính xác Hình số 2)
+             ======================================================== -->
+        <section id="tab-classes" class="tab-pane">
+          <!-- Card Đồng bộ dữ liệu trên cùng -->
+          <div class="sync-banner-card">
+            <div class="sync-banner-info">
+              <h3>Đồng bộ dữ liệu lớp học từ LMS</h3>
+              <p>Quét danh sách lớp đang phụ trách và tự động tải lịch các buổi học từ cổng MindX LMS.</p>
+            </div>
+            <div>
+              <button type="button" id="btn-sync-classes" class="btn btn-primary-red btn-large" style="display: inline-flex; align-items: center; gap: 8px;">
+                <span>🔄</span> Quét danh sách lớp từ LMS
+              </button>
+            </div>
+          </div>
+
+          <!-- 2 Cột: Danh sách lớp học (Trái) & Buổi học của lớp đã chọn (Phải) -->
+          <div class="classes-sessions-grid">
+            <!-- Cột trái: Danh sách lớp học -->
+            <div>
+              <div class="column-card-header">
+                <h3>Danh sách Lớp học (<span id="classes-count-badge">0</span>)</h3>
+                <span class="text-muted" style="font-size: 12.5px;">Chọn lớp để xem buổi học</span>
+              </div>
+              <div id="classes-list-cards" class="class-cards-container">
+                <!-- Rendered dynamically -->
+              </div>
+            </div>
+
+            <!-- Cột phải: Buổi học của lớp đã chọn -->
+            <div>
+              <div class="column-card-header">
+                <h3>Buổi học của lớp đã chọn</h3>
+                <span id="selected-class-code-badge" class="tag tag-blue" style="display: none;">-</span>
+              </div>
+              <div id="sessions-list-cards" class="session-cards-container">
+                <!-- Rendered dynamically -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             PAGE 3: HỌC VIÊN & GHI CHÚ (Tham khảo Hình số 3 & 4)
+             ======================================================== -->
+        <section id="tab-students" class="tab-pane">
+          <!-- Banner thông tin lớp đang chọn -->
+          <div class="action-card" style="margin-bottom: 16px;">
+            <div style="display: flex; align-items: center; gap: 12px; flex: 1; flex-wrap: wrap;">
+              <span id="students-selected-pill" class="tag tag-gray">Chưa chọn buổi học</span>
+              <span id="students-draft-badge" class="tag tag-amber" style="display: none;">Đã khôi phục bản nháp</span>
+              <span id="students-selected-desc" class="text-muted" style="font-size: 13px;">Chọn lớp và buổi học ở bước trước để tải danh sách học viên</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <button type="button" id="btn-reset-draft-from-lms" class="btn btn-secondary btn-sm" style="display: none;">
+                🔄 Đặt lại dữ liệu gốc từ LMS
+              </button>
+              <button type="button" id="btn-reselect-class" class="btn btn-secondary btn-sm">
+                Chọn lại lớp học
+              </button>
+            </div>
+          </div>
+
+          <!-- Card Summary Buổi học -->
+          <div class="card" style="margin-bottom: 16px;">
+            <div class="card-header space-between">
+              <div>
+                <h3 style="margin: 0; font-size: 14.5px;">Tóm tắt buổi học (Summary)</h3>
+                <span class="text-muted" style="font-size: 12px;">Nội dung chung của buổi học để lưu vào tab Comments trên LMS</span>
+              </div>
+              <div style="display: flex; gap: 8px;">
+                <button type="button" id="btn-ai-generate-summary" class="btn btn-secondary btn-sm" style="color: #0284C7; font-weight: 600;">
+                  ✨ Tạo nội dung bằng AI
+                </button>
+              </div>
+            </div>
+            <div class="card-body" style="padding: 14px 18px;">
+              <textarea id="students-summary-editor" class="form-control" rows="3" placeholder="Nhập tóm tắt buổi học hoặc nhấp 'Tạo nội dung bằng AI'..."></textarea>
+            </div>
+          </div>
+
+          <!-- Card Danh sách học viên -->
+          <div class="card">
+            <div class="card-header space-between">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <h3 style="margin: 0; font-size: 14.5px;">Danh sách học viên (<span id="students-count-header">0</span>)</h3>
+              </div>
+              <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                <span style="font-size: 12.5px; color: var(--text-muted);">Đặt nhanh:</span>
+                <button type="button" class="quick-rating-pill btn-quick-rate" data-rate="Giỏi">Giỏi</button>
+                <button type="button" class="quick-rating-pill btn-quick-rate" data-rate="Khá">Khá</button>
+                <button type="button" class="quick-rating-pill btn-quick-rate" data-rate="Trung bình khá">Trung bình khá</button>
+                <button type="button" class="quick-rating-pill btn-quick-rate" data-rate="Trung bình">Trung bình</button>
+                <button type="button" class="quick-rating-pill btn-quick-rate" data-rate="Yếu">Yếu</button>
+              </div>
+            </div>
+            <div class="card-body no-padding">
+              <div style="overflow-x: auto;">
+                <table class="students-table">
+                  <thead>
+                    <tr>
+                      <th style="width: 40px;">STT</th>
+                      <th style="width: 170px;">HỌC VIÊN</th>
+                      <th style="width: 120px;">ĐIỂM DANH</th>
+                      <th style="width: 140px;">ĐÁNH GIÁ BUỔI HỌC</th>
+                      <th>GHI CHÚ RIÊNG BUỔI HỌC (ĐIỂM MẠNH / ĐIỂM CẦN SỬA)</th>
+                      <th style="width: 120px; text-align: right;">THAO TÁC</th>
+                    </tr>
+                  </thead>
+                  <tbody id="students-table-body">
+                    <!-- Rendered dynamically -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Action bar cuối trang Học viên -->
+          <div style="margin-top: 18px; display: flex; justify-content: flex-end; align-items: center;">
+            <button type="button" id="btn-proceed-to-review" class="btn btn-primary btn-large" style="display: inline-flex; align-items: center; gap: 8px;">
+              <span>👉</span> Chuyển sang Duyệt &amp; Lưu
+            </button>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             PAGE 4: DUYỆT & LƯU NHẬN XÉT LMS (Tham khảo Hình số 5)
+             ======================================================== -->
+        <section id="tab-review" class="tab-pane">
+          <div class="review-grid">
+            <!-- Cột trái: Danh sách học viên -->
+            <div class="card">
+              <div class="card-header space-between" style="padding: 12px 16px;">
+                <h3 style="margin: 0; font-size: 14px;">Danh sách học viên</h3>
+                <span id="review-students-count-badge" class="tag tag-gray">0 HS có mặt</span>
+              </div>
+              <div id="review-students-left-list" style="max-height: calc(100vh - 240px); overflow-y: auto;">
+                <!-- Rendered dynamically -->
+              </div>
+            </div>
+
+            <!-- Cột phải: Xem chi tiết nhận xét & Thao tác Automation LMS -->
+            <div class="card">
+              <!-- Empty State khi chưa có nhận xét -->
+              <div id="review-empty-state-box" style="padding: 80px 30px; text-align: center;">
+                <div style="width: 48px; height: 48px; background: #FEF2F2; color: #DC2626; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; margin: 0 auto 14px auto;">
+                  💬
+                </div>
+                <h3 style="font-size: 16px; font-weight: 700; color: #0F172A; margin-bottom: 6px;">Chưa có nhận xét nào được tải</h3>
+                <p class="text-muted" style="max-width: 420px; margin: 0 auto 20px auto; font-size: 13px; line-height: 1.5;">
+                  Chọn lớp và buổi học ở mục Học viên &amp; Ghi chú, sau đó bấm "Chuyển sang Duyệt &amp; Lưu" để AI tự động tạo nhận xét và lưu lên MindX LMS.
+                </p>
+                <button type="button" id="btn-review-empty-trigger-ai" class="btn btn-primary" style="padding: 10px 22px;">
+                  ✨ Quay lại Học viên &amp; Ghi chú
+                </button>
+              </div>
+
+              <!-- Nội dung khi đã có nhận xét để duyệt -->
+              <div id="review-active-content-box" style="display: none; padding: 20px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--border-color);">
+                  <div>
+                    <h3 id="review-current-student-name" style="margin: 0; font-size: 16px;">-</h3>
+                    <span id="review-current-student-rating" class="tag tag-green" style="margin-top: 4px;">Tốt</span>
+                  </div>
+                  <div>
+                    <button type="button" id="btn-review-fill-single" class="btn btn-primary btn-sm">
+                      Nhập nhận xét bạn này
+                    </button>
+                  </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom: 16px;">
+                  <label for="review-current-student-comment" style="font-weight: 600; font-size: 13px; margin-bottom: 6px;">Nội dung nhận xét (chỉnh sửa trực tiếp):</label>
+                  <textarea id="review-current-student-comment" class="form-control" rows="5" style="font-size: 13.5px; line-height: 1.6;"></textarea>
+                </div>
+
+                <div id="review-progress-box" style="display: none; margin-bottom: 14px; padding: 12px 14px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; font-size: 12.5px;">
+                    <span id="review-progress-label" style="font-weight: 600; color: #0F172A;">Đang chuẩn bị...</span>
+                    <span id="review-progress-percent" style="font-weight: 700; color: #E31E24;">0%</span>
+                  </div>
+                  <div style="width: 100%; height: 8px; background: #E2E8F0; border-radius: 999px; overflow: hidden;">
+                    <div id="review-progress-fill" style="width: 0%; height: 100%; background: linear-gradient(90deg, #E31E24, #059669); transition: width 0.25s ease;"></div>
+                  </div>
+                </div>
+
+                <div style="display: flex; align-items: center; justify-content: flex-end; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border-color); gap: 10px;">
+                  <button type="button" id="btn-review-cancel-auto" class="btn btn-secondary btn-sm" style="color: #DC2626;">
+                    ⏹️ Dừng / Hủy
+                  </button>
+                  <button type="button" id="btn-review-fill-all" class="btn btn-primary btn-large">
+                    🚀 Lưu tất cả lên LMS
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             PAGE 5: GIÁO TRÌNH (Bảo tồn toàn bộ 24 khóa học chuẩn)
+             ======================================================== -->
+        <section id="tab-curriculum" class="tab-pane">
+          <div class="curriculum-master-detail-container">
+            <div class="curriculum-master-col">
+              <div style="padding: 10px 10px 6px 10px;">
+                <input type="text" id="input-curriculum-search" class="form-control" placeholder="🔍 Tìm mã khóa (ARMA, CSB...) hoặc tên bài..." style="font-size: 12.5px; padding: 7px 10px;">
+              </div>
+              <div class="category-toggle-tabs">
+                <button id="cat-btn-robotics" class="btn-cat-tab active" data-category="ROBOTICS">
+                  🤖 Robotics (9 khóa)
+                </button>
+                <button id="cat-btn-coding" class="btn-cat-tab" data-category="CODING">
+                  💻 Coding - C4K (15 khóa)
+                </button>
+              </div>
+              <div id="course-list-container" class="course-list-tree"></div>
+            </div>
+
+            <div class="curriculum-detail-col">
+              <div id="curriculum-detail-empty" class="empty-state-box">
+                <div class="empty-icon">📖</div>
+                <h3>Chưa chọn khóa học</h3>
+                <p class="text-muted">Vui lòng nhấp vào một mã khóa học ở danh mục bên trái để xem thông tin StudentBook và chi tiết các buổi học.</p>
+              </div>
+
+              <div id="curriculum-detail-content" style="display: none;">
+                <div class="card" style="margin-bottom: 16px;">
+                  <div class="card-header space-between">
+                    <div>
+                      <div style="display: flex; align-items: center; gap: 8px;">
+                        <h3 id="detail-course-title" style="margin: 0;">-</h3>
+                        <span id="detail-course-category-tag" class="tag tag-purple">-</span>
+                      </div>
+                      <span id="detail-course-cluster-info" class="text-muted" style="font-size: 13px;">-</span>
+                    </div>
+                  </div>
+                  <div class="card-body" style="padding-top: 10px; padding-bottom: 12px;">
+                    <div id="student-book-compact-view" style="display: none; align-items: center; justify-content: space-between; gap: 10px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 8px 12px;">
+                      <div style="display: flex; align-items: center; gap: 8px; min-width: 0; flex: 1;">
+                        <span>📖</span>
+                        <span style="font-weight: 600; font-size: 12.5px; color: #334155; white-space: nowrap;">StudentBook:</span>
+                        <span id="student-book-compact-url" style="font-size: 12.5px; color: #0284C7; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"></span>
+                      </div>
+                      <div style="display: flex; align-items: center; gap: 6px; flex-shrink: 0;">
+                        <a id="btn-open-student-book" href="#" target="_blank" class="btn btn-secondary btn-xs" style="white-space: nowrap;">
+                          🔗 Mở Drive
+                        </a>
+                        <button type="button" id="btn-edit-student-book" class="btn btn-secondary btn-xs" style="white-space: nowrap;">
+                          ✏️ Sửa
+                        </button>
+                      </div>
+                    </div>
+
+                    <div id="student-book-edit-view" class="form-group" style="margin-bottom: 0;">
+                      <label for="input-cluster-student-book" style="display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 12.5px;">
+                        <span>📖 Link StudentBook (Dùng chung cho cụm B - A - I):</span>
+                      </label>
+                      <div style="display: flex; gap: 8px; margin-top: 6px;">
+                        <input type="text" id="input-cluster-student-book" class="form-control" placeholder="https://drive.google.com/... (link tài liệu StudentBook)">
+                        <button type="button" id="btn-save-student-book" class="btn btn-primary btn-sm" style="white-space: nowrap;">
+                          💾 Lưu StudentBook
+                        </button>
+                        <button type="button" id="btn-cancel-student-book" class="btn btn-secondary btn-sm" style="display: none; white-space: nowrap;">
+                          Hủy
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="card">
+                  <div class="card-header space-between">
+                    <div>
+                      <h3 style="margin-bottom: 0;">Danh sách buổi học (<span id="detail-sessions-count">0</span> buổi)</h3>
+                    </div>
+                  </div>
+                  <div class="card-body" style="padding: 14px 16px;">
+                    <div id="sessions-accordion-container" class="sessions-accordion"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             PAGE 6: BÁO BÀI ZALO (Bảo tồn toàn bộ chức năng Zalo & BTVN)
+             ======================================================== -->
+        <section id="tab-zalo" class="tab-pane">
+          <div class="card" style="margin-bottom: 20px;">
+            <div class="card-header space-between" style="padding: 12px 18px; background-color: #FAFAFA; border-bottom: 1px solid var(--border-color);">
+              <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap; width: 100%;">
+                <div style="display: flex; align-items: center; gap: 8px; flex: 1; min-width: 220px;">
+                  <label for="select-zalo-course" style="font-weight: 600; font-size: 13px; white-space: nowrap; margin-bottom: 0;">Khóa học:</label>
+                  <select id="select-zalo-course" class="form-control" style="font-size: 13px; padding: 7px 10px;"></select>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px; width: 180px;">
+                  <label for="select-zalo-session" style="font-weight: 600; font-size: 13px; white-space: nowrap; margin-bottom: 0;">Buổi học:</label>
+                  <select id="select-zalo-session" class="form-control" style="font-size: 13px; padding: 7px 10px;"></select>
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px; flex: 1; min-width: 180px;">
+                  <label for="input-zalo-class-code" style="font-weight: 600; font-size: 13px; white-space: nowrap; margin-bottom: 0;">Mã lớp:</label>
+                  <input type="text" id="input-zalo-class-code" class="form-control" placeholder="Ví dụ: PVT-ROB-ARMA26" style="font-size: 13px; padding: 7px 10px;">
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px; flex: 1; min-width: 180px;">
+                  <label for="input-zalo-teacher-name" style="font-weight: 600; font-size: 13px; white-space: nowrap; margin-bottom: 0;">Giáo viên:</label>
+                  <input type="text" id="input-zalo-teacher-name" class="form-control" placeholder="Họ và tên GV" style="font-size: 13px; padding: 7px 10px;">
+                </div>
+              </div>
+            </div>
+            <div class="card-body" style="padding: 18px 20px;">
+              <div class="form-group" style="margin-bottom: 16px;">
+                <div class="space-between" style="margin-bottom: 8px;">
+                  <label for="zalo-message-editor" style="font-weight: 600; font-size: 13.5px;">Nội dung tin nhắn Zalo gửi Phụ huynh (chỉnh sửa trực tiếp):</label>
+                  <span id="zalo-copy-feedback" class="tag tag-green" style="display: none; font-size: 12px; font-weight: 600;">Đã sao chép nội dung báo bài! ✅</span>
+                </div>
+                <div id="zalo-message-editor" class="zalo-rich-editor" contenteditable="true" spellcheck="false" role="textbox" aria-multiline="true"></div>
+                <textarea id="textarea-zalo-message" style="display: none;"></textarea>
+              </div>
+
+              <div class="footer-actions" style="display: flex; justify-content: flex-end; align-items: center; gap: 12px; padding: 0; margin-top: 12px;">
+                <button id="btn-refresh-zalo" class="btn btn-secondary btn-sm">
+                  🔄 Đặt lại mẫu tin nhắn gốc
+                </button>
+                <button id="btn-copy-zalo-bottom" class="btn btn-primary btn-large">
+                  📋 Sao chép tin nhắn Zalo
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card BTVN khối Coding -->
+          <div id="zalo-homework-card" class="card" style="margin-bottom: 20px; display: none;">
+            <div class="card-header space-between" style="padding: 12px 18px; background-color: #FAFAFA; border-bottom: 1px solid var(--border-color);">
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <h3 style="margin: 0; font-size: 15px; font-weight: 700; color: #1E293B;">
+                  <span>📝</span> Báo Bài Tập Về Nhà (Khối Coding - Denise & StudentBook)
+                </h3>
+                <span id="zalo-homework-save-status" class="tag tag-green" style="display: none; font-size: 11px; font-weight: 600;">Đã lưu số trang ✓</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 10px;">
+                <span id="zalo-copy-hw-feedback" class="tag tag-green" style="display: none; font-size: 12px; font-weight: 600;">Đã sao chép BTVN! ✅</span>
+                <button id="btn-copy-zalo-homework" class="btn btn-secondary btn-sm" style="font-weight: 600; color: #16A34A; border-color: #86EFAC;">
+                  📋 Sao chép phần BTVN
+                </button>
+              </div>
+            </div>
+            <div class="card-body" style="padding: 16px 20px;">
+              <div class="homework-adjust-bar">
+                <div style="display: flex; align-items: center; gap: 8px; flex: 1; min-width: 200px;">
+                  <label for="input-zalo-homework-denise" style="font-weight: 600; font-size: 13px; white-space: nowrap; margin-bottom: 0; color: #334155;">Bài tập Denise:</label>
+                  <input type="text" id="input-zalo-homework-denise" class="form-control" placeholder="Ví dụ: Buổi 11" style="font-size: 13px; padding: 6px 10px; background: #FFF;">
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px; width: 180px;">
+                  <label for="input-zalo-homework-page-from" style="font-weight: 600; font-size: 13px; white-space: nowrap; margin-bottom: 0; color: #334155;">StudentBook — Từ trang:</label>
+                  <input type="number" id="input-zalo-homework-page-from" class="form-control" placeholder="Ví dụ: 40" min="1" style="font-size: 13px; padding: 6px 10px; background: #FFF;">
+                </div>
+                <div style="display: flex; align-items: center; gap: 8px; width: 160px;">
+                  <label for="input-zalo-homework-page-to" style="font-weight: 600; font-size: 13px; white-space: nowrap; margin-bottom: 0; color: #334155;">Đến trang:</label>
+                  <input type="number" id="input-zalo-homework-page-to" class="form-control" placeholder="Ví dụ: 46" min="1" style="font-size: 13px; padding: 6px 10px; background: #FFF;">
+                </div>
+              </div>
+
+              <div class="form-group" style="margin-bottom: 12px;">
+                <label for="zalo-homework-editor" style="font-weight: 600; font-size: 13px; margin-bottom: 6px; display: block;">Nội dung BTVN gửi Phụ huynh (chỉnh sửa trực tiếp):</label>
+                <div id="zalo-homework-editor" class="zalo-rich-editor" contenteditable="true" spellcheck="false" role="textbox" aria-multiline="true" style="min-height: 140px; max-height: 280px;"></div>
+                <textarea id="textarea-zalo-homework" style="display: none;"></textarea>
+              </div>
+
+              <div style="display: flex; justify-content: flex-end; align-items: center; gap: 12px; margin-top: 14px;">
+                <span id="zalo-copy-all-feedback" class="tag tag-green" style="display: none; font-size: 12px; font-weight: 600;">Đã sao chép tất cả (Nội dung + BTVN)! ✅</span>
+                <button id="btn-copy-zalo-all" class="btn btn-primary btn-primary-blue">
+                  📋 Sao chép tất cả (Nội dung + BTVN)
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ========================================================
+             PAGE 7: TEACHER POINT (Chỉ áp dụng lớp ROB Buổi 4 & 8)
+             ======================================================== -->
+        <section id="tab-teacher-point" class="tab-pane">
+          <!-- Khóa an toàn khi sai lớp / sai buổi -->
+          <div id="tp-locked-box" class="card" style="padding: 48px 28px; text-align: center;">
+            <div style="width: 56px; height: 56px; background: #FEF2F2; color: #DC2626; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; margin: 0 auto 14px auto;">
+              🔒
+            </div>
+            <h3 style="margin: 0 0 8px 0; font-size: 17px; color: #0F172A;">Chưa đủ điều kiện gửi Teacher Point</h3>
+            <p id="tp-locked-reason" class="text-muted" style="max-width: 520px; margin: 0 auto 20px auto; font-size: 13.5px; line-height: 1.6;">
+              Phiếu khảo sát Teacher Point chỉ áp dụng cho khối lớp <strong>Robotics (ROB)</strong> tại <strong>Buổi 4</strong> và <strong>Buổi 8</strong>.
+            </p>
+            <button type="button" id="btn-tp-back-to-classes" class="btn btn-primary">
+              👈 Quay lại chọn Lớp &amp; Buổi học
+            </button>
+          </div>
+
+          <!-- Nội dung khi đủ điều kiện -->
+          <div id="tp-active-box" style="display: none;">
+            <div class="card" style="margin-bottom: 16px;">
+              <div class="card-header space-between">
+                <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+                  <h3 style="margin: 0; font-size: 15px;">Cấu hình phiếu khảo sát Teacher Point</h3>
+                  <span id="tp-eligible-badge" class="tag tag-green">Đủ điều kiện</span>
+                </div>
+              </div>
+              <div class="card-body">
+                <div class="form-row">
+                  <div class="form-group flex-2">
+                    <label for="input-tp-form-url" style="font-weight: 600;">Link Google Form:</label>
+                    <div style="display: flex; gap: 8px;">
+                      <input type="text" id="input-tp-form-url" class="form-control" placeholder="https://docs.google.com/forms/d/e/.../viewform">
+                      <button type="button" id="btn-tp-reload-form" class="btn btn-secondary btn-sm" style="white-space: nowrap;">
+                        🔄 Tải lại Form
+                      </button>
+                    </div>
+                  </div>
+                  <div class="form-group" style="flex: 1; min-width: 240px;">
+                    <label for="select-tp-campus" style="font-weight: 600;">Cơ sở MindX:</label>
+                    <select id="select-tp-campus" class="form-control">
+                      <option value="">-- Đang tải cơ sở từ Form --</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header space-between">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <h3 style="margin: 0; font-size: 15px;">Danh sách học viên gửi khảo sát</h3>
+                  <span id="tp-selected-count-badge" class="tag tag-blue">0 bạn</span>
+                </div>
+                <button type="button" id="btn-tp-submit-all" class="btn btn-primary">
+                  🚀 Gửi nhanh toàn bộ (0 bạn)
+                </button>
+              </div>
+              <div class="card-body">
+                <div id="tp-progress-box" style="display: none; margin-bottom: 14px; padding: 12px 14px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px;">
+                  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; font-size: 12.5px;">
+                    <span id="tp-progress-label" style="font-weight: 600; color: #0F172A;">Đang chuẩn bị...</span>
+                    <span id="tp-progress-percent" style="font-weight: 700; color: #E31E24;">0%</span>
+                  </div>
+                  <div style="width: 100%; height: 8px; background: #E2E8F0; border-radius: 999px; overflow: hidden;">
+                    <div id="tp-progress-fill" style="width: 0%; height: 100%; background: linear-gradient(90deg, #E31E24, #059669); transition: width 0.2s ease;"></div>
+                  </div>
+                </div>
+
+                <div style="overflow-x: auto;">
+                  <table class="students-table">
+                    <thead>
+                      <tr>
+                        <th style="width: 44px;"><input type="checkbox" id="chk-tp-select-all" checked></th>
+                        <th style="width: 50px;">STT</th>
+                        <th>HỌ VÀ TÊN HỌC VIÊN</th>
+                        <th style="width: 140px;">ĐIỂM DANH</th>
+                        <th style="width: 170px;">TRẠNG THÁI</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tp-students-tbody"></tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <!-- Slide-out Log Drawer (Nhật ký Playwright Console) -->
+  <div id="log-drawer-panel" class="log-drawer">
+    <div class="log-drawer-header">
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <span>💻</span>
+        <h3 style="margin: 0; font-size: 14px; color: #F8FAFC;">Lịch sử hoạt động</h3>
+      </div>
+      <button type="button" id="btn-close-log-drawer" style="background: transparent; border: none; color: #94A3B8; font-size: 18px; cursor: pointer;">✕</button>
+    </div>
+    <div id="log-drawer-content" class="log-drawer-body">
+      <div style="color: #64748B;">Đang tải nhật ký...</div>
+    </div>
+  </div>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>

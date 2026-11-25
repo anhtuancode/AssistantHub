@@ -1,0 +1,665 @@
+/**
+ * Page 3: Học viên & Ghi chú (Students Tab Controller)
+ * Quản lý thông tin lớp, tạo Summary bằng AI, danh sách học viên và sinh nhận xét.
+ */
+
+import { switchTab } from '../main.js';
+import { setReviewData } from './review.js';
+import { getGeminiConfig } from './config.js';
+import { curriculumService } from '../services/curriculum.js';
+import { toast } from '../services/toast.js';
+import { handleSessionExpiredIfAny } from '../services/sessionGuard.js';
+import { setTeacherPointContext } from './teacherPoint.js';
+
+let currentClass = null;
+let currentSession = null;
+let currentStudents = [];
+let currentSummary = '';
+let isRestoredDraft = false;
+
+function getDraftKey(cls = currentClass, sess = currentSession) {
+  if (!cls || !sess) return null;
+  const cid = cls.classId || cls.id || cls.classCode || cls.code || 'unknown';
+  return `draft_${cid}_${sess.sessionNumber}`;
+}
+
+export function saveCurrentDraft() {
+  const key = getDraftKey();
+  if (!key) return;
+  try {
+    const summaryBox = document.getElementById('students-summary-editor');
+    const summaryVal = summaryBox ? summaryBox.value : currentSummary;
+    const payload = {
+      summary: summaryVal,
+      students: currentStudents,
+      updatedAt: Date.now()
+    };
+    localStorage.setItem(key, JSON.stringify(payload));
+    localStorage.setItem('mindx_last_active_workspace', JSON.stringify({ cls: currentClass, session: currentSession }));
+  } catch (_) {}
+}
+
+function updateDraftBannerUI(restored) {
+  isRestoredDraft = restored;
+  const badge = document.getElementById('students-draft-badge');
+  const resetBtn = document.getElementById('btn-reset-draft-from-lms');
+  if (badge) badge.style.display = restored ? 'inline-block' : 'none';
+  if (resetBtn) resetBtn.style.display = restored ? 'inline-flex' : 'none';
+}
+
+function tryRestoreDraftIfExists() {
+  const key = getDraftKey();
+  if (!key) return false;
+  try {
+    const raw = localStorage.getItem(key);
+    if (!raw) return false;
+    const draft = JSON.parse(raw);
+    if (!draft || !Array.isArray(draft.students)) return false;
+
+    const summaryBox = document.getElementById('students-summary-editor');
+    if (typeof draft.summary === 'string') {
+      currentSummary = draft.summary;
+      if (summaryBox) summaryBox.value = draft.summary;
+    }
+    if (draft.students.length > 0) {
+      currentStudents = draft.students;
+    }
+    updateDraftBannerUI(true);
+    renderStudentsTable();
+    return true;
+  } catch (_) {
+    return false;
+  }
+}
+
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+export function resetStudentsWorkspace() {
+  currentClass = null;
+  currentSession = null;
+  currentStudents = [];
+  currentSummary = '';
+  const summaryBox = document.getElementById('students-summary-editor');
+  if (summaryBox) summaryBox.value = '';
+  updateHeaderInfo();
+  renderStudentsTable();
+}
+
+export function setSelectedClassAndSession(cls, session) {
+  currentClass = cls;
+  currentSession = session;
+  currentStudents = [];
+  currentSummary = '';
+  const summaryBox = document.getElementById('students-summary-editor');
+  if (summaryBox) summaryBox.value = '';
+  setTeacherPointContext(cls, session, []);
+  updateHeaderInfo();
+  loadSessionDataFromLms();
+}
+
+async function loadSessionDataFromLms() {
+  const tbody = document.getElementById('students-table-body');
+  const countBadge = document.getElementById('students-count-header');
+  const summaryBox = document.getElementById('students-summary-editor');
+
+  if (currentSession && currentSession.isAvailable === false) {
+    const msg = 'Buổi học này chưa diễn ra nên chưa có dữ liệu điểm danh và danh sách học viên.';
+    currentStudents = [];
+    if (countBadge) countBadge.textContent = '0';
+    if (tbody) {
+      tbody.innerHTML = `
+        <tr>
+          <td colspan="6" style="text-align: center; padding: 30px; color: #B45309; background: #FFFBEB;">
+            ⚠️ ${escapeHtml(msg)}
+          </td>
+        </tr>
+      `;
+    }
+    return;
+  }
+
+  if (tbody) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="6" style="text-align: center; padding: 30px; color: #64748B;">
+          ⏳ Đang chọn Buổi ${currentSession ? currentSession.sessionNumber : ''} trên LMS và tải dữ liệu...
+        </td>
+      </tr>
+    `;
+  }
+
+  try {
+    // 1. BẮT BUỘC chạy SELECT_SESSION & VERIFY_SESSION_ACTIVE trước khi LOAD_SUMMARY và LOAD_STUDENTS
+    if (currentSession && currentSession.sessionNumber) {
+      const selRes = await fetch('/api/automation/sessions/select', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ sessionNumber: currentSession.sessionNumber })
+      });
+      const selData = await selRes.json();
+      if (!selData.success) {
+        if (await handleSessionExpiredIfAny(selData)) return;
+        const errMsg = selData.message || selData.error || 'Không thể chọn buổi học trên LMS.';
+        currentStudents = [];
+        if (countBadge) countBadge.textContent = '0';
+        if (tbody) {
+          tbody.innerHTML = `
+            <tr>
+              <td colspan="6" style="text-align: center; padding: 30px; color: #B91C1C; background: #FEF2F2;">
+                ⚠️ ${escapeHtml(errMsg)}
+              </td>
+            </tr>
+          `;
+        }
+        return;
+      }
+    }
+
+    // 2. LOAD_SUMMARY từ LMS
+    try {
+      const sumRes = await fetch('/api/automation/summary');
+      const sumData = await sumRes.json();
+      if (sumData.success && sumData.summary && summaryBox) {
+        summaryBox.value = sumData.summary;
+        currentSummary = sumData.summary;
+      } else {
+        await loadDefaultSummaryForSession();
+      }
+    } catch (_) {
+      await loadDefaultSummaryForSession();
+    }
+
+    // 3. LOAD_STUDENTS từ LMS
+    await loadStudentsForSession();
+
+    // 4. Kiểm tra và khôi phục bản nháp nếu có (chống mất dữ liệu khi F5)
+    tryRestoreDraftIfExists();
+  } catch (err) {
+    console.warn('[Students] Lỗi quy trình SELECT_SESSION -> LOAD_STUDENTS:', err);
+  }
+}
+
+export function initStudentsTab() {
+  bindStudentsEvents();
+  if (!currentClass || !currentSession) {
+    try {
+      const lastRaw = localStorage.getItem('mindx_last_active_workspace');
+      if (lastRaw) {
+        const parsed = JSON.parse(lastRaw);
+        if (parsed && parsed.cls && parsed.session) {
+          currentClass = parsed.cls;
+          currentSession = parsed.session;
+          tryRestoreDraftIfExists();
+        }
+      }
+    } catch (_) {}
+  }
+  updateHeaderInfo();
+}
+
+function updateHeaderInfo() {
+  const pill = document.getElementById('students-selected-pill');
+  const desc = document.getElementById('students-selected-desc');
+
+  if (currentClass && currentSession) {
+    if (pill) {
+      pill.textContent = `${currentClass.title.split('—')[0].trim()} — ${currentSession.title || `Buổi ${currentSession.sessionNumber}`}`;
+      pill.className = 'tag tag-blue';
+    }
+    if (desc) {
+      desc.textContent = `Lớp: ${currentClass.title} | ${currentSession.subtext || 'Đang thực hiện tự động hóa'}`;
+    }
+  } else {
+    if (pill) {
+      pill.textContent = 'Chưa chọn buổi học';
+      pill.className = 'tag tag-gray';
+    }
+    if (desc) {
+      desc.textContent = 'Chọn lớp và buổi học ở bước trước để tải danh sách học viên.';
+    }
+  }
+}
+
+async function loadDefaultSummaryForSession() {
+  if (!currentClass || !currentSession) return;
+  const summaryBox = document.getElementById('students-summary-editor');
+
+  // Thử lấy thông tin giáo trình chuẩn MindX từ CourseCode
+  const courseCode = curriculumService.extractCourseCode(currentClass.title);
+  if (courseCode) {
+    const courseData = await curriculumService.getMergedCourseData(courseCode);
+    if (courseData && courseData.sessions) {
+      const s = courseData.sessions.find(x => x.sessionNumber === currentSession.sessionNumber);
+      if (s && summaryBox && !summaryBox.value.trim()) {
+        summaryBox.value = `Buổi ${s.sessionNumber}: ${s.title}.\n- Tóm tắt: ${s.summary || ''}\n- Linh kiện & Câu lệnh: ${s.hardwareAndCommands || ''}\n- Cả lớp hoàn thành tốt mục tiêu đề ra.`;
+        currentSummary = summaryBox.value;
+      }
+    }
+  }
+}
+
+async function loadStudentsForSession() {
+  const tbody = document.getElementById('students-table-body');
+  const countBadge = document.getElementById('students-count-header');
+  if (tbody) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="6" style="text-align: center; padding: 30px; color: #64748B;">
+          ⏳ Đang quét danh sách học viên từ LMS...
+        </td>
+      </tr>
+    `;
+  }
+
+  try {
+    const res = await fetch('/api/automation/students');
+    const data = await res.json();
+
+    if (data.success && Array.isArray(data.students) && data.students.length > 0) {
+      currentStudents = data.students.map((s, idx) => {
+        const rawAtt = (s.attendanceStatus || s.attendance || 'ATTENDED').toUpperCase();
+        const normalizedAtt = rawAtt === 'ABSENT' ? 'ABSENT' : 'PRESENT';
+        return {
+          id: s.id || `st-${idx}`,
+          name: s.studentName || s.name,
+          attendance: normalizedAtt,
+          attendanceLabel: s.attendanceLabel || '',
+          canComment: s.canComment !== false && normalizedAtt !== 'ABSENT',
+          rating: 'Khá',
+          note: '',
+          comment: ''
+        };
+      });
+    } else if (data.success && Array.isArray(data.students)) {
+      currentStudents = [];
+    } else {
+      currentStudents = generateMockStudents();
+    }
+  } catch (err) {
+    console.warn('[Students] Lỗi nạp học viên, dùng danh sách dự phòng:', err);
+    currentStudents = generateMockStudents();
+  }
+
+  if (countBadge) countBadge.textContent = currentStudents.length;
+  setTeacherPointContext(currentClass, currentSession, currentStudents);
+  renderStudentsTable();
+}
+
+function generateMockStudents() {
+  const names = ['Nguyễn Hoàng Nam', 'Trần Bảo Anh', 'Lê Minh Khôi', 'Phạm Gia Huy', 'Đặng Tuấn Kiệt', 'Vũ Thảo Nguyên'];
+  return names.map((name, idx) => ({
+    id: `mock-${idx + 1}`,
+    name,
+    attendance: idx === 4 ? 'ABSENT' : 'PRESENT',
+    rating: idx === 0 ? 'Giỏi' : (idx === 3 ? 'Trung bình khá' : 'Khá'),
+    note: idx === 0 ? 'Hoàn thành bài tập rất nhanh' : '',
+    comment: ''
+  }));
+}
+
+const QUICK_NOTE_TAGS = [
+  { label: 'Tập trung tốt', type: 'strength' },
+  { label: 'Chủ động phát biểu', type: 'strength' },
+  { label: 'Hoàn thành bài nhanh', type: 'strength' },
+  { label: 'Tư duy logic tốt', type: 'strength' },
+  { label: 'Hỗ trợ bạn tốt', type: 'strength' },
+  { label: 'Sáng tạo', type: 'strength' },
+  { label: 'Cần tập trung hơn', type: 'improve' },
+  { label: 'Cần cẩn thận hơn', type: 'improve' },
+  { label: 'Còn hơi rụt rè', type: 'improve' },
+  { label: 'Cần luyện thêm ở nhà', type: 'improve' },
+  { label: 'Cần đọc kỹ đề', type: 'improve' }
+];
+
+function parseNoteTokens(noteStr) {
+  return String(noteStr || '')
+    .split(',')
+    .map(s => s.trim())
+    .filter(Boolean);
+}
+
+function toggleQuickTagInNote(currentNote, tagLabel) {
+  const tokens = parseNoteTokens(currentNote);
+  const idx = tokens.findIndex(t => t.toLowerCase() === tagLabel.toLowerCase());
+  if (idx >= 0) {
+    tokens.splice(idx, 1);
+  } else {
+    tokens.push(tagLabel);
+  }
+  return tokens.join(', ');
+}
+
+function renderStudentsTable() {
+  const tbody = document.getElementById('students-table-body');
+  const countBadge = document.getElementById('students-count-header');
+  if (!tbody) return;
+
+  if (countBadge) countBadge.textContent = currentStudents.length;
+
+  if (currentStudents.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="6" style="text-align: center; padding: 40px; color: #64748B;">
+          <div style="font-size: 28px; margin-bottom: 6px;">👥</div>
+          <div>Chưa có học viên. Hãy chọn lớp và buổi học để tải dữ liệu.</div>
+        </td>
+      </tr>
+    `;
+    return;
+  }
+
+  tbody.innerHTML = currentStudents.map((st, idx) => {
+    const isPresent = st.attendance === 'PRESENT';
+    const isAbsent = !isPresent;
+    const noteTokens = parseNoteTokens(st.note).map(t => t.toLowerCase());
+    const disabledAttr = isAbsent ? 'disabled' : '';
+    const disabledStyle = isAbsent ? 'opacity: 0.5; cursor: not-allowed; background-color: #F1F5F9;' : '';
+
+    const chipsHtml = isAbsent ? '' : `
+      <div class="quick-note-chips" data-idx="${idx}">
+        ${QUICK_NOTE_TAGS.map(tag => {
+          const isActive = noteTokens.includes(tag.label.toLowerCase());
+          const typeCls = tag.type === 'improve' ? 'chip-improve' : '';
+          return `<button type="button" class="quick-note-chip ${typeCls} ${isActive ? 'active' : ''}" data-idx="${idx}" data-tag="${escapeHtml(tag.label)}">${escapeHtml(tag.label)}</button>`;
+        }).join('')}
+      </div>
+    `;
+
+    return `
+      <tr data-student-idx="${idx}" class="${isAbsent ? 'student-row-absent' : ''}">
+        <td style="font-weight: 600; color: #64748B;">${idx + 1}</td>
+        <td style="font-weight: 700; color: ${isAbsent ? '#94A3B8' : '#0F172A'};">
+          ${escapeHtml(st.name)}
+          ${isAbsent ? '<span class="tag tag-red" style="font-size: 10px; padding: 1px 6px; margin-left: 6px;">Vắng</span>' : ''}
+        </td>
+        <td>
+          <select class="form-control st-attendance-select" data-idx="${idx}" style="font-size: 12px; padding: 5px 8px; width: 110px; ${isAbsent ? 'border-color: #FCA5A5; color: #DC2626; background: #FEF2F2; font-weight: 600;' : ''}">
+            <option value="PRESENT" ${isPresent ? 'selected' : ''}>Có mặt</option>
+            <option value="ABSENT" ${isAbsent ? 'selected' : ''}>Vắng mặt</option>
+          </select>
+        </td>
+        <td>
+          <select class="form-control st-rating-select" data-idx="${idx}" ${disabledAttr} style="font-size: 12px; padding: 5px 8px; width: 135px; ${disabledStyle}">
+            <option value="Giỏi" ${st.rating === 'Giỏi' ? 'selected' : ''}>Giỏi</option>
+            <option value="Khá" ${!st.rating || st.rating === 'Khá' ? 'selected' : ''}>Khá</option>
+            <option value="Trung bình khá" ${st.rating === 'Trung bình khá' ? 'selected' : ''}>Trung bình khá</option>
+            <option value="Trung bình" ${st.rating === 'Trung bình' ? 'selected' : ''}>Trung bình</option>
+            <option value="Yếu" ${st.rating === 'Yếu' ? 'selected' : ''}>Yếu</option>
+          </select>
+        </td>
+        <td>
+          <input type="text" class="form-control st-note-input" data-idx="${idx}" value="${escapeHtml(st.note || '')}" ${disabledAttr} placeholder="${isAbsent ? 'Học viên vắng mặt' : 'Điểm mạnh / điểm cần sửa...'}" style="font-size: 12.5px; padding: 5px 10px; ${disabledStyle}">
+          ${chipsHtml}
+        </td>
+        <td style="white-space: nowrap;">
+          <button type="button" class="btn btn-secondary btn-xs btn-gen-single-comment" data-idx="${idx}" ${disabledAttr} style="${isAbsent ? 'opacity: 0.5; cursor: not-allowed;' : ''}">
+            ✨ Tạo nhận xét
+          </button>
+        </td>
+      </tr>
+    `;
+  }).join('');
+
+  // Gắn sự kiện thay đổi điểm danh -> re-render ngay để khóa/mở khóa hàng + lưu nháp
+  tbody.querySelectorAll('.st-attendance-select').forEach(sel => {
+    sel.onchange = () => {
+      const idx = parseInt(sel.getAttribute('data-idx'), 10);
+      currentStudents[idx].attendance = sel.value;
+      saveCurrentDraft();
+      renderStudentsTable();
+    };
+  });
+
+  tbody.querySelectorAll('.st-rating-select').forEach(sel => {
+    sel.onchange = () => {
+      const idx = parseInt(sel.getAttribute('data-idx'), 10);
+      currentStudents[idx].rating = sel.value;
+      saveCurrentDraft();
+    };
+  });
+
+  tbody.querySelectorAll('.st-note-input').forEach(inp => {
+    inp.oninput = () => {
+      const idx = parseInt(inp.getAttribute('data-idx'), 10);
+      currentStudents[idx].note = inp.value;
+      saveCurrentDraft();
+      const tokens = parseNoteTokens(inp.value).map(t => t.toLowerCase());
+      const chipContainer = tbody.querySelector(`.quick-note-chips[data-idx="${idx}"]`);
+      if (chipContainer) {
+        chipContainer.querySelectorAll('.quick-note-chip').forEach(chip => {
+          const tag = (chip.getAttribute('data-tag') || '').toLowerCase();
+          chip.classList.toggle('active', tokens.includes(tag));
+        });
+      }
+    };
+  });
+
+  // Quick note chips click handler
+  tbody.querySelectorAll('.quick-note-chip').forEach(chip => {
+    chip.onclick = () => {
+      const idx = parseInt(chip.getAttribute('data-idx'), 10);
+      const tagLabel = chip.getAttribute('data-tag');
+      if (!currentStudents[idx] || currentStudents[idx].attendance === 'ABSENT') return;
+
+      const updatedNote = toggleQuickTagInNote(currentStudents[idx].note, tagLabel);
+      currentStudents[idx].note = updatedNote;
+      saveCurrentDraft();
+
+      const inp = tbody.querySelector(`.st-note-input[data-idx="${idx}"]`);
+      if (inp) inp.value = updatedNote;
+
+      const tokens = parseNoteTokens(updatedNote).map(t => t.toLowerCase());
+      const chipContainer = tbody.querySelector(`.quick-note-chips[data-idx="${idx}"]`);
+      if (chipContainer) {
+        chipContainer.querySelectorAll('.quick-note-chip').forEach(c => {
+          const t = (c.getAttribute('data-tag') || '').toLowerCase();
+          c.classList.toggle('active', tokens.includes(t));
+        });
+      }
+    };
+  });
+
+  // Tạo nhận xét cho từng bạn
+  tbody.querySelectorAll('.btn-gen-single-comment').forEach(btn => {
+    btn.onclick = async () => {
+      const idx = parseInt(btn.getAttribute('data-idx'), 10);
+      const student = currentStudents[idx];
+
+      if (student.attendance === 'ABSENT') {
+        toast.warning(`Học viên "${student.name}" vắng mặt, không thể tạo nhận xét.`);
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = '⏳ Đang tạo...';
+
+      const geminiConfig = getGeminiConfig();
+      const summaryBox = document.getElementById('students-summary-editor');
+      const classCode = currentClass ? (currentClass.classCode || currentClass.code || (currentClass.title ? currentClass.title.split('—')[0].trim() : '')) : '';
+      const summaryText = summaryBox ? summaryBox.value.trim() : currentSummary;
+      try {
+        const res = await fetch('/api/gemini/comment', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            student: { ...student, studentIndex: idx },
+            lessonData: {
+              classCode,
+              title: currentSession ? currentSession.title : 'Buổi học',
+              sessionNumber: currentSession ? currentSession.sessionNumber : 1,
+              summary: summaryText
+            },
+            apiKey: geminiConfig.key,
+            model: geminiConfig.model,
+            style: geminiConfig.style
+          })
+        });
+        const data = await res.json();
+        if (data.success && data.comment) {
+          student.comment = data.comment;
+          student._lastCommentSignature = `${student.rating}|${student.note || ''}`;
+          toast.success(`Đã tạo nhận xét mới cho ${student.name}.`);
+        }
+      } catch (err) {
+        toast.error(`Lỗi tạo nhận xét: ${err.message}`);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = '✨ Tạo nhận xét';
+      }
+    };
+  });
+}
+
+function bindStudentsEvents() {
+  // Nút Đặt lại dữ liệu gốc từ LMS (xóa bản nháp)
+  const btnResetDraft = document.getElementById('btn-reset-draft-from-lms');
+  if (btnResetDraft) {
+    btnResetDraft.onclick = async () => {
+      const key = getDraftKey();
+      if (key) localStorage.removeItem(key);
+      updateDraftBannerUI(false);
+      await loadSessionDataFromLms();
+      toast.info('Đã khôi phục dữ liệu gốc từ MindX LMS.');
+    };
+  }
+
+  // Tự động lưu nháp khi chỉnh sửa ô Summary
+  const summaryEditorEl = document.getElementById('students-summary-editor');
+  if (summaryEditorEl) {
+    summaryEditorEl.addEventListener('input', () => {
+      currentSummary = summaryEditorEl.value;
+      saveCurrentDraft();
+    });
+  }
+
+  // Nút Chọn lại lớp học
+  const btnReselect = document.getElementById('btn-reselect-class');
+  if (btnReselect) {
+    btnReselect.onclick = () => switchTab('tab-classes');
+  }
+
+  // Nút Tạo Summary bằng AI
+  const btnGenSummary = document.getElementById('btn-ai-generate-summary');
+  const summaryBox = document.getElementById('students-summary-editor');
+  if (btnGenSummary && summaryBox) {
+    btnGenSummary.onclick = async () => {
+      btnGenSummary.disabled = true;
+      btnGenSummary.innerHTML = '⏳ AI đang soạn tóm tắt...';
+
+      const geminiConfig = getGeminiConfig();
+      try {
+        const res = await fetch('/api/gemini/summary', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            lessonData: {
+              title: currentSession ? currentSession.title : 'Bài học',
+              sessionNumber: currentSession ? currentSession.sessionNumber : 1,
+              summary: summaryBox.value
+            },
+            apiKey: geminiConfig.key,
+            model: geminiConfig.model
+          })
+        });
+        const data = await res.json();
+        if (data.success && data.summary) {
+          summaryBox.value = data.summary;
+          currentSummary = data.summary;
+          toast.success('Đã tạo nội dung tóm tắt buổi học bằng AI.');
+        }
+      } catch (err) {
+        toast.error(`Lỗi tạo Summary: ${err.message}`);
+      } finally {
+        btnGenSummary.disabled = false;
+        btnGenSummary.innerHTML = '✨ Tạo nội dung bằng AI';
+      }
+    };
+  }
+
+  // Quick rating pills (Đặt nhanh: Tốt, Khá, Xuất sắc)
+  document.querySelectorAll('.btn-quick-rate').forEach(btn => {
+    btn.onclick = () => {
+      const rate = btn.getAttribute('data-rate');
+      currentStudents.forEach(st => {
+        if (st.attendance === 'PRESENT') st.rating = rate;
+      });
+      renderStudentsTable();
+    };
+  });
+
+  // Nút "Chuyển sang Duyệt & Lưu": Tự động kích hoạt AI tạo nhận xét cho học viên Có mặt chưa có nhận xét hoặc có thay đổi
+  const btnProceedReview = document.getElementById('btn-proceed-to-review');
+  if (btnProceedReview) {
+    btnProceedReview.onclick = async () => {
+      const presentStudents = currentStudents.filter(st => st.attendance !== 'ABSENT');
+      if (presentStudents.length === 0) {
+        setReviewData(currentClass, currentSession, summaryBox ? summaryBox.value : currentSummary, currentStudents);
+        switchTab('tab-review');
+        return;
+      }
+
+      const needGeneration = presentStudents.filter(st => {
+        const sig = `${st.rating || 'Khá'}|${st.note || ''}`;
+        return !st.comment || !st.comment.trim() || st._lastCommentSignature !== sig;
+      });
+
+      if (needGeneration.length > 0) {
+        btnProceedReview.disabled = true;
+        btnProceedReview.innerHTML = `⏳ Đang tự động tạo nhận xét cá nhân hóa cho ${needGeneration.length} học viên...`;
+
+        const geminiConfig = getGeminiConfig();
+        const classCode = currentClass ? (currentClass.classCode || currentClass.code || (currentClass.title ? currentClass.title.split('—')[0].trim() : '')) : '';
+        const summaryText = summaryBox ? summaryBox.value.trim() : currentSummary;
+
+        try {
+          const res = await fetch('/api/gemini/batch-comments', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              students: needGeneration.map((st, i) => ({
+                ...st,
+                studentIndex: currentStudents.indexOf(st) >= 0 ? currentStudents.indexOf(st) : i
+              })),
+              lessonData: {
+                classCode,
+                title: currentSession ? currentSession.title : 'Buổi học',
+                sessionNumber: currentSession ? currentSession.sessionNumber : 1,
+                summary: summaryText
+              },
+              apiKey: geminiConfig.key,
+              model: geminiConfig.model,
+              style: geminiConfig.style
+            })
+          });
+          const data = await res.json();
+          if (data.success && Array.isArray(data.results)) {
+            data.results.forEach(item => {
+              const st = currentStudents.find(x => x.name === item.name);
+              if (st && item.comment) {
+                st.comment = item.comment;
+                st._lastCommentSignature = `${st.rating || 'Khá'}|${st.note || ''}`;
+              }
+            });
+            saveCurrentDraft();
+          }
+        } catch (err) {
+          toast.error(`Lỗi tự động tạo nhận xét: ${err.message}`);
+        } finally {
+          btnProceedReview.disabled = false;
+          btnProceedReview.innerHTML = '<span>👉</span> Chuyển sang Duyệt &amp; Lưu';
+        }
+      }
+
+      setReviewData(currentClass, currentSession, summaryBox ? summaryBox.value : currentSummary, currentStudents);
+      switchTab('tab-review');
+    };
+  }
+}

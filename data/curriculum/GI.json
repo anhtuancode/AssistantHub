@@ -1,0 +1,273 @@
+{
+  "courseCode": "GI",
+  "courseName": "Game Creator - Intensive",
+  "category": "CODING",
+  "platform": "GameMaker",
+  "cluster": "GAMEMAKER",
+  "targetAge": "9 - 15 Tuổi",
+  "duration": "120 phút/buổi",
+  "version": "Ver 2024",
+  "sessions": {
+    "1": {
+      "sessionNumber": 1,
+      "title": "Master Gamemaker",
+      "summary": "Nâng cao kỹ năng lập trình GameMaker chuyên sâu; tìm hiểu vòng lặp while và kỹ thuật sinh nhiều thực thể tự động; kiểm soát chuyển động mượt mà với biến hspeed và vspeed; làm quen với khái niệm Hàm tự tạo (Custom Functions) và cấu trúc Script trong GML để tái sử dụng và module hóa mã nguồn.",
+      "hardwareAndCommands": "Vòng lặp while, biến vận tốc hspeed, vspeed, GML Scripts, cú pháp khai báo hàm function name(args) { ... }, module hóa code.",
+      "objectives": [
+        "Kiến thức: Trình bày mục tiêu, cách sử dụng vòng lặp while; Trình bày cách lập trình di chuyển với hspeed, vspeed; Trình bày được cách tạo, sử dụng, lý do làm hàm (function); Trình bày lý do lập trình hàm trong script.",
+        "Kỹ năng: Vận dụng vòng lặp tạo nhiều nhân vật phụ cùng lúc; Vận dụng hspeed, vspeed lập trình di chuyển cho nhân vật chính; Vận dụng hàm và script tối giản các đoạn lệnh."
+      ],
+      "los": "LO 1.01",
+      "knowledge": "Trình bày mục tiêu, cách sử dụng vòng lặp while; Trình bày cách lập trình di chuyển với hspeed, vspeed; Trình bày được cách tạo, sử dụng, lý do làm hàm (function); Trình bày lý do lập trình hàm trong script.",
+      "skills": "Vận dụng vòng lặp tạo nhiều nhân vật phụ cùng lúc; Vận dụng hspeed, vspeed lập trình di chuyển cho nhân vật chính; Vận dụng hàm và script tối giản các đoạn lệnh.",
+      "lessonContent": [
+        "Khái niệm, cách sử dụng vòng lặp while.",
+        "Lập trình di chuyển với hspeed, vspeed.",
+        "Hàm và tự tạo hàm.",
+        "Khái niệm script, tạo hàm trong script."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "2": {
+      "sessionNumber": 2,
+      "title": "Xử lý va chạm",
+      "summary": "Khám phá thuật toán xử lý va chạm chính xác từng pixel (Pixel-Perfect Collision); kết hợp vòng lặp while, hàm kiểm tra hướng dấu sign() và place_meeting() để giải quyết triệt để hiện tượng kẹt tường hoặc lún sàn; đóng gói thuật toán va chạm vào Script dùng chung; bắt đầu tìm kiếm đồ họa và lập trình di chuyển cho nhân vật chính của dự án cuối khóa.",
+      "hardwareAndCommands": "Hàm toán học sign(), vòng lặp while va chạm (!place_meeting), hàm place_meeting(), đóng gói hàm va chạm trong Script.",
+      "objectives": [
+        "Kiến thức: Trình bày được cách xử lý va chạm; Trình bày lại được vai trò của hàm.",
+        "Kỹ năng: Áp dụng được cách xử lý va chạm vào lập trình; Hiểu định nghĩa hàm, sử dụng hàm vào trong bài học."
+      ],
+      "los": "LO 1.01",
+      "knowledge": "Trình bày được cách xử lý va chạm; Trình bày lại được vai trò của hàm.",
+      "skills": "Áp dụng được cách xử lý va chạm vào lập trình; Hiểu định nghĩa hàm, sử dụng hàm vào trong bài học.",
+      "lessonContent": [
+        "Tìm hiểu các cách xử lý va chạm.",
+        "Sử dụng vòng lặp while, hàm sign để xử lý va chạm chuẩn.",
+        "Ôn tập sử dụng script và hàm để tóm gọn đoạn code.",
+        "Tìm hình ảnh, lập trình di chuyển cho nhân vật chính trong sản phẩm cuối khóa."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "3": {
+      "sessionNumber": 3,
+      "title": "Cấu trúc điều kiện switch case",
+      "summary": "Tìm hiểu từ khóa with để truy cập và can thiệp thuộc tính của thực thể khác; so sánh cấu trúc if-else và cấu trúc rẽ nhánh đa trường hợp switch...case; ứng dụng switch...case để quản lý các trạng thái căn bản của nhân vật (đứng yên, chạy, nhảy, rơi, tử trận); đồng bộ Sprite hoạt ảnh tương ứng theo từng trạng thái.",
+      "hardwareAndCommands": "Từ khóa with(other/object), cấu trúc switch (state) { case ...: break; default: ...; }, biến state, đồng bộ sprite_index.",
+      "objectives": [
+        "Kiến thức: Trình bày được cách sử dụng từ khóa with trong lập trình; Hiểu cách sử dụng cấu trúc điều kiện switch case, so sánh được với cấu trúc điều kiện if - else; Trình bày được cách áp dụng switch - case để điều khiển trạng thái.",
+        "Kỹ năng: Lập trình trạng thái cho nhân vật; Áp dụng lập trình switch case vào lập trình trạng thái cho nhân vật."
+      ],
+      "knowledge": "Trình bày được cách sử dụng từ khóa with trong lập trình; Hiểu cách sử dụng cấu trúc điều kiện switch case, so sánh được với cấu trúc điều kiện if - else; Trình bày được cách áp dụng switch - case để điều khiển trạng thái.",
+      "skills": "Lập trình trạng thái cho nhân vật; Áp dụng lập trình switch case vào lập trình trạng thái cho nhân vật.",
+      "lessonContent": [
+        "Chuẩn bị tài nguyên, tìm hiểu từ khóa with trong lập trình.",
+        "Sử dụng if quản lý trạng thái nhân vật.",
+        "Cấu trúc điều kiện switch case, sử dụng switch case quản lý trạng thái nhân vật.",
+        "Lập trình hình ảnh cho nhân vật.",
+        "Học viên tiếp tục dự án cá nhân, lập trình trạng thái thua cho nhân vật chính."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "4": {
+      "sessionNumber": 4,
+      "title": "Finite State Machine",
+      "summary": "Tiếp cận mô hình thiết kế máy trạng thái hữu hạn (Finite State Machine - FSM) trong phát triển game chuyên nghiệp; xây dựng biểu đồ chuyển trạng thái rõ ràng; đóng gói hành vi của từng trạng thái thành các hàm chuyên biệt; áp dụng FSM vào lập trình nhân vật chính và kẻ địch có hành vi phức tạp (tuần tra, đuổi bắt, tấn công, choáng).",
+      "hardwareAndCommands": "Mô hình kiến trúc Finite State Machine (FSM), Enum định danh trạng thái (enum STATES { IDLE, WALK, ATTACK, HURT }), hàm thực thi trạng thái (state execution scripts).",
+      "objectives": [
+        "Kiến thức: Trình bày khái niệm finite state machine trong lập trình object; Trình bày cách chuyển giữa các state.",
+        "Kỹ năng: Áp dụng FSM cho nhân vật phụ có nhiều trạng thái; Áp dụng FSM vào sản phẩm cá nhân của học viên."
+      ],
+      "knowledge": "Trình bày khái niệm finite state machine trong lập trình object; Trình bày cách chuyển giữa các state.",
+      "skills": "Áp dụng FSM cho nhân vật phụ có nhiều trạng thái; Áp dụng FSM vào sản phẩm cá nhân của học viên.",
+      "lessonContent": [
+        "Khái niệm Finite State Machine.",
+        "Áp dụng FSM vào lập trình nhiều trạng thái.",
+        "Tiếp tục sản phẩm demo với FSM."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "5": {
+      "sessionNumber": 5,
+      "title": "Tìm hiểu nền tảng GX GAME",
+      "summary": "Thực hiện bài kiểm tra định kỳ Checkpoint 1 đánh giá kỹ năng lập trình GML chuyên sâu (Vòng lặp, Thuật toán va chạm, Script, FSM); tìm hiểu nền tảng phân phối game trực tuyến Opera GX.games; tạo tài khoản nhà phát triển và thực hành xuất bản (Publish) bản demo game lên GX.games để chơi trực tiếp trên trình duyệt web.",
+      "hardwareAndCommands": "Đề kiểm tra Checkpoint 1, nền tảng phân phối game Opera GX.games, quy trình xuất bản game WebGL/GX.games target trong GameMaker.",
+      "objectives": [
+        "Kiến thức: Tạo được tài khoản để đưa game lên gxgame; Kiểm tra checkpoint.",
+        "Kỹ năng: Kiểm tra checkpoint; Đưa được game hiện tại lên gxgame."
+      ],
+      "knowledge": "Tạo được tài khoản để đưa game lên gxgame; Kiểm tra checkpoint.",
+      "skills": "Kiểm tra checkpoint; Đưa được game hiện tại lên gxgame.",
+      "lessonContent": [
+        "Hướng dẫn đưa game lên gxgame.",
+        "Kiểm tra checkpoint định kỳ."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "6": {
+      "sessionNumber": 6,
+      "title": "Xây dựng thuật toán kẻ thù với FSM",
+      "summary": "Xây dựng trí tuệ nhân tạo (Enemy AI) cho kẻ địch bằng mô hình FSM; lập trình trạng thái tuần tra (Patrol), phát hiện người chơi trong tầm nhìn (Detect), đuổi theo (Chase) và tấn công (Attack); kiểm soát hoạt ảnh chuẩn xác bằng cặp biến image_index và image_number để chỉ chuyển trạng thái khi hoạt ảnh đánh hoàn tất.",
+      "hardwareAndCommands": "Biến hoạt ảnh image_index, image_number, hàm khoảng cách distance_to_object(), FSM AI Kẻ địch, xử lý Animation End Event.",
+      "objectives": [
+        "Kiến thức: Ôn tập cách xử lý va chạm cho đối tượng; Ôn tập lập trình FSM cho kẻ thù; Trình bày ý nghĩa việc đặt hình ảnh trước khi chuyển trạng thái.",
+        "Kỹ năng: Vận dụng kiến thức lập trình các trạng thái cho nhân vật kẻ thù; Điều chỉnh hình ảnh trước khi chuyển trạng thái."
+      ],
+      "knowledge": "Ôn tập cách xử lý va chạm cho đối tượng; Ôn tập lập trình FSM cho kẻ thù; Trình bày ý nghĩa việc đặt hình ảnh trước khi chuyển trạng thái.",
+      "skills": "Vận dụng kiến thức lập trình các trạng thái cho nhân vật kẻ thù; Điều chỉnh hình ảnh trước khi chuyển trạng thái.",
+      "lessonContent": [
+        "Ôn tập lập trình va chạm cho đối tượng.",
+        "Ôn tập lập trình FSM.",
+        "Ý nghĩa việc đặt hình ảnh trước khi chuyển trạng thái (image_index - image_number)."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "7": {
+      "sessionNumber": 7,
+      "title": "Tính kế thừa trong FSM",
+      "summary": "Khám phá sức mạnh của lập trình kế thừa (Inheritance) khi kết hợp với FSM; xây dựng lớp kẻ thù cơ sở (obj_enemy_parent) chứa toàn bộ logic chuyển trạng thái chung; thực hành tạo kẻ thù số 2 và số 3 kế thừa lớp cha nhưng ghi đè (Override) thuộc tính tốc độ, tầm nhìn, lượng máu và Sprite độc vũ khí riêng biệt.",
+      "hardwareAndCommands": "Parent Object (obj_enemy_parent), hàm event_inherited(), kỹ thuật ghi đè thuộc tính (Variable Overriding) trong Create Event.",
+      "objectives": [
+        "Kiến thức: Trình bày mục tiêu áp dụng tính kế thừa vào lập trình các đối tượng tương đương giống nhau; Trình bày cách vận dụng lập trình kế thừa vào đối tượng.",
+        "Kỹ năng: Lập trình kẻ thù số 2 kế thừa các thuộc tính của kẻ thù số 1."
+      ],
+      "knowledge": "Trình bày mục tiêu áp dụng tính kế thừa vào lập trình các đối tượng tương đương giống nhau; Trình bày cách vận dụng lập trình kế thừa vào đối tượng.",
+      "skills": "Lập trình kẻ thù số 2 kế thừa các thuộc tính của kẻ thù số 1.",
+      "lessonContent": [
+        "Tìm hiểu cơ chế kế thừa trong lập trình trạng thái FSM.",
+        "Vận dụng tính kế thừa vào lập trình kẻ thù số 2."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "8": {
+      "sessionNumber": 8,
+      "title": "Camera thông minh",
+      "summary": "Lập trình hệ thống Camera bám mượt mà (Smooth Follow Camera / Camera Lướt) sử dụng thuật toán nội suy tuyến tính (Linear Interpolation - lerp); thêm hiệu ứng rung lắc màn hình (Screen Shake) khi nhân vật bị tấn công hoặc dùng chiêu; cập nhật bản build mới nhất của trò chơi lên nền tảng GX.games và chia sẻ cho bạn bè cùng lớp trải nghiệm.",
+      "hardwareAndCommands": "Hàm nội suy lerp(), camera_get_view_x/y(), camera_set_view_pos(), hiệu ứng rung màn hình Screen Shake, xuất bản GX.games.",
+      "objectives": [
+        "Kiến thức: Trình bày được cách lập trình camera với các biến, hàm của Gamemaker; Trình bày cách đưa game lên gxgame.",
+        "Kỹ năng: Tích hợp điều khiển camera vào dự án cá nhân; Đưa game lên gxgame và chia sẻ link chơi cho các bạn."
+      ],
+      "knowledge": "Trình bày được cách lập trình camera với các biến, hàm của Gamemaker; Trình bày cách đưa game lên gxgame.",
+      "skills": "Tích hợp điều khiển camera vào dự án cá nhân; Đưa game lên gxgame và chia sẻ link chơi cho các bạn.",
+      "lessonContent": [
+        "Hướng dẫn lập trình camera lướt với code.",
+        "Hướng dẫn đưa game lên gxgame."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "9": {
+      "sessionNumber": 9,
+      "title": "",
+      "summary": "",
+      "hardwareAndCommands": "",
+      "objectives": [],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "10": {
+      "sessionNumber": 10,
+      "title": "Cải tiến sản phẩm cuối khóa",
+      "summary": "Bắt đầu giai đoạn tăng tốc hoàn thiện dự án game cá nhân Game Creator Intensive; rà soát thiết kế FSM cho nhân vật chính; lập trình các cơ chế di chuyển, nhảy, tấn công kết hợp thuật toán va chạm chuẩn xác; tích hợp Camera lướt lerp.",
+      "hardwareAndCommands": "Mô hình FSM, thuật toán va chạm pixel-perfect, Camera lerp, hệ thống Script điều khiển nhân vật.",
+      "objectives": [
+        "Kiến thức: Trình bày được tầm quan trọng của việc lập kế hoạch trong việc thực hiện dự án.",
+        "Kỹ năng: Thực hiện lập trình các chức năng chính cho dự án.",
+        "Thái độ: Đánh giá được tiến độ của dự án so với timeline đề ra."
+      ],
+      "knowledge": "Trình bày được tầm quan trọng của việc lập kế hoạch trong việc thực hiện dự án.",
+      "skills": "Thực hiện lập trình các chức năng chính cho dự án.",
+      "attitude": "Đánh giá được tiến độ của dự án so với timeline đề ra.",
+      "lessonContent": [
+        "Thực hiện lập trình cho dự án."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "11": {
+      "sessionNumber": 11,
+      "title": "Nâng cấp sản phẩm cuối khóa",
+      "summary": "Nâng cấp hệ sinh thái kẻ địch trong game: áp dụng kế thừa tạo nhiều chủng loại quái vật với các chỉ số và hành vi AI khác nhau; xây dựng hệ thống bẫy rập, vật phẩm hỗ trợ; lập trình thanh máu (HP Bar), hệ thống điểm và hiệu ứng tương tác va chạm.",
+      "hardwareAndCommands": "Kế thừa obj_enemy_parent, FSM quái vật, biến toàn cục global.hp/global.score, vẽ thanh máu draw_healthbar().",
+      "objectives": [
+        "Kiến thức: Trình bày được tầm quan trọng của việc lập kế hoạch trong việc thực hiện dự án.",
+        "Kỹ năng: Thực hiện lập trình các chức năng chính cho dự án.",
+        "Thái độ: Đánh giá được tiến độ của dự án so với timeline đề ra."
+      ],
+      "knowledge": "Trình bày được tầm quan trọng của việc lập kế hoạch trong việc thực hiện dự án.",
+      "skills": "Thực hiện lập trình các chức năng chính cho dự án.",
+      "attitude": "Đánh giá được tiến độ của dự án so với timeline đề ra.",
+      "lessonContent": [
+        "Thực hiện lập trình cho dự án."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "12": {
+      "sessionNumber": 12,
+      "title": "Kiểm thử và sửa lỗi trò chơi",
+      "summary": "Tổ chức kiểm thử toàn diện trò chơi (Gameplay Testing); cân bằng độ khó, lượng máu và tốc độ các nhân vật; thiết kế giao diện Menu chính, phòng Chiến thắng, phòng Thua cuộc; lồng ghép âm thanh nhạc nền và hiệu ứng âm thanh phong phú; xuất bản bản thử nghiệm lên GX.games để kiểm thử chéo.",
+      "hardwareAndCommands": "Hệ thống phòng Menu/Victory/GameOver, âm thanh audio_play_sound(), cân bằng thông số (Game Balancing), build thử nghiệm GX.games.",
+      "objectives": [
+        "Kiến thức: Trình bày được tầm quan trọng của việc lập kế hoạch trong việc thực hiện dự án.",
+        "Kỹ năng: Thực hiện lập trình các chức năng chính cho dự án.",
+        "Thái độ: Đánh giá được tiến độ của dự án so với timeline đề ra."
+      ],
+      "knowledge": "Trình bày được tầm quan trọng của việc lập kế hoạch trong việc thực hiện dự án.",
+      "skills": "Thực hiện lập trình các chức năng chính cho dự án.",
+      "attitude": "Đánh giá được tiến độ của dự án so với timeline đề ra.",
+      "lessonContent": [
+        "Thực hiện lập trình cho dự án."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "13": {
+      "sessionNumber": 13,
+      "title": "Nghiệm thu sản phẩm",
+      "summary": "Nghiệm thu toàn diện sản phẩm game cuối khóa; đóng gói bản phát hành chính thức lên nền tảng GX.games và file thực thi độc lập (.exe / .zip); thiết kế slide thuyết trình giới thiệu dự án (Canva / PowerPoint / Google Slides) và luyện tập kỹ năng báo cáo, trả lời câu hỏi phản biện.",
+      "hardwareAndCommands": "Đóng gói game độc lập (.exe), xuất bản bản chính thức lên GX.games, công cụ thiết kế slide Canva/Google Slides, kỹ năng thuyết trình công nghệ.",
+      "objectives": [
+        "Kiến thức: Trình bày được tầm quan trọng của việc lập kế hoạch trong việc thực hiện dự án.",
+        "Kỹ năng: Thực hiện lập trình các chức năng chính cho dự án; Thực hiện thiết kế bài trình chiếu.",
+        "Thái độ: Đánh giá được tiến độ của dự án so với timeline đề ra."
+      ],
+      "knowledge": "Trình bày được tầm quan trọng của việc lập kế hoạch trong việc thực hiện dự án.",
+      "skills": "Thực hiện lập trình các chức năng chính cho dự án; Thực hiện thiết kế bài trình chiếu.",
+      "attitude": "Đánh giá được tiến độ của dự án so với timeline đề ra.",
+      "lessonContent": [
+        "Thực hiện lập trình cho dự án.",
+        "Hoàn thiện và đóng gói sản phẩm.",
+        "Thiết kế bài trình chiếu hỗ trợ thuyết trình."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "14": {
+      "sessionNumber": 14,
+      "title": "Thuyết trình cuối khóa",
+      "summary": "Tổ chức buổi báo cáo thuyết trình dự án game GameMaker Intensive; học viên tự tin trình diễn demo gameplay trực tiếp trên nền tảng GX.games trước phụ huynh và hội đồng chuyên môn; giải thích kiến trúc FSM và giải pháp kỹ thuật GML; trả lời câu hỏi phản biện và nhận chứng chỉ tốt nghiệp khóa học.",
+      "hardwareAndCommands": "Kỹ năng thuyết trình trước đám đông, trình diễn demo gameplay trực tiếp trên GX.games, trả lời câu hỏi phản biện từ ban giám khảo.",
+      "objectives": [
+        "Kiến thức: Trình bày được các kiến thức đã học được áp dụng vào trong dự án.",
+        "Kỹ năng: Thực hiện thuyết trình sản phẩm cá nhân.",
+        "Thái độ: Đánh giá được sản phẩm của bản thân so với sản phẩm khác."
+      ],
+      "knowledge": "Trình bày được các kiến thức đã học được áp dụng vào trong dự án.",
+      "skills": "Thực hiện thuyết trình sản phẩm cá nhân.",
+      "attitude": "Đánh giá được sản phẩm của bản thân so với sản phẩm khác.",
+      "lessonContent": [
+        "Thực hiện thuyết trình giới thiệu dự án cá nhân."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    }
+  }
+}

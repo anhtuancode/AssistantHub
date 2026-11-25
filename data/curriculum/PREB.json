@@ -1,0 +1,126 @@
+{
+  "courseCode": "PREB",
+  "courseName": "Robotics Pre Basic",
+  "category": "ROBOTICS",
+  "platform": "VEX GO",
+  "cluster": "PRE",
+  "sessions": {
+    "1": {
+      "sessionNumber": 1,
+      "title": "",
+      "summary": "",
+      "hardwareAndCommands": "",
+      "objectives": [],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "2": {
+      "sessionNumber": 2,
+      "title": "",
+      "summary": "",
+      "hardwareAndCommands": "",
+      "objectives": [],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "3": {
+      "sessionNumber": 3,
+      "title": "",
+      "summary": "",
+      "hardwareAndCommands": "",
+      "objectives": [],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "4": {
+      "sessionNumber": 4,
+      "title": "",
+      "summary": "",
+      "hardwareAndCommands": "",
+      "objectives": [],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "5": {
+      "sessionNumber": 5,
+      "title": "",
+      "summary": "",
+      "hardwareAndCommands": "",
+      "objectives": [],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "6": {
+      "sessionNumber": 6,
+      "title": "",
+      "summary": "",
+      "hardwareAndCommands": "",
+      "objectives": [],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "7": {
+      "sessionNumber": 7,
+      "title": "",
+      "summary": "",
+      "hardwareAndCommands": "",
+      "objectives": [],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "8": {
+      "sessionNumber": 8,
+      "title": "",
+      "summary": "",
+      "hardwareAndCommands": "",
+      "objectives": [],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "9": {
+      "sessionNumber": 9,
+      "title": "",
+      "summary": "",
+      "hardwareAndCommands": "",
+      "objectives": [],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "10": {
+      "sessionNumber": 10,
+      "title": "",
+      "summary": "",
+      "hardwareAndCommands": "",
+      "objectives": [],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "11": {
+      "sessionNumber": 11,
+      "title": "",
+      "summary": "",
+      "hardwareAndCommands": "",
+      "objectives": [],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "12": {
+      "sessionNumber": 12,
+      "title": "",
+      "summary": "",
+      "hardwareAndCommands": "",
+      "objectives": [],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "13": {
+      "sessionNumber": 13,
+      "title": "",
+      "summary": "",
+      "hardwareAndCommands": "",
+      "objectives": [],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    }
+  }
+}

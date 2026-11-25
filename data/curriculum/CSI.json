@@ -1,0 +1,323 @@
+{
+  "courseCode": "CSI",
+  "courseName": "Computer Scientist - Intensive",
+  "category": "CODING",
+  "platform": "Computer Science",
+  "cluster": "COMPUTER_SCIENCE",
+  "targetAge": "14 - 18 Tuổi",
+  "duration": "120 phút/buổi",
+  "version": "Ver 01/02 - 2024 (Hiệu lực)",
+  "sessions": {
+    "1": {
+      "sessionNumber": 1,
+      "title": "Thế giới AI",
+      "summary": "Khám phá tổng quan thế giới Trí tuệ nhân tạo (AI): phân biệt chương trình truyền thống và AI, phân định ranh giới giữa AI - Machine Learning - Deep Learning; tìm hiểu nguyên lý hoạt động của Mạng nơ-ron nhân tạo (Artificial Neural Network) và định hướng sản phẩm ứng dụng AI hoàn chỉnh cuối khóa.",
+      "hardwareAndCommands": "Tổng quan AI/ML/DL, Mạng nơ-ron nhân tạo (Neural Network), Perceptron, hàm kích hoạt (Activation Function), tiêu chuẩn đạo đức AI (AI Ethics).",
+      "objectives": [
+        "Kiến thức: Hiểu được mục đích và hình thức đầu ra là sản phẩm hoàn chỉnh của level Intensive; Hiểu các khái niệm cơ bản về AI; Hiểu những hạn chế của AI trong đời sống và xã hội; Hiểu nguồn gốc của mạng neuron và cách mạng neuron hoạt động.",
+        "Kỹ năng: Phân biệt được chương trình truyền thống và chương trình AI; Phân loại được AI theo khả năng và chức năng; Phân biệt các khái niệm AI - Học máy - Học sâu.",
+        "Thái độ: Nhận thức những hạn chế của AI trong thực tế; Có thái độ sử dụng và xây dựng AI có chuẩn mực."
+      ],
+      "los": "S.LO.I.05, S.LO.II.05, S.LO.III.05, S.LO.IV.04",
+      "knowledge": "Hiểu được mục đích và hình thức đầu ra là sản phẩm hoàn chỉnh của level Intensive; Hiểu các khái niệm cơ bản về AI; Hiểu những hạn chế của AI trong đời sống và xã hội; Hiểu nguồn gốc của mạng neuron và cách mạng neuron hoạt động.",
+      "skills": "Phân biệt được chương trình truyền thống và chương trình AI; Phân loại được AI theo khả năng và chức năng; Phân biệt các khái niệm AI - Học máy - Học sâu.",
+      "attitude": "Nhận thức những hạn chế của AI trong thực tế; Có thái độ sử dụng và xây dựng AI có chuẩn mực.",
+      "lessonContent": [
+        "Giới thiệu sản phẩm đầu ra của level Intensive.",
+        "Các khái niệm về AI.",
+        "Ảnh hưởng của AI trong đời sống và xã hội.",
+        "AI được huấn luyện như thế nào: Làm quen với Mạng Neuron."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "2": {
+      "sessionNumber": 2,
+      "title": "Huấn luyện đôi mắt máy tính",
+      "summary": "Làm quen với framework học sâu Keras/TensorFlow qua bài toán chuyển đổi nhiệt độ; tiếp cận kiến trúc mạng nơ-ron tích chập (CNN - Convolutional Neural Network) với các lớp Convolution, MaxPooling, Flatten và Dense; thực hành huấn luyện mô hình nhận dạng chữ số viết tay trên tập dữ liệu chuẩn MNIST.",
+      "hardwareAndCommands": "TensorFlow & Keras (Sequential, Conv2D, MaxPooling2D, Flatten, Dense), tập dữ liệu MNIST, hàm tối ưu Adam, hàm mất mát (loss function), độ chính xác (accuracy).",
+      "objectives": [
+        "Kiến thức: Hiểu ưu điểm của thư viện Tensorflow và Keras trong Học sâu; Hiểu cách hoạt động của mạng CNN; Hiểu nhiệm vụ của các layer Convolution, MaxPool và Flatten.",
+        "Kỹ năng: Thực hành mô tả bài toán học sâu bằng mạng Neuron; Thực hành xây dựng mô hình chuyển đổi độ F sang độ C với Keras; Thực hành xây dựng mạng CNN phân loại bộ dữ liệu MNIST.",
+        "Thái độ: Đánh giá độ hiệu quả của kiến trúc mạng neuron; Sáng tạo mô hình học sâu hiệu quả."
+      ],
+      "los": "S.LO.I.05, S.LO.II.05",
+      "knowledge": "Hiểu ưu điểm của thư viện Tensorflow và Keras trong Học sâu; Hiểu cách hoạt động của mạng CNN; Hiểu nhiệm vụ của các layer Convolution, MaxPool và Flatten.",
+      "skills": "Thực hành mô tả bài toán học sâu bằng mạng Neuron; Thực hành xây dựng mô hình chuyển đổi độ F sang độ C với Keras; Thực hành xây dựng mạng CNN phân loại bộ dữ liệu MNIST.",
+      "attitude": "Đánh giá độ hiệu quả của kiến trúc mạng neuron; Sáng tạo mô hình học sâu hiệu quả.",
+      "lessonContent": [
+        "Tạo mạng neuron với framework Keras.",
+        "Thực hành: Mô hình chuyển đổi độ F sang độ C.",
+        "Mạng neuron tích chập (Convolutional Neural Network).",
+        "Thực hành: Phân loại chữ số viết tay với tập dữ liệu MNIST."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "3": {
+      "sessionNumber": 3,
+      "title": "Mini Project: Phân loại hình ảnh (Phần 1)",
+      "summary": "Khảo sát các bài toán cốt lõi trong Thị giác máy tính (Computer Vision); khởi động Mini Project phân loại bảng chữ cái thủ ngữ (Sign Language Recognition); thiết lập môi trường điện toán đám mây Kaggle Notebook với GPU; thực hiện tiền xử lý dữ liệu ảnh và huấn luyện mô hình CNN với Keras API.",
+      "hardwareAndCommands": "Kaggle Notebooks (GPU T4/P100), Keras Image Preprocessing (ImageDataGenerator / tf.data), huấn luyện mạng CNN phân loại cử chỉ bàn tay thủ ngữ (Sign Language MNIST).",
+      "objectives": [
+        "Kiến thức: Nhận biết các bài toán trong lĩnh vực thị giác máy tính; Phát biểu được bài toán phân loại hình ảnh; Hiểu tầm quan trọng của cấu trúc CNN trong bài toán phân loại; Hiểu tầm quan trọng của tài nguyên máy tính trong huấn luyện mô hình AI.",
+        "Kỹ năng: Phân tích yêu cầu ứng dụng thủ ngữ; Thực hành làm quen với IDE Kaggle Notebook; Vận dụng kĩ năng về mô hình CNN để huấn luyện mô hình phân loại bảng chữ cái thủ ngữ.",
+        "Thái độ: Xây dựng mô hình phân loại phù hợp với dữ liệu và yêu cầu bài toán."
+      ],
+      "los": "S.LO.I.05, S.LO.II.05, S.LO.V.05",
+      "knowledge": "Nhận biết các bài toán trong lĩnh vực thị giác máy tính; Phát biểu được bài toán phân loại hình ảnh; Hiểu tầm quan trọng của cấu trúc CNN trong bài toán phân loại; Hiểu tầm quan trọng của tài nguyên máy tính trong huấn luyện mô hình AI.",
+      "skills": "Phân tích yêu cầu ứng dụng thủ ngữ; Thực hành làm quen với IDE Kaggle Notebook; Vận dụng kĩ năng về mô hình CNN để huấn luyện mô hình phân loại bảng chữ cái thủ ngữ.",
+      "attitude": "Xây dựng mô hình phân loại phù hợp với dữ liệu và yêu cầu bài toán.",
+      "lessonContent": [
+        "Các bài toán chính trong lĩnh vực thị giác máy tính.",
+        "Bài toán phân loại hình ảnh.",
+        "Tìm hiểu kiến trúc phân loại.",
+        "Huấn luyện mô hình phân loại: Chuẩn bị dữ liệu và huấn luyện mô hình (Keras API)."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "4": {
+      "sessionNumber": 4,
+      "title": "Mini Project: Phân loại hình ảnh (Phần 2)",
+      "summary": "Đóng gói mô hình CNN đã huấn luyện và tích hợp vào ứng dụng web hoàn chỉnh; xây dựng giao diện tương tác với Streamlit cho phép người dùng tải lên hình ảnh cử chỉ hoặc chụp từ webcam; hiển thị kết quả phân loại chữ cái thủ ngữ và xác suất dự đoán thời gian thực.",
+      "hardwareAndCommands": "Streamlit (st.file_uploader, st.camera_input, st.image), nạp mô hình tf.keras.models.load_model, tiền xử lý ảnh đầu vào (resize, normalize) và hiển thị kết quả phân loại.",
+      "objectives": [
+        "Kiến thức: Nhớ các bước để phát triển ứng dụng AI; Nhớ các thành phần giao diện.",
+        "Kỹ năng: Thực hành dự đoán trên một ảnh và nhiều ảnh; Phân tích yêu cầu ứng dụng và luồng sử dụng của người dùng; Lựa chọn các thành phần giao diện phù hợp; Vận dụng các thành phần giao diện Streamlit để xây dựng luồng sử dụng.",
+        "Thái độ: Đánh giá mức độ hiệu quả của mô hình phân loại dựa trên kết quả dự đoán; Xây dựng giao diện phù hợp với tính năng ứng dụng."
+      ],
+      "los": "S.LO.I.05, S.LO.II.05, S.LO.V.05",
+      "knowledge": "Nhớ các bước để phát triển ứng dụng AI; Nhớ các thành phần giao diện.",
+      "skills": "Thực hành dự đoán trên một ảnh và nhiều ảnh; Phân tích yêu cầu ứng dụng và luồng sử dụng của người dùng; Lựa chọn các thành phần giao diện phù hợp; Vận dụng các thành phần giao diện Streamlit để xây dựng luồng sử dụng.",
+      "attitude": "Đánh giá mức độ hiệu quả của mô hình phân loại dựa trên kết quả dự đoán; Xây dựng giao diện phù hợp với tính năng ứng dụng.",
+      "lessonContent": [
+        "Thực hành: Xây dựng ứng dụng phân loại chữ cái thủ ngữ (tiếp): Phân tích luồng sử dụng ứng dụng; Xây dựng giao diện cho ứng dụng bằng Streamlit."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "5": {
+      "sessionNumber": 5,
+      "title": "Kiểm tra Checkpoint 1",
+      "summary": "Thực hiện bài kiểm tra định kỳ Checkpoint 1 đánh giá toàn diện kiến thức mạng nơ-ron, kiến trúc CNN và kỹ năng xây dựng ứng dụng thị giác máy tính với Keras & Streamlit; hoàn thiện và demo Mini Project nhận diện chữ cái thủ ngữ.",
+      "hardwareAndCommands": "Đề kiểm tra Checkpoint 1, kỹ năng debug mô hình học sâu, hoàn thiện ứng dụng phân loại thủ ngữ Streamlit.",
+      "objectives": [
+        "Kiến thức: Kiểm tra kiến thức của các buổi 1, 2, 3, 4.",
+        "Kỹ năng: Kiểm tra kỹ năng của các buổi 1, 2, 3, 4.",
+        "Thái độ: Có thái độ trung thực, cẩn thận; Xây dựng chương trình để giải quyết vấn đề; Đánh giá Mini Project sau khi đã hoàn thiện."
+      ],
+      "los": "S.LO.I.05, S.LO.IV.04, S.LO.IV.05, S.LO.V.05",
+      "knowledge": "Kiểm tra kiến thức của các buổi 1, 2, 3, 4.",
+      "skills": "Kiểm tra kỹ năng của các buổi 1, 2, 3, 4.",
+      "attitude": "Có thái độ trung thực, cẩn thận; Xây dựng chương trình để giải quyết vấn đề; Đánh giá Mini Project sau khi đã hoàn thiện.",
+      "lessonContent": [
+        "Kiểm tra Checkpoint 1.",
+        "Hoàn thiện Mini Project: Phân loại chữ cái thủ ngữ."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "6": {
+      "sessionNumber": 6,
+      "title": "Nói chuyện với máy tính",
+      "summary": "Bước vào lĩnh vực Xử lý ngôn ngữ tự nhiên (NLP): tìm hiểu kỹ thuật phân rã từ khóa (Tokenization) và biểu diễn từ ngữ (Word Embedding); thực hành tiền xử lý văn bản với TensorFlow Tokenizer và xây dựng mô hình phân tích cảm xúc (Sentiment Analysis) đánh giá bình luận tích cực/tiêu cực.",
+      "hardwareAndCommands": "TensorFlow Keras NLP (Tokenizer, texts_to_sequences, pad_sequences), lớp nhúng Embedding, mô hình GlobalAveragePooling1D/LSTM phân loại cảm xúc văn bản.",
+      "objectives": [
+        "Kiến thức: Phát biểu định nghĩa NLP; Liệt kê các ứng dụng NLP; Hiểu tokenization là kỹ thuật khiến mô hình NLP hiểu ngôn ngữ; Trình bày được cách tokenize một câu.",
+        "Kỹ năng: Vận dụng kiến thức thống kê để cân bằng số mẫu của các class; Vận dụng tokenization để xử lý dữ liệu văn bản; Vận dụng kĩ thuật huấn luyện và dự đoán để xây dựng mô hình phân tích cảm xúc.",
+        "Thái độ: Đánh giá ý nghĩa thực tế của ứng dụng NLP phân tích cảm xúc; Xây dựng mô hình NLP với layer Embedding bằng keras."
+      ],
+      "los": "S.LO.I.05, S.LO.IV.04, S.LO.V.05",
+      "knowledge": "Phát biểu định nghĩa NLP; Liệt kê các ứng dụng NLP; Hiểu tokenization là kỹ thuật khiến mô hình NLP hiểu ngôn ngữ; Trình bày được cách tokenize một câu.",
+      "skills": "Vận dụng kiến thức thống kê để cân bằng số mẫu của các class; Vận dụng tokenization để xử lý dữ liệu văn bản; Vận dụng kĩ thuật huấn luyện và dự đoán để xây dựng mô hình phân tích cảm xúc.",
+      "attitude": "Đánh giá ý nghĩa thực tế của ứng dụng NLP phân tích cảm xúc; Xây dựng mô hình NLP với layer Embedding bằng keras.",
+      "lessonContent": [
+        "Xử lý ngôn ngữ tự nhiên là gì?",
+        "Kỹ thuật Tokenization.",
+        "Các bước tokenize văn bản bằng Tensorflow.",
+        "Phân tích cảm xúc.",
+        "Thực hành: Phân tích cảm xúc bình luận."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "7": {
+      "sessionNumber": 7,
+      "title": "Mini Project: Chatbot (Phần 1)",
+      "summary": "Khám phá bước đột phá của Mô hình ngôn ngữ lớn (LLM); làm quen với Google Gemini API và Google GenAI SDK; học cách thiết lập, quản lý và bảo mật biến môi trường GEMINI_API_KEY; thực hành kết nối API để khởi tạo trợ lý ảo thông minh cho nhà hàng.",
+      "hardwareAndCommands": "Google GenAI SDK (google-genai / google-generativeai), GEMINI_API_KEY, bảo mật biến môi trường (.env, python-dotenv), gọi mô hình gemini-2.5-flash / gemini-1.5-flash.",
+      "objectives": [
+        "Kiến thức: So sánh chatbot truyền thống và chatbot AI; Phân biệt LLM và mô hình NLP đơn giản; Liệt kê các ứng dụng LLM trong thực tế; Hiểu vai trò của Gemini API, API key và SDK trong ứng dụng chatbot.",
+        "Kỹ năng: Phân tích yêu cầu ứng dụng trợ lý ảo nhà hàng; Tạo/kiểm tra Gemini API key theo hướng dẫn; Thiết lập môi trường với `GEMINI_API_KEY`; Gọi Gemini API bằng Google GenAI SDK.",
+        "Thái độ: Xây dựng và sử dụng LLM phù hợp và có trách nhiệm; Nhận thức tầm quan trọng của việc lưu trữ API key an toàn; Không chia sẻ, hard-code hoặc commit API key lên GitHub; Có phương án xử lý khi API lỗi hoặc thiếu key."
+      ],
+      "los": "S.LO.I.05, S.LO.II.05, S.LO.V.05",
+      "knowledge": "So sánh chatbot truyền thống và chatbot AI; Phân biệt LLM và mô hình NLP đơn giản; Liệt kê các ứng dụng LLM trong thực tế; Hiểu vai trò của Gemini API, API key và SDK trong ứng dụng chatbot.",
+      "skills": "Phân tích yêu cầu ứng dụng trợ lý ảo nhà hàng; Tạo/kiểm tra Gemini API key theo hướng dẫn; Thiết lập môi trường với `GEMINI_API_KEY`; Gọi Gemini API bằng Google GenAI SDK.",
+      "attitude": "Xây dựng và sử dụng LLM phù hợp và có trách nhiệm; Nhận thức tầm quan trọng của việc lưu trữ API key an toàn; Không chia sẻ, hard-code hoặc commit API key lên GitHub; Có phương án xử lý khi API lỗi hoặc thiếu key.",
+      "lessonContent": [
+        "Chatbot là một ứng dụng NLP.",
+        "Chatbot truyền thống và chatbot AI.",
+        "Mô hình ngôn ngữ lớn (LLM).",
+        "Gemini API và Google GenAI SDK.",
+        "Cách lấy, active và bảo mật Gemini API key.",
+        "Thực hành: Xây dựng trợ lý ảo nhà hàng với Google Gemini API."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "8": {
+      "sessionNumber": 8,
+      "title": "Mini Project: Chatbot (Phần 2)",
+      "summary": "Nghệ thuật thiết kế câu lệnh Prompt Engineering (hướng dẫn, bối cảnh, định dạng dữ liệu); xây dựng giao diện hội thoại đa lượt mượt mà với Streamlit Chat UI (st.chat_message, st.chat_input); quản lý bộ nhớ phiên với st.session_state; tích hợp menu nhà hàng từ CSV/JSON vào trợ lý AI.",
+      "hardwareAndCommands": "Prompt Engineering kỹ thuật System Instructions, Streamlit Chat Elements (st.chat_message, st.chat_input, st.session_state), nạp dữ liệu menu.csv, config.json.",
+      "objectives": [
+        "Kiến thức: Hiểu lợi ích của prompt engineering khi sử dụng mô hình LLM; Hiểu cấu trúc prompt gồm hướng dẫn, vai trò, bối cảnh và định dạng đầu ra; Hiểu khái niệm trạng thái ứng dụng qua `st.session_state`; Hiểu cách chatbot UI kết nối với Gemini API hoặc Mock Response.",
+        "Kỹ năng: Áp dụng cấu trúc prompt để hướng dẫn mô hình LLM hiệu quả; Phân tích luồng sử dụng và giao diện của ứng dụng chatbot; Xây dựng giao diện chatbot bằng Streamlit Chat UI; Lưu và hiển thị lịch sử hội thoại bằng `st.session_state`; Kết nối app với `config.json`, `menu.csv`.",
+        "Thái độ: Xây dựng giao diện chatbot phù hợp với người dùng; Có trách nhiệm khi thiết kế prompt và giới hạn phạm vi trả lời của LLM; Không để lộ API key trong source code; Biết kiểm tra, xử lý lỗi và cải thiện trải nghiệm người dùng."
+      ],
+      "los": "S.LO.I.05, S.LO.IV.04, S.LO.IV.05, S.LO.V.05",
+      "knowledge": "Hiểu lợi ích của prompt engineering khi sử dụng mô hình LLM; Hiểu cấu trúc prompt gồm hướng dẫn, vai trò, bối cảnh và định dạng đầu ra; Hiểu khái niệm trạng thái ứng dụng qua `st.session_state`; Hiểu cách chatbot UI kết nối với Gemini API hoặc Mock Response.",
+      "skills": "Áp dụng cấu trúc prompt để hướng dẫn mô hình LLM hiệu quả; Phân tích luồng sử dụng và giao diện của ứng dụng chatbot; Xây dựng giao diện chatbot bằng Streamlit Chat UI; Lưu và hiển thị lịch sử hội thoại bằng `st.session_state`; Kết nối app với `config.json`, `menu.csv`.",
+      "attitude": "Xây dựng giao diện chatbot phù hợp với người dùng; Có trách nhiệm khi thiết kế prompt và giới hạn phạm vi trả lời của LLM; Không để lộ API key trong source code; Biết kiểm tra, xử lý lỗi và cải thiện trải nghiệm người dùng.",
+      "lessonContent": [
+        "Prompt Engineering.",
+        "Thực hành: Phân tích luồng sử dụng và giao diện chatbot.",
+        "Streamlit Chat UI và quản lý trạng thái bằng st.session_state.",
+        "Tích hợp Gemini API/mock response vào ứng dụng Streamlit.",
+        "Quản lý API key an toàn khi chạy local và khi deploy."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "9": {
+      "sessionNumber": 9,
+      "title": "Kiểm tra Checkpoint 2",
+      "summary": "Thực hiện bài kiểm tra định kỳ Checkpoint 2 đánh giá năng lực xử lý ngôn ngữ tự nhiên, kỹ thuật Prompt Engineering và tích hợp LLM API; hoàn thiện toàn diện ứng dụng trợ lý ảo nhà hàng và kiểm thử các kịch bản hội thoại.",
+      "hardwareAndCommands": "Đề kiểm tra Checkpoint 2, kiểm thử các kịch bản hội thoại Chatbot, xử lý fallback/error handling khi gọi API.",
+      "objectives": [
+        "Kiến thức: Kiểm tra kiến thức của các buổi 6, 7, 8.",
+        "Kỹ năng: Kiểm tra kỹ năng của các buổi 6, 7, 8; Phân tích ứng dụng Mini Project 2 sau khi đã hoàn thiện.",
+        "Thái độ: Có thái độ trung thực, cẩn thận; Xây dựng chương trình để giải quyết vấn đề; Đánh giá Mini Project sau khi đã hoàn thiện."
+      ],
+      "los": "S.LO.I.05, S.LO.III.05, S.LO.IV.04, S.LO.IV.05, S.LO.V.05",
+      "knowledge": "Kiểm tra kiến thức của các buổi 6, 7, 8.",
+      "skills": "Kiểm tra kỹ năng của các buổi 6, 7, 8; Phân tích ứng dụng Mini Project 2 sau khi đã hoàn thiện.",
+      "attitude": "Có thái độ trung thực, cẩn thận; Xây dựng chương trình để giải quyết vấn đề; Đánh giá Mini Project sau khi đã hoàn thiện.",
+      "lessonContent": [
+        "Kiểm tra Checkpoint 2.",
+        "Hoàn thiện Mini Project: Trợ lý ảo nhà hàng."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "10": {
+      "sessionNumber": 10,
+      "title": "Thực hành xây dựng ứng dụng AI (Phần 1)",
+      "summary": "Khởi động dự án tốt nghiệp ứng dụng AI cuối khóa: lên ý tưởng giải quyết bài toán thực tiễn xã hội bằng AI (Computer Vision, NLP hoặc LLM Agent); lựa chọn ngăn xếp công nghệ (Keras, Gemini API, Streamlit); xây dựng bản kế hoạch phát triển và timeline chi tiết.",
+      "hardwareAndCommands": "Phương pháp luận quản lý dự án AI, thiết kế kiến trúc phần mềm AI, lựa chọn tech-stack (Keras, OpenCV, Gemini API, Streamlit).",
+      "objectives": [
+        "Kiến thức: Nhớ lại kiến thức các buổi đã học.",
+        "Kỹ năng: Vận dụng kiến thức lên kế hoạch dự án để xây dựng kế hoạch; Vận dụng thư viện và các nền tảng đã học để chọn công nghệ phù hợp.",
+        "Thái độ: Sáng tạo dự án giải quyết vấn đề cộng đồng."
+      ],
+      "los": "S.LO.I.05, S.LO.III.05, S.LO.II.05, S.LO.IV.05",
+      "knowledge": "Nhớ lại kiến thức các buổi đã học.",
+      "skills": "Vận dụng kiến thức lên kế hoạch dự án để xây dựng kế hoạch; Vận dụng thư viện và các nền tảng đã học để chọn công nghệ phù hợp.",
+      "attitude": "Sáng tạo dự án giải quyết vấn đề cộng đồng.",
+      "lessonContent": [
+        "Lên ý tưởng dự án cuối khoá.",
+        "Lập kế hoạch phát triển ứng dụng."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "11": {
+      "sessionNumber": 11,
+      "title": "Thực hành xây dựng ứng dụng AI (Phần 2)",
+      "summary": "Thu thập và chuẩn bị tập dữ liệu huấn luyện hoặc dữ liệu tri thức cơ sở (Knowledge Base) cho ứng dụng; lập trình xây dựng lõi trí tuệ nhân tạo: huấn luyện mô hình học sâu CNN hoặc cấu hình hệ thống Prompt/System Instructions cho LLM API.",
+      "hardwareAndCommands": "Tiền xử lý dữ liệu AI, huấn luyện mô hình Keras/TensorFlow hoặc cấu hình Google GenAI SDK, tối ưu hóa siêu tham số (Hyperparameters).",
+      "objectives": [
+        "Kiến thức: Nhớ lại kiến thức các buổi đã học.",
+        "Kỹ năng: Vận dụng kiến thức lên kế hoạch dự án để xây dựng kế hoạch; Vận dụng thư viện và các nền tảng đã học để chọn công nghệ phù hợp.",
+        "Thái độ: Sáng tạo dự án giải quyết vấn đề cộng đồng."
+      ],
+      "los": "S.LO.I.05, S.LO.II.05, S.LO.III.05, S.LO.IV.05",
+      "knowledge": "Nhớ lại kiến thức các buổi đã học.",
+      "skills": "Vận dụng kiến thức lên kế hoạch dự án để xây dựng kế hoạch; Vận dụng thư viện và các nền tảng đã học để chọn công nghệ phù hợp.",
+      "attitude": "Sáng tạo dự án giải quyết vấn đề cộng đồng.",
+      "lessonContent": [
+        "Xây dựng dự án cuối khoá: Thu thập dữ liệu cho mô hình.",
+        "Xây dựng dự án cuối khoá: Xây dựng mô hình AI."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "12": {
+      "sessionNumber": 12,
+      "title": "Thực hành xây dựng ứng dụng AI (Phần 3)",
+      "summary": "Tinh chỉnh và hoàn thiện độ chính xác của mô hình AI; bắt tay vào xây dựng giao diện người dùng tương tác trực quan với Streamlit; kết nối liền mạch giữa luồng nhập liệu giao diện và khối xử lý suy luận AI (Inference pipeline).",
+      "hardwareAndCommands": "Thiết kế UI/UX Streamlit tương tác, kết nối mô hình AI inference pipeline, hiển thị kết quả phân tích số liệu và đồ họa trực quan.",
+      "objectives": [
+        "Kiến thức: Nhớ lại kiến thức các buổi đã học.",
+        "Kỹ năng: Vận dụng kiến thức lên kế hoạch dự án để xây dựng kế hoạch; Vận dụng thư viện và các nền tảng đã học để chọn công nghệ phù hợp.",
+        "Thái độ: Sáng tạo dự án giải quyết vấn đề cộng đồng."
+      ],
+      "los": "S.LO.I.05, S.LO.II.05, S.LO.III.05, S.LO.IV.05",
+      "knowledge": "Nhớ lại kiến thức các buổi đã học.",
+      "skills": "Vận dụng kiến thức lên kế hoạch dự án để xây dựng kế hoạch; Vận dụng thư viện và các nền tảng đã học để chọn công nghệ phù hợp.",
+      "attitude": "Sáng tạo dự án giải quyết vấn đề cộng đồng.",
+      "lessonContent": [
+        "Xây dựng dự án cuối khoá: Hoàn thiện mô hình AI.",
+        "Xây dựng dự án cuối khoá: Xây dựng giao diện cho ứng dụng."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "13": {
+      "sessionNumber": 13,
+      "title": "Thực hành xây dựng ứng dụng AI (Phần 4)",
+      "summary": "Hoàn thiện trọn gói giao diện và tính năng ứng dụng; deploy triển khai ứng dụng lên nền tảng đám mây (Streamlit Community Cloud / Render / Hugging Face Spaces); thiết kế slide thuyết trình tốt nghiệp chuyên nghiệp và tập dượt báo cáo thử.",
+      "hardwareAndCommands": "Triển khai đám mây (Streamlit Community Cloud / Hugging Face Spaces), quản lý Secrets/API keys khi deploy, bộ slide báo cáo Canva/Google Slides.",
+      "objectives": [
+        "Kiến thức: Nhớ lại kiến thức các buổi đã học.",
+        "Kỹ năng: Vận dụng kiến thức lên kế hoạch dự án để xây dựng kế hoạch; Vận dụng thư viện và các nền tảng đã học để chọn công nghệ phù hợp.",
+        "Thái độ: Sáng tạo dự án giải quyết vấn đề cộng đồng; Xây dựng bản thuyết trình cho dự án cuối khoá một cách rõ ràng, thuyết phục và hấp dẫn."
+      ],
+      "los": "S.LO.I.05, S.LO.II.05, S.LO.III.05, S.LO.IV.05",
+      "knowledge": "Nhớ lại kiến thức các buổi đã học.",
+      "skills": "Vận dụng kiến thức lên kế hoạch dự án để xây dựng kế hoạch; Vận dụng thư viện và các nền tảng đã học để chọn công nghệ phù hợp.",
+      "attitude": "Sáng tạo dự án giải quyết vấn đề cộng đồng; Xây dựng bản thuyết trình cho dự án cuối khoá một cách rõ ràng, thuyết phục và hấp dẫn.",
+      "lessonContent": [
+        "Xây dựng dự án cuối khoá: Hoàn thiện giao diện cho ứng dụng.",
+        "Xây dựng dự án cuối khoá: Triển khai ứng dụng.",
+        "Xây dựng dự án cuối khoá: Xây dựng bài thuyết trình."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "14": {
+      "sessionNumber": 14,
+      "title": "Thuyết trình dự án cuối khoá",
+      "summary": "Buổi lễ tốt nghiệp và bảo vệ sản phẩm công nghệ Computer Scientist Intensive; học viên tự tin thuyết trình giải pháp AI, demo trực tiếp ứng dụng hoạt động trên Internet và trả lời phản biện xuất sắc trước hội đồng chuyên môn và phụ huynh.",
+      "hardwareAndCommands": "Kỹ năng thuyết trình công nghệ AI trước đám đông, demo ứng dụng live, trả lời câu hỏi phản biện chuyên sâu từ hội đồng.",
+      "objectives": [
+        "Kiến thức: Nhớ lại các kiến thức ở buổi 1-9.",
+        "Kỹ năng: Áp dụng kiến thức và kỹ năng đã học ở buổi 1-9 để giải thích mục tiêu - trình bày - phân tích kết quả của dự án.",
+        "Thái độ: Trình bày quá trình làm việc của dự án cuối khóa một cách tự tin và logic; Giao tiếp và trả lời câu hỏi một cách rõ ràng và hiệu quả để thuyết phục khán giả."
+      ],
+      "los": "S.LO.III.05, S.LO.IV.05, S.LO.V.05",
+      "knowledge": "Nhớ lại các kiến thức ở buổi 1-9.",
+      "skills": "Áp dụng kiến thức và kỹ năng đã học ở buổi 1-9 để giải thích mục tiêu - trình bày - phân tích kết quả của dự án.",
+      "attitude": "Trình bày quá trình làm việc của dự án cuối khóa một cách tự tin và logic; Giao tiếp và trả lời câu hỏi một cách rõ ràng và hiệu quả để thuyết phục khán giả.",
+      "lessonContent": [
+        "Thuyết trình quá trình làm việc và trình bày kết quả.",
+        "Demo ứng dụng.",
+        "Trả lời câu hỏi và tương tác với khán giả."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    }
+  }
+}

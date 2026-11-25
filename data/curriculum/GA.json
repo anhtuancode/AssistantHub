@@ -1,0 +1,302 @@
+{
+  "courseCode": "GA",
+  "courseName": "Game Creator - Advanced",
+  "category": "CODING",
+  "platform": "GameMaker",
+  "cluster": "GAMEMAKER",
+  "targetAge": "9 - 15 Tuổi",
+  "duration": "120 phút/buổi",
+  "version": "Ver 2024",
+  "sessions": {
+    "1": {
+      "sessionNumber": 1,
+      "title": "Ngôn ngữ lập trình GML",
+      "summary": "Bước đầu làm quen với ngôn ngữ lập trình GameMaker Language (GML); tìm hiểu các biến môi trường tốc độ ngang (hspeed), tốc độ dọc (vspeed) và gia tốc trọng trường (gravity); tìm hiểu khái niệm đối tượng rắn (solid object); lập trình hiệu ứng cuộn phông nền đa lớp Parallax Scrolling sống động.",
+      "hardwareAndCommands": "Ngôn ngữ GameMaker Language (GML), biến tích hợp hspeed, vspeed, gravity, thuộc tính Solid của Object, hiệu ứng Parallax Background.",
+      "objectives": [
+        "Kiến thức: Trình bày nguyên lý hiệu ứng Parallax; Nắm vững khái niệm cơ bản GML; Diễn giải chức năng của gravity và tương tác giữa vspeed với trọng lực.",
+        "Kỹ năng: Lập trình phông nền cuộn Parallax; Thao tác và kiểm soát biến tốc độ hspeed, vspeed và gravity trong game.",
+        "Thái độ: Hứng thú làm quen với ngôn ngữ mã lệnh GML và rèn luyện tư duy vật lý trong trò chơi 2D."
+      ],
+      "knowledge": "Trình bày được hiệu ứng Parallax; Trình bày được các khái niệm lập trình trong ngôn ngữ Gamemaker Language; Diễn giải chức năng của action gravity; Diễn giải được biến vspeed khi tương tác với gravity.",
+      "skills": "Thực hiện được hiệu ứng phông nền Parallax; Trình bày lại được khái niệm gravity; Tự thao tác với các biến hspeed, vspeed bằng thao tác DnD (kéo thả).",
+      "attitude": "Hứng thú bước đầu làm quen với ngôn ngữ mã lệnh GameMaker Language (GML) và rèn luyện tư duy vật lý trong trò chơi 2D.",
+      "lessonContent": [
+        "Thực hành lập trình mã lệnh cho hiệu ứng Parallax.",
+        "Làm quen với horizontal speed, vertical speed.",
+        "Tìm hiểu về solid object."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "2": {
+      "sessionNumber": 2,
+      "title": "Mario Run",
+      "summary": "Khám phá chuyên sâu cú pháp GML thông qua dự án kinh điển 'Mario Run'; phân biệt biến tích hợp sẵn (Built-in variables) và biến tự tạo (Custom variables); làm chủ cơ chế vật lý nhảy và trọng lực; lập trình chuyển động chạy ngang, nhảy cao, rơi tự do và đứng yên trên bề mặt nền; làm quen với khối lệnh điều kiện if trong GML.",
+      "hardwareAndCommands": "Cú pháp code GML, khối lệnh điều kiện if (...){...}, biến trọng lực gravity, gravity_direction, nhảy vspeed = -jump_power, phím bấm keyboard_check.",
+      "objectives": [
+        "Kiến thức: Trình bày khái niệm cốt lõi GML; Phân biệt biến tích hợp và biến tự tạo; Diễn giải sự tương tác giữa vspeed, hspeed và gravity.",
+        "Kỹ năng: Lập trình cơ chế di chuyển trái/phải, nhảy và tiếp đất theo chiều dọc bằng code GML; Viết cấu trúc điều kiện if với cặp ngoặc nhọn { }.",
+        "Thái độ: Tỉ mỉ kiểm tra cú pháp khối lệnh và cấu trúc khối if trong mã nguồn GML."
+      ],
+      "knowledge": "Trình bày được các khái niệm lập trình trong ngôn ngữ Gamemaker Language; Trình bày được ý nghĩa của biến, biến môi trường, biến tự tạo; Diễn giải được biến vspeed khi tương tác với gravity; Diễn giải tương tác giữa vspeed và hspeed.",
+      "skills": "Lập trình nhảy, di chuyển trái phải, dừng lại theo chiều dọc; Sử dụng GML để tương tác với các chức năng trong game; Hiểu tầm hoạt động của if trong GML (trong dấu '{ }').",
+      "attitude": "Tỉ mỉ kiểm tra cú pháp khối lệnh và cấu trúc khối if trong mã nguồn GML.",
+      "lessonContent": [
+        "Giới thiệu ngôn ngữ GML.",
+        "Giới thiệu biến số, biến môi trường, biến tự tạo.",
+        "Ôn tập biến môi trường Gravity, horizontal speed, vertical speed."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "3": {
+      "sessionNumber": 3,
+      "title": "Làm quen với GML",
+      "summary": "Tìm hiểu tầm quan trọng của điểm gốc tọa độ (Sprite Origin); thực hành sử dụng các hàm GML căn bản quản lý vòng đời đối tượng: `instance_create_layer()` để sinh đối tượng và `instance_destroy()` để tiêu hủy đối tượng; khám phá từ khóa `other` trong sự kiện va chạm để tương tác chính xác giữa người chơi và vật thể thu thập/chướng ngại vật.",
+      "hardwareAndCommands": "Điểm gốc Sprite Origin (Top-Left, Middle-Center), hàm instance_create_layer(), instance_destroy(), từ khóa other trong Collision Event GML.",
+      "objectives": [
+        "Kiến thức: Hiểu vai trò của điểm gốc tọa độ Origin; Nắm vững chức năng các hàm instance_create và instance_destroy; Hiểu ý nghĩa từ khóa other trong va chạm.",
+        "Kỹ năng: Thiết lập điểm gốc Sprite chuẩn xác; Dùng code GML sinh và xóa đối tượng linh hoạt; Áp dụng từ khóa other xử lý ăn vật phẩm và tiêu diệt quái.",
+        "Thái độ: Rèn luyện tư duy lập trình hàm và quản lý vòng đời đối tượng (Instance Lifecycle) trong game 2D."
+      ],
+      "knowledge": "Trình bày được tầm quan trọng của điểm gốc tọa độ (Origin Point); Nắm vững cú pháp và chức năng các hàm sinh/hủy đối tượng instance_create_layer, instance_destroy; Trình bày ý nghĩa từ khóa other trong sự kiện va chạm GML.",
+      "skills": "Thiết lập điểm gốc Origin phù hợp; Sử dụng hàm GML sinh và tiêu hủy đối tượng; Áp dụng từ khóa other để tương tác với đối tượng va chạm.",
+      "attitude": "Rèn luyện tư duy lập trình hàm và quản lý vòng đời đối tượng trong game 2D.",
+      "lessonContent": [
+        "Sự quan trọng của vị trí gốc.",
+        "Làm quen với các hàm GML (instance_create, instance_destroy).",
+        "Từ khóa other trong GML."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "4": {
+      "sessionNumber": 4,
+      "title": "Sound và button cho khởi hành, chạy và kết thúc",
+      "summary": "Lập trình sự kiện hẹn giờ Alarm bằng code GML; tìm hiểu nguyên lý lập trình kế thừa (Object Inheritance / Parent - Child) giúp tái sử dụng mã nguồn cho các nút bấm giao diện; làm quen biến toàn cục `global` quản lý điểm số xuyên suốt các phòng; lập trình âm thanh đa kênh với hàm `audio_play_sound()` và chuyển đổi màn chơi bằng hàm `room_goto()`.",
+      "hardwareAndCommands": "Hàm GML: room_goto(), audio_play_sound(), audio_stop_sound(), mảng alarm[0], tính kế thừa Parent Object, biến toàn cục global.score.",
+      "objectives": [
+        "Kiến thức: Trình bày cách kích hoạt Alarm bằng GML; Hiểu ý nghĩa kế thừa Parent-Child; Nắm vững phạm vi biến global và hàm âm thanh/chuyển phòng.",
+        "Kỹ năng: Lập trình giao diện Menu bắt đầu, phòng chơi và Game Over; Tích hợp âm thanh nhạc nền/hiệu ứng bằng GML; Quản lý điểm số với global.score.",
+        "Thái độ: Có ý thức tối ưu mã nguồn thông qua kế thừa (Inheritance) và quản lý biến toàn cục khoa học."
+      ],
+      "los": "SLO.I.1, SLO.II.1, SLO.III.1",
+      "knowledge": "Trình bày cách sử dụng alarm với GML; Trình bày ý nghĩa của lập trình kế thừa; Trình bày ý nghĩa và cách sử dụng đối tượng global; Trình bày cách chuyển phòng, chơi âm thanh với GML.",
+      "skills": "Lập trình cơ chế thắng thua, chuyển sang các phòng chơi trong game; Lập trình âm thanh với code GML; Sử dụng global để tương tác với điểm số của game.",
+      "attitude": "Có ý thức tối ưu mã nguồn thông qua kế thừa (Inheritance) và quản lý biến toàn cục khoa học.",
+      "lessonContent": [
+        "Alarm trong GML.",
+        "Giới thiệu lập trình kế thừa.",
+        "Giới thiệu đối tượng global.",
+        "Giới thiệu các hàm và cách sử dụng (room_goto, audio_play_sound)."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "5": {
+      "sessionNumber": 5,
+      "title": "Workshop kỹ năng - Sử dụng AI tạo cốt truyện game",
+      "summary": "Thực hiện bài kiểm tra định kỳ Checkpoint 1 đánh giá kiến thức lập trình GML từ buổi 1 đến 4; khám phá nghệ thuật dẫn dắt cốt truyện (Storytelling & World Building) trong game; tìm hiểu và thực hành ứng dụng các công cụ AI (ChatGPT / Copilot) viết prompt tạo cốt truyện, tiểu sử nhân vật và hội thoại lôi cuốn.",
+      "hardwareAndCommands": "Đề kiểm tra Checkpoint 1, công cụ AI tạo văn bản (ChatGPT / Copilot), kỹ thuật Prompt Engineering xây dựng kịch bản game (Game Narrative).",
+      "objectives": [
+        "Kiến thức: Hiểu tầm quan trọng của cốt truyện trong việc tạo chiều sâu cho game; Trình bày cách dùng AI xây dựng kịch bản và tuyến nhân vật.",
+        "Kỹ năng: Hoàn thành bài kiểm tra Checkpoint 1 nghiêm túc; Sử dụng thành thạo AI để xây dựng cốt truyện, hội thoại cho game.",
+        "Thái độ: Hào hứng ứng dụng công cụ AI sáng tạo cốt truyện, kịch bản nhân vật và xây dựng thế giới game phong phú."
+      ],
+      "los": "SLO.III.1, SLO.IV.1, SLO.V.1",
+      "knowledge": "Hiểu sự quan trọng của cốt truyện trong việc xây dựng game; Trình bày được cách sử dụng AI để tạo cốt truyện cho game.",
+      "skills": "Thực hiện bài kiểm tra định kỳ - checkpoint 1; Sử dụng công cụ AI trong việc xây dựng cốt truyện.",
+      "attitude": "Hào hứng ứng dụng công cụ AI sáng tạo cốt truyện, kịch bản nhân vật và xây dựng thế giới game phong phú.",
+      "lessonContent": [
+        "Kiểm tra checkpoint.",
+        "Tầm quan trọng của cốt truyện trong việc làm game.",
+        "Tìm hiểu cách sử dụng các công cụ AI vào việc xây dựng cốt truyện game."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "6": {
+      "sessionNumber": 6,
+      "title": "Lập trình di chuyển với GML",
+      "summary": "Bắt đầu dự án game mê cung mạo hiểm 'Dangerous Maze'; tìm hiểu và sử dụng Tileset để thiết kế bản đồ mê cung nhanh chóng và chuyên nghiệp; viết code GML thuần trong sự kiện Step để xử lý di chuyển 4 hướng mượt mà; lập trình thuật toán kiểm tra va chạm tường chuẩn xác với hàm `place_meeting()` kết hợp `keyboard_check()` và `ord()`.",
+      "hardwareAndCommands": "Công cụ Tileset Editor, Step Event GML, hàm layer_tilemap_get_id(), keyboard_check(), ord('W'/'A'/'S'/'D'), place_meeting(x, y, obj_wall).",
+      "objectives": [
+        "Kiến thức: Trình bày và sử dụng Tileset để vẽ phòng chơi; Nắm vững tư duy lập trình liên tục trong Step Event; Hiểu cơ chế phát hiện va chạm hàm place_meeting().",
+        "Kỹ năng: Vẽ bản đồ phòng chơi với Tileset; Lập trình di chuyển 4 hướng bằng code GML; Xử lý va chạm không bị kẹt tường; Đồng bộ hoạt ảnh theo hướng đi.",
+        "Thái độ: Kiên trì luyện tập tư duy lập trình vòng lặp Step và xử lý va chạm pixel-perfect bằng code GML thuần."
+      ],
+      "knowledge": "Trình bày và sử dụng được tileset để vẽ phòng chơi; Trình bày lại cách lập trình di chuyển và xử lý va chạm với code GML trong sự kiện step; Nắm được cách tư duy code trong sự kiện step.",
+      "skills": "Vẽ phòng chơi theo ý muốn với tileset; Lập trình di chuyển với code GML; Lập trình xử lý va chạm với code GML; Lập trình xử lý animation với code GML.",
+      "attitude": "Kiên trì luyện tập tư duy lập trình vòng lặp Step và xử lý va chạm pixel-perfect bằng code GML thuần.",
+      "lessonContent": [
+        "Tileset trong Gamemaker.",
+        "Lập trình di chuyển trong sự kiện step với code GML.",
+        "Lập trình va chạm với code GML.",
+        "Các hàm trong bài: layer_tilemap_get_id(), keyboard_check(), ord(), place_meeting()."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "7": {
+      "sessionNumber": 7,
+      "title": "Camera và View Port",
+      "summary": "Tìm hiểu cơ chế Camera và Viewport trong GameMaker để xây dựng thế giới game rộng lớn; thiết lập Camera tự động theo dõi (Follow Target) nhân vật chính; vận dụng lập trình kế thừa (Parent Object) cho các loại bẫy và vật phẩm thu thập; lập trình hệ thống đếm ngược thời gian và tính điểm số bằng biến `global`.",
+      "hardwareAndCommands": "Cấu hình Viewport & Camera trong Room Editor, camera_set_view_pos(), kế thừa đối tượng obj_item_parent, biến thời gian global.timer và global.score.",
+      "objectives": [
+        "Kiến thức: Trình bày cơ chế hoạt động của Viewport và Camera trong GameMaker; Hiểu cách ứng dụng kế thừa tối giản mã nguồn; Ôn tập biến toàn cục global.",
+        "Kỹ năng: Thiết lập Camera mượt mà bám theo người chơi; Lập trình bộ đếm thời gian và tính điểm; Áp dụng kế thừa tạo nhiều loại vật phẩm nhanh chóng.",
+        "Thái độ: Tỉ mỉ căn chỉnh khung nhìn Camera tạo trải nghiệm quan sát game mượt mà, không gây chóng mặt."
+      ],
+      "knowledge": "Trình bày cách sử dụng camera viewport trong Gamemaker; Trình bày được cách lập trình kế thừa với các đối tượng có các sự kiện và hành động tương tự nhau; Ôn tập cách sử dụng đối tượng global.",
+      "skills": "Điều khiển camera di chuyển theo người chơi; Lập trình tăng điểm và thời gian; Áp dụng lập trình kế thừa vào các đối tượng tăng điểm số và thời gian.",
+      "attitude": "Tỉ mỉ căn chỉnh khung nhìn Camera tạo trải nghiệm quan sát game mượt mà, không gây chóng mặt.",
+      "lessonContent": [
+        "Camera và viewport.",
+        "Vận dụng lập trình kế thừa tối giản hóa lập trình.",
+        "Lập trình tăng điểm số và thời gian."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "8": {
+      "sessionNumber": 8,
+      "title": "Hoàn thành game Dangerous Maze",
+      "summary": "Làm quen với cấu trúc dữ liệu Mảng (Array) trong GML và cách truy xuất phần tử qua chỉ số (Index); ứng dụng mảng lưu trữ danh sách Sprite để lập trình các loại bẫy gai biến đổi chu kỳ; hoàn thiện hệ thống nút bấm kế thừa chuyển phòng chơi; đóng gói hoàn chỉnh trò chơi Dangerous Maze.",
+      "hardwareAndCommands": "Cấu trúc dữ liệu Mảng Array [ ], chỉ số Index, hàm array_length(), bẫy bặm chướng ngại vật, đóng gói dự án Dangerous Maze.",
+      "objectives": [
+        "Kiến thức: Trình bày cấu trúc mảng và nguyên lý lập chỉ mục Index; Nắm vững quy trình chuyển phòng và quản lý dữ liệu game bằng code GML.",
+        "Kỹ năng: Khởi tạo mảng Sprite và lập trình chu kỳ bẫy hoạt động; Lập trình hệ thống nút bấm UI kế thừa; Hoàn thiện và đóng gói trò chơi Dangerous Maze.",
+        "Thái độ: Kiên trì hoàn thiện dự án game Dangerous Maze và kiểm thử kỹ lưỡng các bẫy rập."
+      ],
+      "knowledge": "Trình bày lý do, cách sử dụng mảng gồm các sprite hình ảnh; Sử dụng code GML lập trình chuyển phòng chơi.",
+      "skills": "Lập trình bẫy sử dụng mảng để chuyển đổi giữa các sprite; Ôn tập lập trình nút nhấn, chuyển phòng chơi với code GML.",
+      "attitude": "Kiên trì hoàn thiện dự án game Dangerous Maze và kiểm thử kỹ lưỡng các bẫy rập.",
+      "lessonContent": [
+        "Khái niệm và cách sử dụng mảng.",
+        "Thứ tự lấy giá trị của mảng (index).",
+        "Ôn tập lập trình kế thừa nút bấm."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "9": {
+      "sessionNumber": 9,
+      "title": "Lên ý tưởng sản phẩm cuối khóa",
+      "summary": "Thực hiện bài kiểm tra định kỳ lần 2 (Checkpoint 2) tổng hợp kiến thức lập trình GML (Tileset, Camera, Mảng, Kế thừa, Biến toàn cục); tìm hiểu bộ tiêu chí đánh giá sản phẩm cuối khóa GameMaker Advanced; lựa chọn đề tài, xây dựng tài liệu thiết kế game (GDD) và lên kế hoạch phát triển dự án cá nhân.",
+      "hardwareAndCommands": "Đề kiểm tra Checkpoint 2, tiêu chí đánh giá sản phẩm Rubric, mẫu Game Design Document (GDD) cho dự án GML.",
+      "objectives": [
+        "Kiến thức: Trình bày được bảng tiêu chí đánh giá sản phẩm cuối khóa là căn cứ tính điểm dự án cá nhân.",
+        "Kỹ năng: Thực hiện bài kiểm tra định kỳ Checkpoint 2 nghiêm túc; Tìm kiếm ý tưởng và lập bản kế hoạch thực hiện dự án game cá nhân.",
+        "Thái độ: Nghiêm túc hoàn thành bài kiểm tra và chủ động phát triển ý tưởng game mang dấu ấn cá nhân."
+      ],
+      "knowledge": "Trình bày được bảng tiêu chí đánh giá sản phẩm cuối khóa là căn cứ tính điểm dự án cá nhân.",
+      "skills": "Thực hiện kiểm tra định kỳ lần 2 - checkpoint 2; Thực hiện tìm kiếm ý tưởng xây dựng dự án cá nhân.",
+      "attitude": "Nghiêm túc hoàn thành bài kiểm tra và chủ động phát triển ý tưởng game mang dấu ấn cá nhân.",
+      "lessonContent": [
+        "Thực hiện bài kiểm tra định kỳ lần 2 - checkpoint 2.",
+        "Tìm hiểu tiêu chí đánh giá sản phẩm cuối khóa.",
+        "Thực hành tìm kiếm ý tưởng xây dựng dự án cá nhân."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "10": {
+      "sessionNumber": 10,
+      "title": "Thực hành hoàn thiện sản phẩm cuối khóa (Phần 1)",
+      "summary": "Khởi động dự án game cá nhân GameMaker Advanced; xây dựng kiến trúc các đối tượng; vẽ bản đồ thế giới game với Tileset; viết code GML điều khiển chuyển động của nhân vật chính, thiết lập Camera theo dõi và xử lý va chạm cơ bản theo đúng kế hoạch.",
+      "hardwareAndCommands": "GML Scripts, Tileset Editor, Viewport & Camera, Step Event, hàm kiểm tra va chạm place_meeting().",
+      "objectives": [
+        "Kiến thức: Trình bày tầm quan trọng của việc lập kế hoạch và phân bổ thời gian thực hiện dự án.",
+        "Kỹ năng: Thiết lập Tileset, cấu hình Camera và viết code GML điều khiển nhân vật chính.",
+        "Thái độ: Đánh giá được tiến độ của dự án so với timeline đề ra và chủ động thực hiện."
+      ],
+      "knowledge": "Trình bày được tầm quan trọng của việc lập kế hoạch trong việc thực hiện dự án.",
+      "skills": "Thực hiện lập trình các chức năng chính cho dự án.",
+      "attitude": "Đánh giá được tiến độ của dự án so với timeline đề ra.",
+      "lessonContent": [
+        "Thực hiện lập trình các chức năng chính cho dự án theo kịch bản game đã lựa chọn."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "11": {
+      "sessionNumber": 11,
+      "title": "Thực hành hoàn thiện sản phẩm cuối khóa (Phần 2)",
+      "summary": "Tiếp tục lập trình các cơ chế tương tác chuyên sâu: áp dụng lập trình kế thừa cho kẻ thù và vật phẩm; lập trình hệ thống bẫy bằng mảng (Array); xây dựng cơ chế tính điểm, thanh máu, thời gian đếm ngược bằng biến global; kiểm thử và sửa lỗi mã nguồn GML.",
+      "hardwareAndCommands": "Mảng Array, Parent Object, biến toàn cục global, âm thanh tương tác audio_play_sound(), xử lý logic va chạm.",
+      "objectives": [
+        "Kiến thức: Hiểu vai trò của việc kiểm thử liên tục từng tính năng và tối ưu mã nguồn GML.",
+        "Kỹ năng: Lập trình bẫy mảng, kế thừa đối tượng và hệ thống tính điểm/thời gian; khắc phục lỗi logic.",
+        "Thái độ: Kiên trì thử nghiệm, tìm và sửa lỗi logic phát sinh trong quá trình code GML."
+      ],
+      "knowledge": "Trình bày được tầm quan trọng của việc lập kế hoạch trong việc thực hiện dự án.",
+      "skills": "Thực hiện lập trình các chức năng chính cho dự án.",
+      "attitude": "Đánh giá được tiến độ của dự án so với timeline đề ra.",
+      "lessonContent": [
+        "Tiếp tục thực hiện lập trình các cơ chế tương tác, bẫy rập, kẻ địch và hoàn thiện logic trò chơi."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "12": {
+      "sessionNumber": 12,
+      "title": "Thực hành hoàn thiện sản phẩm cuối khóa (Phần 3)",
+      "summary": "Hoàn thiện tổng thể sản phẩm game: thiết kế giao diện Menu chính, phòng Chiến thắng, phòng Thua cuộc; lồng ghép nhạc nền và hiệu ứng âm thanh phong phú; cân bằng thông số game và kiểm thử toàn diện toàn bộ các màn chơi.",
+      "hardwareAndCommands": "Phòng Menu, Victory, Game Over, hệ thống âm thanh GML, nút bấm điều hướng kế thừa, cân bằng độ khó game.",
+      "objectives": [
+        "Kiến thức: Hiểu tầm quan trọng của việc trau chuốt giao diện người dùng và cân bằng trải nghiệm chơi game.",
+        "Kỹ năng: Lập trình hệ thống giao diện Menu hoàn chỉnh, tối ưu âm thanh và hoàn thiện tất cả các màn chơi.",
+        "Thái độ: Trau chuốt tính thẩm mỹ và tính hoàn thiện cao cho sản phẩm game cá nhân."
+      ],
+      "knowledge": "Trình bày được tầm quan trọng của việc lập kế hoạch trong việc thực hiện dự án.",
+      "skills": "Thực hiện lập trình các chức năng chính cho dự án.",
+      "attitude": "Đánh giá được tiến độ của dự án so với timeline đề ra.",
+      "lessonContent": [
+        "Lập trình hoàn thiện hệ thống phòng chơi, giao diện chuyển cảnh và hiệu ứng âm thanh cho toàn bộ game."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "13": {
+      "sessionNumber": 13,
+      "title": "Nghiệm thu sản phẩm",
+      "summary": "Nghiệm thu toàn diện sản phẩm game; kiểm tra độ ổn định và đóng gói game ra bộ cài đặt thực thi độc lập (.exe / .zip); thiết kế slide thuyết trình giới thiệu dự án (Canva / Google Slides / PowerPoint) và luyện tập kỹ năng báo cáo, trả lời câu hỏi phản biện.",
+      "hardwareAndCommands": "Đóng gói file game thực thi GameMaker Executable (.exe), công cụ thiết kế slide Canva/Google Slides, kỹ năng thuyết trình công nghệ.",
+      "objectives": [
+        "Kiến thức: Trình bày tầm quan trọng của việc nghiệm thu sản phẩm và chuẩn bị bài thuyết trình chuyên nghiệp.",
+        "Kỹ năng: Đóng gói thành công file game độc lập; Thiết kế bài trình chiếu ấn tượng và tập dượt thuyết trình lưu loát.",
+        "Thái độ: Tự tin và chủ động hoàn tất các khâu chuẩn bị cuối cùng cho buổi báo cáo tốt nghiệp."
+      ],
+      "knowledge": "Trình bày được tầm quan trọng của việc lập kế hoạch trong việc thực hiện dự án.",
+      "skills": "Thực hiện lập trình các chức năng chính cho dự án; Thực hiện thiết kế bài trình chiếu.",
+      "attitude": "Đánh giá được tiến độ của dự án so với timeline đề ra.",
+      "lessonContent": [
+        "Thực hiện lập trình cho dự án.",
+        "Hoàn thiện và đóng gói sản phẩm.",
+        "Thiết kế bài trình chiếu hỗ trợ thuyết trình."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "14": {
+      "sessionNumber": 14,
+      "title": "Thuyết trình cuối khóa",
+      "summary": "Tổ chức buổi báo cáo thuyết trình dự án game GameMaker Advanced; học viên tự tin trình bày ý tưởng, demo gameplay và chia sẻ giải pháp kỹ thuật GML trước hội đồng giám khảo và phụ huynh; trả lời câu hỏi phản biện và nhận chứng chỉ hoàn thành khóa học.",
+      "hardwareAndCommands": "Kỹ năng thuyết trình trước đám đông, trình diễn demo gameplay thực tế, trả lời câu hỏi phản biện từ ban giám khảo.",
+      "objectives": [
+        "Kiến thức: Trình bày mạch lạc các kiến thức lập trình GML và tư duy thiết kế trò chơi đã ứng dụng vào sản phẩm.",
+        "Kỹ năng: Tự tin thuyết trình sản phẩm, demo gameplay mượt mà và trả lời phản biện thuyết phục.",
+        "Thái độ: Đánh giá khách quan sản phẩm của bản thân và tôn trọng, cổ vũ thành quả sáng tạo của bạn bè."
+      ],
+      "knowledge": "Trình bày được các kiến thức đã học được áp dụng vào trong dự án.",
+      "skills": "Thực hiện thuyết trình sản phẩm cá nhân.",
+      "attitude": "Đánh giá được sản phẩm của bản thân so với sản phẩm khác.",
+      "lessonContent": [
+        "Thực hiện thuyết trình giới thiệu dự án cá nhân trước thầy cô và phụ huynh."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    }
+  }
+}

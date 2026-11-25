@@ -1,0 +1,165 @@
+{
+  "courseCode": "SEMIA",
+  "courseName": "Semi Robotics Advanced",
+  "category": "ROBOTICS",
+  "platform": "VEX IQ",
+  "cluster": "SEMI",
+  "sessions": {
+    "1": {
+      "sessionNumber": 1,
+      "title": "Vận hành ROBOT",
+      "summary": "Ôn tập kiến thức học phần trước; giới thiệu khái niệm tự động hóa một phần và ứng dụng; lập trình mô hình hoạt động theo trình tự động cơ qua các phím bấm trên Brain.",
+      "hardwareAndCommands": "Brain VEX IQ, động cơ; thẻ lệnh sự kiện <When Brain_button pressed>.",
+      "objectives": [
+        "Lắp ráp mô hình hoạt động hiệu quả",
+        "Sử dụng thành thạo thẻ lệnh sự kiện <When Brain_button pressed>"
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1giyKjTl9xk1V_SyR_AEC4SqvSxLrVJJM/edit?slide=id.p1#slide=id.p1",
+      "reviewDocUrl": ""
+    },
+    "2": {
+      "sessionNumber": 2,
+      "title": "Thống trị ROBOT",
+      "summary": "Khám phá ứng dụng robot trong sản xuất công nghiệp; ghép nối tay cầm điều khiển VEX IQ Controller với Brain, điều chỉnh thông số và điều khiển robot di chuyển, gắp vật.",
+      "hardwareAndCommands": "Bộ điều khiển VEX IQ Controller, Brain, động cơ; ghép nối không dây và tinh chỉnh thông số điều khiển.",
+      "objectives": [
+        "Ghép nối và điều chỉnh thông số Controller VEX IQ",
+        "Điều khiển robot di chuyển đa hướng và thao tác gắp vật"
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1ThOaBgOsnLFOwUUZFxPk_8fGXbJh9bZe/edit?slide=id.p1#slide=id.p1",
+      "reviewDocUrl": ""
+    },
+    "3": {
+      "sessionNumber": 3,
+      "title": "IQ - Bộ não siêu Việt",
+      "summary": "Ôn tập kết nối Controller với Brain và in lên màn hình Brain; lập trình vòng lặp và điều kiện if..else..if (controller sensing) xử lý nút bấm Controller, lập trình phát nhạc.",
+      "hardwareAndCommands": "VEX IQ Controller, Brain; thẻ lệnh sự kiện When Controller button_pressed?, vòng lặp và if..else..if.",
+      "objectives": [
+        "Sử dụng thẻ lệnh When Controller button_pressed? và điều kiện controller sensing",
+        "Lập trình tương tác nút bấm và phát nhạc trên Brain"
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1f-Amc0nHjbVYtGfe8tnm-_0isJMHToMJ/edit?usp=sharing&ouid=111038164751870348560&rtpof=true&sd=true",
+      "reviewDocUrl": ""
+    },
+    "4": {
+      "sessionNumber": 4,
+      "title": "Công xưởng sáng tạo",
+      "summary": "Lắp ráp mô hình robot và lập trình tương tác với bộ điều khiển VEX IQ; ôn tập thẻ lệnh sự kiện, vòng lặp, điều kiện If...else..if và thi đấu giải quyết nhiệm vụ thực tế.",
+      "hardwareAndCommands": "VEX IQ Controller, động cơ; thẻ lệnh sự kiện, vòng lặp và If...else..if (controller sensing).",
+      "objectives": [
+        "Ghi nhớ quy trình thiết kế, lắp ráp và tối ưu mô hình Robot",
+        "Vận dụng thẻ lệnh điều khiển thi đấu hoàn thành nhiệm vụ"
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1cfd9srF0uuC8KPWE8zLBnpTiH_7tWhiG/edit?slide=id.p1#slide=id.p1",
+      "reviewDocUrl": ""
+    },
+    "5": {
+      "sessionNumber": 5,
+      "title": "Cánh tay Robot",
+      "summary": "Tìm hiểu thông số thiết bị (tốc độ di chuyển, độ nhạy cảm biến); lập trình robot phản ứng nút bấm trên Brain và thiết lập bật/tắt Controller bằng lập trình.",
+      "hardwareAndCommands": "Cảm biến, Brain, Controller; thẻ lệnh Controller <Disable> và điều chỉnh thông số tốc độ.",
+      "objectives": [
+        "Lắp ráp mô hình cánh tay hoạt động hiệu quả",
+        "Sử dụng thẻ lệnh Controller <Disable> điều phối chế độ tự động và điều khiển tay"
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1A2xjrebd6Ualx3A7EzbIzqKbpV9OwJr4/edit#slide=id.p1",
+      "reviewDocUrl": "https://docs.google.com/document/d/1BgQ-3yJJoHtu5Qopegm82rp2zJ7jojUF/edit?tab=t.0#heading=h.30j0zll"
+    },
+    "6": {
+      "sessionNumber": 6,
+      "title": "Phối hợp linh hoạt",
+      "summary": "Ôn tập kết nối Controller với Brain; lập trình kết hợp linh hoạt giữa chế độ cảm biến tự động và điều khiển bằng nút bấm Controller.",
+      "hardwareAndCommands": "Controller, Brain, cảm biến; vòng lặp và câu lệnh điều kiện if..else..if (controller sensing).",
+      "objectives": [
+        "Ghi nhớ kiến thức lập trình kết hợp giữa cảm biến tự động và điều khiển Controller",
+        "Vận hành mô hình mượt mà"
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1yMsdQJ-IFppGFpxFqzRoBW37ZiwOBwZT/edit?slide=id.p9#slide=id.p9",
+      "reviewDocUrl": ""
+    },
+    "7": {
+      "sessionNumber": 7,
+      "title": "Robot và toán học",
+      "summary": "Tìm hiểu biến số, kiểu dữ liệu và ý nghĩa trong lập trình Robot; thực hành khai báo biến, tương tác biến với các toán tử so sánh và toán tử đại số.",
+      "hardwareAndCommands": "VEXcode IQ; khối lệnh khai báo biến (Variables), toán tử đại số và toán tử so sánh.",
+      "objectives": [
+        "Hiểu khái niệm biến, kiểu dữ liệu và thẻ lệnh toán tử",
+        "Vận dụng biến và toán tử vào bài toán điều khiển Robot"
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1mrKHJOCNKhN_MbG3uaoi3sYi3Iw1kuMv/edit?slide=id.p1#slide=id.p1",
+      "reviewDocUrl": ""
+    },
+    "8": {
+      "sessionNumber": 8,
+      "title": "Công xưởng sáng tạo",
+      "summary": "Ôn tập cơ cấu truyền động, vận tốc, M.A.D. Box, vòng lặp, cảm biến chạm và if...else; thiết kế lắp ráp và lập trình mô hình robot thực hiện chức năng mong muốn.",
+      "hardwareAndCommands": "Cơ cấu truyền động, cảm biến chạm, M.A.D. Box; vòng lặp và điều kiện if...else.",
+      "objectives": [
+        "Áp dụng cơ cấu truyền động thiết kế mô hình hoàn chỉnh",
+        "Lập trình vận hành mô hình theo đúng yêu cầu chức năng"
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/16DtcHZgpVQDSchXvtjgh4OEFJq1HFXPl/edit?usp=sharing&ouid=111038164751870348560&rtpof=true&sd=true",
+      "reviewDocUrl": ""
+    },
+    "9": {
+      "sessionNumber": 9,
+      "title": "Tối ưu thiết bị di chuyển",
+      "summary": "Giới thiệu cần điều khiển (Joystick) trên Controller và các thông số liên quan; lắp ráp mô hình Simple ClawBot và lập trình di chuyển kết hợp biến, toán tử, vòng lặp, điều kiện.",
+      "hardwareAndCommands": "Mô hình Simple ClawBot, Joystick trên VEX IQ Controller; biến số, toán tử, vòng lặp và câu lệnh điều kiện.",
+      "objectives": [
+        "Lắp ráp hoàn thiện mô hình Simple ClawBot",
+        "Lập trình điều khiển di chuyển cơ bản thông qua cần điều khiển Joystick"
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1M6Q2Dr8hKupsgrGLtiKrkpEjoULJE0Xo/edit?rtpof=true",
+      "reviewDocUrl": ""
+    },
+    "10": {
+      "sessionNumber": 10,
+      "title": "Tối ưu thiết bị di chuyển 2",
+      "summary": "Nâng cao kỹ thuật lập trình với cả hai cần điều khiển Joystick trên Controller; điều khiển mô hình Simple ClawBot thực hiện các nhiệm vụ phối hợp phức tạp.",
+      "hardwareAndCommands": "Mô hình Simple ClawBot, Dual Joystick Controller; biến số, toán tử, vòng lặp và câu lệnh điều kiện.",
+      "objectives": [
+        "Hoàn thiện mô hình Simple ClawBot",
+        "Lập trình vận hành thành thạo nhiệm vụ phức tạp bằng cả hai cần điều khiển"
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1HI0hOy0awS6cOXxSbk5Lt5yXFMXzRGpi/edit?slide=id.p1#slide=id.p1",
+      "reviewDocUrl": ""
+    },
+    "11": {
+      "sessionNumber": 11,
+      "title": "Nhiệm vụ phối hợp",
+      "summary": "Kết hợp cảm biến chạm Bumper Switch và Controller tạo hệ thống điều khiển thông minh; lập trình robot tự động phản ứng khi va chạm và vô hiệu hóa tạm thời bộ điều khiển.",
+      "hardwareAndCommands": "Cảm biến chạm Bumper Switch, VEX IQ Controller; điều kiện va chạm và thẻ lệnh Controller Disable.",
+      "objectives": [
+        "Kết hợp cảm biến chạm và bộ điều khiển xử lý tình huống tự động",
+        "Chuẩn bị nội dung thuyết trình theo mẫu"
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1TlXe6z70D_mlZxMXXoPp2Sn4nduCDMtO/edit?usp=sharing&ouid=111038164751870348560&rtpof=true&sd=true",
+      "reviewDocUrl": "https://www.canva.com/design/DAGwJTXCQ8Y/By4LyhKpFv2FydWeqSgrgA/edit?utm_content=DAGwJTXCQ8Y&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
+    },
+    "12": {
+      "sessionNumber": 12,
+      "title": "Công xưởng sáng tạo",
+      "summary": "Ôn tập tổng hợp kiến thức; thực hành lập trình các tác vụ di chuyển, quay đầu, nâng hạ vật và tham gia thi đấu Mini Competition, chuẩn bị thuyết trình.",
+      "hardwareAndCommands": "Mô hình Robot VEX IQ hoàn chỉnh, Controller, cảm biến; tổng hợp thẻ lệnh lập trình.",
+      "objectives": [
+        "Hoàn thành ý tưởng, lập trình thi đấu Mini Competition",
+        "Chuẩn bị nội dung và slide thuyết trình dự án cuối khóa"
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1mjmz0zwqS7WQP409NZwKvvCsxQOq9Y-Q/edit?usp=sharing&ouid=111038164751870348560&rtpof=true&sd=true",
+      "reviewDocUrl": "https://canva.link/l4rb0pe9yj6gexb"
+    },
+    "13": {
+      "sessionNumber": 13,
+      "title": "Demo Robot",
+      "summary": "Hoàn thiện mô hình và chuẩn bị thuyết trình nhóm; luyện tập thuyết trình sản phẩm và trả lời câu hỏi phản biện từ ban giám khảo.",
+      "hardwareAndCommands": "Sản phẩm Robot VEX IQ dự án cuối khóa và kỹ năng thuyết trình.",
+      "objectives": [
+        "Nắm rõ kiến thức để trả lời câu hỏi từ ban giám khảo",
+        "Hoàn thành thuyết trình thử tự tin, mạch lạc"
+      ],
+      "slideUrl": "https://drive.google.com/file/d/1dM3_4vn80jS6sMiJV9wvDOvO9eBUYVBK/view",
+      "reviewDocUrl": "https://docs.google.com/presentation/d/1Qs4Is_Fawxw8IlTbHt8cZvE-5uJ37TgG/edit?slide=id.p4#slide=id.p4"
+    }
+  }
+}

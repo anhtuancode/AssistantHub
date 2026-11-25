@@ -1,0 +1,315 @@
+{
+  "courseCode": "CSB",
+  "courseName": "Computer Scientist - Basic",
+  "category": "CODING",
+  "platform": "Computer Science",
+  "cluster": "COMPUTER_SCIENCE",
+  "targetAge": "14 - 18 Tuổi",
+  "duration": "120 phút/buổi",
+  "version": "Ver 01 - 04-2024 (Hiệu lực)",
+  "sessions": {
+    "1": {
+      "sessionNumber": 1,
+      "title": "Chương trình Python cơ bản",
+      "summary": "Làm quen với cú pháp lập trình Python cơ bản bao gồm biến, toán tử số học/logic và các kiểu dữ liệu nguyên thủy; nắm vững cấu trúc điều khiển luồng chương trình với câu điều kiện rẽ nhánh và các vòng lặp for, while kèm lệnh break, continue.",
+      "hardwareAndCommands": "Python 3.x, Visual Studio Code / PyCharm, biến và kiểu dữ liệu (int, float, str, bool), toán tử, câu lệnh điều kiện if-elif-else, vòng lặp for, while, lệnh kiểm soát luồng (break, continue, pass).",
+      "objectives": [
+        "Kiến thức: Hiểu được các cú pháp cơ bản của Python; Trình bày được ý nghĩa của câu lệnh kiểm soát luồng; Hiểu và sử dụng được biểu thức logic và câu điều kiện, vòng lặp để kiểm soát luồng của chương trình; Thực hành viết các đoạn mã Python có chứa câu điều kiện và vòng lặp, và hiểu cách chúng hoạt động để xử lý các tình huống.",
+        "Kỹ năng: Thực hành lập trình chương trình Python; Áp dụng biến, toán tử, kiểu dữ liệu vào chương trình; Áp dụng câu điều kiện, vòng lặp vào chương trình."
+      ],
+      "los": "S.LO.I.01, S.LO.III.01, S.LO.V.01",
+      "knowledge": "Hiểu được các cú pháp cơ bản của Python; Trình bày được ý nghĩa của câu lệnh kiểm soát luồng; Hiểu và sử dụng được biểu thức logic và câu điều kiện, vòng lặp để kiểm soát luồng của chương trình; Thực hành viết các đoạn mã Python có chứa câu điều kiện và vòng lặp, và hiểu cách chúng hoạt động để xử lý các tình huống.",
+      "skills": "Thực hành lập trình chương trình Python; Áp dụng biến, toán tử, kiểu dữ liệu vào chương trình; Áp dụng câu điều kiện, vòng lặp vào chương trình.",
+      "lessonContent": [
+        "Cú pháp Python cơ bản: Biến, Toán tử, Kiểu dữ liệu cơ bản.",
+        "Cấu trúc xử lý luồng: Biểu thức logic và câu điều kiện; Vòng lặp for và vòng lặp while; pass, break, continue."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "2": {
+      "sessionNumber": 2,
+      "title": "List, Hàm, Đọc ghi file",
+      "summary": "Khám phá cấu trúc dữ liệu danh sách (List) và các thao tác CRUD phần tử; đóng gói mã nguồn và tái sử dụng với hàm (def, return); làm quen với thao tác đọc/ghi tệp tin (File I/O) và giải quyết bài toán phân tích thống kê: số trung bình (mean), trung vị (median) và yếu vị (mode).",
+      "hardwareAndCommands": "Cấu trúc dữ liệu List (append, pop, sort, len), định nghĩa hàm def, thao tác File I/O (open(), read(), write(), with open), tính toán thống kê (mean, median, mode).",
+      "objectives": [
+        "Kiến thức: HV hiểu kiểu dữ liệu danh sách trong Python; HV định nghĩa được hàm; HV trình bày được các khái niệm mean, median, mode.",
+        "Kỹ năng: HV áp dụng được kiểu dữ liệu danh sách vào chương trình; HV thực hành thao tác cơ bản với danh sách; HV thực hành khai báo và gọi hàm trong chương trình; HV thực hành đọc ghi file."
+      ],
+      "los": "S.LO.I.01, S.LO.III.01, S.LO.V.01",
+      "knowledge": "HV hiểu kiểu dữ liệu danh sách trong Python; HV định nghĩa được hàm; HV trình bày được các khái niệm mean, median, mode.",
+      "skills": "HV áp dụng được kiểu dữ liệu danh sách vào chương trình; HV thực hành thao tác cơ bản với danh sách; HV thực hành khai báo và gọi hàm trong chương trình; HV thực hành đọc ghi file.",
+      "lessonContent": [
+        "Kiểu dữ liệu: List.",
+        "Hàm.",
+        "Đọc/ghi file.",
+        "Thực hành: Tìm số trung bình (mean), trung vị (median), yếu vị (mode)."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "3": {
+      "sessionNumber": 3,
+      "title": "Lập trình hướng đối tượng (Phần 1)",
+      "summary": "Tiếp cận tư duy lập trình hướng đối tượng (OOP) trong Python; tìm hiểu cách trừu tượng hóa sự vật thực tế thành Lớp (Class) và Đối tượng (Object); nghiên cứu chuyên sâu 2 tính chất trụ cột đầu tiên: Tính Đóng gói (Encapsulation) và Tính Kế thừa (Inheritance).",
+      "hardwareAndCommands": "OOP Python, cú pháp khai báo class, hàm khởi tạo __init__, biến thể hiện self, thuộc tính riêng tư (private/protected với _ và __), cú pháp kế thừa class Con(Cha), hàm super().",
+      "objectives": [
+        "Kiến thức: HV hiểu được bản chất và lợi ích của lập trình hướng đối tượng; HV hiểu được vai trò của tính đóng gói; HV hiểu được vai trò của tính kế thừa.",
+        "Kỹ năng: HV vận dụng được tính đóng gói vào thiết kế class; HV vận dụng được tính kế thừa vào thiết kế class.",
+        "Thái độ: HV thiết kế được class và triển khai được đối tượng để mô tả sự vật, sự việc trong thực tế."
+      ],
+      "los": "S.LO.I.02, S.LO.III.02",
+      "knowledge": "HV hiểu được bản chất và lợi ích của lập trình hướng đối tượng; HV hiểu được vai trò của tính đóng gói; HV hiểu được vai trò của tính kế thừa.",
+      "skills": "HV vận dụng được tính đóng gói vào thiết kế class; HV vận dụng được tính kế thừa vào thiết kế class.",
+      "attitude": "HV thiết kế được class và triển khai được đối tượng để mô tả sự vật, sự việc trong thực tế.",
+      "lessonContent": [
+        "Giới thiệu lập trình hướng đối tượng (OOP).",
+        "Mô tả đối tượng bằng Lớp.",
+        "04 tính chất của lập trình hướng đối tượng.",
+        "Tính Đóng gói.",
+        "Tính Kế thừa."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "4": {
+      "sessionNumber": 4,
+      "title": "Lập trình hướng đối tượng (Phần 2)",
+      "summary": "Hoàn thiện bức tranh lập trình hướng đối tượng với 2 tính chất còn lại: Tính Đa hình (Polymorphism với Method Overriding) và Tính Trừu tượng (Abstraction với abstract class); thực hành xây dựng hệ thống quản lý đối tượng thực tế chuẩn OOP.",
+      "hardwareAndCommands": "Method Overriding, Đa hình (Polymorphism), module abc (ABCMeta, @abstractmethod), thiết kế cấu trúc lớp phân cấp trừu tượng.",
+      "objectives": [
+        "Kiến thức: HV hiểu được vai trò của tính đa hình; HV hiểu được vai trò của tính trừu tượng.",
+        "Kỹ năng: HV vận dụng được tính đa hình vào thiết kế class; HV vận dụng được tính trừu tượng vào thiết kế class.",
+        "Thái độ: HV thiết kế được class và triển khai được đối tượng để mô tả sự vật, sự việc trong thực tế."
+      ],
+      "los": "S.LO.I.02, S.LO.III.02",
+      "knowledge": "HV hiểu được vai trò của tính đa hình; HV hiểu được vai trò của tính trừu tượng.",
+      "skills": "HV vận dụng được tính đa hình vào thiết kế class; HV vận dụng được tính trừu tượng vào thiết kế class.",
+      "attitude": "HV thiết kế được class và triển khai được đối tượng để mô tả sự vật, sự việc trong thực tế.",
+      "lessonContent": [
+        "Tính Đa hình (Polymorphism).",
+        "Tính Trừu tượng (Abstraction).",
+        "Thực hành."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "5": {
+      "sessionNumber": 5,
+      "title": "Kiểm tra Checkpoint 1 & Thuật toán",
+      "summary": "Thực hiện bài kiểm tra định kỳ Checkpoint 1 đánh giá toàn diện cú pháp Python và lập trình OOP; bước đầu bước vào thế giới khoa học máy tính với khái niệm thuật toán, các tính chất đặc trưng và phương pháp đánh giá độ phức tạp thuật toán (Big-O thời gian và không gian).",
+      "hardwareAndCommands": "Đề kiểm tra Checkpoint 1, ký hiệu độ phức tạp Big-O Notation (O(1), O(log n), O(n), O(n^2)), phân tích độ phức tạp thời gian (Time Complexity) và không gian (Space Complexity).",
+      "objectives": [
+        "Kiến thức: Đánh giá kiến thức của HV trong buổi 1, 2, 3, 4; HV hiểu được vai trò của thuật toán trong lập trình; HV nhận diện được đặc điểm của một thuật toán tốt; HV liệt kê được các phương pháp đánh giá thuật toán.",
+        "Kỹ năng: Đánh giá các kỹ năng thực hành của HV trong buổi 1, 2, 3, 4; HV vận dụng độ phức tạp về không gian để đánh giá độ hiệu quả của thuật toán; HV vận dụng độ phức tạp về thời gian để đánh giá độ hiệu quả của thuật toán.",
+        "Thái độ: HV có được thái độ trung thực, cẩn thận; HV xây dựng chương trình để giải quyết vấn đề."
+      ],
+      "los": "LO 1.01",
+      "knowledge": "Đánh giá kiến thức của HV trong buổi 1, 2, 3, 4; HV hiểu được vai trò của thuật toán trong lập trình; HV nhận diện được đặc điểm của một thuật toán tốt; HV liệt kê được các phương pháp đánh giá thuật toán.",
+      "skills": "Đánh giá các kỹ năng thực hành của HV trong buổi 1, 2, 3, 4; HV vận dụng độ phức tạp về không gian để đánh giá độ hiệu quả của thuật toán; HV vận dụng độ phức tạp về thời gian để đánh giá độ hiệu quả của thuật toán.",
+      "attitude": "HV có được thái độ trung thực, cẩn thận; HV xây dựng chương trình để giải quyết vấn đề.",
+      "lessonContent": [
+        "Kiểm tra kiến thức: Cú pháp Python và lập trình OOP bằng Python.",
+        "Các khái niệm thuật toán.",
+        "Các tính chất đặc trưng của thuật toán.",
+        "Phân tích tính hiệu quả của thuật toán.",
+        "Đánh giá thuật toán bằng độ phức tạp."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "6": {
+      "sessionNumber": 6,
+      "title": "Thuật toán tìm kiếm",
+      "summary": "Nghiên cứu bản chất bài toán tìm kiếm trong khoa học máy tính; phân tích và cài đặt thuật toán Tìm kiếm tuyến tính (Linear Search - O(n)) và Tìm kiếm nhị phân (Binary Search - O(log n)); so sánh hiệu năng và điều kiện áp dụng của từng giải thuật.",
+      "hardwareAndCommands": "Cài đặt giải thuật Linear Search, Binary Search (vòng lặp và đệ quy), so sánh độ phức tạp O(n) vs O(log n), điều kiện mảng đã sắp xếp.",
+      "objectives": [
+        "Kiến thức: HV hiểu bản chất và vai trò của bài toán tìm kiếm trong lập trình; HV hiểu được cách thức hoạt động của tìm kiếm tuyến tính; HV hiểu được cách thức hoạt động của tìm kiếm nhị phân.",
+        "Kỹ năng: HV so sánh được tìm kiếm tuyến tính và tìm kiếm nhị phân; HV ứng dụng thuật toán tìm kiếm trong chương trình và trong thực tế.",
+        "Thái độ: HV thiết kế chương trình sử dụng thuật toán tìm kiếm để giải quyết vấn đề."
+      ],
+      "los": "S.LO.I.03, S.LO.III.01, S.LO.IV.03",
+      "knowledge": "HV hiểu bản chất và vai trò của bài toán tìm kiếm trong lập trình; HV hiểu được cách thức hoạt động của tìm kiếm tuyến tính; HV hiểu được cách thức hoạt động của tìm kiếm nhị phân.",
+      "skills": "HV so sánh được tìm kiếm tuyến tính và tìm kiếm nhị phân; HV ứng dụng thuật toán tìm kiếm trong chương trình và trong thực tế.",
+      "attitude": "HV thiết kế chương trình sử dụng thuật toán tìm kiếm để giải quyết vấn đề.",
+      "lessonContent": [
+        "Bài toán tìm kiếm.",
+        "Tìm kiếm tuần tự (linear search).",
+        "Tìm kiếm nhị phân (binary search)."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "7": {
+      "sessionNumber": 7,
+      "title": "Thuật toán sắp xếp",
+      "summary": "Tìm hiểu vai trò thiết yếu của bài toán sắp xếp dữ liệu; phân tích nguyên lý, mô phỏng từng bước và lập trình cài đặt 2 thuật toán sắp xếp kinh điển: Sắp xếp chọn (Selection Sort) và Sắp xếp bong bóng (Bubble Sort); đánh giá độ phức tạp O(n^2).",
+      "hardwareAndCommands": "Cài đặt giải thuật Selection Sort, Bubble Sort, kỹ thuật hoán đổi giá trị (swap a, b = b, a), vòng lặp lồng nhau, đánh giá số phép so sánh và hoán đổi.",
+      "objectives": [
+        "Kiến thức: HV hiểu bản chất và vai trò của bài toán sắp xếp trong lập trình; HV hiểu được cách thức hoạt động của Sắp xếp chọn; HV hiểu được cách thức hoạt động của sắp xếp bong bóng.",
+        "Kỹ năng: HV so sánh được Sắp xếp chọn và sắp xếp bong bóng; HV ứng dụng thuật toán sắp xếp trong chương trình và trong thực tế.",
+        "Thái độ: HV thiết kế chương trình sử dụng thuật toán sắp xếp để giải quyết vấn đề."
+      ],
+      "los": "S.LO.I.03, S.LO.III.01",
+      "knowledge": "HV hiểu bản chất và vai trò của bài toán sắp xếp trong lập trình; HV hiểu được cách thức hoạt động của Sắp xếp chọn; HV hiểu được cách thức hoạt động của sắp xếp bong bóng.",
+      "skills": "HV so sánh được Sắp xếp chọn và sắp xếp bong bóng; HV ứng dụng thuật toán sắp xếp trong chương trình và trong thực tế.",
+      "attitude": "HV thiết kế chương trình sử dụng thuật toán sắp xếp để giải quyết vấn đề.",
+      "lessonContent": [
+        "Bài toán sắp xếp.",
+        "Sắp xếp chọn (selection sort).",
+        "Sắp xếp bong bóng (bubble sort)."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "8": {
+      "sessionNumber": 8,
+      "title": "Thực hành: Lập trình giải quyết vấn đề (Phần 1)",
+      "summary": "Luyện tập tư duy giải quyết vấn đề (Problem Solving) thông qua chuỗi bài tập thực hành tổng hợp; vận dụng linh hoạt và kết hợp các giải thuật tìm kiếm tuyến tính, tìm kiếm nhị phân và các thuật toán sắp xếp để xử lý bài toán dữ liệu thực tế.",
+      "hardwareAndCommands": "Kỹ năng phân tích đề bài, tối ưu hóa thuật toán tìm kiếm kết hợp sắp xếp, cấu trúc dữ liệu mảng nhiều chiều, kiểm thử ca kiểm thử (Test Cases).",
+      "objectives": [
+        "Kiến thức: HV nhớ lại các bước giải quyết vấn đề; HV nhớ lại các thuật toán tìm kiếm - sắp xếp đã học.",
+        "Kỹ năng: HV ứng dụng thuật toán thích hợp vào chương trình.",
+        "Thái độ: HV sáng tạo chương trình để giải quyết vấn đề."
+      ],
+      "los": "S.LO.I.02, S.LO.I.03, S.LO.II.01, SLO.IV.03",
+      "knowledge": "HV nhớ lại các bước giải quyết vấn đề; HV nhớ lại các thuật toán tìm kiếm - sắp xếp đã học.",
+      "skills": "HV ứng dụng thuật toán thích hợp vào chương trình.",
+      "attitude": "HV sáng tạo chương trình để giải quyết vấn đề.",
+      "lessonContent": [
+        "Thực hành giải quyết một số bài toán sử dụng thuật toán tìm kiếm - sắp xếp phù hợp."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "9": {
+      "sessionNumber": 9,
+      "title": "Kiểm tra Checkpoint 2",
+      "summary": "Thực hiện bài kiểm tra định kỳ Checkpoint 2 đánh giá năng lực tư duy thuật toán và kỹ năng lập trình giải quyết vấn đề từ buổi 1 đến buổi 8 (Python nâng cao, OOP, thuật toán tìm kiếm và sắp xếp).",
+      "hardwareAndCommands": "Đề kiểm tra Checkpoint 2, bài toán lập trình thuật toán, đánh giá độ chính xác và tối ưu thời gian chạy (Time Complexity).",
+      "objectives": [
+        "Kiến thức: Đánh giá kiến thức của HV trong buổi 1, 2, 3, 4, 6, 7, 8.",
+        "Kỹ năng: Đánh giá các kỹ năng thực hành của HV trong buổi 1, 2, 3, 4, 6, 7, 8.",
+        "Thái độ: HV có thái độ trung thực, cẩn thận; HV xây dựng chương trình để giải quyết vấn đề."
+      ],
+      "los": "S.LO.I.02, S.LO.I.03",
+      "knowledge": "Đánh giá kiến thức của HV trong buổi 1, 2, 3, 4, 6, 7, 8.",
+      "skills": "Đánh giá các kỹ năng thực hành của HV trong buổi 1, 2, 3, 4, 6, 7, 8.",
+      "attitude": "HV có thái độ trung thực, cẩn thận; HV xây dựng chương trình để giải quyết vấn đề.",
+      "lessonContent": [
+        "Cú pháp Python cơ bản: Biến, Toán tử, Kiểu dữ liệu cơ bản.",
+        "Cấu trúc xử lý luồng: Biểu thức logic và câu điều kiện; Vòng lặp for và vòng lặp while; pass, break, continue."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "10": {
+      "sessionNumber": 10,
+      "title": "Tập hợp và Ánh xạ",
+      "summary": "Làm quen với 2 cấu trúc dữ liệu nền tảng Set (Tập hợp với các phần tử duy nhất) và Map (Ánh xạ key-value - Dictionary trong Python); phân tích độ phức tạp tra cứu O(1) qua bảng băm; thực hành xây dựng ứng dụng đếm tần suất xuất hiện từ trong văn bản.",
+      "hardwareAndCommands": "Cấu trúc dữ liệu set (add, remove, union, intersection), cấu trúc dict (keys, values, items, get), bảng băm (Hash Table), ứng dụng Word Counter.",
+      "objectives": [
+        "Kiến thức: HV trình bày cách hoạt động của Set; HV trình bày cách hoạt động của Map; HV liệt kê được ứng dụng của Set và Map trong thực tế.",
+        "Kỹ năng: HV ứng dụng Set và Map vào chương trình; HV so sánh được Set và Map.",
+        "Thái độ: HV thiết kế và lập trình ứng dụng sử dụng Set hoặc Map."
+      ],
+      "los": "S.LO.I.02, S.LO.I.03, S.LO.II.01, S.LO.III.01",
+      "knowledge": "HV trình bày cách hoạt động của Set; HV trình bày cách hoạt động của Map; HV liệt kê được ứng dụng của Set và Map trong thực tế.",
+      "skills": "HV ứng dụng Set và Map vào chương trình; HV so sánh được Set và Map.",
+      "attitude": "HV thiết kế và lập trình ứng dụng sử dụng Set hoặc Map.",
+      "lessonContent": [
+        "Cấu trúc dữ liệu Set (Tập hợp).",
+        "Cấu trúc dữ liệu Map (Ánh xạ).",
+        "Map trong Python: Dictionary.",
+        "Thực hành: Bộ đếm số từ."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "11": {
+      "sessionNumber": 11,
+      "title": "Ngăn xếp",
+      "summary": "Khám phá cấu trúc dữ liệu trừu tượng Ngăn xếp (Stack) hoạt động theo nguyên lý LIFO (Last In, First Out); nắm vững các thao tác cốt lõi push, pop, peek, isEmpty; thực hành xây dựng ứng dụng giả lập lịch sử điều hướng trang web (Back/Forward) của trình duyệt.",
+      "hardwareAndCommands": "Cấu trúc dữ liệu Stack (LIFO), các hàm push(), pop(), peek(), is_empty(), size(), ứng dụng Browser Navigation History (Back/Forward).",
+      "objectives": [
+        "Kiến thức: HV trình bày cách hoạt động và vai trò của Stack.",
+        "Kỹ năng: HV vận dụng được Stack vào chương trình; HV thực hành thao tác với các phần tử trong Stack bằng Python.",
+        "Thái độ: HV thiết kế và lập trình ứng dụng sử dụng Stack."
+      ],
+      "los": "S.LO.I.02, S.LO.I.03, S.LO.II.01, S.LO.III.01, S.LO.IV.03",
+      "knowledge": "HV trình bày cách hoạt động và vai trò của Stack.",
+      "skills": "HV vận dụng được Stack vào chương trình; HV thực hành thao tác với các phần tử trong Stack bằng Python.",
+      "attitude": "HV thiết kế và lập trình ứng dụng sử dụng Stack.",
+      "lessonContent": [
+        "Cách hoạt động của cấu trúc dữ liệu Stack (Ngăn xếp).",
+        "Các thao tác cơ bản trên Stack.",
+        "Ứng dụng Giả lập Trình duyệt: Quản lý các thao tác truy cập trang web bằng Stack."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "12": {
+      "sessionNumber": 12,
+      "title": "Hàng đợi",
+      "summary": "Tìm hiểu cấu trúc dữ liệu Hàng đợi (Queue) tuân theo cơ chế FIFO (First In, First Out); so sánh chi tiết ưu nhược điểm giữa Stack và Queue; thực hành xây dựng ứng dụng trình phát âm nhạc Music Player quản lý hàng đợi phát bài hát (Enqueue, Dequeue, Skip).",
+      "hardwareAndCommands": "Cấu trúc dữ liệu Queue (FIFO), collections.deque, các hàm enqueue(), dequeue(), front(), ứng dụng Music Player Playlist Queue.",
+      "objectives": [
+        "Kiến thức: HV trình bày cách hoạt động và vai trò của Queue.",
+        "Kỹ năng: HV so sánh được Stack và Queue; HV vận dụng được Queue vào chương trình; HV thực hành thao tác với các phần tử trong Queue bằng Python.",
+        "Thái độ: HV thiết kế và lập trình ứng dụng sử dụng Queue."
+      ],
+      "los": "S.LO.I.02, S.LO.I.03, S.LO.II.01, S.LO.III.01, S.LO.IV.01",
+      "knowledge": "HV trình bày cách hoạt động và vai trò của Queue.",
+      "skills": "HV so sánh được Stack và Queue; HV vận dụng được Queue vào chương trình; HV thực hành thao tác với các phần tử trong Queue bằng Python.",
+      "attitude": "HV thiết kế và lập trình ứng dụng sử dụng Queue.",
+      "lessonContent": [
+        "Cách hoạt động của cấu trúc dữ liệu Queue (Hàng đợi).",
+        "Các thao tác cơ bản trên Queue.",
+        "Ứng dụng của Queue trong lập trình và trong thực tế.",
+        "Ứng dụng Âm nhạc: Thêm bài hát, Chạy bài hát trong Hàng đợi, Bỏ qua bài hát."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "13": {
+      "sessionNumber": 13,
+      "title": "Thực hành: Giải quyết vấn đề (Phần 2)",
+      "summary": "Luyện tập kỹ năng tổng hợp giải quyết bài toán phức tạp bằng cách lựa chọn và phối hợp các cấu trúc dữ liệu tối ưu (List, Set, Dict, Stack, Queue) và thuật toán thích hợp; chuẩn bị nền tảng vững vàng cho ngày hội lập trình Hackathon cuối khóa.",
+      "hardwareAndCommands": "Tổng hợp cấu trúc dữ liệu và giải thuật (List, Set, Map, Stack, Queue, Search, Sort), kỹ năng debug và tối ưu thuật toán.",
+      "objectives": [
+        "Kiến thức: HV nhớ lại các bước giải quyết vấn đề; HV nhớ lại các cấu trúc dữ liệu đã học.",
+        "Kỹ năng: HV ứng dụng cấu trúc dữ liệu thích hợp vào chương trình.",
+        "Thái độ: HV sáng tạo chương trình để giải quyết vấn đề."
+      ],
+      "los": "S.LO.I.02, S.LO.I.03, S.LO.II.01, S.LO.III.01, S.LO.IV.03",
+      "knowledge": "HV nhớ lại các bước giải quyết vấn đề; HV nhớ lại các cấu trúc dữ liệu đã học.",
+      "skills": "HV ứng dụng cấu trúc dữ liệu thích hợp vào chương trình.",
+      "attitude": "HV sáng tạo chương trình để giải quyết vấn đề.",
+      "lessonContent": [
+        "Thực hành giải quyết một số bài toán sử dụng thuật toán và cấu trúc dữ liệu phù hợp."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "14": {
+      "sessionNumber": 14,
+      "title": "Hackathon cuối khóa",
+      "summary": "Tham gia ngày hội lập trình Hackathon tổng kết khóa Computer Scientist Basic; thử thách giải quyết bộ đề thi thuật toán và cấu trúc dữ liệu nâng cao, vận dụng tư duy hướng đối tượng và bảo vệ bài làm trước giảng viên.",
+      "hardwareAndCommands": "Đề thi Hackathon tổng hợp, lập trình thi đấu giải quyết vấn đề (Competitive Programming), kiểm thử tự động Test Cases, bảo vệ giải pháp kỹ thuật.",
+      "objectives": [
+        "Kiến thức: Đánh giá kiến thức của HV trong buổi 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13.",
+        "Kỹ năng: Đánh giá kỹ năng thực hành của HV trong buổi 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13.",
+        "Thái độ: HV có được thái độ trung thực, cẩn thận; HV xây dựng chương trình để giải quyết vấn đề."
+      ],
+      "los": "S.LO.I.01, S.LO.I.02, S.LO.I.03, S.LO.II.01",
+      "knowledge": "Đánh giá kiến thức của HV trong buổi 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13.",
+      "skills": "Đánh giá kỹ năng thực hành của HV trong buổi 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13.",
+      "attitude": "HV có được thái độ trung thực, cẩn thận; HV xây dựng chương trình để giải quyết vấn đề.",
+      "lessonContent": [
+        "Kiểm tra kiến thức OOP, thuật toán, cấu trúc dữ liệu."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    }
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "courseCode": "ARMA",
+  "courseName": "Robotics Arm Advance",
+  "category": "ROBOTICS",
+  "cluster": "ARM",
+  "platform": "VEX GO",
+  "sessions": {
+    "1": {
+      "sessionNumber": 1,
+      "title": "Cánh tay Robot",
+      "summary": "Khám phá vai trò và ứng dụng của cánh tay Robot trong các nhà máy, dây chuyền sản xuất công nghiệp hiện đại; tìm hiểu cấu tạo, nguyên lý hoạt động và trực tiếp lắp ráp mô hình cánh tay Robot.",
+      "hardwareAndCommands": "Mô hình cánh tay Robot cơ bản, lắp ráp cơ khí và nguyên lý truyền động.",
+      "objectives": [
+        "Hoàn thiện mô hình cánh tay Robot theo hướng dẫn.",
+        "Hiểu được chức năng, nhiệm vụ và lợi ích của cánh tay Robot trong thực tế.",
+        "Phát triển tư duy kỹ thuật, sự khéo léo và kỹ năng giải quyết vấn đề thông qua lắp ráp."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "2": {
+      "sessionNumber": 2,
+      "title": "Người bạn cần mẫn",
+      "summary": "Ôn tập kết nối Robot Arm và các thẻ lệnh Motion; lắp ráp mô hình cánh tay trang bị 02 động cơ, nam châm điện và cảm biến mắt; lập trình di chuyển đồ vật giữa các vị trí.",
+      "hardwareAndCommands": "02 động cơ, nam châm điện, cảm biến mắt; thẻ lệnh Motion, biến số, toán tử logic, vòng lặp có điều kiện repeat ... until.",
+      "objectives": [
+        "Hiểu khái niệm biến số và toán tử logic trong lập trình.",
+        "Hiểu ý nghĩa thẻ lệnh repeat ... until và phân biệt sự giống/khác nhau với vòng lặp thông thường.",
+        "Hiểu nhiệm vụ và lập trình cánh tay Robot di chuyển đồ vật chính xác."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "3": {
+      "sessionNumber": 3,
+      "title": "Nhiệm vụ liên hoàn",
+      "summary": "Lắp ráp mô hình cánh tay Robot có 2 trục hoạt động trang bị 02 động cơ, nam châm điện và cảm biến mắt; lập trình di chuyển đồ vật liên hoàn.",
+      "hardwareAndCommands": "Cánh tay Robot 2 trục, 02 động cơ, nam châm điện, cảm biến mắt; thẻ lệnh biến số, toán tử logic, repeat ... until.",
+      "objectives": [
+        "Vận dụng thành thạo biến số, toán tử logic và thẻ lệnh repeat ... until.",
+        "Phân tích, đánh giá và tự sửa các lỗi chương trình thường gặp."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "4": {
+      "sessionNumber": 4,
+      "title": "Công xưởng sáng tạo",
+      "summary": "Thảo luận theo nhóm lựa chọn và lắp ráp mô hình Robot di chuyển linh hoạt trên nhiều địa hình; lập trình vận hành và tham gia thi đấu cùng nhóm khác.",
+      "hardwareAndCommands": "Hệ thống bánh răng, 02 động cơ, LED Bumper, cảm biến mắt; tổng hợp kiến thức lập trình các buổi trước.",
+      "objectives": [
+        "Ghi nhớ kiến thức lập trình và quy trình thiết kế, lắp ráp Robot.",
+        "Lắp ráp, tối ưu mô hình hoạt động ổn định và phối hợp nhóm thi đấu."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "5": {
+      "sessionNumber": 5,
+      "title": "Đại dương lâm nguy",
+      "summary": "Tìm hiểu tác động của sự nóng lên toàn cầu đến đại dương; lắp ráp và lập trình mô hình Robot thực hiện nhiệm vụ bảo vệ môi trường.",
+      "hardwareAndCommands": "03 động cơ, cảm biến mắt; toán tử logic, câu lệnh điều kiện <if ... then ... else> và vòng lặp.",
+      "objectives": [
+        "Hiểu và vận dụng câu lệnh điều kiện <if ... then ... else> vào nhiệm vụ lập trình.",
+        "Hoàn thiện mô hình sử dụng 03 động cơ và cảm biến mắt.",
+        "Thành thạo thao tác thiết lập, kết nối và kéo thả câu lệnh."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "6": {
+      "sessionNumber": 6,
+      "title": "Trận chiến hỏa hoạn",
+      "summary": "Tìm hiểu công việc của lính cứu hỏa; lắp ráp và lập trình mô hình Robot thực hiện nhiệm vụ chữa cháy.",
+      "hardwareAndCommands": "03 động cơ, cảm biến mắt, LED Bumper; toán tử logic, cấu trúc điều kiện đa nhánh <if ... elif ... else> và vòng lặp.",
+      "objectives": [
+        "Hoàn thiện mô hình sử dụng 03 động cơ, cảm biến mắt và LED Bumper.",
+        "Hiểu và vận dụng câu lệnh rẽ nhánh <if ... elif ... else> vào lập trình điều khiển."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "7": {
+      "sessionNumber": 7,
+      "title": "Thảm họa cháy rừng",
+      "summary": "Tìm hiểu công việc lính cứu hỏa; lắp ráp mô hình trực thăng cứu hỏa và lập trình điều khiển thực hiện nhiệm vụ.",
+      "hardwareAndCommands": "Mô hình trực thăng 03 động cơ, cảm biến mắt, LED Bumper; toán tử logic, <if ... elif ... else> và vòng lặp.",
+      "objectives": [
+        "Hoàn thiện mô hình trực thăng sử dụng 03 động cơ, cảm biến mắt, LED Bumper.",
+        "Thành thạo kéo thả và vận dụng <if ... elif ... else> vào nhiệm vụ thực tế."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "8": {
+      "sessionNumber": 8,
+      "title": "Công xưởng sáng tạo (Thi đấu)",
+      "summary": "Ôn tập thẻ lệnh di chuyển theo khoảng cách và câu lệnh điều kiện; thảo luận nhóm thiết kế lắp ráp mô hình và lập trình thi đấu cùng nhóm khác.",
+      "hardwareAndCommands": "02-03 động cơ, LED Bumper, cảm biến mắt; thẻ lệnh di chuyển theo khoảng cách, if-then, if-then-else.",
+      "objectives": [
+        "Lên ý tưởng và lắp ráp mô hình gồm 02-03 động cơ, cảm biến mắt, LED Bumper.",
+        "Lập trình vận hành mô hình hoàn thành nhiệm vụ thi đấu nhóm."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "9": {
+      "sessionNumber": 9,
+      "title": "Những bức tranh đắt giá",
+      "summary": "Tìm hiểu về các hình thể có tính đối xứng trong đời sống; lắp ráp và lập trình mô hình Cỗ máy biết vẽ.",
+      "hardwareAndCommands": "Mô hình Cỗ máy biết vẽ, LED Bumper, cảm biến mắt; toán tử logic, vòng lặp <repeat ... until>.",
+      "objectives": [
+        "Hoàn thiện mô hình Cỗ máy biết vẽ kết hợp LED Bumper và cảm biến mắt.",
+        "Hiểu và vận dụng thẻ lệnh <repeat ... until> để lập trình vẽ hình đối xứng."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "10": {
+      "sessionNumber": 10,
+      "title": "Trở ngại vực thẳm",
+      "summary": "Củng cố kiến thức về hình thể đối xứng; hoàn thiện và nâng cấp chương trình điều khiển mô hình Cỗ máy biết vẽ.",
+      "hardwareAndCommands": "Mô hình Cỗ máy biết vẽ, LED Bumper, cảm biến mắt; toán tử logic, <repeat ... until>.",
+      "objectives": [
+        "Vận hành hoàn chỉnh mô hình Cỗ máy biết vẽ.",
+        "Thành thạo thiết lập, kết nối và lập trình với <repeat ... until>."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "11": {
+      "sessionNumber": 11,
+      "title": "Thoát khỏi mê cung",
+      "summary": "Giới thiệu thuật toán bám tường; ôn tập lắp ráp, sáng tạo mô hình và tranh tài lập trình Robot thoát khỏi mê cung.",
+      "hardwareAndCommands": "02 động cơ, cảm biến mắt, LED Bumper; câu lệnh điều kiện lồng nhau (if...else, if...elif...else) và vòng lặp.",
+      "objectives": [
+        "Hiểu thuật toán bám tường và nhóm thẻ lệnh điều kiện lồng nhau.",
+        "Sáng tạo mô hình và lập trình hoàn thành thử thách thoát khỏi mê cung."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "12": {
+      "sessionNumber": 12,
+      "title": "Công xưởng sáng tạo (Giải đề cuối khóa)",
+      "summary": "Ôn tập tổng hợp kiến thức; tham gia giải đề cuối khóa chủ đề Công việc của Robot trong đời sống con người; hướng dẫn quy trình thuyết trình Demo.",
+      "hardwareAndCommands": "03 động cơ, nam châm điện, cảm biến mắt, LED Bumper; tổng hợp toàn bộ thẻ lệnh đã học.",
+      "objectives": [
+        "Lên ý tưởng, lắp ráp và lập trình vận hành mô hình giải đề cuối khóa.",
+        "Hiểu rõ quy trình Demo và các tiêu chí của phần thuyết trình."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "13": {
+      "sessionNumber": 13,
+      "title": "Demo Robot",
+      "summary": "Ôn tập kiến thức các thẻ lệnh đã học; hướng dẫn học viên thuyết trình sản phẩm và luyện tập trả lời câu hỏi phản biện từ ban giám khảo.",
+      "hardwareAndCommands": "Sản phẩm Robot dự án cuối khóa và kỹ năng thuyết trình.",
+      "objectives": [
+        "Nắm vững kiến thức lập trình và cấu tạo mô hình để tự tin trả lời câu hỏi ban giám khảo.",
+        "Hoàn thành thuyết trình thử mạch lạc, rõ ràng."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    }
+  }
+}

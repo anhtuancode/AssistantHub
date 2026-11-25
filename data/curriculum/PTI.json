@@ -1,0 +1,317 @@
+{
+  "courseCode": "PTI",
+  "courseName": "App Producer - Intensive",
+  "category": "CODING",
+  "platform": "Python / PyQt6",
+  "cluster": "PYTHON",
+  "targetAge": "12+ tuổi",
+  "duration": "120 phút/buổi",
+  "version": "Ver2/Ver3 – 11–12.2024 (Hiệu lực)",
+  "studentBookUrl": "https://drive.google.com/file/d/1sr-RI2MjHgEyW2CG6ciaQDmLJf1Ta4nF/view",
+  "sessions": {
+    "1": {
+      "sessionNumber": 1,
+      "title": "Lên ý tưởng dự án cá nhân",
+      "summary": "Tổng quan về dự án cá nhân và quy trình phát triển phần mềm theo mô hình thác nước (Waterfall); thực hành xây dựng ý tưởng và lập kế hoạch phát triển phần mềm chi tiết cho dự án cá nhân.",
+      "hardwareAndCommands": "Mô hình thác nước (Waterfall Model), phần mềm quản lý kế hoạch/Mindmap, Python & VSCode.",
+      "objectives": [
+        "Kiến thức: Mô tả được các yêu cầu của dự án cá nhân; Mô tả được các bước trong mô hình thác nước.",
+        "Kỹ năng: Thực hành xây dựng kế hoạch phát triển phần mềm dựa trên ý tưởng.",
+        "Thái độ: Xây dựng ý tưởng dự án cá nhân."
+      ],
+      "los": "SLO.I.1, SLO.I.4, SLO.IV.4, SLO.V.1",
+      "knowledge": "Mô tả được các yêu cầu của dự án cá nhân; Mô tả được các bước trong mô hình thác nước.",
+      "skills": "Thực hành xây dựng kế hoạch phát triển phần mềm dựa trên ý tưởng.",
+      "attitude": "Xây dựng ý tưởng dự án cá nhân.",
+      "lessonContent": [
+        "Tổng quan về dự án cá nhân.",
+        "Quy trình phát triển phần mềm theo mô hình thác nước.",
+        "Xây dựng ý tưởng dự án cá nhân.",
+        "Xây dựng kế hoạch phát triển phần mềm."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "2": {
+      "sessionNumber": 2,
+      "title": "Ôn tập: Lớp – Đối tượng – Thư viện PyQt",
+      "summary": "Ôn tập kiến thức lập trình hướng đối tượng (OOP) về Lớp (Class) và Đối tượng (Object) trong Python; ôn tập thư viện lập trình giao diện PyQt và thực hành thiết kế giao diện ứng dụng cơ bản với Qt Designer.",
+      "hardwareAndCommands": "Lập trình hướng đối tượng (OOP), Class, Object, Thư viện PyQt/PyQt6, Qt Designer (.ui file).",
+      "objectives": [
+        "Kiến thức: Trình bày lại kiến thức lớp - đối tượng; Trình bày lại kiến thức giao diện với thư viện PyQt.",
+        "Kỹ năng: Thực hành lập trình sử dụng kiến thức lớp - đối tượng; Thực hành xây dựng giao diện cơ bản với Qt Designer."
+      ],
+      "los": "SLO.I.1, SLO.I.4",
+      "knowledge": "Trình bày lại kiến thức lớp - đối tượng; Trình bày lại kiến thức giao diện với thư viện PyQt.",
+      "skills": "Thực hành lập trình sử dụng kiến thức lớp - đối tượng; Thực hành xây dựng giao diện cơ bản với Qt Designer.",
+      "lessonContent": [
+        "Ôn tập kiến thức Lớp - Đối tượng.",
+        "Ôn tập thư viện PyQt."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "3": {
+      "sessionNumber": 3,
+      "title": "Danh sách đối tượng trong Python",
+      "summary": "Tìm hiểu và làm chủ cấu trúc danh sách đối tượng (List of Objects) trong Python; thực hành các kỹ thuật duyệt, thêm, sửa, xóa các thực thể đối tượng trong danh sách và áp dụng vào cấu trúc dữ liệu cho dự án cá nhân.",
+      "hardwareAndCommands": "Cấu trúc dữ liệu List trong Python, List of Objects, vòng lặp for duyệt đối tượng, phương thức append/remove/pop.",
+      "objectives": [
+        "Kiến thức: Trình bày lại kiến thức danh sách; Minh họa được danh sách đối tượng.",
+        "Kỹ năng: Thực hành tạo và xử lý phần tử trong danh sách đối tượng; Thực hành xây dựng danh sách đối tượng cho dự án cá nhân.",
+        "Thái độ: Xây dựng danh sách đối tượng cho dự án."
+      ],
+      "los": "SLO.I.1, SLO.I.4, SLO.IV.1, SLO.IV.2",
+      "knowledge": "Trình bày lại kiến thức danh sách; Minh họa được danh sách đối tượng.",
+      "skills": "Thực hành tạo và xử lý phần tử trong danh sách đối tượng; Thực hành xây dựng danh sách đối tượng cho dự án cá nhân.",
+      "attitude": "Xây dựng danh sách đối tượng cho dự án.",
+      "lessonContent": [
+        "Ôn tập về danh sách.",
+        "Danh sách đối tượng trong Python.",
+        "Duyệt và xử lý phần tử trong danh sách.",
+        "Áp dụng xây dựng danh sách đối tượng cho dự án cá nhân."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "4": {
+      "sessionNumber": 4,
+      "title": "Quản lý danh sách đối tượng",
+      "summary": "Ôn tập kiến thức hàm (Functions) trong Python; thiết kế và lập trình chương trình quản lý danh sách đối tượng hoàn chỉnh với các hàm chức năng xử lý mảng đối tượng; tích hợp tính năng quản lý thực thể vào dự án cá nhân.",
+      "hardwareAndCommands": "Định nghĩa hàm def, tham số truyền vào hàm, thao tác mảng đối tượng, module hóa chương trình quản lý.",
+      "objectives": [
+        "Kiến thức: Trình bày lại được kiến thức hàm; Mô tả được cấu trúc của chương trình quản lý đối tượng.",
+        "Kỹ năng: Thực hành tạo hàm và thao tác xử lý mảng đối tượng; Thực hành lập trình chương trình với các chức năng quản lý; Thực hành quản lý danh sách đối tượng cho dự án cá nhân.",
+        "Thái độ: Xây dựng tính năng quản lý danh sách đối tượng cho dự án cá nhân."
+      ],
+      "los": "SLO.I.1, SLO.I.4, SLO.IV.1, SLO.IV.2, SLO.IV.3",
+      "knowledge": "Trình bày lại được kiến thức hàm; Mô tả được cấu trúc của chương trình quản lý đối tượng.",
+      "skills": "Thực hành tạo hàm và thao tác xử lý mảng đối tượng; Thực hành lập trình chương trình với các chức năng quản lý; Thực hành quản lý danh sách đối tượng cho dự án cá nhân.",
+      "attitude": "Xây dựng tính năng quản lý danh sách đối tượng cho dự án cá nhân.",
+      "lessonContent": [
+        "Ôn tập kiến thức hàm.",
+        "Xây dựng chương trình quản lý danh sách đối tượng.",
+        "Áp dụng quản lý danh sách đối tượng cho dự án cá nhân."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "5": {
+      "sessionNumber": 5,
+      "title": "Kiểm tra Checkpoint 1 – Khám phá thế giới dữ liệu đa dạng",
+      "summary": "Thực hiện bài kiểm tra định kỳ Checkpoint 1 đánh giá kiến thức OOP, sơ đồ đối tượng và các thao tác trên danh sách đối tượng; tìm hiểu khái niệm dữ liệu, vai trò lưu trữ trong ứng dụng và làm quen với định dạng dữ liệu chuẩn JSON.",
+      "hardwareAndCommands": "Đề kiểm tra Checkpoint 1, sơ đồ lớp đối tượng (UML Class Diagram), định dạng dữ liệu JSON, cú pháp JSON chuẩn.",
+      "objectives": [
+        "Kiến thức: Mô tả được vai trò dữ liệu trong ứng dụng quản lý; Trình bày lại được kiểu dữ liệu JSON.",
+        "Kỹ năng: Thực hành kiểm tra lập trình quản lý danh sách đối tượng.",
+        "Thái độ: Xây dựng chương trình giải quyết vấn đề."
+      ],
+      "los": "SLO.I.1, SLO.I.4, SLO.I.5, SLO.IV.1",
+      "knowledge": "Mô tả được vai trò dữ liệu trong ứng dụng quản lý; Trình bày lại được kiểu dữ liệu JSON.",
+      "skills": "Thực hành kiểm tra lập trình quản lý danh sách đối tượng.",
+      "attitude": "Xây dựng chương trình giải quyết vấn đề.",
+      "lessonContent": [
+        "Kiểm tra kiến thức về quản lý danh sách đối tượng (Kiến thức xây dựng sơ đồ đối tượng; Các thao tác khởi tạo, duyệt, thêm và xóa trên danh sách đối tượng).",
+        "Khái niệm dữ liệu và vai trò trong ứng dụng.",
+        "Tìm hiểu về kiểu dữ liệu JSON."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "6": {
+      "sessionNumber": 6,
+      "title": "Quản lý dữ liệu cùng JSON",
+      "summary": "Khám phá kỹ thuật đọc và ghi tệp (File I/O) trong Python; sử dụng thư viện json (json.load, json.dump) để lưu trữ và tải dữ liệu cho chương trình quản lý; xây dựng trọn vẹn chu trình CRUD dữ liệu bền vững cho dự án cá nhân.",
+      "hardwareAndCommands": "Thao tác tệp open(), chế độ 'r'/'w', thư viện json, json.load(), json.dump(), xử lý ngoại lệ FileNotFoundError.",
+      "objectives": [
+        "Kiến thức: Áp dụng cách đọc ghi dữ liệu file JSON.",
+        "Kỹ năng: Thực hành cập nhật chương trình quản lý thêm vào trong file; Thực hành quản lý dữ liệu cho dự án cá nhân.",
+        "Thái độ: Xây dựng tính năng CRUD kết nối với dữ liệu; Đánh giá được độ hiệu quả của công cụ AI khi xây dựng ứng dụng."
+      ],
+      "los": "SLO.I.1, SLO.I.4, SLO.I.5, SLO.IV.1, SLO.IV.2",
+      "knowledge": "Áp dụng cách đọc ghi dữ liệu file JSON.",
+      "skills": "Thực hành cập nhật chương trình quản lý thêm vào trong file; Thực hành quản lý dữ liệu cho dự án cá nhân.",
+      "attitude": "Xây dựng tính năng CRUD kết nối với dữ liệu; Đánh giá được độ hiệu quả của công cụ AI khi xây dựng ứng dụng.",
+      "lessonContent": [
+        "Tìm hiểu đọc ghi file dữ liệu.",
+        "Sử dụng JSON trong chương trình quản lý.",
+        "Áp dụng quản lý dữ liệu cho dự án cá nhân."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "7": {
+      "sessionNumber": 7,
+      "title": "Xây dựng giao diện ứng dụng quản lý",
+      "summary": "Ôn tập các widget giao diện PyQt cơ bản và làm quen với các widget chuyên dụng cho danh sách (QListWidget, QTableWidget); thực hành các thao tác hiển thị danh sách, xử lý sự kiện bấm nút, hiển thị hộp thoại thông báo QMessageBox và thiết kế giao diện hoàn chỉnh cho dự án cá nhân.",
+      "hardwareAndCommands": "PyQt6 / PySide6, QListWidget, QTableWidget, QMessageBox, QPushButton, QLineEdit, Qt Designer.",
+      "objectives": [
+        "Kiến thức: Nhớ lại các widget cơ bản trong PyQt; Nhận dạng được widget cho danh sách.",
+        "Kỹ năng: Thực hành xử lý sự kiện; Thực hành tạo hộp thoại thông báo; Thực hành xây dựng giao diện trang chủ và trang thông tin thành viên.",
+        "Thái độ: Xây dựng giao diện quản lý cho dự án cá nhân."
+      ],
+      "los": "SLO.II.3, SLO.V.2, SLO.V.4, SLO.V.5",
+      "knowledge": "Nhớ lại các widget cơ bản trong PyQt; Nhận dạng được widget cho danh sách.",
+      "skills": "Thực hành xử lý sự kiện; Thực hành tạo hộp thoại thông báo; Thực hành xây dựng giao diện trang chủ và trang thông tin thành viên.",
+      "attitude": "Xây dựng giao diện quản lý cho dự án cá nhân.",
+      "lessonContent": [
+        "Ôn tập lại widget trong công cụ xây dựng giao diện.",
+        "Tìm hiểu widget dành cho danh sách.",
+        "Các thao tác với widget cho danh sách.",
+        "Áp dụng xây dựng giao diện quản lý cho dự án cá nhân."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "8": {
+      "sessionNumber": 8,
+      "title": "Xử lý sự kiện và tương tác với giao diện",
+      "summary": "Nghiên cứu cơ chế bắt và xử lý sự kiện (Signals & Slots) trong PyQt; kết nối các tương tác của người dùng trên giao diện để cập nhật trực tiếp dữ liệu lưu trữ JSON; rà soát tiến độ phát triển dự án cá nhân.",
+      "hardwareAndCommands": "Cơ chế Signals & Slots, signal.connect(), xử lý sự kiện tương tác giao diện và cập nhật đồng bộ file JSON.",
+      "objectives": [
+        "Kiến thức: Trình bày được sự kiện trong lập trình ứng dụng; Xác định được mối liên quan giữa giao diện với chương trình và dữ liệu thông qua sự kiện.",
+        "Kỹ năng: Thực hành xử lý sự kiện của phần mềm có ảnh hưởng đến dữ liệu.",
+        "Thái độ: Xử lý sự kiện và tương tác với giao diện cho dự án cá nhân."
+      ],
+      "los": "SLO.I.5, SLO.II.3, SLO.II.4, SLO.V.2, SLO.V.4",
+      "knowledge": "Trình bày được sự kiện trong lập trình ứng dụng; Xác định được mối liên quan giữa giao diện với chương trình và dữ liệu thông qua sự kiện.",
+      "skills": "Thực hành xử lý sự kiện của phần mềm có ảnh hưởng đến dữ liệu.",
+      "attitude": "Xử lý sự kiện và tương tác với giao diện cho dự án cá nhân.",
+      "lessonContent": [
+        "Ôn tập về sự kiện.",
+        "Tìm hiểu cách sự kiện ảnh hưởng đến dữ liệu lưu trữ trong JSON.",
+        "Áp dụng xử lý sự kiện và tương tác với giao diện cho dự án cá nhân.",
+        "Kiểm tra tiến độ dự án cá nhân."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "9": {
+      "sessionNumber": 9,
+      "title": "Kiểm tra Checkpoint 2",
+      "summary": "Thực hiện bài kiểm tra định kỳ Checkpoint 2 đánh giá toàn diện kỹ năng đọc/ghi file JSON, kỹ năng xây dựng giao diện quản lý bằng PyQt và khả năng lập trình xử lý sự kiện tương tác dữ liệu đồng bộ.",
+      "hardwareAndCommands": "Đề kiểm tra Checkpoint 2, tệp giao diện PyQt .ui, kỹ thuật đọc/ghi JSON, xử lý sự kiện Signals & Slots.",
+      "objectives": [
+        "Kiến thức: Nhận biết được file JSON; Nhận diện được widget dành cho danh sách; Xác định được mối liên quan giữa giao diện với chương trình và dữ liệu thông qua sự kiện.",
+        "Kỹ năng: Thực hành đọc ghi dữ liệu JSON; Thực hành xử lý sự kiện của giao diện phần mềm có ảnh hưởng đến dữ liệu; Thực hành xử lý sự kiện của chức năng phần mềm có ảnh hưởng đến dữ liệu.",
+        "Thái độ: Xây dựng chương trình để giải quyết vấn đề."
+      ],
+      "los": "SLO.I.5, SLO.II.3, SLO.II.4, SLO.V.2, SLO.V.4, SLO.V.5",
+      "knowledge": "Nhận biết được file JSON; Nhận diện được widget dành cho danh sách; Xác định được mối liên quan giữa giao diện với chương trình và dữ liệu thông qua sự kiện.",
+      "skills": "Thực hành đọc ghi dữ liệu JSON; Thực hành xử lý sự kiện của giao diện phần mềm có ảnh hưởng đến dữ liệu; Thực hành xử lý sự kiện của chức năng phần mềm có ảnh hưởng đến dữ liệu.",
+      "attitude": "Xây dựng chương trình để giải quyết vấn đề.",
+      "lessonContent": [
+        "Kiểm tra kiến thức về đọc ghi file JSON.",
+        "Kiểm tra kiến thức về xây dựng giao diện trong chương trình quản lý.",
+        "Kiểm tra kiến thức về xử lý sự kiện trong chương trình quản lý."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "10": {
+      "sessionNumber": 10,
+      "title": "Xây dựng tính năng AI và triển khai ứng dụng",
+      "summary": "Tích hợp công nghệ trí tuệ nhân tạo (AI) vào ứng dụng Python; sử dụng thư viện pyttsx3 để phát triển tính năng Text-to-Speech (chuyển văn bản thành giọng nói); tìm hiểu công nghệ Speech-to-Text và các bước chuẩn bị triển khai phần mềm trong môi trường thực tế.",
+      "hardwareAndCommands": "Thư viện pyttsx3, Text-to-Speech (TTS), Speech-to-Text (STT), micro & loa phát âm thanh, quy trình triển khai phần mềm.",
+      "objectives": [
+        "Kiến thức: Nhận biết công nghệ AI speech to text; Hiểu công dụng của thư viện AI trong xây dựng ứng dụng; Mô tả các bước triển khai phần mềm trong môi trường thực tế.",
+        "Kỹ năng: Vận dụng thư viện để tích hợp tính năng AI vào phần mềm; Vận dụng thư viện pyttsx3 để triển khai tính năng Text-to-Speech.",
+        "Thái độ: Đánh giá tính khả thi và hiệu suất của việc tích hợp AI vào phần mềm."
+      ],
+      "los": "SLO.I.5, SLO.II.3, SLO.II.4, SLO.V.2, SLO.V.4, SLO.V.5",
+      "knowledge": "Nhận biết công nghệ AI speech to text; Hiểu công dụng của thư viện AI trong xây dựng ứng dụng; Mô tả các bước triển khai phần mềm trong môi trường thực tế.",
+      "skills": "Vận dụng thư viện để tích hợp tính năng AI vào phần mềm; Vận dụng thư viện pyttsx3 để triển khai tính năng Text-to-Speech.",
+      "attitude": "Đánh giá tính khả thi và hiệu suất của việc tích hợp AI vào phần mềm.",
+      "lessonContent": [
+        "Text-to-Speech.",
+        "Sử dụng thư viện để thêm các tính năng AI vào cho phần mềm.",
+        "Hướng dẫn triển khai phần mềm trong môi trường thực tế."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "11": {
+      "sessionNumber": 11,
+      "title": "Thực hành: Hoàn chỉnh giao diện",
+      "summary": "Rà soát tiến độ dự án cá nhân; thực hành tối ưu hóa và hoàn thiện giao diện ứng dụng: căn chỉnh bố cục (Layouts), áp dụng nguyên tắc phối màu và trải nghiệm người dùng (UX/UI), sử dụng QSS (Qt Style Sheets) để giao diện hiện đại, chuyên nghiệp.",
+      "hardwareAndCommands": "Bố cục giao diện QHBoxLayout/QVBoxLayout/QGridLayout, Qt Style Sheets (QSS), phối màu UI/UX, công cụ hỗ trợ thiết kế AI.",
+      "objectives": [
+        "Kiến thức: Nhớ lại các khái niệm về bố cục giao diện; Hiểu nguyên tắc phối màu.",
+        "Kỹ năng: Vận dụng các công cụ AI, Internet để hỗ trợ thiết kế giao diện; Phân tích sự phù hợp của giao diện với mục đích và nội dung ứng dụng.",
+        "Thái độ: Xây dựng giao diện đẹp mắt, sáng tạo."
+      ],
+      "los": "SLO.I.5, SLO.II.3, SLO.II.4, SLO.II.5",
+      "knowledge": "Nhớ lại các khái niệm về bố cục giao diện; Hiểu nguyên tắc phối màu.",
+      "skills": "Vận dụng các công cụ AI, Internet để hỗ trợ thiết kế giao diện; Phân tích sự phù hợp của giao diện với mục đích và nội dung ứng dụng.",
+      "attitude": "Xây dựng giao diện đẹp mắt, sáng tạo.",
+      "lessonContent": [
+        "Kiểm tra tiến độ dự án cá nhân.",
+        "Thực hành: Hoàn chỉnh giao diện ứng dụng."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "12": {
+      "sessionNumber": 12,
+      "title": "Thực hành: Hoàn chỉnh chức năng",
+      "summary": "Rà soát tiến độ dự án cá nhân; tập trung hoàn thiện toàn bộ hệ thống tính năng ứng dụng: củng cố logic CRUD, xử lý các trường hợp biên và kiểm soát dữ liệu đầu vào; đảm bảo các widget hoạt động trơn tru và gắn kết chặt chẽ với dữ liệu.",
+      "hardwareAndCommands": "Hoàn thiện tính năng CRUD, kiểm tra dữ liệu đầu vào (Input Validation), xử lý ngoại lệ try-except, thư viện PyQt.",
+      "objectives": [
+        "Kiến thức: Nhớ lại các khái niệm về CRUD; Hiểu tầm quan trọng của hoàn thiện tính năng ứng dụng.",
+        "Kỹ năng: Vận dụng thư viện PyQt để xây dựng tính năng ứng dụng; Phân tích sự phù hợp của widget và các tính năng với mục đích và nội dung ứng dụng.",
+        "Thái độ: Xây dựng tính năng sáng tạo, hữu ích."
+      ],
+      "los": "SLO.I.5, SLO.II.3, SLO.II.4, SLO.II.5, SLO.V.4, SLO.V.5",
+      "knowledge": "Nhớ lại các khái niệm về CRUD; Hiểu tầm quan trọng của hoàn thiện tính năng ứng dụng.",
+      "skills": "Vận dụng thư viện PyQt để xây dựng tính năng ứng dụng; Phân tích sự phù hợp của widget và các tính năng với mục đích và nội dung ứng dụng.",
+      "attitude": "Xây dựng tính năng sáng tạo, hữu ích.",
+      "lessonContent": [
+        "Kiểm tra tiến độ dự án cá nhân.",
+        "Thực hành: Hoàn chỉnh tính năng ứng dụng."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "13": {
+      "sessionNumber": 13,
+      "title": "Thực hành: Kiểm thử và sửa lỗi – Đóng gói ứng dụng",
+      "summary": "Thực hiện kiểm thử phần mềm (Testing) và khắc phục triệt để các lỗi phát sinh (Debugging); sử dụng công cụ PyInstaller để đóng gói dự án Python thành tệp thực thi độc lập (.exe); thiết kế slide trình chiếu chuẩn bị cho buổi báo cáo tốt nghiệp.",
+      "hardwareAndCommands": "Công cụ đóng gói PyInstaller (pyinstaller --noconsole --onefile), kiểm thử chức năng (Functional Testing), công cụ thiết kế slide Canva/PowerPoint.",
+      "objectives": [
+        "Kiến thức: Hiểu tầm quan trọng của kiểm thử ứng dụng; Hiểu lợi ích của việc đóng gói và triển khai ứng dụng.",
+        "Kỹ năng: Vận dụng các bước kiểm thử để kiểm thử và sửa lỗi cho ứng dụng; Phân tích sự phù hợp của widget và các tính năng với mục đích và nội dung ứng dụng.",
+        "Thái độ: Sáng tạo bản trình chiếu phù hợp với ứng dụng."
+      ],
+      "los": "SLO.III.5, SLO.V.3, SLO.V.4",
+      "knowledge": "Hiểu tầm quan trọng của kiểm thử ứng dụng; Hiểu lợi ích của việc đóng gói và triển khai ứng dụng.",
+      "skills": "Vận dụng các bước kiểm thử để kiểm thử và sửa lỗi cho ứng dụng; Phân tích sự phù hợp của widget và các tính năng với mục đích và nội dung ứng dụng.",
+      "attitude": "Sáng tạo bản trình chiếu phù hợp với ứng dụng.",
+      "lessonContent": [
+        "Kiểm tra tiến độ dự án cá nhân.",
+        "Thực hành: Kiểm thử và sửa lỗi – Đóng gói ứng dụng.",
+        "Tạo bản trình chiếu."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "14": {
+      "sessionNumber": 14,
+      "title": "Thuyết trình dự án cuối khóa",
+      "summary": "Tổ chức buổi báo cáo tốt nghiệp dự án ứng dụng Python App Producer Intensive; học viên tự tin thuyết trình ý tưởng, kiến trúc phần mềm, trình diễn bản demo ứng dụng (.exe); trả lời câu hỏi phản biện từ hội đồng và nhận chứng chỉ hoàn thành khóa học.",
+      "hardwareAndCommands": "Kỹ năng thuyết trình trước đám đông, trình diễn demo phần mềm .exe, máy chiếu/màn hình thuyết trình.",
+      "objectives": [
+        "Kỹ năng: Trình bày ứng dụng; Trả lời câu hỏi và lập luận phản biện.",
+        "Thái độ: Có thái độ lịch sự, tự tin khi trình bày sản phẩm; Có thái độ cởi mở, xây dựng khi thảo luận và giải đáp câu hỏi."
+      ],
+      "los": "SLO.III.5, SLO.V.3, SLO.V.4",
+      "skills": "Trình bày ứng dụng; Trả lời câu hỏi và lập luận phản biện.",
+      "attitude": "Có thái độ lịch sự, tự tin khi trình bày sản phẩm; Có thái độ cởi mở, xây dựng khi thảo luận và giải đáp câu hỏi.",
+      "lessonContent": [
+        "Thuyết trình ứng dụng.",
+        "Demo ứng dụng, trả lời câu hỏi và tương tác với khán giả."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    }
+  }
+}

@@ -1,0 +1,198 @@
+{
+  "courseCode": "PTB",
+  "courseName": "App Producer - Basic (Python)",
+  "category": "CODING",
+  "platform": "Python / VSCode",
+  "cluster": "PYTHON",
+  "studentBookUrl": "https://drive.google.com/file/d/1M3-AQx-mI6oH5Un4SejRNT2-Ig2H4QUK/view?usp=drive_link",
+  "sessions": {
+    "1": {
+      "sessionNumber": 1,
+      "title": "Thế giới ngôn ngữ và xứ Python kì diệu",
+      "summary": "Tìm hiểu ngôn ngữ máy và ngôn ngữ bậc cao; cài đặt môi trường lập trình Python; sử dụng phần mềm VSCode, tổ chức file và làm quen một số lệnh Python cơ bản.",
+      "hardwareAndCommands": "Python, phần mềm VSCode, tổ chức thư mục/file và các câu lệnh Python cơ bản.",
+      "objectives": [
+        "Trình bày và so sánh được ngôn ngữ máy với ngôn ngữ bậc cao; nhận biết Python là ngôn ngữ bậc cao.",
+        "Cài đặt được môi trường lập trình và thực hiện tạo chương trình Python trên VSCode.",
+        "Vận dụng các câu lệnh cơ bản của Python để giải quyết vấn đề."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": "",
+      "studentBookPages": "4-5",
+      "studentBookPageFrom": "4",
+      "studentBookPageTo": "5"
+    },
+    "2": {
+      "sessionNumber": 2,
+      "title": "Sức mạnh của biến và kiểu dữ liệu",
+      "summary": "Tìm hiểu khái niệm biến, các từ khóa Python cơ bản, quy tắc đặt tên biến, các kiểu dữ liệu trong Python và kỹ thuật ép kiểu dữ liệu.",
+      "hardwareAndCommands": "Biến (Variables), lệnh gán, từ khóa Python, các kiểu dữ liệu cơ bản (int, float, str, bool) và ép kiểu dữ liệu.",
+      "objectives": [
+        "Trình bày được khái niệm biến, phân biệt được biến với từ khóa và liệt kê các kiểu dữ liệu.",
+        "Thực hiện khởi tạo biến bằng lệnh gán và vận dụng đúng quy tắc đặt tên biến.",
+        "Thiết kế được chương trình nhận dữ liệu nhập từ người dùng và xử lý ép kiểu."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "3": {
+      "sessionNumber": 3,
+      "title": "Tính toán toán tử",
+      "summary": "Giới thiệu về toán tử trong Python bao gồm toán tử số học, toán tử quan hệ, toán tử logic và cách xây dựng biểu thức logic.",
+      "hardwareAndCommands": "Toán tử số học (+, -, *, /, //, %, **), toán tử quan hệ (==, !=, >, <, >=, <=), toán tử logic (and, or, not) và biểu thức logic.",
+      "objectives": [
+        "Trình bày được khái niệm toán tử và liệt kê các loại toán tử cơ bản.",
+        "Phân biệt được các loại toán tử số học, quan hệ và logic.",
+        "Áp dụng được toán tử và biểu thức logic vào viết chương trình Python."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "4": {
+      "sessionNumber": 4,
+      "title": "Rẽ nhánh bằng câu điều kiện",
+      "summary": "Tìm hiểu biểu thức điều kiện, cấu trúc câu điều kiện rẽ nhánh if - elif - else, khái niệm thuật toán và kỹ năng vẽ sơ đồ khối.",
+      "hardwareAndCommands": "Biểu thức điều kiện, câu lệnh rẽ nhánh if - elif - else, thuật toán và công cụ vẽ sơ đồ khối draw.io.",
+      "objectives": [
+        "Mô tả được cấu trúc câu điều kiện, khái niệm thuật toán và ý nghĩa sơ đồ khối.",
+        "Thực hành vẽ sơ đồ khối trên ứng dụng draw.io và áp dụng câu điều kiện if - elif - else vào chương trình.",
+        "Thiết kế được sơ đồ khối từ thuật toán để viết chương trình giải quyết vấn đề."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "5": {
+      "sessionNumber": 5,
+      "title": "Kiểm tra: Biến, Kiểu dữ liệu, Toán tử, Câu điều kiện",
+      "summary": "Ôn tập và kiểm tra đánh giá kiến thức, kỹ năng thực hành từ buổi 1 đến buổi 4 về nhập xuất dữ liệu, xử lý kiểu dữ liệu, biểu thức điều kiện, xây dựng thuật toán và lập trình từ sơ đồ khối.",
+      "hardwareAndCommands": "Tổng hợp nhập xuất dữ liệu (input/print), biến, ép kiểu, toán tử, câu điều kiện if - elif - else và sơ đồ khối.",
+      "objectives": [
+        "Hệ thống hóa và đánh giá kiến thức, kỹ năng thực hành đã học trong 4 buổi đầu.",
+        "Rèn luyện thái độ làm bài trung thực, cẩn thận.",
+        "Xây dựng được chương trình hoàn chỉnh từ thuật toán và sơ đồ khối để giải quyết vấn đề."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "6": {
+      "sessionNumber": 6,
+      "title": "Vòng lặp hữu hạn: Lặp bao nhiêu lần?",
+      "summary": "Tìm hiểu tính chất vòng lặp hữu hạn, cấu trúc vòng lặp for với hàm range(), vòng lặp for lồng nhau và thực hành xây dựng thuật toán, vẽ sơ đồ khối.",
+      "hardwareAndCommands": "Vòng lặp hữu hạn for, hàm range(), vòng lặp for lồng nhau và sơ đồ khối vòng lặp.",
+      "objectives": [
+        "Trình bày được khái niệm, tính chất vòng lặp hữu hạn và mô tả cấu trúc câu lệnh for.",
+        "Thực hành vẽ sơ đồ khối và vận dụng vòng lặp for với range() để viết chương trình.",
+        "Thiết kế được thuật toán sử dụng vòng lặp hữu hạn để giải quyết vấn đề."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "7": {
+      "sessionNumber": 7,
+      "title": "Vòng lặp vô hạn: Lặp đến khi nào?",
+      "summary": "Tìm hiểu tính chất vòng lặp vô hạn, cấu trúc vòng lặp while, vòng lặp while lồng nhau và thực hành xây dựng thuật toán, vẽ sơ đồ khối với vòng lặp vô hạn.",
+      "hardwareAndCommands": "Vòng lặp vô hạn while, vòng lặp while lồng nhau, điều kiện dừng và sơ đồ khối.",
+      "objectives": [
+        "Trình bày được tính chất vòng lặp vô hạn, mô tả cấu trúc while và phân biệt vòng lặp vô hạn với vòng lặp hữu hạn.",
+        "Thực hành vẽ sơ đồ khối cho thuật toán sử dụng vòng lặp vô hạn.",
+        "Thiết kế được thuật toán và viết chương trình sử dụng vòng lặp while để giải quyết vấn đề."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "8": {
+      "sessionNumber": 8,
+      "title": "Lập trình giải quyết vấn đề",
+      "summary": "Vận dụng tổng hợp các kiến thức lập trình Python đã học (biến, kiểu dữ liệu, toán tử, câu điều kiện, vòng lặp) để phân tích bài toán và lập trình giải quyết vấn đề thực tế.",
+      "hardwareAndCommands": "Tổng hợp biến, kiểu dữ liệu, toán tử, câu điều kiện if - elif - else, vòng lặp for/while và tư duy phân tích thuật toán.",
+      "objectives": [
+        "Mô tả được các bước giải quyết vấn đề trong lập trình.",
+        "Phân tích được bài toán và xây dựng giải pháp lập trình phù hợp.",
+        "Đề xuất và đánh giá được giải pháp tối ưu để giải quyết vấn đề."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "9": {
+      "sessionNumber": 9,
+      "title": "Kiểm tra: Vòng lặp & Danh sách là gì?",
+      "summary": "Kiểm tra đánh giá kiến thức và kỹ năng thực hành từ buổi 1 đến buổi 8; làm quen khái niệm, tính chất và cách khởi tạo kiểu dữ liệu Danh sách (List) trong Python.",
+      "hardwareAndCommands": "Kiểu dữ liệu Danh sách (List), cú pháp khởi tạo list, truy xuất phần tử và tổng hợp kiến thức vòng lặp.",
+      "objectives": [
+        "Hệ thống hóa và đánh giá kiến thức, kỹ năng thực hành từ buổi 1 đến buổi 8.",
+        "Trình bày được định nghĩa, tính chất của danh sách (List) và thực hành khởi tạo, duyệt danh sách.",
+        "Rèn luyện thái độ trung thực, cẩn thận khi làm bài kiểm tra và xây dựng chương trình."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "10": {
+      "sessionNumber": 10,
+      "title": "Danh sách và hơn thế nữa",
+      "summary": "Tìm hiểu cách duyệt phần tử trong danh sách, các hàm thao tác với danh sách và thực hành thêm, xóa, sửa các phần tử trong danh sách Python.",
+      "hardwareAndCommands": "Duyệt danh sách (for/while), các phương thức và hàm thao tác List (append, insert, remove, pop, len...).",
+      "objectives": [
+        "Trình bày và liệt kê được các cách thao tác với danh sách trong Python.",
+        "Thực hành duyệt danh sách và thêm, xóa, sửa các phần tử thành thạo.",
+        "Thiết kế được thuật toán sử dụng danh sách để giải quyết vấn đề."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "11": {
+      "sessionNumber": 11,
+      "title": "Xâu kí tự",
+      "summary": "Tìm hiểu khái niệm xâu kí tự (String), cách duyệt xâu, xâu con, kỹ thuật cắt chuỗi xâu (slicing) và một số lệnh xử lý xâu kí tự trong Python.",
+      "hardwareAndCommands": "Kiểu dữ liệu Xâu kí tự (String), duyệt xâu, cắt chuỗi (slicing) và các hàm/phương thức xử lý xâu.",
+      "objectives": [
+        "Trình bày được khái niệm xâu kí tự (String) và khái niệm xâu con.",
+        "Thực hành duyệt xâu kí tự và cắt xâu thành xâu con.",
+        "Vận dụng thành thạo một số câu lệnh xử lý xâu vào bài toán lập trình."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": "",
+      "studentBookPages": "42-48",
+      "studentBookPageFrom": "42",
+      "studentBookPageTo": "48"
+    },
+    "12": {
+      "sessionNumber": 12,
+      "title": "Hàm - Chia nhỏ công việc",
+      "summary": "Tìm hiểu định nghĩa hàm (chương trình con), cách thiết lập hàm không có giá trị trả về, truyền tham số vào hàm và phân biệt phạm vi của biến/tham số.",
+      "hardwareAndCommands": "Từ khóa def, hàm không có giá trị trả về, tham số truyền vào hàm (parameters) và phạm vi biến (local/global scope).",
+      "objectives": [
+        "Mô tả được khái niệm hàm (chương trình con) và phân biệt các phạm vi sử dụng của biến.",
+        "Thực hành khởi tạo và gọi hàm không có giá trị trả về, hàm có sử dụng tham số.",
+        "Thiết kế được chương trình có sử dụng hàm để chia nhỏ và giải quyết vấn đề."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "13": {
+      "sessionNumber": 13,
+      "title": "Hàm với giá trị mang lại",
+      "summary": "Tìm hiểu hàm có giá trị trả về (return), phân biệt với hàm không có giá trị trả về, khám phá các hàm có sẵn và thư viện thông dụng trong Python.",
+      "hardwareAndCommands": "Hàm có giá trị trả về (lệnh return), hàm có sẵn (built-in functions) và thư viện Python thông dụng.",
+      "objectives": [
+        "Mô tả được hàm có giá trị trả về và phân biệt với hàm không có giá trị trả về.",
+        "Xác định và sử dụng được các hàm có sẵn, các thư viện thông dụng trong Python.",
+        "Thực hành tạo, gọi hàm có giá trị trả về để giải quyết bài toán lập trình."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "14": {
+      "sessionNumber": 14,
+      "title": "CODING SHOWDOWN",
+      "summary": "Tìm hiểu và sử dụng nền tảng Coding Showdown tham dự cuộc thi lập trình; tham gia thử thách tư duy, gỡ lỗi, tối ưu mã nguồn và thi đấu lập trình cạnh tranh trực tiếp.",
+      "hardwareAndCommands": "Nền tảng thi đấu Coding Showdown; tổng hợp toàn bộ kiến thức Python cơ bản, cấu trúc dữ liệu, hàm và tối ưu thuật toán.",
+      "objectives": [
+        "Trình bày, giải thích đầy đủ các khái niệm cơ bản và ứng dụng cấu trúc dữ liệu trong Python.",
+        "Phân tích bài toán, gỡ lỗi và tối ưu hóa mã nguồn trong thời gian giới hạn.",
+        "Thể hiện tinh thần cạnh tranh lành mạnh, tự tin, kiên trì và sáng tạo giải pháp trong cuộc thi."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    }
+  }
+}

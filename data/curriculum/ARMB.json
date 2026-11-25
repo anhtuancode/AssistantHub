@@ -1,0 +1,167 @@
+{
+  "courseCode": "ARMB",
+  "courseName": "Robotics Arm Basic",
+  "category": "ROBOTICS",
+  "cluster": "ARM",
+  "platform": "VEX GO",
+  "sessions": {
+    "1": {
+      "sessionNumber": 1,
+      "title": "Thám hiểm đáy đại dương",
+      "summary": "Làm quen bộ VEX GO Kit và các chi tiết nhựa lắp ráp mô hình đơn giản; tìm hiểu các loài động vật đáy đại dương và cơ cấu truyền chuyển động bằng bánh răng theo hai mẫu.",
+      "hardwareAndCommands": "Bộ VEX GO Kit, hệ thống bánh răng, cơ cấu truyền chuyển động.",
+      "objectives": [
+        "Hiểu chức năng từng thành phần trong bộ Kit VEX GO",
+        "Hiểu sự thích nghi của động vật đáy đại dương",
+        "Phân tích và bố trí bánh răng phù hợp mục đích truyền động"
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "2": {
+      "sessionNumber": 2,
+      "title": "Giải cứu gấu Bắc cực",
+      "summary": "Tìm hiểu động vật vùng Bắc Cực và ý thức bảo vệ môi trường; thiết kế lắp ráp phương tiện di chuyển đến Bắc Cực và lập trình điều khiển giải cứu gấu Bắc Cực.",
+      "hardwareAndCommands": "Mô hình xe VEX GO; thẻ lệnh di chuyển tiến-lùi, vòng lặp hữu hạn repeat (), chờ điều kiện wait until <>.",
+      "objectives": [
+        "Hoàn thiện mô hình phương tiện di chuyển",
+        "Ghi nhớ thẻ lệnh điều khiển chuyển động tiến-lùi",
+        "Hiểu và vận dụng thẻ lệnh repeat () và wait until <>"
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "3": {
+      "sessionNumber": 3,
+      "title": "Hang động kỳ bí",
+      "summary": "Tìm hiểu hang động ở Việt Nam; lắp ráp phương tiện giao thông trang bị 2 động cơ, LED Bumper và cảm biến mắt; lập trình di chuyển trong không gian chật hẹp, thiếu sáng.",
+      "hardwareAndCommands": "02 động cơ, LED Bumper, cảm biến mắt; thẻ lệnh di chuyển tới-lui, rẽ trái-phải, vòng lặp, câu lệnh điều kiện if - else.",
+      "objectives": [
+        "Ghi nhớ thẻ lệnh di chuyển và vòng lặp",
+        "Hiểu và vận dụng câu lệnh điều kiện if ... else kết hợp cảm biến mắt và LED Bumper"
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "4": {
+      "sessionNumber": 4,
+      "title": "Công xưởng sáng tạo",
+      "summary": "Thảo luận nhóm lựa chọn và lắp ráp mô hình Robot di chuyển linh hoạt trên nhiều địa hình; lập trình vận hành và tham gia thi đấu cùng nhóm khác.",
+      "hardwareAndCommands": "Hệ thống bánh răng, 02 động cơ, LED Bumper, cảm biến mắt; tổng hợp kiến thức lập trình các buổi trước.",
+      "objectives": [
+        "Ghi nhớ quy trình thiết kế, lắp ráp và tối ưu mô hình Robot",
+        "Phối hợp làm việc nhóm và thi đấu sản phẩm"
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "5": {
+      "sessionNumber": 5,
+      "title": "Bão cát sa mạc",
+      "summary": "Tìm hiểu hiện tượng bão cát ở sa mạc; hai nhóm phối hợp lắp ráp mô hình di chuyển tốc độ nhanh và khỏe trên sa mạc; lập trình điều khiển độc lập hai động cơ.",
+      "hardwareAndCommands": "02 động cơ độc lập; thẻ lệnh điều khiển từng động cơ độc lập, di chuyển tới-lui, rẽ trái-phải và vòng lặp.",
+      "objectives": [
+        "Ghi nhớ thẻ lệnh di chuyển độc lập của hai động cơ và vòng lặp",
+        "Hoàn thiện mô hình có tốc độ và lực kéo tốt"
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "6": {
+      "sessionNumber": 6,
+      "title": "Châu Phi thiên nhiên hoang dã",
+      "summary": "Tìm hiểu động vật hoang dã Châu Phi; lắp ráp mô hình Base Bot 2 động cơ đối xứng; tìm hiểu nguyên tắc di chuyển và lập trình tương tác.",
+      "hardwareAndCommands": "Mô hình Base Bot 2 động cơ đối xứng; thẻ lệnh spin motor, vòng lặp, đa điều kiện if-then kết hợp wait until.",
+      "objectives": [
+        "Hiểu nguyên tắc tới-lùi, rẽ trái-phải của 2 động cơ độc lập",
+        "Hiểu nhiệm vụ lập trình kết hợp đa điều kiện if-then và wait until"
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "7": {
+      "sessionNumber": 7,
+      "title": "Bí ẩn Ai Cập",
+      "summary": "Tìm hiểu văn minh Ai Cập; nâng cấp cảm biến mắt cho mô hình Base Bot, tìm hiểu thông số nhạy sáng và lập trình điều khiển.",
+      "hardwareAndCommands": "Mô hình Base Bot trang bị cảm biến mắt; thông số nhạy sáng, câu lệnh điều kiện <if ... then ... else> và vòng lặp.",
+      "objectives": [
+        "Hoàn thiện mô hình có sử dụng cảm biến mắt",
+        "Thành thạo thiết lập, kết nối, kéo thả lệnh và vận dụng <if ... then ... else>"
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "8": {
+      "sessionNumber": 8,
+      "title": "Công xưởng sáng tạo (Thám hiểm Trái Đất)",
+      "summary": "Ôn tập di chuyển và rẽ có khoảng cách, điều kiện vòng lặp; thảo luận nhóm sáng tạo mô hình chủ đề thám hiểm Trái Đất, lập trình thi đấu và thuyết trình sản phẩm.",
+      "hardwareAndCommands": "02 động cơ, cảm biến mắt, LED Bumper; thẻ lệnh di chuyển/rẽ có khoảng cách, điều kiện và vòng lặp.",
+      "objectives": [
+        "Lên ý tưởng lắp ráp sáng tạo mô hình theo chủ đề",
+        "Lập trình vận hành mô hình và hoàn thành thuyết trình nhóm"
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "9": {
+      "sessionNumber": 9,
+      "title": "Phan-xi-păng hùng vĩ",
+      "summary": "Tìm hiểu đỉnh Phan-xi-păng; lắp ráp mô hình trang bị LED Bumper; lập trình xe leo dốc hoặc dừng khẩn cấp khi xuống dốc.",
+      "hardwareAndCommands": "Hệ thống bánh răng tăng tốc/tăng sức kéo, LED Bumper; câu lệnh điều kiện if ... else và vòng lặp.",
+      "objectives": [
+        "Áp dụng bố trí bánh răng để tăng tốc hoặc tăng sức kéo",
+        "Vận dụng câu lệnh điều kiện if ... else kết hợp LED Bumper"
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "10": {
+      "sessionNumber": 10,
+      "title": "Ngược dòng sông Hồng",
+      "summary": "Tìm hiểu sông Hồng và phương tiện giao thông đường thủy; lắp ráp mô hình có bánh răng, LED Bumper, cảm biến mắt và lập trình vận hành.",
+      "hardwareAndCommands": "Hệ thống bánh răng, LED Bumper, cảm biến mắt; câu lệnh điều kiện <if - then - else> và vòng lặp.",
+      "objectives": [
+        "Ghi nhớ nguyên tắc hoạt động của cảm biến mắt với ánh sáng",
+        "Hoàn thiện mô hình và vận dụng câu lệnh điều kiện vào nhiệm vụ"
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "11": {
+      "sessionNumber": 11,
+      "title": "Hành trình biển Đông",
+      "summary": "Tìm hiểu lịch sử biển Đông - quần đảo Hoàng Sa, Trường Sa; trang bị cảm biến mắt và LED Bumper cho xe; ôn tập và lập trình điều khiển.",
+      "hardwareAndCommands": "Mô hình xe, cảm biến mắt, LED Bumper; thẻ lệnh tương tác cảm biến mắt, LED Bumper, câu lệnh điều kiện if - then - else và vòng lặp.",
+      "objectives": [
+        "Ghi nhớ nguyên tắc hoạt động cảm biến mắt và cách hiển thị LED Bumper",
+        "Hoàn thiện mô hình và chương trình điều khiển"
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "12": {
+      "sessionNumber": 12,
+      "title": "Công xưởng sáng tạo (Giải đề cuối khóa)",
+      "summary": "Ôn tập tổng hợp kiến thức; thiết kế mô hình giải đề cuối khóa chủ đề Hành trình thám hiểm Trái Đất; hướng dẫn quy trình thuyết trình Demo.",
+      "hardwareAndCommands": "03 động cơ, nam châm điện, cảm biến mắt, LED Bumper; tổng hợp toàn bộ thẻ lệnh đã học.",
+      "objectives": [
+        "Lên ý tưởng, lắp ráp và lập trình vận hành mô hình giải đề cuối khóa",
+        "Hiểu rõ quy trình Demo và tiêu chí thuyết trình"
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "13": {
+      "sessionNumber": 13,
+      "title": "Demo Robot",
+      "summary": "Ôn tập kiến thức thẻ lệnh đã học; hướng dẫn thuyết trình sản phẩm và luyện tập trả lời câu hỏi phản biện từ ban giám khảo.",
+      "hardwareAndCommands": "Sản phẩm Robot dự án cuối khóa và kỹ năng thuyết trình.",
+      "objectives": [
+        "Nắm vững kiến thức để trả lời câu hỏi ban giám khảo",
+        "Hoàn thành thuyết trình thử tự tin, rõ ràng"
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    }
+  }
+}
