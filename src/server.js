@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const automationController = require('./controllers/automationController');
+const curriculumController = require('./controllers/curriculumController');
 const browserManager = require('./automation/browserManager');
 const logger = require('./utils/logger');
 
@@ -43,6 +44,9 @@ app.post('/api/gemini/test', (req, res) => automationController.testGemini(req, 
 app.post('/api/gemini/summary', (req, res) => automationController.generateSummaryAi(req, res));
 app.post('/api/gemini/comment', (req, res) => automationController.generateCommentAi(req, res));
 app.post('/api/gemini/batch-comments', (req, res) => automationController.generateBatchCommentsAi(req, res));
+
+// Curriculum API Routes
+app.get('/api/curriculum/session-summary', (req, res) => curriculumController.getSessionSummary(req, res));
 
 // Teacher Point Routes (HTTP POST Google Form)
 app.get('/api/teacher-point/form', (req, res) => automationController.getTeacherPointForm(req, res));

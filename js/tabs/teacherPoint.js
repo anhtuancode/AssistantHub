@@ -5,6 +5,7 @@
 
 import { switchTab } from '../main.js';
 import { toast, showConfirm } from '../services/toast.js';
+import { ICONS } from '../services/icons.js';
 
 const DEFAULT_TP_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfyK41x_vyFztgjU1sTgJGLiHE1yvf7mmHuUQe5gUQDLQcO_Q/viewform';
 
@@ -139,7 +140,7 @@ function renderTpStudentsTable() {
 
   const selectedCount = tpStudents.filter(s => s.selected).length;
   if (countBadge) countBadge.textContent = `${selectedCount} bạn`;
-  if (submitBtn) submitBtn.textContent = `🚀 Gửi nhanh toàn bộ (${selectedCount} bạn)`;
+  if (submitBtn) submitBtn.innerHTML = `${ICONS.send(15)} Gửi nhanh toàn bộ (${selectedCount} bạn)`;
 
   if (tpStudents.length === 0) {
     tbody.innerHTML = '<tr><td colspan="5" style="text-align: center; padding: 24px; color: #64748B;">Chưa có học viên. Hãy chọn buổi học ở mục Lớp &amp; Buổi học.</td></tr>';
@@ -149,9 +150,9 @@ function renderTpStudentsTable() {
   tbody.innerHTML = tpStudents.map((st, idx) => {
     const isAbsent = st.attendance === 'ABSENT';
     let statusHtml = '<span class="tag tag-gray">Chờ gửi</span>';
-    if (st.tpStatus === 'sending') statusHtml = '<span class="tag tag-blue">⏳ Đang gửi...</span>';
-    else if (st.tpStatus === 'sent') statusHtml = '<span class="tag tag-green">✓ Đã gửi</span>';
-    else if (st.tpStatus === 'error') statusHtml = '<span class="tag tag-red">✗ Lỗi</span>';
+    if (st.tpStatus === 'sending') statusHtml = `<span class="tag tag-blue">${ICONS.clock(12)} Đang gửi...</span>`;
+    else if (st.tpStatus === 'sent') statusHtml = `<span class="tag tag-green">${ICONS.check(12)} Đã gửi</span>`;
+    else if (st.tpStatus === 'error') statusHtml = `<span class="tag tag-red">${ICONS.x(12)} Lỗi</span>`;
 
     return `
       <tr data-tp-idx="${idx}">
@@ -170,7 +171,7 @@ function renderTpStudentsTable() {
       tpStudents[idx].selected = chk.checked;
       const cnt = tpStudents.filter(s => s.selected).length;
       if (countBadge) countBadge.textContent = `${cnt} bạn`;
-      if (submitBtn) submitBtn.textContent = `🚀 Gửi nhanh toàn bộ (${cnt} bạn)`;
+      if (submitBtn) submitBtn.innerHTML = `${ICONS.send(15)} Gửi nhanh toàn bộ (${cnt} bạn)`;
     };
   });
 }

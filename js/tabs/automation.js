@@ -4,6 +4,7 @@
  */
 
 import { toast, showConfirm } from '../services/toast.js';
+import { ICONS } from '../services/icons.js';
 
 let pollTimer = null;
 let currentLmsClasses = [];
@@ -263,7 +264,7 @@ async function handleInteractiveLogin() {
   const statusMsg = document.getElementById('lms-login-modal-status');
   if (statusMsg) {
     statusMsg.style.display = 'block';
-    statusMsg.textContent = '🌐 Đang mở cửa sổ trình duyệt... Hãy hoàn tất đăng nhập trên cửa sổ đó.';
+    statusMsg.textContent = 'Đang mở cửa sổ trình duyệt... Hãy hoàn tất đăng nhập trên cửa sổ đó.';
     statusMsg.className = 'tag tag-blue';
   }
 
@@ -477,7 +478,7 @@ function renderStudentsTable(students) {
         </td>
         <td style="padding: 10px 14px; white-space: nowrap;">
           <button type="button" class="btn btn-secondary btn-xs btn-test-single-student" data-name="${escapeHtml(s.name)}" ${isAbsent ? 'disabled title="Học viên vắng mặt"' : ''}>
-            🧪 Thử nghiệm 1 bạn
+            ${ICONS.flask(12)} Thử nghiệm 1 bạn
           </button>
         </td>
       </tr>
@@ -509,7 +510,7 @@ function renderStudentsTable(students) {
           })
         });
         btn.disabled = false;
-        btn.textContent = '🧪 Thử nghiệm 1 bạn';
+        btn.innerHTML = `${ICONS.flask(12)} Thử nghiệm 1 bạn`;
 
         if (res && res.success && res.status === 'VERIFIED') {
           toast.success(`Đã lưu và xác minh nhận xét cho "${studentName}".`);

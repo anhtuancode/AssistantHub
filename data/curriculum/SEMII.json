@@ -7,118 +7,171 @@
   "sessions": {
     "1": {
       "sessionNumber": 1,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
+      "title": "Cảm biến tiên tiến",
+      "summary": "Ôn tập kiến thức lập trình học phần trước; tìm hiểu cảm biến con quay hồi chuyển (Gyro Sensor) và lập trình mô hình hoạt động bằng thẻ lệnh Set Brain Inertial heading to _ degrees; so sánh kết quả hoạt động khi khai báo và không khai báo cảm biến.",
+      "hardwareAndCommands": "3 Wheel basebot, VEXcode IQ, Cảm biến con quay hồi chuyển (Gyro Sensor); thẻ lệnh Set Brain Inertial heading to _ degrees.",
+      "objectives": [
+        "Ôn tập kiến thức lập trình của học phần trước",
+        "Hiểu nguyên lý cảm biến con quay hồi chuyển (Gyro Sensor) và thẻ lệnh Set Brain Inertial heading to _ degrees",
+        "So sánh được kết quả hoạt động của mô hình khi khai báo và không khai báo cảm biến"
+      ],
       "slideUrl": "",
       "reviewDocUrl": ""
     },
     "2": {
       "sessionNumber": 2,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
+      "title": "Thông điệp Robot",
+      "summary": "Khám phá kiến thức và ứng dụng của robot trong công nghiệp/sản xuất; tìm hiểu cách ghép nối bộ điều khiển VEX IQ với não và điều chỉnh thông số; dùng thẻ lệnh Motion và bộ điều khiển VEX IQ để điều khiển động cơ (di chuyển lên, xuống, quay trái, quay phải, di chuyển đồ vật).",
+      "hardwareAndCommands": "Drifter car, Bộ điều khiển VEX IQ, VEXcode IQ; thẻ lệnh Motion.",
+      "objectives": [
+        "Tìm hiểu ứng dụng của robot trong công nghiệp và sản xuất",
+        "Biết cách ghép nối bộ điều khiển VEX IQ với Brain và điều chỉnh thông số",
+        "Sử dụng thẻ lệnh Motion và bộ điều khiển VEX IQ để điều khiển động cơ di chuyển và mang đồ vật"
+      ],
       "slideUrl": "",
       "reviewDocUrl": ""
     },
     "3": {
       "sessionNumber": 3,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
+      "title": "Vượt chướng ngại vật",
+      "summary": "Tìm hiểu khái niệm, cấu trúc, cách lắp ráp và nguyên lý hoạt động của robot nâng - hạ; khám phá thẻ lệnh My blocks và thẻ lệnh sự kiện để lập trình điều khiển robot nâng, hạ và di chuyển tải trọng.",
+      "hardwareAndCommands": "3 Wheel basebot (mô hình robot nâng - hạ), VEXcode IQ; thẻ lệnh My blocks và thẻ lệnh sự kiện.",
+      "objectives": [
+        "Hiểu khái niệm, cấu trúc, cách lắp ráp và nguyên lý hoạt động của robot nâng - hạ",
+        "Vận dụng thẻ lệnh My blocks và thẻ lệnh sự kiện để lập trình điều khiển robot nâng, hạ và di chuyển tải trọng"
+      ],
       "slideUrl": "",
       "reviewDocUrl": ""
     },
     "4": {
       "sessionNumber": 4,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
+      "title": "Chinh phục Robot",
+      "summary": "Khám phá các tình huống nguy hiểm mà robot có thể thay thế con người; lắp ráp mô hình Ike; thực hành viết chương trình điều khiển, tương tác với robot qua bộ điều khiển và thử nghiệm trong các tác vụ thực tế.",
+      "hardwareAndCommands": "Ike, Bộ điều khiển VEX IQ, VEXcode IQ.",
+      "objectives": [
+        "Nhận biết các tình huống nguy hiểm mà robot có thể thay thế con người",
+        "Hoàn thành lắp ráp mô hình Ike và lập trình điều khiển, tương tác qua bộ điều khiển VEX IQ"
+      ],
       "slideUrl": "",
       "reviewDocUrl": ""
     },
     "5": {
       "sessionNumber": 5,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
+      "title": "Giao hàng thông minh",
+      "summary": "Tiếp tục tìm hiểu vai trò của robot trong các tác vụ khó tiếp cận; lắp ráp mô hình Ike; thực hành viết chương trình điều khiển tương tác qua bộ điều khiển và tạo tình huống thực tế để thử nghiệm khả năng phản ứng của robot.",
+      "hardwareAndCommands": "Ike, Bộ điều khiển VEX IQ, VEXcode IQ.",
+      "objectives": [
+        "Hiểu vai trò của robot trong các tác vụ khó tiếp cận",
+        "Lắp ráp mô hình Ike, lập trình điều khiển tương tác và thử nghiệm khả năng phản ứng trong tình huống thực tế"
+      ],
       "slideUrl": "",
       "reviewDocUrl": ""
     },
     "6": {
       "sessionNumber": 6,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
+      "title": "Robot công nghiệp",
+      "summary": "Tìm hiểu ứng dụng robot trong công nghiệp và các tình huống nguy hiểm; lắp ráp mô hình cánh tay robot ArmIQ; viết chương trình điều khiển, tương tác qua bộ điều khiển và thử nghiệm trên các tình huống thực tế.",
+      "hardwareAndCommands": "ArmIQ, Bộ điều khiển VEX IQ, VEXcode IQ.",
+      "objectives": [
+        "Tìm hiểu ứng dụng robot trong công nghiệp và các tình huống nguy hiểm",
+        "Lắp ráp mô hình cánh tay robot ArmIQ, lập trình điều khiển qua bộ điều khiển và thử nghiệm thực tế"
+      ],
       "slideUrl": "",
       "reviewDocUrl": ""
     },
     "7": {
       "sessionNumber": 7,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
+      "title": "Robot đa dạng",
+      "summary": "Lắp ráp và thử nghiệm mô hình cánh tay robot ArmIQ qua các tình huống/nhiệm vụ thực tế; lập trình mô hình hoạt động khi nhận tín hiệu từ bộ điều khiển để thực hiện chuỗi tác vụ trong một nhiệm vụ.",
+      "hardwareAndCommands": "ArmIQ, Bộ điều khiển VEX IQ, VEXcode IQ.",
+      "objectives": [
+        "Lắp ráp và thử nghiệm mô hình cánh tay robot ArmIQ qua các nhiệm vụ thực tế",
+        "Lập trình mô hình nhận tín hiệu từ bộ điều khiển để thực hiện chuỗi tác vụ liên hoàn"
+      ],
       "slideUrl": "",
       "reviewDocUrl": ""
     },
     "8": {
       "sessionNumber": 8,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
+      "title": "Công xưởng sáng tạo - Thực thi",
+      "summary": "Ôn tập kiến thức lập trình các buổi trước và thực hiện bài kiểm tra giữa khóa; lựa chọn sản phẩm cuối khóa, lên ý tưởng thiết kế và lập trình cho sản phẩm cuối khóa.",
+      "hardwareAndCommands": "VEX IQ, VEXcode IQ.",
+      "objectives": [
+        "Ôn tập kiến thức lập trình đã học và hoàn thành bài kiểm tra giữa khóa",
+        "Lựa chọn sản phẩm cuối khóa, lên ý tưởng thiết kế và lập trình ban đầu"
+      ],
       "slideUrl": "",
       "reviewDocUrl": ""
     },
     "9": {
       "sessionNumber": 9,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
+      "title": "Dự án cuối khóa (P1)",
+      "summary": "Lựa chọn dự án Robotics gắn với ứng dụng thực tế; lắp ráp các thành phần tạo thành mô hình Robot; xác định chức năng, nhiệm vụ và bắt đầu lập trình, thử nghiệm, hiệu chỉnh thiết kế/code.",
+      "hardwareAndCommands": "Mô hình dự án cuối khóa, VEXcode IQ.",
+      "objectives": [
+        "Xác định dự án Robotics gắn với ứng dụng thực tế và lắp ráp các thành phần mô hình",
+        "Xác định chức năng, nhiệm vụ và bắt đầu lập trình, thử nghiệm, hiệu chỉnh thiết kế/code"
+      ],
       "slideUrl": "",
       "reviewDocUrl": ""
     },
     "10": {
       "sessionNumber": 10,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
+      "title": "Dự án cuối khóa (P2)",
+      "summary": "Tiếp tục hoàn thiện lắp ráp và lập trình mô hình dựa trên ý tưởng dự án; thực hiện thử nghiệm, đánh giá hiệu suất/tính năng của Robot và điều chỉnh cải thiện.",
+      "hardwareAndCommands": "Mô hình dự án cuối khóa, VEXcode IQ.",
+      "objectives": [
+        "Tiếp tục hoàn thiện lắp ráp và lập trình mô hình theo ý tưởng dự án",
+        "Thử nghiệm, đánh giá hiệu suất, tính năng của Robot và điều chỉnh cải thiện"
+      ],
       "slideUrl": "",
       "reviewDocUrl": ""
     },
     "11": {
       "sessionNumber": 11,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
+      "title": "Dự án cuối khóa (P3)",
+      "summary": "Tiếp tục hoàn thiện chi tiết lắp ráp và lập trình cho mô hình dự án cuối khóa; kiểm thử hoạt động thực tế, hiệu chỉnh thiết kế và tối ưu chương trình điều khiển.",
+      "hardwareAndCommands": "Mô hình dự án cuối khóa, VEXcode IQ.",
+      "objectives": [
+        "Hoàn thiện chi tiết lắp ráp và lập trình cho mô hình dự án cuối khóa",
+        "Kiểm thử hoạt động thực tế, hiệu chỉnh thiết kế và tối ưu chương trình điều khiển"
+      ],
       "slideUrl": "",
       "reviewDocUrl": ""
     },
     "12": {
       "sessionNumber": 12,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
+      "title": "Công xưởng sáng tạo",
+      "summary": "Ôn tập toàn bộ kiến thức đã học; hoàn thiện dứt điểm dự án cuối khóa; phân chia nhiệm vụ và chuẩn bị nội dung cho buổi thuyết trình Robot.",
+      "hardwareAndCommands": "Bộ Kit VEX IQ, mô hình dự án cuối khóa.",
+      "objectives": [
+        "Ôn tập toàn bộ kiến thức đã học và hoàn thiện dứt điểm dự án cuối khóa",
+        "Phân chia nhiệm vụ và chuẩn bị nội dung cho buổi thuyết trình Robot"
+      ],
       "slideUrl": "",
       "reviewDocUrl": ""
     },
     "13": {
       "sessionNumber": 13,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
+      "title": "Demo Robot",
+      "summary": "Ôn tập kỹ năng lắp ráp mô hình hoạt động hiệu quả; ôn tập thao tác kết nối bộ não với phần mềm VEXcode IQ và các thẻ lệnh đã học; chạy thử (demo) để chuẩn bị cho buổi thuyết trình cuối khóa.",
+      "hardwareAndCommands": "Bộ Kit VEX IQ, VEXcode IQ.",
+      "objectives": [
+        "Ôn tập kỹ năng lắp ráp, kết nối Brain với VEXcode IQ và các thẻ lệnh đã học",
+        "Chạy thử (demo) sản phẩm để chuẩn bị cho buổi thuyết trình cuối khóa"
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": ""
+    },
+    "14": {
+      "sessionNumber": 14,
+      "title": "Thuyết trình Robot",
+      "summary": "Hoàn thiện lắp ráp, lập trình mô hình; thuyết trình về ý tưởng thiết kế và ý nghĩa nội dung lập trình của sản phẩm, trả lời câu hỏi từ Ban Giám Khảo; tham gia hoạt động thi đấu \"MindX Champion\".",
+      "hardwareAndCommands": "Sản phẩm dự án cuối khóa.",
+      "objectives": [
+        "Hoàn thiện sản phẩm, thuyết trình ý tưởng thiết kế và nội dung lập trình trước Ban Giám Khảo",
+        "Tham gia hoạt động thi đấu \"MindX Champion\""
+      ],
       "slideUrl": "",
       "reviewDocUrl": ""
     }

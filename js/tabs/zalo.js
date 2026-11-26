@@ -120,7 +120,7 @@ function populateZaloCourseDropdown(preferredCourse = null) {
   });
 
   const robGroup = document.createElement('optgroup');
-  robGroup.label = '🤖 Robotics (9 khóa)';
+  robGroup.label = 'Robotics (9 khóa)';
   robCourses.forEach(c => {
     const opt = document.createElement('option');
     opt.value = c.code;
@@ -130,7 +130,7 @@ function populateZaloCourseDropdown(preferredCourse = null) {
   sel.appendChild(robGroup);
 
   const codGroup = document.createElement('optgroup');
-  codGroup.label = '💻 Coding - C4K (15 khóa)';
+  codGroup.label = 'Coding - C4K (15 khóa)';
   codCourses.forEach(c => {
     const opt = document.createElement('option');
     opt.value = c.code;
@@ -473,7 +473,7 @@ async function copyZaloReportHandler() {
     toast.success('Đã sao chép nội dung báo bài.');
     const feedback = document.getElementById('zalo-copy-feedback');
     if (feedback) {
-      feedback.textContent = 'Đã sao chép nội dung báo bài! ✅';
+      feedback.textContent = 'Đã sao chép nội dung báo bài!';
       feedback.style.display = 'inline-block';
       setTimeout(() => { feedback.style.display = 'none'; }, 2500);
     }
@@ -495,7 +495,7 @@ async function copyZaloHomeworkHandler() {
     toast.success('Đã sao chép BTVN.');
     const feedback = document.getElementById('zalo-copy-hw-feedback');
     if (feedback) {
-      feedback.textContent = 'Đã sao chép BTVN! ✅';
+      feedback.textContent = 'Đã sao chép BTVN!';
       feedback.style.display = 'inline-block';
       setTimeout(() => { feedback.style.display = 'none'; }, 2500);
     }
@@ -529,7 +529,7 @@ async function copyZaloAllHandler() {
     toast.success('Đã sao chép tất cả (Nội dung + BTVN).');
     const feedback = document.getElementById('zalo-copy-all-feedback');
     if (feedback) {
-      feedback.textContent = 'Đã sao chép tất cả (Nội dung + BTVN)! ✅';
+      feedback.textContent = 'Đã sao chép tất cả (Nội dung + BTVN)!';
       feedback.style.display = 'inline-block';
       setTimeout(() => { feedback.style.display = 'none'; }, 2500);
     }

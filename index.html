@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MindX Assistant — Trợ lý Giáo viên v1.0</title>
+  <title>Tứng Mèo Hub — Trợ lý Giáo viên • v1.0</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23DC2626'/%3E%3Cstop offset='100%25' stop-color='%23E11D48'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='url(%23g)'/%3E%3Cg transform='translate(4,4)' fill='none' stroke='%23FFFFFF' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 5c.67 0 1.35.09 2 .26 1.78-2 5.03-2.84 6.42-2.26 1.4.58-.42 7-.42 7 .57 1.07 1 2.24 1 3.44C21 17.9 16.97 21 12 21s-9-3.1-9-7.56c0-1.25.5-2.4 1-3.44 0 0-1.89-6.42-.5-7 1.39-.58 4.72.23 6.5 2.23A9.04 9.04 0 0 1 12 5Z'/%3E%3Cpath d='M8 14v.5'/%3E%3Cpath d='M16 14v.5'/%3E%3Cpath d='M11.25 16.25h1.5L12 17l-.75-.75Z'/%3E%3C/g%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -14,49 +15,57 @@
     <!-- Sidebar Navigation (Cố định bên trái - Đúng 6 mục theo chuẩn) -->
     <aside class="sidebar">
       <div class="brand">
-        <div class="brand-logo">MX</div>
+        <div class="brand-logo" aria-hidden="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 5c.67 0 1.35.09 2 .26 1.78-2 5.03-2.84 6.42-2.26 1.4.58-.42 7-.42 7 .57 1.07 1 2.24 1 3.44C21 17.9 16.97 21 12 21s-9-3.1-9-7.56c0-1.25.5-2.4 1-3.44 0 0-1.89-6.42-.5-7 1.39-.58 4.72.23 6.5 2.23A9.04 9.04 0 0 1 12 5Z"/>
+            <path d="M8 14v.5"/>
+            <path d="M16 14v.5"/>
+            <path d="M11.25 16.25h1.5L12 17l-.75-.75Z"/>
+          </svg>
+        </div>
         <div class="brand-info">
-          <h2>MindX Assistant</h2>
-          <span>Trợ lý Giáo viên v1.0</span>
+          <h2>Tứng Mèo Hub</h2>
+          <span>Trợ lý Giáo viên • v1.0</span>
         </div>
       </div>
 
       <nav class="nav-menu">
         <button class="nav-btn active" data-tab="tab-config">
-          <span class="icon">⚙️</span>
+          <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></svg></span>
           <span class="label">Cấu hình</span>
         </button>
         <button class="nav-btn" data-tab="tab-classes">
-          <span class="icon">🗂️</span>
+          <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M8 7v7"/><path d="M12 7v4"/><path d="M16 7v9"/></svg></span>
           <span class="label">Lớp & Buổi học</span>
         </button>
         <button class="nav-btn" data-tab="tab-students">
-          <span class="icon">👥</span>
+          <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
           <span class="label">Học viên</span>
         </button>
         <button class="nav-btn" data-tab="tab-review">
-          <span class="icon">✍️</span>
+          <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="m9 14 2 2 4-4"/></svg></span>
           <span class="label">Duyệt & Lưu</span>
         </button>
         <button class="nav-btn" data-tab="tab-curriculum">
-          <span class="icon">📖</span>
+          <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg></span>
           <span class="label">Giáo trình</span>
         </button>
         <button class="nav-btn" data-tab="tab-zalo">
-          <span class="icon">💬</span>
+          <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M13 8H7"/><path d="M17 12H7"/></svg></span>
           <span class="label">Báo bài Zalo</span>
         </button>
         <button class="nav-btn" data-tab="tab-teacher-point">
-          <span class="icon">⭐</span>
+          <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg></span>
           <span class="label">Teacher Point</span>
           <span id="sidebar-tp-badge" class="tag tag-red" style="display: none; font-size: 10px; padding: 1px 6px;"></span>
         </button>
       </nav>
 
-      <div class="sidebar-footer" style="padding-top: 14px; text-align: left;">
+      <div class="sidebar-footer">
         <div class="dpapi-badge">
           <span class="dot"></span> Bảo mật cục bộ
         </div>
+        <div class="sidebar-copyright">© Bản quyền thuộc về Nguyễn Anh Tuấn</div>
       </div>
     </aside>
 
@@ -70,7 +79,8 @@
         </div>
         <div>
           <button type="button" id="btn-open-log-drawer" class="btn-log-counter">
-            <span>🕒</span> Nhật ký (<span id="log-counter-number">0</span>)
+            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>
+            Nhật ký (<span id="log-counter-number">0</span>)
           </button>
         </div>
       </header>
@@ -87,21 +97,21 @@
             <div class="card">
               <div class="card-header space-between">
                 <div style="display: flex; align-items: center; gap: 8px;">
-                  <span style="font-size: 16px;">🔗</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" x2="16" y1="12" y2="12"/></svg>
                   <h3 style="margin: 0;">Tài khoản LMS MindX</h3>
                 </div>
                 <span class="tag tag-blue" style="font-size: 11px;">Kết nối tự động LMS</span>
               </div>
               <div class="card-body">
                 <div class="form-group">
-                  <label for="cfg-lms-url">Địa chỉ Portal / LMS MindX</label>
+                  <label for="cfg-lms-url">LMS MindX</label>
                   <select id="cfg-lms-url" class="form-control">
                     <option value="https://lms.mindx.edu.vn">https://lms.mindx.edu.vn (LMS Học viên & GV)</option>
                     <option value="https://base.mindx.edu.vn">https://base.mindx.edu.vn (Base SSO)</option>
                   </select>
                 </div>
                 <div class="form-group">
-                  <label for="cfg-lms-email">Tài khoản / Email / Mã NV</label>
+                  <label for="cfg-lms-email">Email MindX</label>
                   <input type="text" id="cfg-lms-email" class="form-control" placeholder="tuanna3@mindx.net.vn">
                 </div>
                 <div class="form-group">
@@ -112,14 +122,15 @@
                   <label for="cfg-lms-pass">Mật khẩu (Bảo mật cục bộ)</label>
                   <div class="password-input-wrapper">
                     <input type="password" id="cfg-lms-pass" class="form-control" placeholder="••••••••••••••">
-                    <button type="button" id="btn-toggle-lms-pass" class="password-toggle-btn" title="Ẩn/Hiện mật khẩu">👁️</button>
+                    <button type="button" id="btn-toggle-lms-pass" class="password-toggle-btn" title="Ẩn/Hiện mật khẩu"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg></button>
                   </div>
                 </div>
 
                 <div style="margin-top: 14px; display: flex; align-items: center; justify-content: space-between;">
                   <span id="cfg-lms-status" class="tag tag-gray" style="display: none;"></span>
                   <button type="button" id="btn-cfg-login-lms" class="btn btn-secondary btn-sm" style="display: inline-flex; align-items: center; gap: 6px;">
-                    <span>🌐</span> Mở trình duyệt & Đăng nhập LMS
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+                    Mở trình duyệt & Đăng nhập LMS
                   </button>
                 </div>
               </div>
@@ -129,7 +140,7 @@
             <div class="card">
               <div class="card-header space-between">
                 <div style="display: flex; align-items: center; gap: 8px;">
-                  <span style="font-size: 16px;">💡</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
                   <h3 style="margin: 0;">Google Gemini API</h3>
                 </div>
                 <span class="tag tag-green" style="font-size: 11px;">@google/genai SDK</span>
@@ -139,15 +150,15 @@
                   <label for="cfg-gemini-key">Gemini API Key (Bảo mật cục bộ)</label>
                   <div class="password-input-wrapper">
                     <input type="password" id="cfg-gemini-key" class="form-control" placeholder="AIzaSy••••••••••••••••••••••••••••••••">
-                    <button type="button" id="btn-toggle-gemini-key" class="password-toggle-btn" title="Ẩn/Hiện API Key">👁️</button>
+                    <button type="button" id="btn-toggle-gemini-key" class="password-toggle-btn" title="Ẩn/Hiện API Key"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg></button>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="cfg-gemini-model">Mô hình AI</label>
                   <select id="cfg-gemini-model" class="form-control">
-                    <option value="gemini-1.5-flash">Gemini 1.5 Flash (Mặc định - Khuyên dùng)</option>
-                    <option value="gemini-2.0-flash">Gemini 2.0 Flash (Tốc độ cao)</option>
-                    <option value="gemini-1.5-pro">Gemini 1.5 Pro (Phân tích sâu)</option>
+                    <option value="gemini-2.0-flash">Gemini 2.0 Flash (Mặc định - Tốc độ cao)</option>
+                    <option value="gemini-2.5-flash">Gemini 2.5 Flash (Thế hệ mới)</option>
+                    <option value="gemini-2.5-pro">Gemini 2.5 Pro (Phân tích sâu)</option>
                   </select>
                 </div>
                 <div class="form-group">
@@ -162,7 +173,8 @@
                 <div style="margin-top: 14px; display: flex; align-items: center; justify-content: space-between;">
                   <span id="cfg-ai-status" class="tag tag-gray" style="display: none;"></span>
                   <button type="button" id="btn-cfg-test-ai" class="btn btn-secondary btn-sm" style="display: inline-flex; align-items: center; gap: 6px;">
-                    <span>⚡</span> Kiểm tra kết nối AI
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+                    Kiểm tra kết nối AI
                   </button>
                 </div>
               </div>
@@ -182,7 +194,8 @@
             </div>
             <div>
               <button type="button" id="btn-sync-classes" class="btn btn-primary-red btn-large" style="display: inline-flex; align-items: center; gap: 8px;">
-                <span>🔄</span> Quét danh sách lớp từ LMS
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
+                Quét danh sách lớp từ LMS
               </button>
             </div>
           </div>
@@ -226,7 +239,8 @@
             </div>
             <div style="display: flex; align-items: center; gap: 8px;">
               <button type="button" id="btn-reset-draft-from-lms" class="btn btn-secondary btn-sm" style="display: none;">
-                🔄 Đặt lại dữ liệu gốc từ LMS
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                Đặt lại dữ liệu gốc từ LMS
               </button>
               <button type="button" id="btn-reselect-class" class="btn btn-secondary btn-sm">
                 Chọn lại lớp học
@@ -242,8 +256,9 @@
                 <span class="text-muted" style="font-size: 12px;">Nội dung chung của buổi học để lưu vào tab Comments trên LMS</span>
               </div>
               <div style="display: flex; gap: 8px;">
-                <button type="button" id="btn-ai-generate-summary" class="btn btn-secondary btn-sm" style="color: #0284C7; font-weight: 600;">
-                  ✨ Tạo nội dung bằng AI
+                <button type="button" id="btn-ai-generate-summary" class="btn btn-secondary btn-sm" style="color: #DC2626; font-weight: 600;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+                  Tạo nội dung bằng AI
                 </button>
               </div>
             </div>
@@ -291,7 +306,8 @@
           <!-- Action bar cuối trang Học viên -->
           <div style="margin-top: 18px; display: flex; justify-content: flex-end; align-items: center;">
             <button type="button" id="btn-proceed-to-review" class="btn btn-primary btn-large" style="display: inline-flex; align-items: center; gap: 8px;">
-              <span>👉</span> Chuyển sang Duyệt &amp; Lưu
+              Chuyển sang Duyệt &amp; Lưu
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
             </button>
           </div>
         </section>
@@ -316,15 +332,16 @@
             <div class="card">
               <!-- Empty State khi chưa có nhận xét -->
               <div id="review-empty-state-box" style="padding: 80px 30px; text-align: center;">
-                <div style="width: 48px; height: 48px; background: #FEF2F2; color: #DC2626; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; margin: 0 auto 14px auto;">
-                  💬
+                <div style="width: 48px; height: 48px; background: #FEF2F2; color: #DC2626; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px auto;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M13 8H7"/><path d="M17 12H7"/></svg>
                 </div>
                 <h3 style="font-size: 16px; font-weight: 700; color: #0F172A; margin-bottom: 6px;">Chưa có nhận xét nào được tải</h3>
                 <p class="text-muted" style="max-width: 420px; margin: 0 auto 20px auto; font-size: 13px; line-height: 1.5;">
                   Chọn lớp và buổi học ở mục Học viên &amp; Ghi chú, sau đó bấm "Chuyển sang Duyệt &amp; Lưu" để AI tự động tạo nhận xét và lưu lên MindX LMS.
                 </p>
                 <button type="button" id="btn-review-empty-trigger-ai" class="btn btn-primary" style="padding: 10px 22px;">
-                  ✨ Quay lại Học viên &amp; Ghi chú
+                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+                  Quay lại Học viên &amp; Ghi chú
                 </button>
               </div>
 
@@ -359,10 +376,12 @@
 
                 <div style="display: flex; align-items: center; justify-content: flex-end; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border-color); gap: 10px;">
                   <button type="button" id="btn-review-cancel-auto" class="btn btn-secondary btn-sm" style="color: #DC2626;">
-                    ⏹️ Dừng / Hủy
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="14" x="5" y="5" rx="2"/></svg>
+                    Dừng / Hủy
                   </button>
                   <button type="button" id="btn-review-fill-all" class="btn btn-primary btn-large">
-                    🚀 Lưu tất cả lên LMS
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></svg>
+                    Lưu tất cả lên LMS
                   </button>
                 </div>
               </div>
@@ -377,14 +396,21 @@
           <div class="curriculum-master-detail-container">
             <div class="curriculum-master-col">
               <div style="padding: 10px 10px 6px 10px;">
-                <input type="text" id="input-curriculum-search" class="form-control" placeholder="🔍 Tìm mã khóa (ARMA, CSB...) hoặc tên bài..." style="font-size: 12.5px; padding: 7px 10px;">
+                <div class="search-input-wrapper">
+                  <span class="search-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                  </span>
+                  <input type="text" id="input-curriculum-search" class="form-control" placeholder="Tìm mã khóa (ARMA, CSB...) hoặc tên bài..." style="font-size: 12.5px; padding-top: 7px; padding-bottom: 7px; padding-right: 10px;">
+                </div>
               </div>
               <div class="category-toggle-tabs">
                 <button id="cat-btn-robotics" class="btn-cat-tab active" data-category="ROBOTICS">
-                  🤖 Robotics (9 khóa)
+                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
+                  Robotics (9 khóa)
                 </button>
                 <button id="cat-btn-coding" class="btn-cat-tab" data-category="CODING">
-                  💻 Coding - C4K (15 khóa)
+                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+                  Coding - C4K (15 khóa)
                 </button>
               </div>
               <div id="course-list-container" class="course-list-tree"></div>
@@ -392,7 +418,9 @@
 
             <div class="curriculum-detail-col">
               <div id="curriculum-detail-empty" class="empty-state-box">
-                <div class="empty-icon">📖</div>
+                <div class="empty-icon" style="display: flex; justify-content: center; color: #94A3B8;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+                </div>
                 <h3>Chưa chọn khóa học</h3>
                 <p class="text-muted">Vui lòng nhấp vào một mã khóa học ở danh mục bên trái để xem thông tin StudentBook và chi tiết các buổi học.</p>
               </div>
@@ -411,28 +439,32 @@
                   <div class="card-body" style="padding-top: 10px; padding-bottom: 12px;">
                     <div id="student-book-compact-view" style="display: none; align-items: center; justify-content: space-between; gap: 10px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 8px 12px;">
                       <div style="display: flex; align-items: center; gap: 8px; min-width: 0; flex: 1;">
-                        <span>📖</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
                         <span style="font-weight: 600; font-size: 12.5px; color: #334155; white-space: nowrap;">StudentBook:</span>
                         <span id="student-book-compact-url" style="font-size: 12.5px; color: #0284C7; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"></span>
                       </div>
                       <div style="display: flex; align-items: center; gap: 6px; flex-shrink: 0;">
                         <a id="btn-open-student-book" href="#" target="_blank" class="btn btn-secondary btn-xs" style="white-space: nowrap;">
-                          🔗 Mở Drive
+                          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" x2="16" y1="12" y2="12"/></svg>
+                          Mở Drive
                         </a>
                         <button type="button" id="btn-edit-student-book" class="btn btn-secondary btn-xs" style="white-space: nowrap;">
-                          ✏️ Sửa
+                          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg>
+                          Sửa
                         </button>
                       </div>
                     </div>
 
                     <div id="student-book-edit-view" class="form-group" style="margin-bottom: 0;">
-                      <label for="input-cluster-student-book" style="display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: 12.5px;">
-                        <span>📖 Link StudentBook (Dùng chung cho cụm B - A - I):</span>
+                      <label for="input-cluster-student-book" style="display: flex; align-items: center; gap: 6px; font-weight: 600; font-size: 12.5px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+                        <span>Link StudentBook (Dùng chung cho cụm B - A - I):</span>
                       </label>
                       <div style="display: flex; gap: 8px; margin-top: 6px;">
                         <input type="text" id="input-cluster-student-book" class="form-control" placeholder="https://drive.google.com/... (link tài liệu StudentBook)">
                         <button type="button" id="btn-save-student-book" class="btn btn-primary btn-sm" style="white-space: nowrap;">
-                          💾 Lưu StudentBook
+                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7"/><path d="M7 3v4a1 1 0 0 0 1 1h7"/></svg>
+                          Lưu StudentBook
                         </button>
                         <button type="button" id="btn-cancel-student-book" class="btn btn-secondary btn-sm" style="display: none; white-space: nowrap;">
                           Hủy
@@ -486,7 +518,7 @@
               <div class="form-group" style="margin-bottom: 16px;">
                 <div class="space-between" style="margin-bottom: 8px;">
                   <label for="zalo-message-editor" style="font-weight: 600; font-size: 13.5px;">Nội dung tin nhắn Zalo gửi Phụ huynh (chỉnh sửa trực tiếp):</label>
-                  <span id="zalo-copy-feedback" class="tag tag-green" style="display: none; font-size: 12px; font-weight: 600;">Đã sao chép nội dung báo bài! ✅</span>
+                  <span id="zalo-copy-feedback" class="tag tag-green" style="display: none; font-size: 12px; font-weight: 600;">Đã sao chép nội dung báo bài!</span>
                 </div>
                 <div id="zalo-message-editor" class="zalo-rich-editor" contenteditable="true" spellcheck="false" role="textbox" aria-multiline="true"></div>
                 <textarea id="textarea-zalo-message" style="display: none;"></textarea>
@@ -494,10 +526,12 @@
 
               <div class="footer-actions" style="display: flex; justify-content: flex-end; align-items: center; gap: 12px; padding: 0; margin-top: 12px;">
                 <button id="btn-refresh-zalo" class="btn btn-secondary btn-sm">
-                  🔄 Đặt lại mẫu tin nhắn gốc
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                  Đặt lại mẫu tin nhắn gốc
                 </button>
                 <button id="btn-copy-zalo-bottom" class="btn btn-primary btn-large">
-                  📋 Sao chép tin nhắn Zalo
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                  Sao chép tin nhắn Zalo
                 </button>
               </div>
             </div>
@@ -507,15 +541,17 @@
           <div id="zalo-homework-card" class="card" style="margin-bottom: 20px; display: none;">
             <div class="card-header space-between" style="padding: 12px 18px; background-color: #FAFAFA; border-bottom: 1px solid var(--border-color);">
               <div style="display: flex; align-items: center; gap: 10px;">
-                <h3 style="margin: 0; font-size: 15px; font-weight: 700; color: #1E293B;">
-                  <span>📝</span> Báo Bài Tập Về Nhà (Khối Coding - Denise & StudentBook)
+                <h3 style="margin: 0; font-size: 15px; font-weight: 700; color: #1E293B; display: inline-flex; align-items: center; gap: 8px;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>
+                  <span>Báo Bài Tập Về Nhà (Khối Coding - Denise & StudentBook)</span>
                 </h3>
-                <span id="zalo-homework-save-status" class="tag tag-green" style="display: none; font-size: 11px; font-weight: 600;">Đã lưu số trang ✓</span>
+                <span id="zalo-homework-save-status" class="tag tag-green" style="display: none; font-size: 11px; font-weight: 600;">Đã lưu số trang</span>
               </div>
               <div style="display: flex; align-items: center; gap: 10px;">
-                <span id="zalo-copy-hw-feedback" class="tag tag-green" style="display: none; font-size: 12px; font-weight: 600;">Đã sao chép BTVN! ✅</span>
+                <span id="zalo-copy-hw-feedback" class="tag tag-green" style="display: none; font-size: 12px; font-weight: 600;">Đã sao chép BTVN!</span>
                 <button id="btn-copy-zalo-homework" class="btn btn-secondary btn-sm" style="font-weight: 600; color: #16A34A; border-color: #86EFAC;">
-                  📋 Sao chép phần BTVN
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                  Sao chép phần BTVN
                 </button>
               </div>
             </div>
@@ -542,9 +578,10 @@
               </div>
 
               <div style="display: flex; justify-content: flex-end; align-items: center; gap: 12px; margin-top: 14px;">
-                <span id="zalo-copy-all-feedback" class="tag tag-green" style="display: none; font-size: 12px; font-weight: 600;">Đã sao chép tất cả (Nội dung + BTVN)! ✅</span>
+                <span id="zalo-copy-all-feedback" class="tag tag-green" style="display: none; font-size: 12px; font-weight: 600;">Đã sao chép tất cả (Nội dung + BTVN)!</span>
                 <button id="btn-copy-zalo-all" class="btn btn-primary btn-primary-blue">
-                  📋 Sao chép tất cả (Nội dung + BTVN)
+                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg>
+                  Sao chép tất cả (Nội dung + BTVN)
                 </button>
               </div>
             </div>
@@ -557,15 +594,16 @@
         <section id="tab-teacher-point" class="tab-pane">
           <!-- Khóa an toàn khi sai lớp / sai buổi -->
           <div id="tp-locked-box" class="card" style="padding: 48px 28px; text-align: center;">
-            <div style="width: 56px; height: 56px; background: #FEF2F2; color: #DC2626; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; margin: 0 auto 14px auto;">
-              🔒
+            <div style="width: 56px; height: 56px; background: #FEF2F2; color: #DC2626; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 14px auto;">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
             </div>
             <h3 style="margin: 0 0 8px 0; font-size: 17px; color: #0F172A;">Chưa đủ điều kiện gửi Teacher Point</h3>
             <p id="tp-locked-reason" class="text-muted" style="max-width: 520px; margin: 0 auto 20px auto; font-size: 13.5px; line-height: 1.6;">
               Phiếu khảo sát Teacher Point chỉ áp dụng cho khối lớp <strong>Robotics (ROB)</strong> tại <strong>Buổi 4</strong> và <strong>Buổi 8</strong>.
             </p>
             <button type="button" id="btn-tp-back-to-classes" class="btn btn-primary">
-              👈 Quay lại chọn Lớp &amp; Buổi học
+              <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+              Quay lại chọn Lớp &amp; Buổi học
             </button>
           </div>
 
@@ -585,7 +623,8 @@
                     <div style="display: flex; gap: 8px;">
                       <input type="text" id="input-tp-form-url" class="form-control" placeholder="https://docs.google.com/forms/d/e/.../viewform">
                       <button type="button" id="btn-tp-reload-form" class="btn btn-secondary btn-sm" style="white-space: nowrap;">
-                        🔄 Tải lại Form
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>
+                        Tải lại Form
                       </button>
                     </div>
                   </div>
@@ -606,7 +645,8 @@
                   <span id="tp-selected-count-badge" class="tag tag-blue">0 bạn</span>
                 </div>
                 <button type="button" id="btn-tp-submit-all" class="btn btn-primary">
-                  🚀 Gửi nhanh toàn bộ (0 bạn)
+                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"/><path d="m21.854 2.147-10.94 10.939"/></svg>
+                  Gửi nhanh toàn bộ (0 bạn)
                 </button>
               </div>
               <div class="card-body">
@@ -647,10 +687,12 @@
   <div id="log-drawer-panel" class="log-drawer">
     <div class="log-drawer-header">
       <div style="display: flex; align-items: center; gap: 8px;">
-        <span>💻</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="4 17 10 11 4 5"/><line x1="12" x2="20" y1="19" y2="19"/></svg>
         <h3 style="margin: 0; font-size: 14px; color: #F8FAFC;">Lịch sử hoạt động</h3>
       </div>
-      <button type="button" id="btn-close-log-drawer" style="background: transparent; border: none; color: #94A3B8; font-size: 18px; cursor: pointer;">✕</button>
+      <button type="button" id="btn-close-log-drawer" style="background: transparent; border: none; color: #94A3B8; display: inline-flex; align-items: center; cursor: pointer;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+      </button>
     </div>
     <div id="log-drawer-content" class="log-drawer-body">
       <div style="color: #64748B;">Đang tải nhật ký...</div>

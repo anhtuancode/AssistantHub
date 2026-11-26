@@ -7,6 +7,7 @@ import { switchTab } from '../main.js';
 import { setSelectedClassAndSession, resetStudentsWorkspace } from './students.js';
 import { toast } from '../services/toast.js';
 import { handleSessionExpiredIfAny } from '../services/sessionGuard.js';
+import { ICONS } from '../services/icons.js';
 
 let loadedClasses = [];
 let selectedClass = null;
@@ -66,7 +67,7 @@ async function handleSyncClasses() {
   } finally {
     if (btnSync) {
       btnSync.disabled = false;
-      btnSync.innerHTML = '🔄 Quét danh sách lớp từ LMS';
+      btnSync.innerHTML = `${ICONS.refresh(16)} Quét danh sách lớp từ LMS`;
     }
   }
 }
@@ -82,9 +83,9 @@ function renderClassesList() {
 
   if (loadedClasses.length === 0) {
     container.innerHTML = `
-      <div style="text-align: center; padding: 40px 20px; color: #64748B; background: #FFFFFF; border: 1px dashed #CBD5E1; border-radius: 10px;">
-        <div style="font-size: 28px; margin-bottom: 8px;">📂</div>
-        <div style="font-weight: 600; margin-bottom: 4px;">Chưa có danh sách lớp học</div>
+      <div style="text-align: center; padding: 40px 20px; color: #64748B; background: #FFFFFF; border: 1px dashed #CBD5E1; border-radius: 12px;">
+        <div style="color: #94A3B8; margin-bottom: 10px; display: flex; justify-content: center;">${ICONS.folderOpen(30)}</div>
+        <div style="font-weight: 600; margin-bottom: 4px; color: #0F172A;">Chưa có danh sách lớp học</div>
         <div style="font-size: 12.5px;">Bấm nút <strong>"Quét danh sách lớp từ LMS"</strong> ở trên để nạp dữ liệu.</div>
       </div>
     `;
@@ -211,9 +212,9 @@ function renderSessionsList() {
 
   if (!selectedClass) {
     container.innerHTML = `
-      <div style="text-align: center; padding: 50px 20px; color: #64748B; background: #FFFFFF; border: 1px dashed #CBD5E1; border-radius: 10px;">
-        <div style="font-size: 28px; margin-bottom: 8px;">📋</div>
-        <div style="font-weight: 600; margin-bottom: 4px;">Chưa chọn lớp học</div>
+      <div style="text-align: center; padding: 50px 20px; color: #64748B; background: #FFFFFF; border: 1px dashed #CBD5E1; border-radius: 12px;">
+        <div style="color: #94A3B8; margin-bottom: 10px; display: flex; justify-content: center;">${ICONS.clipboardList(30)}</div>
+        <div style="font-weight: 600; margin-bottom: 4px; color: #0F172A;">Chưa chọn lớp học</div>
         <div style="font-size: 12.5px;">Vui lòng chọn lớp học ở danh sách bên trái để xem danh sách buổi học.</div>
       </div>
     `;
@@ -223,7 +224,7 @@ function renderSessionsList() {
   if (isLoadingSessions) {
     container.innerHTML = `
       <div style="text-align: center; padding: 40px 20px; color: #64748B;">
-        <div style="font-size: 24px; margin-bottom: 8px;">⏳</div>
+        <div style="color: #DC2626; margin-bottom: 10px; display: flex; justify-content: center;">${ICONS.loader(24)}</div>
         <div>Đang truy cập lớp học trên LMS và tải danh sách buổi học...</div>
       </div>
     `;
@@ -243,7 +244,7 @@ function renderSessionsList() {
     const isAvailable = sess.isAvailable !== false;
     const statusBadge = isAvailable
       ? '<span class="tag tag-green" style="font-size: 11px; margin-left: 6px;">Đã diễn ra</span>'
-      : '<span class="tag tag-gray" style="font-size: 11px; margin-left: 6px;">🔒 Chưa diễn ra</span>';
+      : `<span class="tag tag-gray" style="font-size: 11px; margin-left: 6px;">${ICONS.lock(11)} Chưa diễn ra</span>`;
 
     return `
       <div class="session-card-item ${isAvailable ? '' : 'session-disabled'}" data-session-idx="${idx}">

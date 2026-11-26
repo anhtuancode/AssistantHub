@@ -7,6 +7,7 @@
 import { curriculumService } from '../services/curriculum.js';
 import { switchTab } from '../main.js';
 import { toast } from '../services/toast.js';
+import { ICONS } from '../services/icons.js';
 
 let currentCategory = 'ROBOTICS';
 let selectedCourseCode = null;
@@ -273,9 +274,9 @@ function renderSessionsAccordion(course) {
 
     const hasSlide = Boolean(s.slideUrl && s.slideUrl.trim().length > 0);
     const slideControlHtml = hasSlide
-      ? `<button type="button" class="btn btn-xs btn-slide-open-inline" title="Mở Slide bài giảng">🔗 Mở Slide</button>
-         <button type="button" class="btn btn-secondary btn-xs btn-slide-edit-inline" title="Sửa link Slide">✏️</button>`
-      : `<button type="button" class="btn btn-xs btn-slide-add-inline">+ Gắn Slide</button>`;
+      ? `<button type="button" class="btn btn-xs btn-slide-open-inline" title="Mở Slide bài giảng">${ICONS.link2(13)} Mở Slide</button>
+         <button type="button" class="btn btn-secondary btn-xs btn-slide-edit-inline" title="Sửa link Slide">${ICONS.pencil(13)}</button>`
+      : `<button type="button" class="btn btn-xs btn-slide-add-inline">${ICONS.plus(13)} Gắn Slide</button>`;
 
     item.innerHTML = `
       <div class="session-item-header">
@@ -285,9 +286,9 @@ function renderSessionsAccordion(course) {
         </div>
         <div class="session-header-right" style="display: flex; align-items: center; gap: 6px;">
           ${slideControlHtml}
-          <button type="button" class="btn btn-secondary btn-xs btn-quick-copy-summary" title="Copy Tóm tắt buổi học">📋 Copy Tóm tắt</button>
-          <button type="button" class="btn btn-primary btn-xs btn-quick-zalo" title="Mở Báo bài Zalo cho buổi này">💬 Báo bài Zalo</button>
-          <span class="accordion-chevron">▼</span>
+          <button type="button" class="btn btn-secondary btn-xs btn-quick-copy-summary" title="Copy Tóm tắt buổi học">${ICONS.copy(13)} Copy Tóm tắt</button>
+          <button type="button" class="btn btn-primary btn-xs btn-quick-zalo" title="Mở Báo bài Zalo cho buổi này">${ICONS.send(13)} Báo bài Zalo</button>
+          <span class="accordion-chevron">${ICONS.chevronDown(14)}</span>
         </div>
       </div>
       <div class="quick-slide-popover" style="display: none;">
@@ -305,32 +306,32 @@ function renderSessionsAccordion(course) {
             <label style="font-weight: 600;">Link Slide bài giảng:</label>
             <div style="display: flex; gap: 6px;">
               <input type="text" class="form-control inp-session-slide" value="${escapeHtml(s.slideUrl || '')}" placeholder="https://canva.com/... hoặc link slide">
-              <button type="button" class="btn btn-secondary btn-xs btn-open-slide" ${!hasSlide ? 'disabled' : ''}>🔗 Mở</button>
+              <button type="button" class="btn btn-secondary btn-xs btn-open-slide" ${!hasSlide ? 'disabled' : ''}>${ICONS.link2(13)} Mở</button>
             </div>
           </div>
           <div class="form-group flex-2">
             <label style="font-weight: 600;">Link Tài liệu ôn tập / Bài tập:</label>
             <div style="display: flex; gap: 6px;">
               <input type="text" class="form-control inp-session-review" value="${escapeHtml(s.reviewDocUrl || '')}" placeholder="https://drive.google.com/... (nếu có)">
-              <button type="button" class="btn btn-secondary btn-xs btn-open-review" ${!s.reviewDocUrl ? 'disabled' : ''}>🔗 Mở</button>
+              <button type="button" class="btn btn-secondary btn-xs btn-open-review" ${!s.reviewDocUrl ? 'disabled' : ''}>${ICONS.link2(13)} Mở</button>
             </div>
           </div>
         </div>
         <div class="form-group">
-          <label style="font-weight: 600;">📖 Tóm tắt nội dung bài học:</label>
+          <label style="font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">${ICONS.bookOpen(14)} Tóm tắt nội dung bài học:</label>
           <textarea class="form-control inp-session-summary" rows="2" placeholder="Tóm tắt nội dung thực hành...">${escapeHtml(s.summary || '')}</textarea>
         </div>
         <div class="form-group">
-          <label style="font-weight: 600;">⚙️ Linh kiện & Câu lệnh / Kiến thức trọng tâm:</label>
+          <label style="font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">${ICONS.cpu(14)} Linh kiện & Câu lệnh / Kiến thức trọng tâm:</label>
           <textarea class="form-control inp-session-hardware" rows="2" placeholder="Linh kiện cơ khí hoặc câu lệnh lập trình...">${escapeHtml(s.hardwareAndCommands || '')}</textarea>
         </div>
         <div class="form-group">
-          <label style="font-weight: 600;">🎯 Mục tiêu bài học (mỗi mục tiêu trên 1 dòng):</label>
+          <label style="font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">${ICONS.target(14)} Mục tiêu bài học (mỗi mục tiêu trên 1 dòng):</label>
           <textarea class="form-control inp-session-objectives" rows="2" placeholder="Mục tiêu kiến thức, kỹ năng...">${escapeHtml((s.objectives || []).join('\n'))}</textarea>
         </div>
         <div style="display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin-top: 10px;">
           <button type="button" class="btn btn-primary btn-sm btn-save-session" data-session="${s.sessionNumber}">
-            💾 Lưu cập nhật buổi học
+            ${ICONS.save(14)} Lưu cập nhật buổi học
           </button>
         </div>
       </div>

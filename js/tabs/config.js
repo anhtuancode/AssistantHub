@@ -4,6 +4,7 @@
  */
 
 import { toast } from '../services/toast.js';
+import { ICONS } from '../services/icons.js';
 
 const STORAGE_KEY_LMS = 'mindx_lms_config';
 const STORAGE_KEY_GEMINI = 'mindx_gemini_config';
@@ -37,7 +38,10 @@ function loadSavedConfigs() {
       const styleSel = document.getElementById('cfg-gemini-style');
 
       if (keyInp && gemini.key) keyInp.value = gemini.key;
-      if (modelSel && gemini.model) modelSel.value = gemini.model;
+      if (modelSel && gemini.model) {
+        const hasOption = Array.from(modelSel.options).some(opt => opt.value === gemini.model);
+        modelSel.value = hasOption ? gemini.model : 'gemini-2.0-flash';
+      }
       if (styleSel && gemini.style) styleSel.value = gemini.style;
     }
   } catch (err) {
@@ -66,7 +70,7 @@ export function getGeminiConfig() {
 
   return {
     key: keyInp ? keyInp.value.trim() : '',
-    model: modelSel ? modelSel.value : 'gemini-1.5-flash',
+    model: modelSel ? modelSel.value : 'gemini-2.0-flash',
     style: styleSel ? styleSel.value : 'standard'
   };
 }
@@ -79,7 +83,7 @@ function bindConfigEvents() {
     toggleLmsPass.onclick = () => {
       const isPass = lmsPassInp.type === 'password';
       lmsPassInp.type = isPass ? 'text' : 'password';
-      toggleLmsPass.textContent = isPass ? '🙈' : '👁️';
+      toggleLmsPass.innerHTML = isPass ? ICONS.eyeOff(16) : ICONS.eye(16);
     };
   }
 
@@ -89,7 +93,7 @@ function bindConfigEvents() {
     toggleGeminiKey.onclick = () => {
       const isPass = geminiKeyInp.type === 'password';
       geminiKeyInp.type = isPass ? 'text' : 'password';
-      toggleGeminiKey.textContent = isPass ? '🙈' : '👁️';
+      toggleGeminiKey.innerHTML = isPass ? ICONS.eyeOff(16) : ICONS.eye(16);
     };
   }
 

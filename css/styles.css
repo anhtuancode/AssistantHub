@@ -1,11 +1,11 @@
 :root {
   /* Brand & Theme Colors (MindX Light Theme) */
-  --bg-primary: #F4F6F9;
+  --bg-primary: #F8FAFC;
   --bg-secondary: #FFFFFF;
   --bg-card: #FFFFFF;
   --bg-hover: #F1F5F9;
   --border-color: #E2E8F0;
-  --border-focus: #E31E24;
+  --border-focus: #DC2626;
 
   /* Typography */
   --text-main: #0F172A;
@@ -13,8 +13,8 @@
   --text-muted: #64748B;
 
   /* MindX Brand Red */
-  --accent-mindx: #E31E24;
-  --accent-mindx-hover: #C4161C;
+  --accent-mindx: #DC2626;
+  --accent-mindx-hover: #B91C1C;
   --accent-mindx-light: #FEF2F2;
 
   /* Semantic Colors */
@@ -30,14 +30,14 @@
   --accent-purple-bg: #F3E8FF;
 
   /* Shadows & Radius */
-  --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.04);
-  --shadow-card: 0 2px 8px rgba(15, 23, 42, 0.06);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.04);
   --shadow-md: 0 4px 14px rgba(15, 23, 42, 0.08);
   --shadow-lg: 0 10px 25px -3px rgba(15, 23, 42, 0.08);
   
-  --radius-sm: 6px;
+  --radius-sm: 8px;
   --radius-md: 10px;
-  --radius-lg: 12px;
+  --radius-lg: 14px;
 }
 
 * {
@@ -106,16 +106,14 @@ body {
 .brand-logo {
   width: 44px;
   height: 44px;
-  background: linear-gradient(135deg, #E31E24, #C4161C);
+  background: linear-gradient(135deg, #DC2626, #E11D48);
   color: #FFFFFF;
-  font-weight: 800;
-  font-size: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--radius-md);
-  box-shadow: 0 4px 12px rgba(227, 30, 36, 0.35);
-  letter-spacing: -0.5px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.25);
+  flex-shrink: 0;
 }
 
 .brand-info h2 {
@@ -134,20 +132,20 @@ body {
 .nav-menu {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 4px;
   flex-grow: 1;
 }
 
 .nav-btn {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 12px;
-  padding: 12px 14px;
+  gap: 11px;
+  padding: 11px 14px;
   border: 1px solid transparent;
-  border-left: 3px solid transparent;
   background: transparent;
-  color: var(--text-secondary);
-  border-radius: var(--radius-sm);
+  color: #475569;
+  border-radius: 12px;
   cursor: pointer;
   font-size: 13.5px;
   font-weight: 500;
@@ -156,8 +154,11 @@ body {
 }
 
 .nav-btn .icon {
-  font-size: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   line-height: 1;
+  flex-shrink: 0;
 }
 
 .nav-btn .label {
@@ -171,16 +172,33 @@ body {
 
 .nav-btn.active {
   background: #FEF2F2;
-  border-left: 3px solid #E31E24;
-  color: #E31E24;
+  color: #DC2626;
   font-weight: 600;
+}
+
+.nav-btn.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 8px;
+  bottom: 8px;
+  width: 3px;
+  background-color: #DC2626;
+  border-radius: 999px;
 }
 
 .sidebar-footer {
   margin-top: auto;
-  padding-top: 16px;
+  padding-top: 14px;
   border-top: 1px solid var(--border-color);
-  text-align: center;
+  text-align: left;
+}
+
+.sidebar-copyright {
+  margin-top: 8px;
+  font-size: 11.5px;
+  color: #64748B;
+  line-height: 1.4;
 }
 
 .version-badge {
@@ -397,37 +415,38 @@ textarea.form-control {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #E31E24, #C4161C);
+  background: linear-gradient(135deg, #DC2626, #B91C1C);
   color: #FFFFFF;
-  box-shadow: 0 2px 8px rgba(227, 30, 36, 0.25);
+  box-shadow: 0 2px 6px rgba(220, 38, 38, 0.22);
 }
 
 .btn-primary:hover:not(:disabled) {
-  background: linear-gradient(135deg, #EF4444, #B91C1C);
+  background: linear-gradient(135deg, #B91C1C, #991B1B);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(227, 30, 36, 0.35);
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
 }
 
 .btn-primary-blue {
-  background: linear-gradient(135deg, #E31E24, #C4161C) !important;
+  background: linear-gradient(135deg, #DC2626, #B91C1C) !important;
   color: #FFFFFF !important;
-  box-shadow: 0 3px 10px rgba(227, 30, 36, 0.25) !important;
+  box-shadow: 0 2px 8px rgba(220, 38, 38, 0.22) !important;
 }
 
 .btn-primary-blue:hover:not(:disabled) {
-  background: linear-gradient(135deg, #EF4444, #B91C1C) !important;
+  background: linear-gradient(135deg, #B91C1C, #991B1B) !important;
   transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(227, 30, 36, 0.35) !important;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3) !important;
 }
 
 .btn-secondary {
-  background-color: #F1F5F9;
-  color: var(--text-main);
-  border: 1px solid #CBD5E1;
+  background-color: #FFFFFF;
+  color: #334155;
+  border: 1px solid #E2E8F0;
 }
 
 .btn-secondary:hover:not(:disabled) {
-  background-color: #E2E8F0;
+  background-color: #F8FAFC;
+  border-color: #CBD5E1;
   color: #0F172A;
 }
 
@@ -441,11 +460,13 @@ textarea.form-control {
    Tags & Status Badges
    ======================================================== */
 .tag {
-  display: inline-block;
-  padding: 3px 8px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 9px;
   border-radius: 12px;
   font-size: 11px;
-  font-weight: 600;
+  font-weight: 500;
   line-height: 1.4;
 }
 
@@ -499,6 +520,10 @@ textarea.form-control {
 
 .btn-cat-tab {
   flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   padding: 8px 10px;
   font-size: 12px;
   font-weight: 600;
@@ -565,8 +590,12 @@ textarea.form-control {
 }
 
 .course-tree-item.active {
-  background-color: #EFF6FF;
-  border-left-color: #2563EB;
+  background-color: #FEF2F2;
+  border-left-color: #DC2626;
+}
+
+.course-tree-item.active .course-code-badge {
+  color: #DC2626;
 }
 
 .course-code-badge {
@@ -623,7 +652,11 @@ textarea.form-control {
   border-radius: var(--radius-md);
   background-color: #FFFFFF;
   overflow: hidden;
-  transition: border-color 0.15s ease;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.session-item:hover {
+  border-color: #CBD5E1;
 }
 
 .session-item.open {
@@ -632,7 +665,7 @@ textarea.form-control {
 }
 
 .session-item-header {
-  padding: 12px 16px;
+  padding: 13px 18px;
   background-color: #F8FAFC;
   cursor: pointer;
   display: flex;
@@ -684,9 +717,45 @@ textarea.form-control {
 }
 
 .accordion-chevron {
-  font-size: 11px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   color: var(--text-muted);
   transition: transform 0.2s ease;
+}
+
+.search-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-input-wrapper .search-icon {
+  position: absolute;
+  left: 10px;
+  color: #94A3B8;
+  pointer-events: none;
+  display: inline-flex;
+  align-items: center;
+}
+
+.search-input-wrapper .form-control {
+  padding-left: 32px;
+}
+
+.lucide-icon {
+  display: inline-block;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+@keyframes spinIcon {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.spin-icon {
+  animation: spinIcon 1s linear infinite;
 }
 
 .session-item.open .accordion-chevron {

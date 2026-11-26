@@ -10,6 +10,7 @@ import { curriculumService } from '../services/curriculum.js';
 import { toast } from '../services/toast.js';
 import { handleSessionExpiredIfAny } from '../services/sessionGuard.js';
 import { setTeacherPointContext } from './teacherPoint.js';
+import { ICONS } from '../services/icons.js';
 
 let currentClass = null;
 let currentSession = null;
@@ -118,7 +119,7 @@ async function loadSessionDataFromLms() {
       tbody.innerHTML = `
         <tr>
           <td colspan="6" style="text-align: center; padding: 30px; color: #B45309; background: #FFFBEB;">
-            ⚠️ ${escapeHtml(msg)}
+            <span style="display: inline-flex; align-items: center; gap: 6px;">${ICONS.alertTriangle(16)} ${escapeHtml(msg)}</span>
           </td>
         </tr>
       `;
@@ -130,7 +131,7 @@ async function loadSessionDataFromLms() {
     tbody.innerHTML = `
       <tr>
         <td colspan="6" style="text-align: center; padding: 30px; color: #64748B;">
-          ⏳ Đang chọn Buổi ${currentSession ? currentSession.sessionNumber : ''} trên LMS và tải dữ liệu...
+          <span style="display: inline-flex; align-items: center; gap: 8px;">${ICONS.loader(16)} Đang chọn Buổi ${currentSession ? currentSession.sessionNumber : ''} trên LMS và tải dữ liệu...</span>
         </td>
       </tr>
     `;
@@ -154,7 +155,7 @@ async function loadSessionDataFromLms() {
           tbody.innerHTML = `
             <tr>
               <td colspan="6" style="text-align: center; padding: 30px; color: #B91C1C; background: #FEF2F2;">
-                ⚠️ ${escapeHtml(errMsg)}
+                <span style="display: inline-flex; align-items: center; gap: 6px;">${ICONS.alertTriangle(16)} ${escapeHtml(errMsg)}</span>
               </td>
             </tr>
           `;
@@ -231,18 +232,26 @@ function updateHeaderInfo() {
 async function loadDefaultSummaryForSession() {
   if (!currentClass || !currentSession) return;
   const summaryBox = document.getElementById('students-summary-editor');
+  if (!summaryBox || summaryBox.value.trim()) return;
 
-  // Thử lấy thông tin giáo trình chuẩn MindX từ CourseCode
-  const courseCode = curriculumService.extractCourseCode(currentClass.title);
-  if (courseCode) {
-    const courseData = await curriculumService.getMergedCourseData(courseCode);
-    if (courseData && courseData.sessions) {
-      const s = courseData.sessions.find(x => x.sessionNumber === currentSession.sessionNumber);
-      if (s && summaryBox && !summaryBox.value.trim()) {
-        summaryBox.value = `Buổi ${s.sessionNumber}: ${s.title}.\n- Tóm tắt: ${s.summary || ''}\n- Linh kiện & Câu lệnh: ${s.hardwareAndCommands || ''}\n- Cả lớp hoàn thành tốt mục tiêu đề ra.`;
-        currentSummary = summaryBox.value;
-      }
+  const classCode = currentClass.classCode || currentClass.code || currentClass.title || '';
+  const sessionParam = currentSession.sessionNumber || currentSession.title || '';
+  if (!classCode || !sessionParam) return;
+
+  try {
+    const params = new URLSearchParams({
+      classCode,
+      session: String(sessionParam)
+    });
+    const res = await fetch(`/api/curriculum/session-summary?${params.toString()}`);
+    const result = await res.json();
+
+    if (result.success && result.data && result.data.formattedSummary && !summaryBox.value.trim()) {
+      summaryBox.value = result.data.formattedSummary;
+      currentSummary = result.data.formattedSummary;
     }
+  } catch (err) {
+    console.warn('[Students] Lỗi tải tóm tắt giáo trình từ API:', err.message);
   }
 }
 
@@ -348,7 +357,7 @@ function renderStudentsTable() {
     tbody.innerHTML = `
       <tr>
         <td colspan="6" style="text-align: center; padding: 40px; color: #64748B;">
-          <div style="font-size: 28px; margin-bottom: 6px;">👥</div>
+          <div style="color: #94A3B8; margin-bottom: 8px; display: flex; justify-content: center;">${ICONS.users(28)}</div>
           <div>Chưa có học viên. Hãy chọn lớp và buổi học để tải dữ liệu.</div>
         </td>
       </tr>
@@ -401,7 +410,7 @@ function renderStudentsTable() {
         </td>
         <td style="white-space: nowrap;">
           <button type="button" class="btn btn-secondary btn-xs btn-gen-single-comment" data-idx="${idx}" ${disabledAttr} style="${isAbsent ? 'opacity: 0.5; cursor: not-allowed;' : ''}">
-            ✨ Tạo nhận xét
+            ${ICONS.sparkles(13)} Tạo nhận xét
           </button>
         </td>
       </tr>
@@ -512,7 +521,7 @@ function renderStudentsTable() {
         toast.error(`Lỗi tạo nhận xét: ${err.message}`);
       } finally {
         btn.disabled = false;
-        btn.textContent = '✨ Tạo nhận xét';
+        btn.innerHTML = `${ICONS.sparkles(13)} Tạo nhận xét`;
       }
     };
   });
@@ -579,7 +588,7 @@ function bindStudentsEvents() {
         toast.error(`Lỗi tạo Summary: ${err.message}`);
       } finally {
         btnGenSummary.disabled = false;
-        btnGenSummary.innerHTML = '✨ Tạo nội dung bằng AI';
+        btnGenSummary.innerHTML = `${ICONS.sparkles(14)} Tạo nội dung bằng AI`;
       }
     };
   }
@@ -613,7 +622,7 @@ function bindStudentsEvents() {
 
       if (needGeneration.length > 0) {
         btnProceedReview.disabled = true;
-        btnProceedReview.innerHTML = `⏳ Đang tự động tạo nhận xét cá nhân hóa cho ${needGeneration.length} học viên...`;
+        btnProceedReview.innerHTML = `${ICONS.loader(15)} Đang tự động tạo nhận xét cá nhân hóa cho ${needGeneration.length} học viên...`;
 
         const geminiConfig = getGeminiConfig();
         const classCode = currentClass ? (currentClass.classCode || currentClass.code || (currentClass.title ? currentClass.title.split('—')[0].trim() : '')) : '';
@@ -654,7 +663,7 @@ function bindStudentsEvents() {
           toast.error(`Lỗi tự động tạo nhận xét: ${err.message}`);
         } finally {
           btnProceedReview.disabled = false;
-          btnProceedReview.innerHTML = '<span>👉</span> Chuyển sang Duyệt &amp; Lưu';
+          btnProceedReview.innerHTML = `Chuyển sang Duyệt &amp; Lưu ${ICONS.arrowRight(16)}`;
         }
       }
 

@@ -7,6 +7,7 @@ import { switchTab } from '../main.js';
 import { toast, showConfirm } from '../services/toast.js';
 import { handleSessionExpiredIfAny } from '../services/sessionGuard.js';
 import { saveCurrentDraft } from './students.js';
+import { ICONS } from '../services/icons.js';
 
 let reviewClass = null;
 let reviewSession = null;
@@ -81,7 +82,7 @@ function renderReviewUI() {
     if (leftList) {
       leftList.innerHTML = `
         <div style="text-align: center; padding: 40px 16px; color: #64748B;">
-          <div style="font-size: 24px; margin-bottom: 6px;">👥</div>
+          <div style="color: #94A3B8; margin-bottom: 8px; display: flex; justify-content: center;">${ICONS.users(26)}</div>
           <div style="font-size: 13px;">Chưa có học viên có mặt nào có nhận xét để duyệt.</div>
         </div>
       `;
@@ -352,7 +353,7 @@ function bindReviewEvents() {
         }
       } finally {
         btnFillAll.disabled = false;
-        btnFillAll.innerHTML = '🚀 Lưu tất cả lên LMS';
+        btnFillAll.innerHTML = `${ICONS.send(16)} Lưu tất cả lên LMS`;
       }
     };
   }
