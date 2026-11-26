@@ -8,12 +8,43 @@ import { setSelectedClassAndSession, resetStudentsWorkspace } from './students.j
 import { toast } from '../services/toast.js';
 import { handleSessionExpiredIfAny } from '../services/sessionGuard.js';
 import { ICONS } from '../services/icons.js';
+import { apiRequest, getCachedClasses, getCachedSessions } from '../services/apiBridge.js';
 
 let loadedClasses = [];
 let selectedClass = null;
 let selectedSessions = [];
 let isLoadingSessions = false;
 let latestClassRequestId = 0;
+let classesCacheInfo = null;
+let sessionsCacheInfo = null;
+let lastLmsSelectedClassId = null;
+let isClassesEventsBound = false;
+
+function formatCacheTime(ts) {
+  if (!ts) return '';
+  const d = new Date(ts);
+  const hh = String(d.getHours()).padStart(2, '0');
+  const mm = String(d.getMinutes()).padStart(2, '0');
+  return `${hh}:${mm}`;
+}
+
+function updateClassesCacheStatusUI() {
+  const statusEl = document.getElementById('classes-cache-status');
+  if (!statusEl) return;
+  if (classesCacheInfo && classesCacheInfo.fromCache && classesCacheInfo.updatedAt) {
+    statusEl.textContent = `Dữ liệu bộ nhớ đệm • Cập nhật lúc ${formatCacheTime(classesCacheInfo.updatedAt)}`;
+    statusEl.style.display = 'block';
+  } else {
+    statusEl.textContent = '';
+    statusEl.style.display = 'none';
+  }
+}
+
+function updateRefreshSessionsBtnUI() {
+  const btn = document.getElementById('btn-refresh-sessions');
+  if (!btn) return;
+  btn.style.display = (selectedClass && !isLoadingSessions) ? 'inline-flex' : 'none';
+}
 
 function getClassUniqueId(cls) {
   if (!cls) return '';
@@ -30,16 +61,37 @@ function escapeHtml(str) {
     .replace(/'/g, '&#39;');
 }
 
-export function initClassesTab() {
+export async function initClassesTab() {
   bindClassesEvents();
+  if (loadedClasses.length === 0) {
+    const cached = await getCachedClasses();
+    if (cached && Array.isArray(cached.classes)) {
+      loadedClasses = cached.classes;
+      classesCacheInfo = { fromCache: true, updatedAt: cached.updatedAt };
+    }
+  }
   renderClassesList();
   renderSessionsList();
+  updateClassesCacheStatusUI();
+  updateRefreshSessionsBtnUI();
 }
 
 function bindClassesEvents() {
+  if (isClassesEventsBound) return;
+  isClassesEventsBound = true;
+
   const btnSync = document.getElementById('btn-sync-classes');
   if (btnSync) {
-    btnSync.onclick = handleSyncClasses;
+    btnSync.addEventListener('click', handleSyncClasses);
+  }
+
+  const btnRefreshSessions = document.getElementById('btn-refresh-sessions');
+  if (btnRefreshSessions) {
+    btnRefreshSessions.addEventListener('click', () => {
+      if (selectedClass && !isLoadingSessions) {
+        handleSelectClass(selectedClass, { forceRefresh: true });
+      }
+    });
   }
 }
 
@@ -51,12 +103,13 @@ async function handleSyncClasses() {
   }
 
   try {
-    const res = await fetch('/api/automation/classes?status=running');
-    const data = await res.json();
+    const data = await apiRequest('/api/automation/classes?status=running&forceRefresh=1', { forceRefresh: true });
 
     if (data.success && Array.isArray(data.classes)) {
       loadedClasses = data.classes;
+      classesCacheInfo = { fromCache: false, updatedAt: data.updatedAt || Date.now() };
       renderClassesList();
+      updateClassesCacheStatusUI();
       toast.success(`Đã đồng bộ ${data.classes.length} lớp học từ MindX LMS.`);
     } else {
       if (await handleSessionExpiredIfAny(data)) return;
@@ -116,27 +169,21 @@ function renderClassesList() {
 
   // Gắn sự kiện Chọn lớp
   container.querySelectorAll('.btn-select-class').forEach(btn => {
-    btn.onclick = (e) => {
+    btn.addEventListener('click', () => {
       const idx = parseInt(btn.getAttribute('data-class-idx'), 10);
       handleSelectClass(loadedClasses[idx]);
-    };
+    });
   });
 }
 
-async function handleSelectClass(cls) {
+async function handleSelectClass(cls, { forceRefresh = false } = {}) {
   // Chống double-click / gọi trùng khi đang loading
   if (isLoadingSessions) return;
   const reqId = ++latestClassRequestId;
-
-  // 1. Reset ngay state buổi học, học viên, summary và bật trạng thái loading
-  selectedClass = cls;
-  selectedSessions = [];
-  isLoadingSessions = true;
-  resetStudentsWorkspace();
-  renderClassesList();
-  renderSessionsList();
-
+  const classTarget = getClassUniqueId(cls);
   const activeClassCode = cls.classCode || cls.code || (cls.title ? cls.title.split('—')[0].trim() : '');
+
+  selectedClass = cls;
   if (activeClassCode) {
     window.__mindxActiveClassCode = activeClassCode;
     try { localStorage.setItem('mindx_active_class_code', activeClassCode); } catch (_) {}
@@ -144,19 +191,43 @@ async function handleSelectClass(cls) {
 
   const sessionHeaderBadge = document.getElementById('selected-class-code-badge');
   if (sessionHeaderBadge) {
-    sessionHeaderBadge.textContent = cls.classCode || cls.code || (cls.title ? cls.title.split('—')[0].trim() : cls.id);
+    sessionHeaderBadge.textContent = activeClassCode || cls.id;
     sessionHeaderBadge.style.display = 'inline-block';
   }
 
+  // Kiểm tra cache buổi học trước để hiển thị ngay 0ms
+  if (!forceRefresh && classTarget) {
+    const cachedSess = await getCachedSessions(classTarget);
+    if (reqId !== latestClassRequestId) return;
+    if (cachedSess && Array.isArray(cachedSess.sessions)) {
+      selectedSessions = cachedSess.sessions;
+      sessionsCacheInfo = { fromCache: true, updatedAt: cachedSess.updatedAt };
+      isLoadingSessions = false;
+      resetStudentsWorkspace();
+      renderClassesList();
+      renderSessionsList();
+      updateRefreshSessionsBtnUI();
+      return;
+    }
+  }
+
+  // 1. Reset ngay state buổi học, học viên, summary và bật trạng thái loading
+  selectedSessions = [];
+  sessionsCacheInfo = null;
+  isLoadingSessions = true;
+  resetStudentsWorkspace();
+  renderClassesList();
+  renderSessionsList();
+  updateRefreshSessionsBtnUI();
+
   try {
-    // 2. Gọi backend Playwright vào lớp mới
-    const classTarget = cls.classId || cls.id || cls.link || cls.classCode || cls.code;
-    const selRes = await fetch('/api/automation/classes/select', {
+    // 2. Điều hướng vào lớp mới trên tab LMS (SPA pushState hoặc fallback URL)
+    const selectTarget = cls.classId || cls.id || cls.link || cls.classCode || cls.code;
+    const selData = await apiRequest('/api/automation/classes/select', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ classId: classTarget })
+      body: JSON.stringify({ classId: selectTarget, classCode: activeClassCode })
     });
-    const selData = await selRes.json();
 
     if (reqId !== latestClassRequestId) return;
 
@@ -165,19 +236,25 @@ async function handleSelectClass(cls) {
       isLoadingSessions = false;
       renderClassesList();
       renderSessionsList();
+      updateRefreshSessionsBtnUI();
       if (await handleSessionExpiredIfAny(selData)) return;
       toast.error(`Không thể truy cập lớp "${cls.title}": ${selData.error || 'Lỗi điều hướng LMS'}`);
       return;
     }
 
-    // 3. Lấy danh sách buổi học mới từ tab Comments trên LMS
-    const sessRes = await fetch('/api/automation/sessions');
-    const sessData = await sessRes.json();
+    lastLmsSelectedClassId = classTarget;
+
+    // 3. Lấy danh sách buổi học mới từ tab Comments trên LMS và lưu cache
+    const sessData = await apiRequest(
+      `/api/automation/sessions?classId=${encodeURIComponent(classTarget)}&forceRefresh=1`,
+      { forceRefresh: true }
+    );
 
     if (reqId !== latestClassRequestId) return;
 
     if (sessData.success && Array.isArray(sessData.sessions)) {
       selectedSessions = sessData.sessions;
+      sessionsCacheInfo = { fromCache: false, updatedAt: sessData.updatedAt || Date.now() };
     } else {
       selectedSessions = [];
     }
@@ -190,6 +267,7 @@ async function handleSelectClass(cls) {
       isLoadingSessions = false;
       renderClassesList();
       renderSessionsList();
+      updateRefreshSessionsBtnUI();
     }
   }
 }
@@ -263,16 +341,37 @@ function renderSessionsList() {
 
   // Chỉ gắn sự kiện click cho các buổi đã diễn ra (isAvailable !== false)
   container.querySelectorAll('.btn-view-session:not([disabled])').forEach(btn => {
-    btn.onclick = () => {
+    btn.addEventListener('click', async () => {
       const idx = parseInt(btn.getAttribute('data-session-idx'), 10);
       const session = selectedSessions[idx];
       if (!session || session.isAvailable === false) return;
+
+      const currentClassId = getClassUniqueId(selectedClass);
+      if (lastLmsSelectedClassId !== currentClassId) {
+        btn.disabled = true;
+        btn.textContent = '⏳...';
+        const selectTarget = selectedClass.classId || selectedClass.id || selectedClass.link || selectedClass.classCode || selectedClass.code;
+        const activeClassCode = selectedClass.classCode || selectedClass.code || (selectedClass.title ? selectedClass.title.split('—')[0].trim() : '');
+        const selData = await apiRequest('/api/automation/classes/select', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ classId: selectTarget, classCode: activeClassCode })
+        });
+        btn.disabled = false;
+        btn.textContent = 'Xem';
+        if (!selData.success) {
+          if (await handleSessionExpiredIfAny(selData)) return;
+          toast.error(`Không thể mở lớp "${selectedClass.title}": ${selData.error || 'Lỗi điều hướng LMS'}`);
+          return;
+        }
+        lastLmsSelectedClassId = currentClassId;
+      }
 
       // Chuyển dữ liệu sang Page 3
       setSelectedClassAndSession(selectedClass, session);
 
       // Chuyển tab sang tab-students
       switchTab('tab-students');
-    };
+    });
   });
 }

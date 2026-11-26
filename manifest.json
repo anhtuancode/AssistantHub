@@ -1,0 +1,45 @@
+{
+  "manifest_version": 3,
+  "name": "Tứng Mèo Hub — MindX Teacher Assistant",
+  "version": "1.0.0",
+  "description": "Trợ lý Giáo viên MindX: Tự động hóa nhận xét LMS, tạo nội dung AI Gemini, tra cứu 24 giáo trình, báo bài Zalo & Teacher Point.",
+  "action": {
+    "default_title": "Mở Tứng Mèo Hub — MindX Teacher Assistant"
+  },
+  "background": {
+    "service_worker": "extension/background.js"
+  },
+  "permissions": [
+    "tabs",
+    "scripting",
+    "storage"
+  ],
+  "host_permissions": [
+    "https://lms.mindx.edu.vn/*",
+    "https://base.mindx.edu.vn/*",
+    "https://generativelanguage.googleapis.com/*",
+    "https://docs.google.com/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://lms.mindx.edu.vn/*"
+      ],
+      "js": [
+        "extension/main-world.js"
+      ],
+      "world": "MAIN",
+      "run_at": "document_idle"
+    },
+    {
+      "matches": [
+        "https://lms.mindx.edu.vn/*",
+        "https://base.mindx.edu.vn/*"
+      ],
+      "js": [
+        "extension/content-lms.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ]
+}

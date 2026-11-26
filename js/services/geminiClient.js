@@ -1,13 +1,21 @@
-const logger = require('../utils/logger');
+/**
+ * GeminiClient (ES Module)
+ * Port từ src/services/geminiService.js — gọi trực tiếp Google Gemini API từ Extension (không qua backend).
+ */
 
-class GeminiService {
+class GeminiClient {
   constructor() {
     this.defaultModel = 'gemini-2.0-flash';
   }
 
-  /**
-   * Kiểm tra kết nối API Key và Model
-   */
+  _log(level, message) {
+    try {
+      if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.sendMessage) {
+        chrome.runtime.sendMessage({ type: 'BG_LOG', payload: { level, message } }).catch(() => {});
+      }
+    } catch (_) {}
+  }
+
   async testConnection(apiKey, model = this.defaultModel) {
     if (!apiKey || !apiKey.trim()) {
       return { success: false, error: 'API Key không được để trống.' };
@@ -17,7 +25,7 @@ class GeminiService {
     const url = `https://generativelanguage.googleapis.com/v1beta/models/${targetModel}:generateContent?key=${apiKey.trim()}`;
 
     try {
-      logger.info(`[GeminiService] Đang kiểm tra kết nối tới mô hình ${targetModel}...`);
+      this._log('INFO', `[GeminiClient] Đang kiểm tra kết nối tới mô hình ${targetModel}...`);
       const response = await fetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -29,27 +37,23 @@ class GeminiService {
       const data = await response.json();
       if (!response.ok) {
         const errMsg = (data && data.error && data.error.message) ? data.error.message : `HTTP ${response.status}`;
-        logger.error(`[GeminiService] Lỗi kết nối API: ${errMsg}`);
+        this._log('ERROR', `[GeminiClient] Lỗi kết nối API: ${errMsg}`);
         return { success: false, error: errMsg };
       }
 
-      logger.info('[GeminiService] Kết nối Google Gemini API thành công! ✓');
+      this._log('INFO', '[GeminiClient] Kết nối Google Gemini API thành công! ✓');
       return { success: true, message: 'Kết nối Google Gemini API thành công!' };
     } catch (err) {
-      logger.error(`[GeminiService] Ngoại lệ kiểm tra kết nối: ${err.message}`);
+      this._log('ERROR', `[GeminiClient] Ngoại lệ kiểm tra kết nối: ${err.message}`);
       return { success: false, error: err.message };
     }
   }
 
-  /**
-   * Tạo tóm tắt buổi học (Summary)
-   */
   async generateSummary(lessonData, apiKey, model = this.defaultModel) {
     const { title = '', sessionNumber = 1, objectives = [], hardwareAndCommands = '', summary = '' } = lessonData || {};
 
-    // Nếu không có API Key, dùng bộ sinh mẫu thông minh chuẩn MindX
     if (!apiKey || !apiKey.trim()) {
-      logger.info('[GeminiService] Không có API Key, sử dụng mẫu chuẩn giáo trình MindX.');
+      this._log('INFO', '[GeminiClient] Không có API Key, sử dụng mẫu chuẩn giáo trình MindX.');
       return this._fallbackSummary(lessonData);
     }
 
@@ -80,19 +84,15 @@ Yêu cầu output:
 
       const data = await response.json();
       if (response.ok && data.candidates && data.candidates[0] && data.candidates[0].content) {
-        const text = data.candidates[0].content.parts[0].text.trim();
-        return text;
+        return data.candidates[0].content.parts[0].text.trim();
       }
       return this._fallbackSummary(lessonData);
     } catch (err) {
-      logger.warn(`[GeminiService] Lỗi gọi Gemini Summary (${err.message}), dùng fallback.`);
+      this._log('WARN', `[GeminiClient] Lỗi gọi Gemini Summary (${err.message}), dùng fallback.`);
       return this._fallbackSummary(lessonData);
     }
   }
 
-  /**
-   * Nhận diện loại lớp (ROB vs C4K) và bộ kit Robotics (VEX GO vs VEX IQ) dựa theo mã lớp
-   */
   classifyCourseType(classCode = '') {
     const upper = String(classCode || '').toUpperCase();
     if (upper.includes('ROB')) {
@@ -105,9 +105,6 @@ Yêu cầu output:
     return { group: 'GENERAL', kit: null };
   }
 
-  /**
-   * Làm sạch tiền tố thừa trong Summary (ví dụ: "Tóm tắt buổi học: Trường học thông minh." -> "Trường học thông minh")
-   */
   _cleanSummaryTopic(summary = '', title = '') {
     let raw = String(summary || title || 'nội dung bài học')
       .replace(/\s+/g, ' ')
@@ -120,9 +117,6 @@ Yêu cầu output:
     return raw || 'nội dung bài học';
   }
 
-  /**
-   * Tách ghi chú nhanh thành nhóm điểm mạnh và nhóm cần cải thiện để lồng ghép tự nhiên
-   */
   _splitNoteTokens(note = '') {
     const improveKeywords = ['cần ', 'hơi ', 'chưa ', 'nhắc', 'rụt rè', 'chậm', 'nhầm', 'thiếu', 'quên'];
     const tokens = String(note || '')
@@ -143,9 +137,6 @@ Yêu cầu output:
     return { strengths, improvements };
   }
 
-  /**
-   * Tạo nhận xét cho từng học viên theo phân loại mã lớp (ROB vs C4K)
-   */
   async generateStudentComment(student, lessonData, apiKey, model = this.defaultModel, style = 'standard') {
     const studentName = student.name || student.studentName || 'Học viên';
     const rating = student.rating || 'Khá';
@@ -246,7 +237,7 @@ Quy tắc bắt buộc:
       if (response.ok && data.candidates && data.candidates[0] && data.candidates[0].content) {
         return data.candidates[0].content.parts[0].text.trim();
       }
-      logger.warn(`[GeminiService] Gemini API không trả về kết quả (${data?.error?.message || response.status}), dùng fallback đa dạng.`);
+      this._log('WARN', `[GeminiClient] Gemini API không trả về kết quả (${data?.error?.message || response.status}), dùng fallback đa dạng.`);
       return this._fallbackStudentComment(studentName, rating, note, title, {
         classCode,
         sessionNumber,
@@ -255,7 +246,7 @@ Quy tắc bắt buộc:
         studentIndex
       });
     } catch (err) {
-      logger.warn(`[GeminiService] Lỗi gọi Gemini API (${err.message}), dùng fallback đa dạng.`);
+      this._log('WARN', `[GeminiClient] Lỗi gọi Gemini API (${err.message}), dùng fallback đa dạng.`);
       return this._fallbackStudentComment(studentName, rating, note, title, {
         classCode,
         sessionNumber,
@@ -264,6 +255,23 @@ Quy tắc bắt buộc:
         studentIndex
       });
     }
+  }
+
+  async generateBatchComments(students = [], lessonData, apiKey, model = this.defaultModel, style = 'standard') {
+    const results = [];
+    let activeIdx = 0;
+    for (const st of students) {
+      const att = (st.attendance || st.attendanceStatus || '').toUpperCase();
+      if (att === 'ABSENT') {
+        results.push({ name: st.name || st.studentName, comment: '', skipped: true });
+      } else {
+        const idx = typeof st.studentIndex === 'number' ? st.studentIndex : activeIdx;
+        activeIdx++;
+        const comment = await this.generateStudentComment({ ...st, studentIndex: idx }, lessonData, apiKey, model, style);
+        results.push({ name: st.name || st.studentName, comment, skipped: false });
+      }
+    }
+    return results;
   }
 
   _fallbackSummary(lessonData) {
@@ -413,4 +421,4 @@ Quy tắc bắt buộc:
   }
 }
 
-module.exports = new GeminiService();
+export const geminiClient = new GeminiClient();

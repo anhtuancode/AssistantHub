@@ -5,6 +5,7 @@
 
 import { toast } from '../services/toast.js';
 import { ICONS } from '../services/icons.js';
+import { apiRequest } from '../services/apiBridge.js';
 
 const STORAGE_KEY_LMS = 'mindx_lms_config';
 const STORAGE_KEY_GEMINI = 'mindx_gemini_config';
@@ -132,17 +133,16 @@ function bindConfigEvents() {
       btnLoginLms.disabled = true;
       if (statusLms) {
         statusLms.style.display = 'inline-block';
-        statusLms.textContent = '⏳ Đang khởi chạy Playwright Chromium...';
+        statusLms.textContent = '⏳ Đang đăng nhập MindX LMS...';
         statusLms.className = 'tag tag-blue';
       }
 
       try {
-        const res = await fetch('/api/automation/login', {
+        const data = await apiRequest('/api/automation/login', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ email: config.email, password: config.pass, headless: true })
         });
-        const data = await res.json();
 
         if (data.success) {
           if (statusLms) {
@@ -185,12 +185,11 @@ function bindConfigEvents() {
       }
 
       try {
-        const res = await fetch('/api/gemini/test', {
+        const data = await apiRequest('/api/gemini/test', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ apiKey: config.key, model: config.model })
         });
-        const data = await res.json();
 
         if (data.success) {
           if (statusAi) {

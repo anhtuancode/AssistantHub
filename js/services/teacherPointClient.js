@@ -1,4 +1,7 @@
-const logger = require('../utils/logger');
+/**
+ * TeacherPointClient (ES Module)
+ * Port từ src/services/teacherPointService.js — gọi trực tiếp Google Form từ Extension.
+ */
 
 const DEFAULT_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfyK41x_vyFztgjU1sTgJGLiHE1yvf7mmHuUQe5gUQDLQcO_Q/viewform';
 
@@ -69,7 +72,7 @@ const CAMPUS_PREFIX_MAP = [
   { prefix: 'LB', keyword: 'Long Biên' }
 ];
 
-class TeacherPointService {
+class TeacherPointClient {
   constructor() {
     this.schemaCache = new Map();
   }
@@ -78,9 +81,6 @@ class TeacherPointService {
     return DEFAULT_FORM_URL;
   }
 
-  /**
-   * Kiểm tra điều kiện hợp lệ: Lớp chứa ROB và Buổi 4 hoặc Buổi 8
-   */
   validateEligibility(classCode = '', sessionNumber = null) {
     const code = String(classCode || '').trim();
     const sNum = parseInt(sessionNumber, 10);
@@ -115,12 +115,7 @@ class TeacherPointService {
       return this.schemaCache.get(targetUrl);
     }
 
-    logger.info(`[TeacherPointService] Đang tải cấu trúc Google Form: ${targetUrl}`);
-    const res = await fetch(targetUrl, {
-      headers: {
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/122.0.0.0 Safari/537.36'
-      }
-    });
+    const res = await fetch(targetUrl);
     if (!res.ok) {
       throw new Error(`Không thể tải Google Form (HTTP ${res.status}).`);
     }
@@ -171,7 +166,6 @@ class TeacherPointService {
     };
 
     this.schemaCache.set(targetUrl, schema);
-    logger.info(`[TeacherPointService] Đã parse thành công ${fields.length} câu hỏi (${campuses.length} cơ sở).`);
     return schema;
   }
 
@@ -273,8 +267,7 @@ class TeacherPointService {
     const res = await fetch(schema.submitUrl, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/122.0.0.0 Safari/537.36'
+        'Content-Type': 'application/x-www-form-urlencoded'
       },
       body: params.toString()
     });
@@ -287,11 +280,9 @@ class TeacherPointService {
        /đã ghi lại câu trả lời|câu trả lời của bạn đã được ghi lại|your response has been recorded/i.test(html));
 
     if (!confirmed) {
-      logger.error(`[TeacherPointService] Gửi form thất bại cho "${studentName}" (HTTP ${res.status}).`);
       throw new Error(`Google Form không xác nhận đã lưu câu trả lời (HTTP ${res.status}).`);
     }
 
-    logger.info(`[TeacherPointService] Đã gửi Teacher Point cho "${studentName}" (${elapsedMs}ms).`);
     return {
       success: true,
       studentName,
@@ -302,4 +293,4 @@ class TeacherPointService {
   }
 }
 
-module.exports = new TeacherPointService();
+export const teacherPointClient = new TeacherPointClient();

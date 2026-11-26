@@ -10,6 +10,7 @@ import { initReviewTab } from './tabs/review.js';
 import { initCurriculumTab } from './tabs/curriculum.js';
 import { initZaloTab } from './tabs/zalo.js';
 import { initTeacherPointTab } from './tabs/teacherPoint.js';
+import { apiRequest } from './services/apiBridge.js';
 
 let activeTab = 'tab-config';
 
@@ -110,8 +111,7 @@ function setupLogDrawer() {
 
   async function fetchLogs() {
     try {
-      const res = await fetch('/api/automation/logs?limit=50');
-      const data = await res.json();
+      const data = await apiRequest('/api/automation/logs?limit=50');
       if (data.success && data.logs) {
         if (logCounter) logCounter.textContent = data.logs.length;
         if (logBox) {

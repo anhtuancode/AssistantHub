@@ -6,6 +6,7 @@
 import { switchTab } from '../main.js';
 import { toast, showConfirm } from '../services/toast.js';
 import { ICONS } from '../services/icons.js';
+import { apiRequest } from '../services/apiBridge.js';
 
 const DEFAULT_TP_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSfyK41x_vyFztgjU1sTgJGLiHE1yvf7mmHuUQe5gUQDLQcO_Q/viewform';
 
@@ -114,8 +115,7 @@ async function loadGoogleFormMetadata(forceRefresh = false) {
   const classCode = getClassCode(tpClass);
 
   try {
-    const res = await fetch(`/api/teacher-point/form?url=${encodeURIComponent(formUrl)}&classCode=${encodeURIComponent(classCode)}&refresh=${forceRefresh ? '1' : '0'}`);
-    const data = await res.json();
+    const data = await apiRequest(`/api/teacher-point/form?url=${encodeURIComponent(formUrl)}&classCode=${encodeURIComponent(classCode)}&refresh=${forceRefresh ? '1' : '0'}`);
     if (data.success && Array.isArray(data.campuses)) {
       tpFormLoaded = true;
       if (campusSel) {
@@ -243,7 +243,7 @@ function bindTeacherPointEvents() {
         updateTpProgress(true, `Đang gửi ${k + 1}/${targets.length}: ${s.name}...`, Math.round((k / targets.length) * 100));
 
         try {
-          const res = await fetch('/api/teacher-point/submit-single', {
+          const data = await apiRequest('/api/teacher-point/submit-single', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -254,7 +254,6 @@ function bindTeacherPointEvents() {
               campus
             })
           });
-          const data = await res.json();
           if (data.success) {
             s.tpStatus = 'sent';
             sentCount++;

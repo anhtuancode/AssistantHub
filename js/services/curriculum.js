@@ -318,6 +318,107 @@ export class CurriculumService {
     const match = combined.match(/(?:^|[^A-Z])(SEMIB|SEMIA|SEMII|PREB|PREA|PREI|ARMB|ARMA|ARMI|PTB|PTA|PTI|JSB|JSA|JSI|CSB|CSA|CSI|GB|GA|GI|SB|SA|SI)(?![A-Z])/i);
     return match ? match[1].toUpperCase() : null;
   }
+
+  /**
+   * Bóc tách số buổi học (số nguyên đầu tiên) từ tham số session.
+   */
+  extractSessionNumber(session) {
+    if (session === undefined || session === null || session === '') return null;
+    const match = String(session).match(/\d+/);
+    if (!match) return null;
+    const num = parseInt(match[0], 10);
+    return Number.isNaN(num) ? null : num;
+  }
+
+  /**
+   * Sinh chuỗi formattedSummary đầy đủ, chuẩn sư phạm MindX.
+   */
+  formatSessionSummary(sessionNumber, sessionObj = {}) {
+    const rawTitle = typeof sessionObj.title === 'string' ? sessionObj.title.trim() : '';
+    const cleanTitle = rawTitle.replace(/^Buổi\s*\d+\s*[:.\-–]?\s*/i, '').trim();
+
+    const lines = [];
+    if (cleanTitle) {
+      lines.push(`Buổi ${sessionNumber}: ${cleanTitle}.`);
+    } else {
+      lines.push(`Buổi ${sessionNumber}.`);
+    }
+
+    const summary = typeof sessionObj.summary === 'string' ? sessionObj.summary.trim() : '';
+    if (summary) {
+      lines.push(`- Nội dung trọng tâm: ${summary}`);
+    }
+
+    const hardwareAndCommands = typeof sessionObj.hardwareAndCommands === 'string'
+      ? sessionObj.hardwareAndCommands.trim()
+      : '';
+    if (hardwareAndCommands) {
+      lines.push(`- Kiến thức & Câu lệnh / Linh kiện: ${hardwareAndCommands}`);
+    }
+
+    const objectives = Array.isArray(sessionObj.objectives)
+      ? sessionObj.objectives.map(o => String(o || '').trim()).filter(Boolean)
+      : [];
+    if (objectives.length > 0) {
+      lines.push('- Mục tiêu buổi học:');
+      objectives.forEach(obj => {
+        lines.push(`  + ${obj}`);
+      });
+    }
+
+    lines.push('- Đánh giá chung: Cả lớp tham gia học tập tích cực, hoàn thành tốt các yêu cầu thực hành và đạt mục tiêu bài giảng đề ra.');
+
+    return lines.join('\n');
+  }
+
+  /**
+   * Lấy tóm tắt buổi học chuẩn giáo trình theo classCode / courseCode và session.
+   */
+  async getSessionSummary({ classCode = '', courseCode = '', session = '' } = {}) {
+    const resolvedCourseCode = (courseCode && String(courseCode).trim())
+      ? String(courseCode).trim().toUpperCase()
+      : this.extractCourseCode(classCode);
+
+    if (!resolvedCourseCode) {
+      throw new Error('Thiếu hoặc không nhận diện được mã khóa học từ classCode/courseCode.');
+    }
+
+    const sessionNumber = this.extractSessionNumber(session);
+    if (!sessionNumber || sessionNumber < 1) {
+      throw new Error('Tham số session không hợp lệ hoặc bị thiếu.');
+    }
+
+    const courseData = await this.getMergedCourseData(resolvedCourseCode);
+    if (!courseData) {
+      throw new Error(`Không tìm thấy giáo trình cho mã khóa học "${resolvedCourseCode}".`);
+    }
+
+    const sessions = Array.isArray(courseData.sessions) ? courseData.sessions : [];
+    const sessionObj = sessions.find(s => Number(s && s.sessionNumber) === sessionNumber);
+    if (!sessionObj) {
+      throw new Error(`Không tìm thấy Buổi ${sessionNumber} trong giáo trình ${resolvedCourseCode}.`);
+    }
+
+    const normalizedSession = {
+      title: typeof sessionObj.title === 'string' ? sessionObj.title.trim() : '',
+      summary: typeof sessionObj.summary === 'string' ? sessionObj.summary.trim() : '',
+      hardwareAndCommands: typeof sessionObj.hardwareAndCommands === 'string' ? sessionObj.hardwareAndCommands.trim() : '',
+      objectives: Array.isArray(sessionObj.objectives)
+        ? sessionObj.objectives.map(o => String(o || '').trim()).filter(Boolean)
+        : []
+    };
+
+    const formattedSummary = this.formatSessionSummary(sessionNumber, normalizedSession);
+
+    return {
+      courseCode: courseData.courseCode || resolvedCourseCode,
+      courseName: courseData.courseName || '',
+      category: courseData.category || '',
+      sessionNumber,
+      session: normalizedSession,
+      formattedSummary
+    };
+  }
 }
 
 export const curriculumService = new CurriculumService();

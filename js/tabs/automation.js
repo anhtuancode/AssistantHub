@@ -5,6 +5,7 @@
 
 import { toast, showConfirm } from '../services/toast.js';
 import { ICONS } from '../services/icons.js';
+import { apiRequest } from '../services/apiBridge.js';
 
 let pollTimer = null;
 let currentLmsClasses = [];
@@ -43,22 +44,6 @@ function startStatusPolling() {
       await fetchRecentLogs();
     }
   }, 2000);
-}
-
-async function apiRequest(endpoint, options = {}) {
-  try {
-    const res = await fetch(endpoint, {
-      headers: { 'Content-Type': 'application/json' },
-      ...options
-    });
-    return await res.json();
-  } catch (err) {
-    console.warn(`[AutomationAPI] Lỗi gọi ${endpoint}:`, err.message);
-    return {
-      success: false,
-      error: `Không thể kết nối với Backend Server. Hãy chắc chắn bạn đã chạy 'npm start' (lỗi: ${err.message})`
-    };
-  }
 }
 
 async function refreshLmsStatus() {

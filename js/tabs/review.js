@@ -7,7 +7,9 @@ import { switchTab } from '../main.js';
 import { toast, showConfirm } from '../services/toast.js';
 import { handleSessionExpiredIfAny } from '../services/sessionGuard.js';
 import { saveCurrentDraft } from './students.js';
+import { checkTeacherPointEligibility } from './teacherPoint.js';
 import { ICONS } from '../services/icons.js';
+import { apiRequest } from '../services/apiBridge.js';
 
 let reviewClass = null;
 let reviewSession = null;
@@ -15,6 +17,8 @@ let reviewSummary = '';
 let reviewStudents = [];
 let selectedStudentIndex = 0;
 let isBatchCancelled = false;
+let isBatchRunning = false;
+let isResultModalBound = false;
 
 function escapeHtml(str) {
   if (!str) return '';
@@ -37,8 +41,296 @@ export function setReviewData(cls, session, summary, students) {
   renderReviewUI();
 }
 
+function getReviewClassCode() {
+  if (!reviewClass) return '';
+  return String(
+    reviewClass.classCode ||
+    reviewClass.code ||
+    (reviewClass.title ? reviewClass.title.split('—')[0].trim() : '') ||
+    reviewClass.id ||
+    ''
+  ).trim();
+}
+
+function closeResultModal() {
+  if (isBatchRunning) return;
+  const modal = document.getElementById('review-result-modal');
+  if (modal) {
+    modal.style.display = 'none';
+  }
+}
+
+function bindResultModalEvents() {
+  if (isResultModalBound) return;
+  isResultModalBound = true;
+
+  const modal = document.getElementById('review-result-modal');
+  if (modal) {
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal && !isBatchRunning) {
+        closeResultModal();
+      }
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape' || isBatchRunning) return;
+    const currentModal = document.getElementById('review-result-modal');
+    if (currentModal && currentModal.style.display === 'flex') {
+      closeResultModal();
+    }
+  });
+}
+
+function createModalButton(label, className, onClick) {
+  const btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = className;
+  btn.textContent = label;
+  btn.addEventListener('click', onClick);
+  return btn;
+}
+
+function showResultModal({ totalCount, savedCount, failedStudents }) {
+  const modal = document.getElementById('review-result-modal');
+  const iconEl = document.getElementById('review-result-icon');
+  const titleEl = document.getElementById('review-result-title');
+  const descEl = document.getElementById('review-result-desc');
+  const statsEl = document.getElementById('review-result-stats');
+  const errorsEl = document.getElementById('review-result-errors');
+  const tpNoteEl = document.getElementById('review-result-tp-note');
+  const actionsEl = document.getElementById('review-result-actions');
+
+  if (!modal || !iconEl || !titleEl || !descEl || !statsEl || !errorsEl || !tpNoteEl || !actionsEl) {
+    return;
+  }
+
+  const classCode = getReviewClassCode();
+  const sessionNumber = reviewSession && reviewSession.sessionNumber ? reviewSession.sessionNumber : null;
+  const failedCount = failedStudents.length;
+  const isFullSuccess = failedCount === 0 && savedCount > 0;
+
+  actionsEl.innerHTML = '';
+  errorsEl.innerHTML = '';
+
+  if (isFullSuccess) {
+    iconEl.className = 'result-modal-icon success';
+    iconEl.innerHTML = ICONS.check(22);
+    titleEl.textContent = 'Lưu nhận xét thành công!';
+
+    const classPart = classCode
+      ? ` của lớp ${classCode}${sessionNumber ? ` — Buổi ${sessionNumber}` : ''}`
+      : (sessionNumber ? ` — Buổi ${sessionNumber}` : '');
+    descEl.textContent = `Đã lưu hoàn tất ${savedCount}/${totalCount} học viên${classPart} lên MindX LMS.`;
+
+    statsEl.style.display = 'none';
+    errorsEl.style.display = 'none';
+
+    const tpEligibility = checkTeacherPointEligibility(reviewClass, reviewSession);
+    if (tpEligibility.eligible) {
+      tpNoteEl.style.display = 'block';
+      tpNoteEl.textContent = `Nhắc nhỏ: Lớp ${tpEligibility.classCode} — Buổi ${tpEligibility.sessionNumber} đủ điều kiện gửi khảo sát Teacher Point.`;
+      actionsEl.appendChild(
+        createModalButton('⭐ Đi tới Teacher Point', 'btn btn-secondary btn-sm', () => {
+          closeResultModal();
+          switchTab('tab-teacher-point');
+        })
+      );
+    } else {
+      tpNoteEl.style.display = 'none';
+    }
+
+    actionsEl.appendChild(
+      createModalButton('Ở lại trang này', 'btn btn-secondary btn-sm', () => {
+        closeResultModal();
+      })
+    );
+    actionsEl.appendChild(
+      createModalButton('📚 Quay lại danh sách lớp', 'btn btn-primary-red btn-sm', () => {
+        closeResultModal();
+        switchTab('tab-classes');
+      })
+    );
+  } else {
+    const isAllFailed = savedCount === 0;
+    iconEl.className = `result-modal-icon ${isAllFailed ? 'error' : 'warning'}`;
+    iconEl.innerHTML = ICONS.alertTriangle(22);
+    titleEl.textContent = isAllFailed ? 'Lưu nhận xét thất bại' : 'Lưu nhận xét chưa hoàn tất';
+    descEl.textContent = 'Một số học viên chưa được lưu lên MindX LMS. Vui lòng kiểm tra và thử lại.';
+
+    statsEl.style.display = 'flex';
+    statsEl.innerHTML = `
+      <span class="result-stat-ok">Thành công: ${savedCount}</span>
+      <span class="result-stat-sep">|</span>
+      <span class="result-stat-fail">Thất bại: ${failedCount}</span>
+    `;
+
+    tpNoteEl.style.display = 'none';
+
+    if (failedStudents.length > 0) {
+      errorsEl.style.display = 'flex';
+      failedStudents.forEach(({ name, reason }) => {
+        const item = document.createElement('div');
+        item.className = 'result-error-item';
+
+        const nameSpan = document.createElement('span');
+        nameSpan.className = 'result-error-name';
+        nameSpan.textContent = name;
+        item.appendChild(nameSpan);
+
+        if (reason) {
+          item.appendChild(document.createTextNode(` — ${reason}`));
+        }
+        errorsEl.appendChild(item);
+      });
+    } else {
+      errorsEl.style.display = 'none';
+    }
+
+    actionsEl.appendChild(
+      createModalButton('Quay lại danh sách lớp', 'btn btn-secondary btn-sm', () => {
+        closeResultModal();
+        switchTab('tab-classes');
+      })
+    );
+    actionsEl.appendChild(
+      createModalButton('Kiểm tra lại', 'btn btn-secondary btn-sm', () => {
+        closeResultModal();
+      })
+    );
+    actionsEl.appendChild(
+      createModalButton('🔄 Thử lại các học viên lỗi', 'btn btn-primary-red btn-sm', async () => {
+        closeResultModal();
+        const retryIndices = reviewStudents
+          .map((s, i) => ({ s, i }))
+          .filter(({ s }) => (s.attendance || '').toUpperCase() !== 'ABSENT' && s.comment && s.comment.trim() && s.saveStatus !== 'saved');
+        if (retryIndices.length > 0) {
+          await runBatchSave(retryIndices, { skipSummary: true });
+        }
+      })
+    );
+  }
+
+  modal.style.display = 'flex';
+}
+
+async function runBatchSave(targetIndices, { skipSummary = false } = {}) {
+  const btnFillAll = document.getElementById('btn-review-fill-all');
+  if (!targetIndices || targetIndices.length === 0) {
+    toast.warning('Không có học viên có mặt nào có nội dung nhận xét.');
+    return;
+  }
+
+  isBatchCancelled = false;
+  isBatchRunning = true;
+  if (btnFillAll) {
+    btnFillAll.disabled = true;
+    btnFillAll.innerHTML = '⏳ Đang lưu lên LMS...';
+  }
+
+  const shouldSaveSummary = !skipSummary && Boolean(reviewSummary && reviewSummary.trim());
+  const totalSteps = targetIndices.length + (shouldSaveSummary ? 1 : 0);
+  let completedSteps = 0;
+
+  try {
+    // 1. Lưu Summary trước nếu có
+    if (shouldSaveSummary) {
+      updateProgressUI(true, 'Đang lưu Tóm tắt buổi học (Summary)...', Math.round((0.3 / totalSteps) * 100));
+      const sumData = await apiRequest('/api/automation/summary', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ content: reviewSummary, forceOverwrite: true })
+      });
+      if (await handleSessionExpiredIfAny(sumData)) {
+        updateProgressUI(false);
+        return;
+      }
+      completedSteps++;
+    }
+
+    // 2. Lưu từng học viên có mặt và cập nhật icon trạng thái trực tiếp
+    for (let k = 0; k < targetIndices.length; k++) {
+      if (isBatchCancelled) {
+        toast.warning('Đã dừng tiến trình lưu nhận xét.');
+        break;
+      }
+      const { s, i } = targetIndices[k];
+      s.saveStatus = 'saving';
+      s.saveError = '';
+      selectedStudentIndex = i;
+      renderReviewUI();
+
+      const pct = Math.min(99, Math.round((completedSteps / totalSteps) * 100));
+      updateProgressUI(true, `Đang lưu học viên ${k + 1}/${targetIndices.length}: ${s.name}...`, pct);
+
+      try {
+        const data = await apiRequest('/api/automation/comment/single', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            studentName: s.name,
+            commentText: s.comment,
+            forceOverwrite: true
+          })
+        });
+        if (await handleSessionExpiredIfAny(data)) {
+          s.saveStatus = 'error';
+          s.saveError = 'Phiên đăng nhập LMS đã hết hạn';
+          renderReviewUI();
+          updateProgressUI(false);
+          return;
+        }
+        if (data.success && (data.status === 'VERIFIED' || data.status === 'SAVED_UNVERIFIED')) {
+          s.saveStatus = 'saved';
+          s.saveError = '';
+        } else {
+          s.saveStatus = 'error';
+          s.saveError = data.message || data.error || 'Chưa lưu được nhận xét';
+        }
+      } catch (err) {
+        s.saveStatus = 'error';
+        s.saveError = err && err.message ? err.message : 'Lỗi kết nối';
+      }
+
+      completedSteps++;
+      renderReviewUI();
+    }
+
+    if (!isBatchCancelled) {
+      const allPresent = reviewStudents.filter(
+        s => (s.attendance || '').toUpperCase() !== 'ABSENT' && s.comment && s.comment.trim()
+      );
+      const totalSaved = allPresent.filter(s => s.saveStatus === 'saved').length;
+      const failedStudents = allPresent
+        .filter(s => s.saveStatus !== 'saved')
+        .map(s => ({ name: s.name, reason: s.saveError || '' }));
+
+      updateProgressUI(true, `Hoàn tất ${totalSaved}/${allPresent.length} học viên!`, 100);
+
+      if (failedStudents.length === 0) {
+        toast.success(`Đã lưu thành công Summary và ${totalSaved}/${allPresent.length} nhận xét lên LMS.`, 5000);
+      } else {
+        toast.warning(`Hoàn tất: ${totalSaved} thành công, ${failedStudents.length} lỗi (bấm "Thử lại" tại học viên bị lỗi).`, 5000);
+      }
+
+      showResultModal({
+        totalCount: allPresent.length,
+        savedCount: totalSaved,
+        failedStudents
+      });
+    }
+  } finally {
+    isBatchRunning = false;
+    if (btnFillAll) {
+      btnFillAll.disabled = false;
+      btnFillAll.innerHTML = `${ICONS.send(16)} Lưu tất cả lên LMS`;
+    }
+  }
+}
+
 export function initReviewTab() {
   bindReviewEvents();
+  bindResultModalEvents();
   renderReviewUI();
 }
 
@@ -168,7 +460,7 @@ async function saveSingleStudentToLms(idx) {
   updateProgressUI(true, `Đang lưu nhận xét cho học viên: ${student.name}...`, 40);
 
   try {
-    const res = await fetch('/api/automation/comment/single', {
+    const data = await apiRequest('/api/automation/comment/single', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -177,7 +469,6 @@ async function saveSingleStudentToLms(idx) {
         forceOverwrite: true
       })
     });
-    const data = await res.json();
     if (await handleSessionExpiredIfAny(data)) {
       student.saveStatus = 'error';
       renderReviewUI();
@@ -270,91 +561,7 @@ function bindReviewEvents() {
       );
       if (!ok) return;
 
-      isBatchCancelled = false;
-      btnFillAll.disabled = true;
-      btnFillAll.innerHTML = '⏳ Đang lưu lên LMS...';
-
-      const totalSteps = presentIndices.length + (reviewSummary && reviewSummary.trim() ? 1 : 0);
-      let completedSteps = 0;
-      let savedCount = 0;
-      let failedCount = 0;
-
-      try {
-        // 1. Lưu Summary trước nếu có
-        if (reviewSummary && reviewSummary.trim()) {
-          updateProgressUI(true, 'Đang lưu Tóm tắt buổi học (Summary)...', Math.round((0.3 / totalSteps) * 100));
-          const sumRes = await fetch('/api/automation/summary', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ content: reviewSummary, forceOverwrite: true })
-          });
-          const sumData = await sumRes.json();
-          if (await handleSessionExpiredIfAny(sumData)) {
-            updateProgressUI(false);
-            return;
-          }
-          completedSteps++;
-        }
-
-        // 2. Lưu từng học viên có mặt và cập nhật icon trạng thái trực tiếp
-        for (let k = 0; k < presentIndices.length; k++) {
-          if (isBatchCancelled) {
-            toast.warning('Đã dừng tiến trình lưu nhận xét.');
-            break;
-          }
-          const { s, i } = presentIndices[k];
-          s.saveStatus = 'saving';
-          selectedStudentIndex = i;
-          renderReviewUI();
-
-          const pct = Math.min(99, Math.round((completedSteps / totalSteps) * 100));
-          updateProgressUI(true, `Đang lưu học viên ${k + 1}/${presentIndices.length}: ${s.name}...`, pct);
-
-          try {
-            const res = await fetch('/api/automation/comment/single', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({
-                studentName: s.name,
-                commentText: s.comment,
-                forceOverwrite: true
-              })
-            });
-            const data = await res.json();
-            if (await handleSessionExpiredIfAny(data)) {
-              s.saveStatus = 'error';
-              renderReviewUI();
-              updateProgressUI(false);
-              return;
-            }
-            if (data.success && (data.status === 'VERIFIED' || data.status === 'SAVED_UNVERIFIED')) {
-              s.saveStatus = 'saved';
-              savedCount++;
-            } else {
-              s.saveStatus = 'error';
-              failedCount++;
-            }
-          } catch (_) {
-            s.saveStatus = 'error';
-            failedCount++;
-          }
-
-          completedSteps++;
-          renderReviewUI();
-        }
-
-        if (!isBatchCancelled) {
-          updateProgressUI(true, `Hoàn tất ${savedCount}/${presentIndices.length} học viên!`, 100);
-          if (failedCount === 0) {
-            toast.success(`Đã lưu thành công Summary và ${savedCount}/${presentIndices.length} nhận xét lên LMS.`, 5000);
-          } else {
-            toast.warning(`Hoàn tất: ${savedCount} thành công, ${failedCount} lỗi (bấm "Thử lại" tại học viên bị lỗi).`, 5000);
-          }
-        }
-      } finally {
-        btnFillAll.disabled = false;
-        btnFillAll.innerHTML = `${ICONS.send(16)} Lưu tất cả lên LMS`;
-      }
+      await runBatchSave(presentIndices, { skipSummary: false });
     };
   }
 
@@ -363,7 +570,7 @@ function bindReviewEvents() {
   if (btnCancelAuto) {
     btnCancelAuto.onclick = async () => {
       isBatchCancelled = true;
-      await fetch('/api/automation/cancel', { method: 'POST' });
+      await apiRequest('/api/automation/cancel', { method: 'POST' });
       toast.info('Đã gửi lệnh dừng tiến trình.');
     };
   }

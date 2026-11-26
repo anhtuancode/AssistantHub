@@ -11,6 +11,7 @@ import { toast } from '../services/toast.js';
 import { handleSessionExpiredIfAny } from '../services/sessionGuard.js';
 import { setTeacherPointContext } from './teacherPoint.js';
 import { ICONS } from '../services/icons.js';
+import { apiRequest } from '../services/apiBridge.js';
 
 let currentClass = null;
 let currentSession = null;
@@ -140,12 +141,11 @@ async function loadSessionDataFromLms() {
   try {
     // 1. BẮT BUỘC chạy SELECT_SESSION & VERIFY_SESSION_ACTIVE trước khi LOAD_SUMMARY và LOAD_STUDENTS
     if (currentSession && currentSession.sessionNumber) {
-      const selRes = await fetch('/api/automation/sessions/select', {
+      const selData = await apiRequest('/api/automation/sessions/select', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ sessionNumber: currentSession.sessionNumber })
       });
-      const selData = await selRes.json();
       if (!selData.success) {
         if (await handleSessionExpiredIfAny(selData)) return;
         const errMsg = selData.message || selData.error || 'Không thể chọn buổi học trên LMS.';
@@ -166,8 +166,7 @@ async function loadSessionDataFromLms() {
 
     // 2. LOAD_SUMMARY từ LMS
     try {
-      const sumRes = await fetch('/api/automation/summary');
-      const sumData = await sumRes.json();
+      const sumData = await apiRequest('/api/automation/summary');
       if (sumData.success && sumData.summary && summaryBox) {
         summaryBox.value = sumData.summary;
         currentSummary = sumData.summary;
@@ -243,8 +242,7 @@ async function loadDefaultSummaryForSession() {
       classCode,
       session: String(sessionParam)
     });
-    const res = await fetch(`/api/curriculum/session-summary?${params.toString()}`);
-    const result = await res.json();
+    const result = await apiRequest(`/api/curriculum/session-summary?${params.toString()}`);
 
     if (result.success && result.data && result.data.formattedSummary && !summaryBox.value.trim()) {
       summaryBox.value = result.data.formattedSummary;
@@ -269,8 +267,7 @@ async function loadStudentsForSession() {
   }
 
   try {
-    const res = await fetch('/api/automation/students');
-    const data = await res.json();
+    const data = await apiRequest('/api/automation/students');
 
     if (data.success && Array.isArray(data.students) && data.students.length > 0) {
       currentStudents = data.students.map((s, idx) => {
@@ -495,7 +492,7 @@ function renderStudentsTable() {
       const classCode = currentClass ? (currentClass.classCode || currentClass.code || (currentClass.title ? currentClass.title.split('—')[0].trim() : '')) : '';
       const summaryText = summaryBox ? summaryBox.value.trim() : currentSummary;
       try {
-        const res = await fetch('/api/gemini/comment', {
+        const data = await apiRequest('/api/gemini/comment', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -511,7 +508,6 @@ function renderStudentsTable() {
             style: geminiConfig.style
           })
         });
-        const data = await res.json();
         if (data.success && data.comment) {
           student.comment = data.comment;
           student._lastCommentSignature = `${student.rating}|${student.note || ''}`;
@@ -565,7 +561,7 @@ function bindStudentsEvents() {
 
       const geminiConfig = getGeminiConfig();
       try {
-        const res = await fetch('/api/gemini/summary', {
+        const data = await apiRequest('/api/gemini/summary', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -578,7 +574,6 @@ function bindStudentsEvents() {
             model: geminiConfig.model
           })
         });
-        const data = await res.json();
         if (data.success && data.summary) {
           summaryBox.value = data.summary;
           currentSummary = data.summary;
@@ -629,7 +624,7 @@ function bindStudentsEvents() {
         const summaryText = summaryBox ? summaryBox.value.trim() : currentSummary;
 
         try {
-          const res = await fetch('/api/gemini/batch-comments', {
+          const data = await apiRequest('/api/gemini/batch-comments', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
@@ -648,7 +643,6 @@ function bindStudentsEvents() {
               style: geminiConfig.style
             })
           });
-          const data = await res.json();
           if (data.success && Array.isArray(data.results)) {
             data.results.forEach(item => {
               const st = currentStudents.find(x => x.name === item.name);
