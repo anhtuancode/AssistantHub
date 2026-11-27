@@ -12,11 +12,15 @@
   "permissions": [
     "tabs",
     "scripting",
-    "storage"
+    "storage",
+    "webRequest"
   ],
   "host_permissions": [
+    "https://*.mindx.edu.vn/*",
     "https://lms.mindx.edu.vn/*",
     "https://base.mindx.edu.vn/*",
+    "https://lms-api.mindx.edu.vn/*",
+    "https://base-api.mindx.edu.vn/*",
     "https://generativelanguage.googleapis.com/*",
     "https://docs.google.com/*"
   ],

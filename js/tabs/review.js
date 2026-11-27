@@ -7,6 +7,8 @@ import { switchTab } from '../main.js';
 import { toast, showConfirm } from '../services/toast.js';
 import { handleSessionExpiredIfAny } from '../services/sessionGuard.js';
 import { saveCurrentDraft } from './students.js';
+import { getGeminiConfig } from './config.js';
+import { loadCommentStyleConfig, getStyleSignature } from '../config/commentStyles.js';
 import { checkTeacherPointEligibility } from './teacherPoint.js';
 import { ICONS } from '../services/icons.js';
 import { apiRequest } from '../services/apiBridge.js';
@@ -18,6 +20,8 @@ let reviewStudents = [];
 let selectedStudentIndex = 0;
 let isBatchCancelled = false;
 let isBatchRunning = false;
+let isAiStreaming = false;
+let userPickedStudentDuringStream = false;
 let isResultModalBound = false;
 
 function escapeHtml(str) {
@@ -368,7 +372,7 @@ function renderReviewUI() {
 
   if (countBadge) countBadge.textContent = `${reviewStudents.length} HS có mặt`;
 
-  const hasComments = reviewStudents.some(s => s.comment && s.comment.trim());
+  const hasComments = isAiStreaming || reviewStudents.some(s => s.comment && s.comment.trim());
 
   if (!hasComments) {
     if (leftList) {
@@ -413,6 +417,7 @@ function renderReviewUI() {
     leftList.querySelectorAll('.review-student-item').forEach(item => {
       item.onclick = (e) => {
         if (e.target.closest('.btn-retry-single')) return;
+        if (isAiStreaming) userPickedStudentDuringStream = true;
         selectedStudentIndex = parseInt(item.getAttribute('data-idx'), 10);
         renderReviewUI();
       };
@@ -565,6 +570,14 @@ function bindReviewEvents() {
     };
   }
 
+  // Nút Tạo lại nhận xét AI theo cấu hình phong cách mới nhất
+  const btnRegenerateAi = document.getElementById('btn-review-regenerate-ai');
+  if (btnRegenerateAi) {
+    btnRegenerateAi.onclick = async () => {
+      await runReviewAiStreaming();
+    };
+  }
+
   // Nút Dừng / Hủy
   const btnCancelAuto = document.getElementById('btn-review-cancel-auto');
   if (btnCancelAuto) {
@@ -573,5 +586,157 @@ function bindReviewEvents() {
       await apiRequest('/api/automation/cancel', { method: 'POST' });
       toast.info('Đã gửi lệnh dừng tiến trình.');
     };
+  }
+}
+
+function setStreamingButtonsState(streaming) {
+  const btnRegenerateAi = document.getElementById('btn-review-regenerate-ai');
+  const btnFillAll = document.getElementById('btn-review-fill-all');
+  const btnFillSingle = document.getElementById('btn-review-fill-single');
+
+  if (btnFillAll) btnFillAll.disabled = streaming;
+  if (btnFillSingle) btnFillSingle.disabled = streaming;
+  if (btnRegenerateAi) {
+    btnRegenerateAi.disabled = streaming;
+    if (!streaming) {
+      btnRegenerateAi.innerHTML = `${ICONS.sparkles(14)} ✨ Tạo lại nhận xét AI`;
+    }
+  }
+}
+
+export async function runReviewAiStreaming({ cls = reviewClass, session = reviewSession, summary = reviewSummary, students = null } = {}) {
+  if (isBatchRunning) {
+    toast.warning('Đang có tiến trình lưu nhận xét chạy, vui lòng chờ hoàn tất.');
+    return false;
+  }
+  if (isAiStreaming) {
+    toast.warning('AI đang tạo nhận xét, vui lòng chờ giây lát.');
+    return false;
+  }
+
+  if (students !== null) {
+    reviewClass = cls;
+    reviewSession = session;
+    reviewSummary = summary || '';
+    const all = Array.isArray(students) ? students : [];
+    reviewStudents = all.filter(s => (s.attendance || s.attendanceStatus || 'PRESENT').toUpperCase() !== 'ABSENT');
+    selectedStudentIndex = 0;
+  }
+
+  if (reviewStudents.length === 0) {
+    renderReviewUI();
+    return true;
+  }
+
+  const geminiConfig = getGeminiConfig();
+  if (!geminiConfig.key) {
+    toast.error('Chưa cấu hình Gemini API Key. Vui lòng vào tab Cấu hình để nhập API Key.', 6000);
+    return false;
+  }
+
+  const styleConfig = await loadCommentStyleConfig();
+  const styleSig = getStyleSignature(styleConfig);
+  const classCode = getReviewClassCode();
+
+  isAiStreaming = true;
+  userPickedStudentDuringStream = false;
+  reviewStudents.forEach((st) => {
+    st.comment = '';
+    if (st.saveStatus === 'saved' || st.saveStatus === 'error') {
+      st.saveStatus = '';
+      st.saveError = '';
+    }
+  });
+
+  renderReviewUI();
+  setStreamingButtonsState(true);
+
+  const btnRegenerateAi = document.getElementById('btn-review-regenerate-ai');
+  if (btnRegenerateAi) {
+    btnRegenerateAi.innerHTML = `${ICONS.loader(14)} AI đang viết (1/${reviewStudents.length})...`;
+  }
+
+  try {
+    const data = await apiRequest('/api/gemini/batch-comments', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      onProgress: ({ current, total }) => {
+        if (btnRegenerateAi) {
+          btnRegenerateAi.innerHTML = `${ICONS.loader(14)} AI đang viết (${current}/${total})...`;
+        }
+      },
+      onStream: ({ batchId, comment }) => {
+        const targetIdx = typeof batchId === 'number' && reviewStudents[batchId] ? batchId : -1;
+        if (targetIdx < 0) return;
+
+        reviewStudents[targetIdx].comment = comment;
+        if (!userPickedStudentDuringStream && selectedStudentIndex !== targetIdx) {
+          selectedStudentIndex = targetIdx;
+        }
+
+        // Update active textarea & left list snippet smoothly
+        if (selectedStudentIndex === targetIdx) {
+          const nameEl = document.getElementById('review-current-student-name');
+          const commentEditor = document.getElementById('review-current-student-comment');
+          if (nameEl) nameEl.textContent = `${reviewStudents[targetIdx].name} (Có mặt)`;
+          if (commentEditor) {
+            commentEditor.value = comment;
+            commentEditor.scrollTop = commentEditor.scrollHeight;
+          }
+        }
+
+        const leftItem = document.querySelector(`.review-student-item[data-idx="${targetIdx}"]`);
+        if (leftItem) {
+          const snippetEl = leftItem.querySelector('div > div:nth-child(2)');
+          if (snippetEl) {
+            snippetEl.textContent = comment ? `${comment.substring(0, 45)}...` : '⏳ AI đang viết...';
+          }
+          if (!userPickedStudentDuringStream) {
+            document.querySelectorAll('.review-student-item').forEach((el, idx) => {
+              el.classList.toggle('active', idx === selectedStudentIndex);
+            });
+          }
+        }
+      },
+      body: JSON.stringify({
+        students: reviewStudents.map((st, i) => ({
+          ...st,
+          studentIndex: i
+        })),
+        lessonData: {
+          classCode,
+          title: reviewSession ? reviewSession.title : 'Buổi học',
+          sessionNumber: reviewSession ? reviewSession.sessionNumber : 1,
+          summary: reviewSummary
+        },
+        apiKey: geminiConfig.key,
+        model: geminiConfig.model,
+        styleConfig
+      })
+    });
+
+    if (!data.success || !Array.isArray(data.results)) {
+      toast.error(`Không thể gọi Gemini AI: ${data.error || 'Lỗi không xác định khi tạo nhận xét.'}`, 7000);
+      return false;
+    }
+
+    data.results.forEach((item, idx) => {
+      const st = reviewStudents[idx] || reviewStudents.find(x => x.name === item.name);
+      if (st && item.comment) {
+        st.comment = item.comment;
+        st.generatedStyleSignature = styleSig;
+        st._lastCommentSignature = `${st.rating || 'Khá'}|${st.note || ''}|${styleSig}`;
+      }
+    });
+    saveCurrentDraft();
+    toast.success(`Đã tạo xong nhận xét AI cho ${reviewStudents.length} học viên.`);
+    return true;
+  } catch (err) {
+    toast.error(`Lỗi gọi Gemini AI: ${err.message}`, 7000);
+    return false;
+  } finally {
+    isAiStreaming = false;
+    setStreamingButtonsState(false);
+    renderReviewUI();
   }
 }

@@ -3,9 +3,116 @@
  * Port từ src/services/geminiService.js — gọi trực tiếp Google Gemini API từ Extension (không qua backend).
  */
 
+import { buildStylePrompt, normalizeStyleConfig, parseCustomCriteria } from '../config/commentStyles.js';
+
 class GeminiClient {
   constructor() {
-    this.defaultModel = 'gemini-2.0-flash';
+    this.defaultModel = 'auto';
+    this.fallbackModel = 'gemini-3.8-flash';
+    this._modelsCache = { apiKey: '', models: [], fetchedAt: 0 };
+    this._lastUsedFallback = false;
+  }
+
+  async _fetchWithTimeout(url, options = {}, timeoutMs = 15000) {
+    const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+    const timer = controller ? setTimeout(() => controller.abort(), timeoutMs) : null;
+    try {
+      return await fetch(url, {
+        ...options,
+        signal: controller ? controller.signal : undefined
+      });
+    } finally {
+      if (timer) clearTimeout(timer);
+    }
+  }
+
+  _scoreModelForAuto(id = '') {
+    const lower = String(id || '').toLowerCase();
+    const verMatch = lower.match(/gemini-(\d+(?:\.\d+)?)/);
+    const ver = verMatch ? parseFloat(verMatch[1]) : 0;
+    let score = ver * 100;
+    if (lower.includes('flash') && !lower.includes('lite')) score += 30;
+    else if (lower.includes('flash-lite')) score += 20;
+    else if (lower.includes('pro')) score += 10;
+    if (lower.includes('preview') || lower.includes('exp')) score -= 5;
+    return score;
+  }
+
+  pickBestAutoModel(models = []) {
+    if (!Array.isArray(models) || models.length === 0) return this.fallbackModel;
+    const sorted = [...models].sort((a, b) => this._scoreModelForAuto(b.id) - this._scoreModelForAuto(a.id));
+    return sorted[0].id;
+  }
+
+  async listModels(apiKey, { forceRefresh = false } = {}) {
+    const cleanKey = String(apiKey || '').trim();
+    if (!cleanKey) {
+      return { success: false, error: 'API Key không được để trống.', models: [] };
+    }
+
+    const now = Date.now();
+    if (
+      !forceRefresh &&
+      this._modelsCache.apiKey === cleanKey &&
+      this._modelsCache.models.length > 0 &&
+      now - this._modelsCache.fetchedAt < 10 * 60 * 1000
+    ) {
+      const models = this._modelsCache.models;
+      return { success: true, models, recommendedModel: this.pickBestAutoModel(models) };
+    }
+
+    const url = 'https://generativelanguage.googleapis.com/v1beta/models';
+    try {
+      const response = await this._fetchWithTimeout(url, {
+        method: 'GET',
+        headers: { 'x-goog-api-key': cleanKey }
+      }, 12000);
+      const data = await response.json().catch(() => null);
+      if (!response.ok || !data) {
+        const errMsg = data?.error?.message || `HTTP ${response.status}`;
+        return { success: false, error: errMsg, models: [] };
+      }
+
+      const rawModels = Array.isArray(data.models) ? data.models : [];
+      const filtered = rawModels
+        .filter((m) => {
+          const id = String(m.name || '').replace(/^models\//, '');
+          const methods = Array.isArray(m.supportedGenerationMethods) ? m.supportedGenerationMethods : [];
+          if (!methods.includes('generateContent')) return false;
+          if (!id.startsWith('gemini-')) return false;
+          if (/image|tts|embedding|omni|robotics|aqa|native-audio|thinking-exp/i.test(id)) return false;
+          return true;
+        })
+        .map((m) => {
+          const id = String(m.name || '').replace(/^models\//, '');
+          return {
+            id,
+            displayName: m.displayName || id,
+            description: m.description || ''
+          };
+        })
+        .sort((a, b) => this._scoreModelForAuto(b.id) - this._scoreModelForAuto(a.id));
+
+      this._modelsCache = { apiKey: cleanKey, models: filtered, fetchedAt: now };
+      return {
+        success: true,
+        models: filtered,
+        recommendedModel: this.pickBestAutoModel(filtered)
+      };
+    } catch (err) {
+      return { success: false, error: err.message, models: [] };
+    }
+  }
+
+  async resolveModel(apiKey, requestedModel) {
+    if (requestedModel && requestedModel !== 'auto') {
+      return requestedModel;
+    }
+    const listRes = await this.listModels(apiKey);
+    if (listRes.success && listRes.recommendedModel) {
+      return listRes.recommendedModel;
+    }
+    return this.fallbackModel;
   }
 
   _log(level, message) {
@@ -21,28 +128,36 @@ class GeminiClient {
       return { success: false, error: 'API Key không được để trống.' };
     }
 
-    const targetModel = model || this.defaultModel;
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${targetModel}:generateContent?key=${apiKey.trim()}`;
+    const cleanKey = apiKey.trim();
+    const targetModel = await this.resolveModel(cleanKey, model || this.defaultModel);
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${targetModel}:generateContent`;
 
     try {
       this._log('INFO', `[GeminiClient] Đang kiểm tra kết nối tới mô hình ${targetModel}...`);
-      const response = await fetch(url, {
+      const response = await this._fetchWithTimeout(url, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'x-goog-api-key': cleanKey
+        },
         body: JSON.stringify({
           contents: [{ parts: [{ text: 'Trả về chữ "OK" để xác nhận kết nối thành công.' }] }]
         })
-      });
+      }, 15000);
 
-      const data = await response.json();
+      const data = await response.json().catch(() => null);
       if (!response.ok) {
         const errMsg = (data && data.error && data.error.message) ? data.error.message : `HTTP ${response.status}`;
         this._log('ERROR', `[GeminiClient] Lỗi kết nối API: ${errMsg}`);
-        return { success: false, error: errMsg };
+        return { success: false, error: errMsg, resolvedModel: targetModel };
       }
 
-      this._log('INFO', '[GeminiClient] Kết nối Google Gemini API thành công! ✓');
-      return { success: true, message: 'Kết nối Google Gemini API thành công!' };
+      this._log('INFO', `[GeminiClient] Kết nối Google Gemini API (${targetModel}) thành công! ✓`);
+      return {
+        success: true,
+        resolvedModel: targetModel,
+        message: `Kết nối thành công (${targetModel})!`
+      };
     } catch (err) {
       this._log('ERROR', `[GeminiClient] Ngoại lệ kiểm tra kết nối: ${err.message}`);
       return { success: false, error: err.message };
@@ -57,8 +172,9 @@ class GeminiClient {
       return this._fallbackSummary(lessonData);
     }
 
-    const targetModel = model || this.defaultModel;
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${targetModel}:generateContent?key=${apiKey.trim()}`;
+    const cleanKey = apiKey.trim();
+    const targetModel = await this.resolveModel(cleanKey, model || this.defaultModel);
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${targetModel}:generateContent`;
 
     const prompt = `Bạn là Giảng viên Công nghệ tại MindX Technology School. Hãy soạn nội dung tóm tắt buổi học (Summary) gửi lên hệ thống LMS MindX theo chuẩn mực sư phạm, ngắn gọn, rõ ràng, truyền cảm hứng.
 Thông tin buổi học:
@@ -73,14 +189,17 @@ Yêu cầu output:
 - Độ dài khoảng 3 - 5 câu cô đọng, không dùng ký tự Markdown lạ, văn phong sư phạm ấm áp.`;
 
     try {
-      const response = await fetch(url, {
+      const response = await this._fetchWithTimeout(url, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'x-goog-api-key': cleanKey
+        },
         body: JSON.stringify({
           contents: [{ parts: [{ text: prompt }] }],
           generationConfig: { maxOutputTokens: 600, temperature: 0.7 }
         })
-      });
+      }, 20000);
 
       const data = await response.json();
       if (response.ok && data.candidates && data.candidates[0] && data.candidates[0].content) {
@@ -137,8 +256,68 @@ Yêu cầu output:
     return { strengths, improvements };
   }
 
+  _buildGenerationConfig(targetModel, maxOutputTokens = 2048, extra = {}) {
+    const generationConfig = {
+      maxOutputTokens,
+      temperature: 0.8,
+      ...extra
+    };
+    const lowerModel = String(targetModel || '').toLowerCase();
+    if (lowerModel.startsWith('gemini-3')) {
+      generationConfig.thinkingConfig = { thinkingLevel: 'MINIMAL' };
+    } else if (lowerModel.startsWith('gemini-2.5-flash')) {
+      generationConfig.thinkingConfig = { thinkingBudget: 0 };
+    }
+    return generationConfig;
+  }
+
+  _extractStreamingBatchItems(rawText = '') {
+    const items = new Map();
+    const idRegex = /"id"\s*:\s*(\d+)/g;
+    let match;
+    while ((match = idRegex.exec(rawText)) !== null) {
+      const id = parseInt(match[1], 10);
+      const afterId = rawText.slice(match.index + match[0].length);
+      const commentKeyMatch = /"comment"\s*:\s*"/.exec(afterId);
+      if (!commentKeyMatch) continue;
+
+      let i = commentKeyMatch.index + commentKeyMatch[0].length;
+      let out = '';
+      let done = false;
+      while (i < afterId.length) {
+        const ch = afterId[i];
+        if (ch === '"') {
+          done = true;
+          break;
+        }
+        if (ch === '\\') {
+          if (i + 1 >= afterId.length) break;
+          const next = afterId[i + 1];
+          if (next === 'n') { out += '\n'; i += 2; continue; }
+          if (next === 'r') { out += '\r'; i += 2; continue; }
+          if (next === 't') { out += '\t'; i += 2; continue; }
+          if (next === '"' || next === '\\' || next === '/') { out += next; i += 2; continue; }
+          if (next === 'u' && i + 5 < afterId.length) {
+            const hex = afterId.slice(i + 2, i + 6);
+            if (/^[0-9a-fA-F]{4}$/.test(hex)) {
+              out += String.fromCharCode(parseInt(hex, 16));
+              i += 6;
+              continue;
+            }
+          }
+          out += next;
+          i += 2;
+          continue;
+        }
+        out += ch;
+        i++;
+      }
+      items.set(id, { comment: out, done });
+    }
+    return items;
+  }
+
   async generateStudentComment(student, lessonData, apiKey, model = this.defaultModel, style = 'standard') {
-    const studentName = student.name || student.studentName || 'Học viên';
     const rating = student.rating || 'Khá';
     const note = student.note || '';
     const studentIndex = typeof student.studentIndex === 'number'
@@ -151,21 +330,20 @@ Yêu cầu output:
       summary = ''
     } = lessonData || {};
 
-    const cleanTopic = this._cleanSummaryTopic(summary, title);
-    const courseType = this.classifyCourseType(classCode || title);
-
-    if (!apiKey || !apiKey.trim()) {
-      return this._fallbackStudentComment(studentName, rating, note, title, {
-        classCode,
-        sessionNumber,
-        summary: cleanTopic,
-        courseType,
-        studentIndex
-      });
+    const cleanKey = String(apiKey || '').trim();
+    if (!cleanKey) {
+      throw new Error('Chưa cấu hình Gemini API Key. Vui lòng vào tab Cấu hình để nhập API Key.');
     }
 
-    const targetModel = model || this.defaultModel;
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${targetModel}:generateContent?key=${apiKey.trim()}`;
+    const lessonTopic = String(title || `Buổi ${sessionNumber}`).trim();
+    const lessonContext = String(summary || '').trim();
+    const courseType = this.classifyCourseType(classCode || title);
+    const normalizedStyle = normalizeStyleConfig(style);
+    const customCriteria = normalizedStyle.mode === 'custom' ? parseCustomCriteria(normalizedStyle.customCriteria) : [];
+    const stylePrompt = buildStylePrompt(normalizedStyle);
+
+    const targetModel = await this.resolveModel(cleanKey, model || this.defaultModel);
+    const url = `https://generativelanguage.googleapis.com/v1beta/models/${targetModel}:generateContent`;
 
     const openingStyles = [
       'Mở đầu bằng nhận xét trực tiếp về tinh thần hứng thú và sự tập trung trong giờ học.',
@@ -180,23 +358,27 @@ Yêu cầu output:
     const styleVariation = openingStyles[studentIndex % openingStyles.length];
 
     let criteriaInstructions = '';
-    if (courseType.group === 'ROB') {
-      criteriaInstructions = `Đây là lớp Robotics (${classCode || 'ROB'}) sử dụng bộ kit **${courseType.kit}**.
+    if (customCriteria.length > 0) {
+      const kitHint = courseType.group === 'ROB' && courseType.kit ? ` (bộ kit ${courseType.kit})` : '';
+      criteriaInstructions = `Ngữ cảnh lớp học: ${classCode || 'N/A'}${kitHint}.
+Hãy bám sát hoàn toàn cấu trúc và tiêu chí bắt buộc đã nêu trong System Instruction (${customCriteria.join(', ')}).`;
+    } else if (courseType.group === 'ROB') {
+      criteriaInstructions = `Đây là lớp Robotics (${classCode || 'ROB'}) sử dụng bộ kit ${courseType.kit}.
 Bắt buộc nhận xét phải bám sát đủ 4 tiêu chí sau:
 1. Thái độ học tập (sự tập trung, chủ động, tích cực trên lớp).
 2. Kỹ năng làm việc nhóm (phối hợp, trao đổi, hỗ trợ bạn cùng nhóm).
-3. Kỹ năng lắp ráp và lập trình với ${courseType.kit} trong chủ đề "${cleanTopic}" (lồng ghép tự nhiên ghi chú riêng của giáo viên).
+3. Kỹ năng lắp ráp và lập trình với ${courseType.kit} bám sát nội dung buổi học (lồng ghép tự nhiên ghi chú riêng của giáo viên).
 4. Điều cần cải thiện (góp ý cụ thể, mang tính xây dựng dựa trên phân loại "${rating}" và ghi chú riêng).`;
     } else if (courseType.group === 'C4K') {
       criteriaInstructions = `Đây là lớp Coding for Kids (${classCode || 'C4K'}).
 Bắt buộc nhận xét phải bám sát đủ 4 tiêu chí sau:
 1. Thái độ học tập (tinh thần học tập, lắng nghe, tương tác trong buổi học).
-2. Kỹ năng lập trình với chủ đề "${cleanTopic}" (đánh giá khả năng hiểu bài, vận dụng kiến thức và thực hành lập trình).
+2. Kỹ năng lập trình bám sát nội dung buổi học (đánh giá khả năng hiểu bài, vận dụng kiến thức và thực hành lập trình).
 3. Điều cần cải thiện (điểm cần khắc phục hoặc phát huy thêm dựa trên phân loại "${rating}" và ghi chú riêng của giáo viên).
 4. Bài tập về nhà ở Denise (nhắc nhở/đánh giá việc hoàn thành bài tập về nhà trên nền tảng Denise).`;
     } else {
       criteriaInstructions = `Yêu cầu:
-- Đánh giá thái độ học tập, kỹ năng thực hành theo chủ đề "${cleanTopic}" và nêu rõ điều cần cải thiện dựa trên phân loại "${rating}" và ghi chú riêng.`;
+- Đánh giá thái độ học tập, kỹ năng thực hành bám sát nội dung buổi học và nêu rõ điều cần cải thiện dựa trên phân loại "${rating}" và ghi chú riêng.`;
     }
 
     const ratingToneMap = {
@@ -208,8 +390,19 @@ Bắt buộc nhận xét phải bám sát đủ 4 tiêu chí sau:
     };
     const ratingTone = ratingToneMap[rating] || ratingToneMap['Khá'];
 
-    const prompt = `Bạn là Giảng viên tại MindX Technology School. Hãy viết một đoạn nhận xét cá nhân hóa (Biến thể phong cách #${(studentIndex % 8) + 1}) trong Buổi ${sessionNumber} (Mã lớp: ${classCode || 'N/A'}).
-- Chủ đề buổi học: ${cleanTopic}
+    const isCustomBullets = customCriteria.length > 0 && normalizedStyle.outputFormat === 'bullets';
+    const formatRule = isCustomBullets
+      ? `- BẮT BUỘC xuất ra đúng ${customCriteria.length} dòng gạch đầu dòng theo mẫu:\n${customCriteria.map(c => `  - ${c}: [nội dung nhận xét]`).join('\n')}\n- TUYỆT ĐỐI KHÔNG gộp thành đoạn văn, KHÔNG bỏ sót hoặc thêm bớt mục nào.`
+      : '- Viết thành đoạn văn mượt mà, tự nhiên bằng tiếng Việt, không dùng ký tự Markdown.';
+
+    const systemInstructionText = `Bạn là Giảng viên tại MindX Technology School. Nhiệm vụ của bạn là viết nhận xét buổi học cá nhân hóa cho học viên, tuân thủ TUYỆT ĐỐI cấu hình phong cách và định dạng dưới đây:
+
+${stylePrompt}`;
+
+    const prompt = `Hãy viết nhận xét cá nhân hóa (Biến thể phong cách #${(studentIndex % 8) + 1}) cho học viên trong Buổi ${sessionNumber} (Mã lớp: ${classCode || 'N/A'}).
+- Tên buổi học: ${lessonTopic}
+- Ngữ cảnh / Tóm tắt nội dung bài học (chỉ dùng để tổng hợp tự nhiên, KHÔNG trích nguyên văn cả khối vào ngoặc kép):
+${lessonContext || 'Thực hành theo tiến trình buổi học.'}
 - Xếp loại (thang 5 mức Giỏi / Khá / Trung bình khá / Trung bình / Yếu): ${rating}
 - Sắc thái theo xếp loại: ${ratingTone}
 - Ghi chú riêng của thầy cô: ${note || 'Học tập chăm chỉ, tích cực thực hành'}
@@ -220,57 +413,294 @@ ${criteriaInstructions}
 Quy tắc bắt buộc:
 - TUYỆT ĐỐI KHÔNG chèn họ tên hay tên riêng của học viên vào nội dung nhận xét.
 - Chỉ dùng đại từ xưng hô là "con" (viết hoa "Con" ở đầu câu).
-- Lồng ghép ghi chú riêng thành câu văn tự nhiên, TUYỆT ĐỐI KHÔNG liệt kê thô kiểu "Điểm ghi nhận riêng: ..." hay "Tóm tắt buổi học: ...".
-- Viết 3 - 5 câu mượt mà, tự nhiên bằng tiếng Việt, không dùng ký tự Markdown.`;
+- Lồng ghép ghi chú riêng và nội dung bài học thành câu văn tự nhiên, TUYỆT ĐỐI KHÔNG liệt kê thô kiểu "Điểm ghi nhận riêng: ..." hay chép nguyên khối "- Nội dung trọng tâm: ...".
+${formatRule}`;
 
+    const generationConfig = this._buildGenerationConfig(targetModel, 2048);
+
+    let response;
     try {
-      const response = await fetch(url, {
+      response = await this._fetchWithTimeout(url, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'x-goog-api-key': cleanKey
+        },
         body: JSON.stringify({
+          systemInstruction: { parts: [{ text: systemInstructionText }] },
           contents: [{ parts: [{ text: prompt }] }],
-          generationConfig: { maxOutputTokens: 450, temperature: 0.85 }
+          generationConfig
         })
-      });
-
-      const data = await response.json();
-      if (response.ok && data.candidates && data.candidates[0] && data.candidates[0].content) {
-        return data.candidates[0].content.parts[0].text.trim();
-      }
-      this._log('WARN', `[GeminiClient] Gemini API không trả về kết quả (${data?.error?.message || response.status}), dùng fallback đa dạng.`);
-      return this._fallbackStudentComment(studentName, rating, note, title, {
-        classCode,
-        sessionNumber,
-        summary: cleanTopic,
-        courseType,
-        studentIndex
-      });
+      }, 25000);
     } catch (err) {
-      this._log('WARN', `[GeminiClient] Lỗi gọi Gemini API (${err.message}), dùng fallback đa dạng.`);
-      return this._fallbackStudentComment(studentName, rating, note, title, {
-        classCode,
-        sessionNumber,
-        summary: cleanTopic,
-        courseType,
-        studentIndex
-      });
+      const reason = err && err.name === 'AbortError'
+        ? 'Hết thời gian chờ phản hồi từ Gemini API (timeout).'
+        : (err && err.message ? err.message : 'Lỗi kết nối mạng.');
+      this._log('ERROR', `[GeminiClient] Lỗi kết nối Gemini API (${targetModel}): ${reason}`);
+      throw new Error(`Không thể kết nối tới Gemini API (${targetModel}): ${reason}`);
     }
+
+    const data = await response.json().catch(() => null);
+    if (!response.ok) {
+      const apiErrMsg = data?.error?.message || `HTTP ${response.status}`;
+      this._log('ERROR', `[GeminiClient] Gemini API lỗi (${targetModel}): ${apiErrMsg}`);
+      throw new Error(`Gemini API lỗi (${targetModel}): ${apiErrMsg}`);
+    }
+
+    const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+    if (!text || !text.trim()) {
+      const finishReason = data?.candidates?.[0]?.finishReason || 'NO_CANDIDATES';
+      this._log('ERROR', `[GeminiClient] Gemini API không trả về nội dung (${finishReason}).`);
+      throw new Error(`Gemini API không trả về nội dung nhận xét (${finishReason}).`);
+    }
+
+    this._lastUsedFallback = false;
+    return text.trim();
   }
 
-  async generateBatchComments(students = [], lessonData, apiKey, model = this.defaultModel, style = 'standard') {
-    const results = [];
+  async generateBatchComments(students = [], lessonData, apiKey, model = this.defaultModel, style = 'standard', onProgress = null, onStream = null) {
+    const cleanKey = String(apiKey || '').trim();
+    if (!cleanKey) {
+      throw new Error('Chưa cấu hình Gemini API Key. Vui lòng vào tab Cấu hình để nhập API Key.');
+    }
+
+    const resolvedModel = await this.resolveModel(cleanKey, model || this.defaultModel);
+
+    const results = new Array(students.length);
+    const presentTasks = [];
     let activeIdx = 0;
-    for (const st of students) {
+
+    students.forEach((st, originalIndex) => {
       const att = (st.attendance || st.attendanceStatus || '').toUpperCase();
       if (att === 'ABSENT') {
-        results.push({ name: st.name || st.studentName, comment: '', skipped: true });
+        results[originalIndex] = { name: st.name || st.studentName, comment: '', skipped: true };
       } else {
         const idx = typeof st.studentIndex === 'number' ? st.studentIndex : activeIdx;
         activeIdx++;
-        const comment = await this.generateStudentComment({ ...st, studentIndex: idx }, lessonData, apiKey, model, style);
-        results.push({ name: st.name || st.studentName, comment, skipped: false });
+        presentTasks.push({ st, originalIndex, studentIndex: idx, batchId: activeIdx - 1 });
+      }
+    });
+
+    const totalPresent = presentTasks.length;
+    if (totalPresent === 0) return results;
+
+    const {
+      classCode = '',
+      title = '',
+      sessionNumber = 1,
+      summary = ''
+    } = lessonData || {};
+
+    const lessonTopic = String(title || `Buổi ${sessionNumber}`).trim();
+    const lessonContext = String(summary || '').trim();
+    const courseType = this.classifyCourseType(classCode || title);
+    const normalizedStyle = normalizeStyleConfig(style);
+    const customCriteria = normalizedStyle.mode === 'custom' ? parseCustomCriteria(normalizedStyle.customCriteria) : [];
+    const stylePrompt = buildStylePrompt(normalizedStyle);
+    const isCustomBullets = customCriteria.length > 0 && normalizedStyle.outputFormat === 'bullets';
+
+    let courseHint = '';
+    if (customCriteria.length === 0) {
+      if (courseType.group === 'ROB') {
+        courseHint = `Lớp Robotics (${courseType.kit}): đủ 4 ý Thái độ, Làm việc nhóm, Lắp ráp & Lập trình ${courseType.kit}, Điều cần cải thiện.`;
+      } else if (courseType.group === 'C4K') {
+        courseHint = 'Lớp Coding for Kids: đủ 4 ý Thái độ, Kỹ năng lập trình, Điều cần cải thiện, Nhắc BTVN trên Denise.';
       }
     }
+
+    const formatHint = isCustomBullets
+      ? `Mỗi comment BẮT BUỘC đúng ${customCriteria.length} dòng gạch đầu dòng (- ${customCriteria.join(', - ')}), KHÔNG gộp đoạn.`
+      : 'Mỗi comment là 1 đoạn văn tự nhiên, KHÔNG Markdown.';
+
+    const systemInstructionText = `Bạn là Giảng viên MindX. Viết nhận xét cá nhân hóa cho từng học viên trong danh sách, trả về JSON array [{"id": số, "comment": chuỗi}].
+${stylePrompt}
+Quy tắc: Không chèn tên học viên, chỉ xưng "con"/"Con", không sao chép nguyên khối Summary. ${courseHint} ${formatHint}`.trim();
+
+    const compactStudents = presentTasks.map(({ st, studentIndex, batchId }) => ({
+      id: batchId,
+      rating: st.rating || 'Khá',
+      note: st.note || '',
+      variant: (studentIndex % 8) + 1
+    }));
+
+    const batchPrompt = `Buổi ${sessionNumber} | Lớp: ${classCode || 'N/A'} | Chủ đề: ${lessonTopic}
+Ngữ cảnh bài học: ${lessonContext || 'Thực hành theo tiến trình buổi học.'}
+Danh sách học viên (giữ đúng id, viết khác nhau theo variant/note/rating):
+${JSON.stringify(compactStudents)}`;
+
+    const generationConfig = this._buildGenerationConfig(resolvedModel, 8192, {
+      responseMimeType: 'application/json',
+      responseSchema: {
+        type: 'ARRAY',
+        items: {
+          type: 'OBJECT',
+          properties: {
+            id: { type: 'INTEGER' },
+            comment: { type: 'STRING' }
+          },
+          required: ['id', 'comment']
+        }
+      }
+    });
+
+    const streamUrl = `https://generativelanguage.googleapis.com/v1beta/models/${resolvedModel}:streamGenerateContent?alt=sse`;
+    if (typeof onProgress === 'function') {
+      onProgress({ current: 1, total: totalPresent, studentName: presentTasks[0].st.name || presentTasks[0].st.studentName || '' });
+    }
+
+    let response;
+    try {
+      response = await this._fetchWithTimeout(streamUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-goog-api-key': cleanKey
+        },
+        body: JSON.stringify({
+          systemInstruction: { parts: [{ text: systemInstructionText }] },
+          contents: [{ parts: [{ text: batchPrompt }] }],
+          generationConfig
+        })
+      }, 45000);
+    } catch (err) {
+      const reason = err && err.name === 'AbortError'
+        ? 'Hết thời gian chờ phản hồi từ Gemini API (timeout).'
+        : (err && err.message ? err.message : 'Lỗi kết nối mạng.');
+      this._log('ERROR', `[GeminiClient] Lỗi kết nối Gemini API (${resolvedModel}): ${reason}`);
+      throw new Error(`Không thể kết nối tới Gemini API (${resolvedModel}): ${reason}`);
+    }
+
+    if (!response.ok) {
+      const errData = await response.json().catch(() => null);
+      const apiErrMsg = errData?.error?.message || `HTTP ${response.status}`;
+      this._log('ERROR', `[GeminiClient] Gemini API lỗi (${resolvedModel}): ${apiErrMsg}`);
+      throw new Error(`Gemini API lỗi (${resolvedModel}): ${apiErrMsg}`);
+    }
+
+    let fullJsonText = '';
+    const lastEmittedText = new Map();
+    const completedIds = new Set();
+
+    const emitStreamingUpdates = (rawText) => {
+      const extracted = this._extractStreamingBatchItems(rawText);
+      for (const [id, info] of extracted.entries()) {
+        const task = presentTasks[id];
+        if (!task) continue;
+        const prev = lastEmittedText.get(id);
+        if (prev !== info.comment || (info.done && !completedIds.has(id))) {
+          lastEmittedText.set(id, info.comment);
+          if (info.done) completedIds.add(id);
+          if (typeof onStream === 'function') {
+            onStream({
+              batchId: id,
+              name: task.st.name || task.st.studentName,
+              comment: info.comment,
+              done: info.done
+            });
+          }
+          if (typeof onProgress === 'function') {
+            onProgress({
+              current: Math.min(totalPresent, Math.max(1, completedIds.size || id + 1)),
+              total: totalPresent,
+              studentName: task.st.name || task.st.studentName || ''
+            });
+          }
+        }
+      }
+    };
+
+    if (response.body && typeof response.body.getReader === 'function') {
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder('utf-8');
+      let sseBuffer = '';
+
+      while (true) {
+        const { value, done } = await reader.read();
+        if (done) break;
+        sseBuffer += decoder.decode(value, { stream: true });
+
+        const lines = sseBuffer.split(/\r?\n/);
+        sseBuffer = lines.pop() || '';
+        for (const line of lines) {
+          const trimmed = line.trim();
+          if (!trimmed.startsWith('data:')) continue;
+          const payloadStr = trimmed.slice(5).trim();
+          if (!payloadStr || payloadStr === '[DONE]') continue;
+          try {
+            const chunk = JSON.parse(payloadStr);
+            const partText = chunk?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+            if (partText) {
+              fullJsonText += partText;
+              emitStreamingUpdates(fullJsonText);
+            }
+          } catch (_) {}
+        }
+      }
+    } else {
+      const data = await response.json().catch(() => null);
+      if (Array.isArray(data)) {
+        fullJsonText = data.map(c => c?.candidates?.[0]?.content?.parts?.[0]?.text || '').join('');
+      } else {
+        fullJsonText = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+      }
+      emitStreamingUpdates(fullJsonText);
+    }
+
+    let parsedArray = [];
+    try {
+      const cleaned = fullJsonText.trim().replace(/^```json\s*/i, '').replace(/```\s*$/, '').trim();
+      const parsed = JSON.parse(cleaned);
+      if (Array.isArray(parsed)) parsedArray = parsed;
+    } catch (_) {}
+
+    const byId = new Map();
+    parsedArray.forEach((item) => {
+      if (item && typeof item.id === 'number' && typeof item.comment === 'string' && item.comment.trim()) {
+        byId.set(item.id, item.comment.trim());
+      }
+    });
+
+    // Fallback per-student only for any item missing from the single batch JSON
+    const missingTasks = [];
+    presentTasks.forEach((task) => {
+      const comment = byId.get(task.batchId);
+      if (comment) {
+        results[task.originalIndex] = {
+          name: task.st.name || task.st.studentName,
+          comment,
+          skipped: false
+        };
+      } else {
+        missingTasks.push(task);
+      }
+    });
+
+    if (missingTasks.length > 0) {
+      await Promise.all(missingTasks.map(async (task) => {
+        const comment = await this.generateStudentComment(
+          { ...task.st, studentIndex: task.studentIndex },
+          lessonData,
+          cleanKey,
+          resolvedModel,
+          style
+        );
+        results[task.originalIndex] = {
+          name: task.st.name || task.st.studentName,
+          comment,
+          skipped: false
+        };
+        if (typeof onStream === 'function') {
+          onStream({
+            batchId: task.batchId,
+            name: task.st.name || task.st.studentName,
+            comment,
+            done: true
+          });
+        }
+      }));
+    }
+
+    this._lastUsedFallback = false;
     return results;
   }
 
@@ -282,15 +712,84 @@ Quy tắc bắt buộc:
 - Đánh giá chung: Cả lớp tham gia học tập tích cực, trao đổi sôi nổi và đạt mục tiêu bài giảng đề ra.`;
   }
 
+  _buildCustomCriterionSentence(criterion, { rating, strengths, improvements, topicText, courseType, v }) {
+    const lower = String(criterion || '').toLowerCase();
+    const isHigh = rating === 'Giỏi';
+    const isSupportive = rating === 'Trung bình' || rating === 'Yếu';
+    const kit = (courseType && courseType.kit) || 'VEX GO';
+
+    if (/thái độ|chuyên cần|tập trung|tinh thần|ý thức/.test(lower)) {
+      const s = strengths.length > 0 ? ` (${strengths.join(', ')})` : '';
+      if (isHigh) return `Con giữ thái độ học tập rất nghiêm túc, tập trung cao độ và chủ động tương tác${s}.`;
+      if (isSupportive) return `Con ngoan ngoãn lắng nghe hướng dẫn, cần rèn thêm sự tập trung để bắt nhịp nhanh hơn.`;
+      return `Con có ý thức học tập tốt, tích cực lắng nghe và tham gia các hoạt động trên lớp${s}.`;
+    }
+    if (/nhóm|hợp tác|phối hợp|giao tiếp/.test(lower)) {
+      if (isHigh) return `Con phối hợp rất ăn ý, chủ động trao đổi và hỗ trợ các bạn cùng nhóm hiệu quả.`;
+      if (isSupportive) return `Con bước đầu biết lắng nghe bạn cùng nhóm, cần mạnh dạn trao đổi ý kiến hơn nữa.`;
+      return `Con hợp tác tốt với các bạn trong nhóm, biết chia sẻ nhiệm vụ và cùng hoàn thành bài thực hành.`;
+    }
+    if (/lắp ráp|cơ khí|mô hình|kỹ thuật|kit/.test(lower)) {
+      if (isHigh) return `Con thao tác lắp ráp ${kit} rất khéo léo, chắc chắn và chính xác theo yêu cầu bài "${topicText}".`;
+      if (isSupportive) return `Con đang làm quen với các bước lắp ráp ${kit} cơ bản, cần rèn thêm sự tỉ mỉ khi ghép nối.`;
+      return `Con lắp ráp mô hình ${kit} đúng kỹ thuật, hoàn thành sản phẩm bám sát chủ đề "${topicText}".`;
+    }
+    if (/lập trình|code|thuật toán|logic|tư duy|sản phẩm|denise/.test(lower)) {
+      if (isHigh) return `Con nắm vững tư duy logic, viết chương trình mạch lạc và vận dụng rất linh hoạt trong bài "${topicText}".`;
+      if (isSupportive) return `Con bước đầu làm quen với các câu lệnh cơ bản, cần luyện tập thêm để nhớ chắc luồng logic.`;
+      return `Con hiểu bài và vận dụng tốt kiến thức lập trình để hoàn thiện yêu cầu của chủ đề "${topicText}".`;
+    }
+    if (/cải thiện|khắc phục|lưu ý|rèn|nhắn|buổi sau|về nhà/.test(lower)) {
+      if (improvements.length > 0) {
+        return `Con lưu ý ${improvements.join(', ')} để bài làm ở các buổi tới hoàn chỉnh hơn nữa nhé.`;
+      }
+      if (isHigh) return `Con có thể thử sức thêm các yêu cầu nâng cao để phát huy tối đa khả năng sáng tạo ở buổi sau.`;
+      if (isSupportive) return `Con cần dành thêm thời gian ôn lại kiến thức nền tảng ở nhà để tự tin hơn trong buổi học tới.`;
+      return `Con hãy kiểm tra kỹ lại từng bước thực hành trước khi chạy thử để hạn chế sai sót nhỏ nhé.`;
+    }
+    if (/điểm mạnh|ưu điểm|nổi bật/.test(lower)) {
+      const s = strengths.length > 0 ? strengths.join(', ') : 'sự chăm chỉ và tinh thần ham học hỏi';
+      return `Con thể hiện rõ ${s} trong suốt quá trình thực hành chủ đề "${topicText}".`;
+    }
+
+    return `Con hoàn thành tốt nội dung liên quan đến ${criterion.toLowerCase()} trong chủ đề "${topicText}"${v % 2 === 0 ? ' với tinh thần cầu tiến.' : '.'}`;
+  }
+
   _fallbackStudentComment(studentName, rating, note, title, context = {}) {
     const {
       summary = '',
       courseType = { group: 'GENERAL', kit: null },
-      studentIndex = 0
+      studentIndex = 0,
+      styleConfig = null
     } = context;
     const topicText = this._cleanSummaryTopic(summary, title);
     const { strengths, improvements } = this._splitNoteTokens(note);
     const v = Math.abs(Number(studentIndex) || 0) % 8;
+
+    const cfg = normalizeStyleConfig(styleConfig);
+    if (cfg.mode === 'custom') {
+      const criteria = parseCustomCriteria(cfg.customCriteria);
+      if (criteria.length > 0) {
+        const lines = criteria.map((criterion) => {
+          const sentence = this._buildCustomCriterionSentence(criterion, {
+            rating,
+            strengths,
+            improvements,
+            topicText,
+            courseType,
+            v
+          });
+          return cfg.outputFormat === 'bullets' ? `- ${criterion}: ${sentence}` : sentence;
+        });
+        return cfg.outputFormat === 'bullets' ? lines.join('\n') : lines.join(' ');
+      }
+    }
+
+    if (cfg.mode === 'preset' && cfg.presetId === 'concise') {
+      const s = strengths.length > 0 ? ` với điểm mạnh ${strengths.join(', ')}` : '';
+      const imp = improvements.length > 0 ? ` Con lưu ý ${improvements.join(', ')} nhé.` : ' Con tiếp tục phát huy ở buổi tới nhé.';
+      return `Buổi học hôm nay con tham gia tích cực${s} và hoàn thành nội dung "${topicText}".${imp}`;
+    }
 
     const strengthClause = strengths.length > 0
       ? ` nhờ thế mạnh ${strengths.join(' và ')}`

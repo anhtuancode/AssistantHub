@@ -155,19 +155,16 @@
                 </div>
                 <div class="form-group">
                   <label for="cfg-gemini-model">Mô hình AI</label>
-                  <select id="cfg-gemini-model" class="form-control">
-                    <option value="gemini-2.0-flash">Gemini 2.0 Flash (Mặc định - Tốc độ cao)</option>
-                    <option value="gemini-2.5-flash">Gemini 2.5 Flash (Thế hệ mới)</option>
-                    <option value="gemini-2.5-pro">Gemini 2.5 Pro (Phân tích sâu)</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label for="cfg-gemini-style">Phong cách nhận xét</label>
-                  <select id="cfg-gemini-style" class="form-control">
-                    <option value="standard">Chuẩn mực sư phạm MindX (Toàn diện, ân cần)</option>
-                    <option value="inspiring">Khen ngợi & Truyền cảm hứng sáng tạo</option>
-                    <option value="practical">Tập trung kỹ năng thực hành và câu lệnh</option>
-                  </select>
+                  <div style="display: flex; gap: 8px; align-items: center;">
+                    <select id="cfg-gemini-model" class="form-control" style="flex: 1;">
+                      <option value="auto">Tự động (Khuyên dùng — Chọn Flash mới nhất)</option>
+                      <option value="gemini-3.8-flash">Gemini 3.8 Flash</option>
+                      <option value="gemini-3.6-flash">Gemini 3.6 Flash</option>
+                      <option value="gemini-3.5-flash-lite">Gemini 3.5 Flash-Lite</option>
+                      <option value="gemini-2.5-flash-lite">Gemini 2.5 Flash-Lite</option>
+                    </select>
+                    <button type="button" id="btn-cfg-refresh-models" class="btn btn-secondary btn-sm" style="white-space: nowrap;" title="Tải danh sách model mới nhất từ Google Gemini API">↻ Tải model</button>
+                  </div>
                 </div>
 
                 <div style="margin-top: 14px; display: flex; align-items: center; justify-content: space-between;">
@@ -177,6 +174,54 @@
                     Kiểm tra kết nối AI
                   </button>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card C: Phong cách nhận xét AI (Preset Styles & Custom Criteria) -->
+          <div id="card-comment-style" class="card" style="margin-top: 18px;">
+            <div class="card-header space-between">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#E31E24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+                <h3 style="margin: 0;">Phong cách nhận xét AI</h3>
+              </div>
+              <div class="style-mode-switch" role="tablist" aria-label="Chế độ phong cách nhận xét">
+                <button type="button" id="btn-style-mode-preset" class="style-mode-btn active" data-style-mode="preset" role="tab" aria-selected="true">Mẫu có sẵn</button>
+                <button type="button" id="btn-style-mode-custom" class="style-mode-btn" data-style-mode="custom" role="tab" aria-selected="false">Tùy chỉnh tiêu chí</button>
+              </div>
+            </div>
+            <div class="card-body">
+              <!-- Khối Mẫu có sẵn (5 Preset Styles) -->
+              <div id="style-preset-panel">
+                <div id="style-preset-cards" class="style-preset-grid"></div>
+              </div>
+
+              <!-- Khối Tùy chỉnh tiêu chí (Custom Criteria) -->
+              <div id="style-custom-panel" style="display: none;">
+                <div class="style-templates-row">
+                  <span class="text-muted" style="font-size: 12.5px; font-weight: 600;">Gợi ý nhanh:</span>
+                  <div id="style-custom-templates" style="display: flex; gap: 6px; flex-wrap: wrap;"></div>
+                </div>
+                <div class="form-group" style="margin-top: 10px;">
+                  <label for="cfg-style-custom-criteria">Danh sách tiêu chí cần nhận xét (cách nhau bằng dấu phẩy hoặc xuống dòng)</label>
+                  <textarea id="cfg-style-custom-criteria" class="form-control" rows="3" placeholder="VD: Thái độ học tập, Kỹ năng lắp ráp, Kỹ năng lập trình"></textarea>
+                </div>
+                <div class="style-output-format-row">
+                  <span style="font-size: 13px; font-weight: 600; color: #334155;">Kiểu xuất:</span>
+                  <label class="style-radio-pill">
+                    <input type="radio" id="cfg-style-output-paragraph" name="cfg-style-output-format" value="paragraph" checked>
+                    <span>Đoạn văn liền mạch</span>
+                  </label>
+                  <label class="style-radio-pill">
+                    <input type="radio" id="cfg-style-output-bullets" name="cfg-style-output-format" value="bullets">
+                    <span>Gạch đầu dòng theo từng mục</span>
+                  </label>
+                </div>
+              </div>
+
+              <div style="margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border-color); display: flex; align-items: center; justify-content: flex-end; gap: 10px;">
+                <span id="cfg-style-save-status" class="tag tag-green" style="display: none;">✓ Đã lưu</span>
+                <button type="button" id="btn-save-comment-style" class="btn btn-primary btn-sm">💾 Lưu cấu hình phong cách</button>
               </div>
             </div>
           </div>
@@ -270,6 +315,31 @@
             </div>
             <div class="card-body" style="padding: 14px 18px;">
               <textarea id="students-summary-editor" class="form-control" rows="3" placeholder="Nhập tóm tắt buổi học hoặc nhấp 'Tạo nội dung bằng AI'..."></textarea>
+            </div>
+          </div>
+
+          <!-- Thanh trạng thái Phong cách nhận xét AI + Đổi nhanh -->
+          <div id="students-style-bar" class="students-style-bar">
+            <div class="students-style-bar-main">
+              <span id="students-style-summary" class="students-style-summary">✨ Phong cách AI: Chuẩn sư phạm</span>
+              <button type="button" id="btn-students-quick-style" class="btn btn-secondary btn-xs">Đổi nhanh</button>
+            </div>
+            <div id="students-style-popover" class="students-style-popover" style="display: none;">
+              <div class="students-style-popover-row">
+                <span class="text-muted" style="font-size: 12px; font-weight: 600;">Mẫu có sẵn:</span>
+                <div id="students-quick-presets" class="students-quick-chips"></div>
+              </div>
+              <div class="students-style-popover-row">
+                <span class="text-muted" style="font-size: 12px; font-weight: 600;">Tiêu chí tùy chỉnh:</span>
+                <div id="students-quick-templates" class="students-quick-chips"></div>
+              </div>
+              <div class="students-style-popover-row" id="students-quick-format-row">
+                <span class="text-muted" style="font-size: 12px; font-weight: 600;">Kiểu xuất:</span>
+                <div class="students-quick-chips">
+                  <button type="button" class="style-chip-btn" id="btn-students-fmt-paragraph" data-format="paragraph">Đoạn văn</button>
+                  <button type="button" class="style-chip-btn" id="btn-students-fmt-bullets" data-format="bullets">Gạch đầu dòng</button>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -380,7 +450,11 @@
                   </div>
                 </div>
 
-                <div style="display: flex; align-items: center; justify-content: flex-end; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border-color); gap: 10px;">
+                <div style="display: flex; align-items: center; justify-content: flex-end; margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--border-color); gap: 10px; flex-wrap: wrap;">
+                  <button type="button" id="btn-review-regenerate-ai" class="btn btn-secondary btn-sm" style="margin-right: auto;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/></svg>
+                    ✨ Tạo lại nhận xét AI
+                  </button>
                   <button type="button" id="btn-review-cancel-auto" class="btn btn-secondary btn-sm" style="color: #DC2626;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="14" height="14" x="5" y="5" rx="2"/></svg>
                     Dừng / Hủy

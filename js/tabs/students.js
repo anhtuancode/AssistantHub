@@ -4,7 +4,7 @@
  */
 
 import { switchTab } from '../main.js';
-import { setReviewData } from './review.js';
+import { setReviewData, runReviewAiStreaming } from './review.js';
 import { getGeminiConfig } from './config.js';
 import { curriculumService } from '../services/curriculum.js';
 import { toast } from '../services/toast.js';
@@ -12,12 +12,23 @@ import { handleSessionExpiredIfAny } from '../services/sessionGuard.js';
 import { setTeacherPointContext } from './teacherPoint.js';
 import { ICONS } from '../services/icons.js';
 import { apiRequest } from '../services/apiBridge.js';
+import {
+  COMMENT_PRESETS,
+  CUSTOM_CRITERIA_TEMPLATES,
+  DEFAULT_COMMENT_STYLE_CONFIG,
+  loadCommentStyleConfig,
+  saveCommentStyleConfig,
+  formatStyleSummaryLabel,
+  getStyleSignature
+} from '../config/commentStyles.js';
 
 let currentClass = null;
 let currentSession = null;
 let currentStudents = [];
 let currentSummary = '';
 let isRestoredDraft = false;
+let currentStyleConfig = { ...DEFAULT_COMMENT_STYLE_CONFIG };
+let isQuickStyleBound = false;
 
 function getDraftKey(cls = currentClass, sess = currentSession) {
   if (!cls || !sess) return null;
@@ -187,8 +198,11 @@ async function loadSessionDataFromLms() {
   }
 }
 
-export function initStudentsTab() {
+export async function initStudentsTab() {
   bindStudentsEvents();
+  currentStyleConfig = await loadCommentStyleConfig();
+  renderStudentsQuickStyleUI();
+  bindStudentsQuickStyleEvents();
   if (!currentClass || !currentSession) {
     try {
       const lastRaw = localStorage.getItem('mindx_last_active_workspace');
@@ -484,10 +498,17 @@ function renderStudentsTable() {
         return;
       }
 
+      const geminiConfig = getGeminiConfig();
+      if (!geminiConfig.key) {
+        toast.error('Chưa cấu hình Gemini API Key. Vui lòng vào tab Cấu hình để nhập API Key.');
+        return;
+      }
+
       btn.disabled = true;
       btn.textContent = '⏳ Đang tạo...';
 
-      const geminiConfig = getGeminiConfig();
+      currentStyleConfig = await loadCommentStyleConfig();
+      const styleSig = getStyleSignature(currentStyleConfig);
       const summaryBox = document.getElementById('students-summary-editor');
       const classCode = currentClass ? (currentClass.classCode || currentClass.code || (currentClass.title ? currentClass.title.split('—')[0].trim() : '')) : '';
       const summaryText = summaryBox ? summaryBox.value.trim() : currentSummary;
@@ -505,16 +526,20 @@ function renderStudentsTable() {
             },
             apiKey: geminiConfig.key,
             model: geminiConfig.model,
-            style: geminiConfig.style
+            styleConfig: currentStyleConfig
           })
         });
         if (data.success && data.comment) {
           student.comment = data.comment;
-          student._lastCommentSignature = `${student.rating}|${student.note || ''}`;
-          toast.success(`Đã tạo nhận xét mới cho ${student.name}.`);
+          student.generatedStyleSignature = styleSig;
+          student._lastCommentSignature = `${student.rating}|${student.note || ''}|${styleSig}`;
+          saveCurrentDraft();
+          toast.success(`Đã tạo nhận xét AI cho ${student.name}.`);
+        } else {
+          toast.error(`Không thể tạo nhận xét AI: ${data.error || 'Gemini API không trả về kết quả.'}`, 6000);
         }
       } catch (err) {
-        toast.error(`Lỗi tạo nhận xét: ${err.message}`);
+        toast.error(`Lỗi tạo nhận xét: ${err.message}`, 6000);
       } finally {
         btn.disabled = false;
         btn.innerHTML = `${ICONS.sparkles(13)} Tạo nhận xét`;
@@ -599,70 +624,134 @@ function bindStudentsEvents() {
     };
   });
 
-  // Nút "Chuyển sang Duyệt & Lưu": Tự động kích hoạt AI tạo nhận xét cho học viên Có mặt chưa có nhận xét hoặc có thay đổi
+  // Nút "Chuyển sang Duyệt & Lưu": Chuyển sang tab Duyệt & Lưu và stream 1 lượt gọi Gemini AI đánh chữ trực tiếp
   const btnProceedReview = document.getElementById('btn-proceed-to-review');
   if (btnProceedReview) {
     btnProceedReview.onclick = async () => {
+      const summaryText = summaryBox ? summaryBox.value : currentSummary;
       const presentStudents = currentStudents.filter(st => st.attendance !== 'ABSENT');
       if (presentStudents.length === 0) {
-        setReviewData(currentClass, currentSession, summaryBox ? summaryBox.value : currentSummary, currentStudents);
+        setReviewData(currentClass, currentSession, summaryText, currentStudents);
         switchTab('tab-review');
         return;
       }
 
-      const needGeneration = presentStudents.filter(st => {
-        const sig = `${st.rating || 'Khá'}|${st.note || ''}`;
-        return !st.comment || !st.comment.trim() || st._lastCommentSignature !== sig;
-      });
-
-      if (needGeneration.length > 0) {
-        btnProceedReview.disabled = true;
-        btnProceedReview.innerHTML = `${ICONS.loader(15)} Đang tự động tạo nhận xét cá nhân hóa cho ${needGeneration.length} học viên...`;
-
-        const geminiConfig = getGeminiConfig();
-        const classCode = currentClass ? (currentClass.classCode || currentClass.code || (currentClass.title ? currentClass.title.split('—')[0].trim() : '')) : '';
-        const summaryText = summaryBox ? summaryBox.value.trim() : currentSummary;
-
-        try {
-          const data = await apiRequest('/api/gemini/batch-comments', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              students: needGeneration.map((st, i) => ({
-                ...st,
-                studentIndex: currentStudents.indexOf(st) >= 0 ? currentStudents.indexOf(st) : i
-              })),
-              lessonData: {
-                classCode,
-                title: currentSession ? currentSession.title : 'Buổi học',
-                sessionNumber: currentSession ? currentSession.sessionNumber : 1,
-                summary: summaryText
-              },
-              apiKey: geminiConfig.key,
-              model: geminiConfig.model,
-              style: geminiConfig.style
-            })
-          });
-          if (data.success && Array.isArray(data.results)) {
-            data.results.forEach(item => {
-              const st = currentStudents.find(x => x.name === item.name);
-              if (st && item.comment) {
-                st.comment = item.comment;
-                st._lastCommentSignature = `${st.rating || 'Khá'}|${st.note || ''}`;
-              }
-            });
-            saveCurrentDraft();
-          }
-        } catch (err) {
-          toast.error(`Lỗi tự động tạo nhận xét: ${err.message}`);
-        } finally {
-          btnProceedReview.disabled = false;
-          btnProceedReview.innerHTML = `Chuyển sang Duyệt &amp; Lưu ${ICONS.arrowRight(16)}`;
-        }
+      const geminiConfig = getGeminiConfig();
+      if (!geminiConfig.key) {
+        toast.error('Chưa cấu hình Gemini API Key. Vui lòng vào tab Cấu hình để nhập API Key trước khi tạo nhận xét.', 6000);
+        return;
       }
 
-      setReviewData(currentClass, currentSession, summaryBox ? summaryBox.value : currentSummary, currentStudents);
       switchTab('tab-review');
+      await runReviewAiStreaming({
+        cls: currentClass,
+        session: currentSession,
+        summary: summaryText,
+        students: currentStudents
+      });
     };
+  }
+}
+
+function renderStudentsQuickStyleUI() {
+  const summaryEl = document.getElementById('students-style-summary');
+  const presetsEl = document.getElementById('students-quick-presets');
+  const templatesEl = document.getElementById('students-quick-templates');
+  const fmtRow = document.getElementById('students-quick-format-row');
+  const btnPara = document.getElementById('btn-students-fmt-paragraph');
+  const btnBullets = document.getElementById('btn-students-fmt-bullets');
+
+  if (summaryEl) {
+    summaryEl.textContent = formatStyleSummaryLabel(currentStyleConfig);
+  }
+
+  if (presetsEl) {
+    presetsEl.innerHTML = '';
+    COMMENT_PRESETS.forEach((preset) => {
+      const chip = document.createElement('button');
+      chip.type = 'button';
+      const isActive = currentStyleConfig.mode === 'preset' && currentStyleConfig.presetId === preset.id;
+      chip.className = `style-chip-btn${isActive ? ' active' : ''}`;
+      chip.textContent = preset.name;
+      chip.addEventListener('click', async () => {
+        currentStyleConfig = await saveCommentStyleConfig({
+          ...currentStyleConfig,
+          mode: 'preset',
+          presetId: preset.id
+        });
+        renderStudentsQuickStyleUI();
+        toast.success(`Đã đổi nhanh phong cách: ${preset.name}`);
+      });
+      presetsEl.appendChild(chip);
+    });
+  }
+
+  if (templatesEl) {
+    templatesEl.innerHTML = '';
+    CUSTOM_CRITERIA_TEMPLATES.forEach((tpl) => {
+      const chip = document.createElement('button');
+      chip.type = 'button';
+      const isActive = currentStyleConfig.mode === 'custom' && (currentStyleConfig.customCriteria || '').trim() === tpl.criteria;
+      chip.className = `style-chip-btn${isActive ? ' active' : ''}`;
+      chip.textContent = tpl.label;
+      chip.addEventListener('click', async () => {
+        currentStyleConfig = await saveCommentStyleConfig({
+          ...currentStyleConfig,
+          mode: 'custom',
+          customCriteria: tpl.criteria
+        });
+        renderStudentsQuickStyleUI();
+        toast.success(`Đã chọn bộ tiêu chí: ${tpl.label}`);
+      });
+      templatesEl.appendChild(chip);
+    });
+  }
+
+  if (fmtRow) {
+    fmtRow.style.display = currentStyleConfig.mode === 'custom' ? 'flex' : 'none';
+  }
+  if (btnPara) {
+    btnPara.classList.toggle('active', currentStyleConfig.outputFormat !== 'bullets');
+  }
+  if (btnBullets) {
+    btnBullets.classList.toggle('active', currentStyleConfig.outputFormat === 'bullets');
+  }
+}
+
+function bindStudentsQuickStyleEvents() {
+  if (isQuickStyleBound) return;
+  isQuickStyleBound = true;
+
+  const btnToggle = document.getElementById('btn-students-quick-style');
+  const popover = document.getElementById('students-style-popover');
+  const btnPara = document.getElementById('btn-students-fmt-paragraph');
+  const btnBullets = document.getElementById('btn-students-fmt-bullets');
+
+  if (btnToggle && popover) {
+    btnToggle.addEventListener('click', () => {
+      const isOpen = popover.style.display === 'flex';
+      popover.style.display = isOpen ? 'none' : 'flex';
+      btnToggle.textContent = isOpen ? 'Đổi nhanh' : 'Thu gọn';
+    });
+  }
+
+  if (btnPara) {
+    btnPara.addEventListener('click', async () => {
+      currentStyleConfig = await saveCommentStyleConfig({
+        ...currentStyleConfig,
+        outputFormat: 'paragraph'
+      });
+      renderStudentsQuickStyleUI();
+    });
+  }
+
+  if (btnBullets) {
+    btnBullets.addEventListener('click', async () => {
+      currentStyleConfig = await saveCommentStyleConfig({
+        ...currentStyleConfig,
+        outputFormat: 'bullets'
+      });
+      renderStudentsQuickStyleUI();
+    });
   }
 }

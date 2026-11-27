@@ -49,6 +49,7 @@ export async function getCachedSessions(classId, ttlMs = CACHE_TTL_MS) {
     const entry = map && map[classId];
     if (!entry || !Array.isArray(entry.sessions) || !entry.updatedAt) return null;
     if (Date.now() - entry.updatedAt >= ttlMs) return null;
+    if (entry.sessions.some(s => Number(s.sessionNumber) < 1)) return null;
     return { sessions: entry.sessions, updatedAt: entry.updatedAt };
   } catch (_) {
     return null;
@@ -199,6 +200,9 @@ export async function apiRequest(endpoint, options = {}) {
     }
 
     // --- Gemini AI Routes ---
+    if (path === '/api/gemini/models' && method === 'POST') {
+      return await geminiClient.listModels(body.apiKey, { forceRefresh: body.forceRefresh !== false });
+    }
     if (path === '/api/gemini/test' && method === 'POST') {
       return await geminiClient.testConnection(body.apiKey, body.model);
     }
@@ -212,9 +216,9 @@ export async function apiRequest(endpoint, options = {}) {
         body.lessonData,
         body.apiKey,
         body.model,
-        body.style
+        body.styleConfig || body.style
       );
-      return { success: true, comment };
+      return { success: true, comment, usedFallback: Boolean(geminiClient._lastUsedFallback) };
     }
     if (path === '/api/gemini/batch-comments' && method === 'POST') {
       const results = await geminiClient.generateBatchComments(
@@ -222,9 +226,11 @@ export async function apiRequest(endpoint, options = {}) {
         body.lessonData,
         body.apiKey,
         body.model,
-        body.style
+        body.styleConfig || body.style,
+        typeof options.onProgress === 'function' ? options.onProgress : null,
+        typeof options.onStream === 'function' ? options.onStream : null
       );
-      return { success: true, results };
+      return { success: true, results, usedFallback: Boolean(geminiClient._lastUsedFallback) };
     }
 
     // --- Curriculum Routes ---

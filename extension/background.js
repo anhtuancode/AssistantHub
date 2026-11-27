@@ -1,7 +1,13 @@
 /**
  * Extension Service Worker (background.js)
- * Mở index.html khi click icon extension và điều phối các lệnh tự động hóa tới tab MindX LMS.
+ * Mở index.html khi click icon extension và điều phối các lệnh tự động hóa tới MindX LMS (ưu tiên GraphQL API Zero-Tab, fallback DOM).
  */
+
+if (typeof importScripts === 'function') {
+  try {
+    importScripts('lmsQueries.js', 'lmsApiClient.js');
+  } catch (_) {}
+}
 
 const LMS_CLASSES_URL = 'https://lms.mindx.edu.vn/admin/classes';
 const LMS_LOGIN_URL = 'https://base.mindx.edu.vn/login?callbackUrl=https://lms.mindx.edu.vn/admin/classes';
@@ -461,16 +467,49 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       }
 
       if (type === 'API_GET_CLASSES') {
+        const api = globalThis.lmsApiClient;
+        if (api) {
+          try {
+            await setState({ state: 'LOAD_CLASSES', currentTask: 'Đang tải danh sách lớp (API)' });
+            const res = await api.scanClasses({ status: payload.status || 'running', search: payload.search || '' });
+            await setState({ state: 'IDLE', currentTask: null, hasSavedSession: true });
+            sendResponse(res);
+            return;
+          } catch (err) {
+            await appendLog('WARN', `[GraphQL] GetClasses fallback DOM: ${err.message}`);
+          }
+        }
         sendResponse(await handleGetClasses(payload.status || 'running', payload.search || ''));
         return;
       }
 
       if (type === 'API_SELECT_CLASS') {
+        const api = globalThis.lmsApiClient;
+        if (api && payload.classId) {
+          try {
+            await setState({ state: 'SELECT_CLASS', currentTask: `Đang tải lớp: ${payload.classCode || payload.classId}` });
+            const res = await api.selectClassAndScanSessions(payload.classId);
+            await setState({ state: 'IDLE', currentTask: null });
+            sendResponse(res);
+            return;
+          } catch (err) {
+            await appendLog('WARN', `[GraphQL] GetClassById fallback DOM: ${err.message}`);
+          }
+        }
         sendResponse(await handleSelectClass(payload.classId, payload.classCode || ''));
         return;
       }
 
       if (type === 'API_GET_SESSIONS') {
+        const api = globalThis.lmsApiClient;
+        if (api) {
+          try {
+            const res = await api.getCachedSessionsFromContext();
+            await setState({ state: 'IDLE', currentTask: null });
+            sendResponse(res);
+            return;
+          } catch (_) {}
+        }
         await setState({ state: 'LOAD_SESSIONS', currentTask: 'Đang tải danh sách buổi học' });
         const res = await forwardToActiveLmsTab('LMS_GET_SESSIONS');
         await setState({ state: res.success ? 'IDLE' : 'SESSION_NOT_FOUND', currentTask: null });
@@ -479,6 +518,18 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       }
 
       if (type === 'API_SELECT_SESSION') {
+        const api = globalThis.lmsApiClient;
+        if (api && payload.sessionNumber) {
+          try {
+            await setState({ state: 'SELECT_SESSION', currentTask: `Đang tải Buổi ${payload.sessionNumber} (API)` });
+            const res = await api.selectSessionAndReadData(payload.sessionNumber);
+            await setState({ state: 'IDLE', currentTask: null });
+            sendResponse(res);
+            return;
+          } catch (err) {
+            await appendLog('WARN', `[GraphQL] SelectSession fallback DOM: ${err.message}`);
+          }
+        }
         await setState({ state: 'SELECT_SESSION', currentTask: `Đang chọn Buổi ${payload.sessionNumber}` });
         const res = await forwardToActiveLmsTab('LMS_SELECT_SESSION', { sessionNumber: payload.sessionNumber });
         await setState({ state: res.success ? 'IDLE' : 'SESSION_NOT_FOUND', currentTask: null });
@@ -487,6 +538,15 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       }
 
       if (type === 'API_GET_SUMMARY') {
+        const api = globalThis.lmsApiClient;
+        if (api) {
+          try {
+            const res = await api.getCachedSummaryFromContext();
+            await setState({ state: 'IDLE', currentTask: null });
+            sendResponse(res);
+            return;
+          } catch (_) {}
+        }
         await setState({ state: 'LOAD_SUMMARY', currentTask: 'Đang đọc Summary buổi học' });
         const res = await forwardToActiveLmsTab('LMS_GET_SUMMARY', { sessionNumber: payload.sessionNumber });
         await setState({ state: res.success ? 'IDLE' : 'SUMMARY_NOT_FOUND', currentTask: null });
@@ -495,6 +555,18 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       }
 
       if (type === 'API_FILL_SUMMARY') {
+        const api = globalThis.lmsApiClient;
+        if (api) {
+          try {
+            await setState({ state: 'FILL_SUMMARY', currentTask: 'Đang lưu Summary (API)' });
+            const res = await api.saveSummary({ content: payload.content, forceOverwrite: payload.forceOverwrite !== false });
+            await setState({ state: 'IDLE', currentTask: null });
+            sendResponse(res);
+            return;
+          } catch (err) {
+            await appendLog('WARN', `[GraphQL] SaveSummary fallback DOM: ${err.message}`);
+          }
+        }
         await setState({ state: 'FILL_SUMMARY', currentTask: 'Đang nhập nội dung Summary' });
         const res = await forwardToActiveLmsTab('LMS_FILL_SUMMARY', {
           content: payload.content,
@@ -506,6 +578,15 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       }
 
       if (type === 'API_GET_STUDENTS') {
+        const api = globalThis.lmsApiClient;
+        if (api) {
+          try {
+            const res = await api.getCachedStudentsFromContext();
+            await setState({ state: 'IDLE', currentTask: null });
+            sendResponse(res);
+            return;
+          } catch (_) {}
+        }
         await setState({ state: 'LOAD_STUDENTS', currentTask: 'Đang quét danh sách học viên' });
         const res = await forwardToActiveLmsTab('LMS_GET_STUDENTS', { sessionNumber: payload.sessionNumber });
         await setState({ state: res.success ? 'IDLE' : 'STUDENT_NOT_FOUND', currentTask: null });
@@ -514,6 +595,23 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       }
 
       if (type === 'API_COMMENT_SINGLE') {
+        const api = globalThis.lmsApiClient;
+        if (api) {
+          try {
+            await setState({ state: 'PROCESS_STUDENTS', currentTask: `Đang lưu nhận xét: ${payload.studentName} (API)` });
+            const res = await api.saveSingleComment({
+              studentName: payload.studentName,
+              studentId: payload.studentId,
+              commentText: payload.commentText,
+              forceOverwrite: payload.forceOverwrite !== false
+            });
+            await setState({ state: 'IDLE', currentTask: null });
+            sendResponse(res);
+            return;
+          } catch (err) {
+            await appendLog('WARN', `[GraphQL] SaveSingleComment fallback DOM: ${err.message}`);
+          }
+        }
         await setState({ state: 'PROCESS_STUDENTS', currentTask: `Đang lưu nhận xét: ${payload.studentName}` });
         const res = await forwardToActiveLmsTab('LMS_COMMENT_SINGLE', {
           studentName: payload.studentName,
@@ -568,11 +666,33 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
           }
 
           try {
-            const res = await forwardToActiveLmsTab('LMS_COMMENT_SINGLE', {
-              studentName,
-              commentText,
-              forceOverwrite: payload.forceOverwrite !== false
-            });
+            let res = null;
+            let usedGraphql = false;
+            const api = globalThis.lmsApiClient;
+            if (api) {
+              try {
+                res = await api.saveSingleComment({
+                  studentName,
+                  studentId: item.studentId || item.id,
+                  commentText,
+                  forceOverwrite: payload.forceOverwrite !== false
+                });
+                usedGraphql = true;
+              } catch (gqlErr) {
+                if (gqlErr && gqlErr.errorCode === 'SESSION_EXPIRED') {
+                  res = { success: false, errorCode: 'SESSION_EXPIRED', error: gqlErr.message };
+                } else {
+                  await appendLog('WARN', `[GraphQL] Batch fallback DOM (${studentName}): ${gqlErr.message}`);
+                }
+              }
+            }
+            if (!res) {
+              res = await forwardToActiveLmsTab('LMS_COMMENT_SINGLE', {
+                studentName,
+                commentText,
+                forceOverwrite: payload.forceOverwrite !== false
+              });
+            }
             if (res.status === 'VERIFIED' || res.status === 'SAVED_UNVERIFIED') {
               report.verifiedCount++;
             } else if (res.status && res.status.startsWith('SKIPPED')) {
@@ -581,12 +701,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
               report.failedCount++;
             }
             report.details.push(res);
+            if (!usedGraphql) {
+              await new Promise(r => setTimeout(r, 1500));
+            }
           } catch (err) {
             report.failedCount++;
             report.details.push({ studentName, status: 'FAILED', error: err.message });
           }
-
-          await new Promise(r => setTimeout(r, 1500));
         }
 
         report.endTime = new Date().toISOString();
@@ -608,3 +729,87 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
   return true;
 });
+
+// =========================================================================
+// LIGHTWEIGHT JWT AUTH CAPTURE (Bắt ngầm Authorization JWT & teacherId)
+// =========================================================================
+if (typeof chrome !== 'undefined' && chrome.webRequest) {
+  const lmsApiFilter = {
+    urls: ['https://lms-api.mindx.edu.vn/*'],
+    types: ['xmlhttprequest']
+  };
+
+  chrome.webRequest.onBeforeRequest.addListener(
+    (details) => {
+      if (details.method !== 'POST' || !details.requestBody?.raw?.length) return;
+      try {
+        const decoder = new TextDecoder('utf-8');
+        const text = details.requestBody.raw.map(p => (p?.bytes ? decoder.decode(p.bytes) : '')).join('');
+        const parsed = JSON.parse(text);
+        if (parsed && parsed.operationName === 'GetClasses' && parsed.variables?.teacherId) {
+          globalThis.lmsApiClient?.saveTeacherId(parsed.variables.teacherId);
+        }
+      } catch (_) {}
+    },
+    lmsApiFilter,
+    ['requestBody']
+  );
+
+  chrome.webRequest.onBeforeSendHeaders.addListener(
+    (details) => {
+      if (details.method === 'OPTIONS') return;
+      const headers = Array.isArray(details.requestHeaders) ? details.requestHeaders : [];
+      const authHeader = headers.find(h => String(h.name || '').toLowerCase() === 'authorization');
+      if (authHeader && authHeader.value) {
+        globalThis.lmsApiClient?.saveJwtToken(String(authHeader.value).trim());
+      }
+    },
+    lmsApiFilter,
+    ['requestHeaders', 'extraHeaders']
+  );
+}
+
+// Port listener cho streaming tiến độ thời gian thực khi chạy batch
+if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.onConnect) {
+  chrome.runtime.onConnect.addListener((port) => {
+    if (port.name !== 'mindx-batch-progress') return;
+    port.onMessage.addListener(async (msg) => {
+      if (!msg || msg.type !== 'START_BATCH') return;
+      const students = msg.students || [];
+      const api = globalThis.lmsApiClient;
+      await setState({ isCancelled: false, state: 'PROCESS_STUDENTS' });
+
+      let savedCount = 0;
+      let failedCount = 0;
+      for (let i = 0; i < students.length; i++) {
+        const st = await getState();
+        if (st.isCancelled) {
+          port.postMessage({ type: 'CANCELLED', current: i, total: students.length });
+          return;
+        }
+        const item = students[i];
+        const studentName = item.name || item.studentName;
+        port.postMessage({
+          type: 'PROGRESS',
+          current: i + 1,
+          total: students.length,
+          percent: Math.round(((i + 1) / students.length) * 100),
+          studentName
+        });
+
+        try {
+          const res = api
+            ? await api.saveSingleComment({ studentName, studentId: item.studentId || item.id, commentText: item.comment })
+            : await forwardToActiveLmsTab('LMS_COMMENT_SINGLE', { studentName, commentText: item.comment, forceOverwrite: true });
+          if (res && res.success) savedCount++;
+          else failedCount++;
+          port.postMessage({ type: 'ITEM_DONE', studentName, result: res });
+        } catch (err) {
+          failedCount++;
+          port.postMessage({ type: 'ITEM_DONE', studentName, result: { success: false, error: err.message } });
+        }
+      }
+      port.postMessage({ type: 'COMPLETED', savedCount, failedCount });
+    });
+  });
+}
