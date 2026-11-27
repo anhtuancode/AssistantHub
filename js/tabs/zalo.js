@@ -19,13 +19,27 @@ function escapeHtml(str) {
     .replace(/'/g, '&#39;');
 }
 
+function getTeacherNameFromConfig() {
+  try {
+    const lmsCfg = JSON.parse(localStorage.getItem('mindx_lms_config') || '{}');
+    if (lmsCfg && typeof lmsCfg.name === 'string' && lmsCfg.name.trim()) {
+      return lmsCfg.name.trim();
+    }
+  } catch (_) {}
+  const cfgNameInp = document.getElementById('cfg-lms-name');
+  if (cfgNameInp && cfgNameInp.value && cfgNameInp.value.trim()) {
+    return cfgNameInp.value.trim();
+  }
+  return '';
+}
+
 export async function initZaloTab(defaultCourse = null, defaultSession = null) {
   allCurriculaData = await curriculumService.getAllCourses();
 
-  // Khôi phục tên GV & mã lớp đã lưu trong localStorage
+  // Khôi phục tên GV & mã lớp đã lưu trong localStorage (ưu tiên tên GV từ tab Cấu hình)
   const teacherInp = document.getElementById('input-zalo-teacher-name');
   if (teacherInp) {
-    const savedTeacher = localStorage.getItem('mindx_teacher_name') || 'Nguyễn Anh Tuấn';
+    const savedTeacher = localStorage.getItem('mindx_teacher_name') || getTeacherNameFromConfig() || 'Giáo viên';
     teacherInp.value = savedTeacher;
     teacherInp.addEventListener('input', () => {
       localStorage.setItem('mindx_teacher_name', teacherInp.value.trim());
@@ -38,7 +52,14 @@ export async function initZaloTab(defaultCourse = null, defaultSession = null) {
     const savedClass = localStorage.getItem('mindx_zalo_class_code') || 'PVT-ROB-ARMA26';
     classCodeInp.value = savedClass;
     classCodeInp.addEventListener('input', () => {
-      localStorage.setItem('mindx_zalo_class_code', classCodeInp.value.trim());
+      const val = classCodeInp.value.trim();
+      localStorage.setItem('mindx_zalo_class_code', val);
+      const detected = curriculumService.extractCourseCode(val);
+      const courseSelEl = document.getElementById('select-zalo-course');
+      if (detected && allCurriculaData && allCurriculaData.courses && allCurriculaData.courses[detected] && courseSelEl && courseSelEl.value !== detected) {
+        courseSelEl.value = detected;
+        populateZaloSessionDropdown();
+      }
       renderZaloReportPreview();
     });
   }
@@ -192,26 +213,22 @@ function isCodingCourse(courseCode, course) {
   return codingCodes.includes(code);
 }
 
-export function renderZaloReportPreview() {
-  const courseSel = document.getElementById('select-zalo-course');
-  const sessionSel = document.getElementById('select-zalo-session');
-  const teacherInp = document.getElementById('input-zalo-teacher-name');
-  const classCodeInp = document.getElementById('input-zalo-class-code');
-  const editor = document.getElementById('zalo-message-editor');
-  const textarea = document.getElementById('textarea-zalo-message');
-  if ((!editor && !textarea) || !courseSel || !sessionSel) return;
-
-  const courseCode = courseSel.value || 'ARMA';
-  const sessionNum = parseInt(sessionSel.value, 10) || 1;
-  const teacherName = (teacherInp && teacherInp.value.trim()) ? teacherInp.value.trim() : 'Giáo viên';
-  const classCode = (classCodeInp && classCodeInp.value.trim()) ? classCodeInp.value.trim() : courseCode;
-
-  const course = allCurriculaData && allCurriculaData.courses ? allCurriculaData.courses[courseCode] : null;
-  const sessionData = (course && course.sessions) ? course.sessions.find(s => s.sessionNumber === sessionNum) : null;
+export function buildZaloReportContent({
+  courseCode = 'ARMA',
+  sessionNum = 1,
+  teacherName = 'Giáo viên',
+  classCode = '',
+  course = null,
+  sessionData = null
+} = {}) {
+  const resolvedClassCode = (classCode && classCode.trim()) ? classCode.trim() : courseCode;
+  const resolvedTeacher = (teacherName && teacherName.trim()) ? teacherName.trim() : (getTeacherNameFromConfig() || 'Giáo viên');
   const studentBookUrl = (course && course.studentBookUrl) ? course.studentBookUrl.trim() : '';
 
   let nextLessonTitle = 'Tổng kết cuối khóa';
-  if (course && course.sessions) {
+  if (sessionData && typeof sessionData.nextLesson === 'string' && sessionData.nextLesson.trim()) {
+    nextLessonTitle = sessionData.nextLesson.trim();
+  } else if (course && course.sessions) {
     const totalSessions = course.sessions.length;
     if (sessionNum < totalSessions) {
       const nextSession = course.sessions.find(s => s.sessionNumber === sessionNum + 1);
@@ -234,6 +251,13 @@ export function renderZaloReportPreview() {
 
   const slideUrl = (sessionData && sessionData.slideUrl && sessionData.slideUrl.trim()) ? sessionData.slideUrl.trim() : '';
   const reviewDocUrl = (sessionData && sessionData.reviewDocUrl && sessionData.reviewDocUrl.trim()) ? sessionData.reviewDocUrl.trim() : '';
+  const reviewDocLabel = (sessionData && sessionData.reviewDocLabel && sessionData.reviewDocLabel.trim()) ? sessionData.reviewDocLabel.trim() : 'Tài liệu ôn tập / Bài tập';
+  const extraLinks = (sessionData && Array.isArray(sessionData.extraLinks))
+    ? sessionData.extraLinks.filter(item => item && item.url && String(item.url).trim())
+    : [];
+  const parentQuestions = (sessionData && Array.isArray(sessionData.parentQuestions))
+    ? sessionData.parentQuestions.map(q => String(q || '').trim()).filter(Boolean)
+    : [];
 
   const ZALO_P = 'margin: 0px; line-height: 1.4;';
   const ZALO_ORANGE = 'color: rgb(242, 120, 6); font-weight: 700; font-size: 12pt; background-color: rgb(255, 255, 255);';
@@ -247,15 +271,20 @@ export function renderZaloReportPreview() {
     linkHtmlParts.push(`<p style="${ZALO_P}"><span style="${ZALO_GREEN}">Slide bài học: </span><a href="${escapeHtml(slideUrl)}" target="_blank" style="color: rgb(21, 168, 95); text-decoration: underline;"><span style="${ZALO_GREEN}">${escapeHtml(slideUrl)}</span></a></p>`);
   }
   if (reviewDocUrl) {
-    linkHtmlParts.push(`<p style="${ZALO_P}"><span style="${ZALO_GREEN}">Tài liệu ôn tập / Bài tập: </span><a href="${escapeHtml(reviewDocUrl)}" target="_blank" style="color: rgb(21, 168, 95); text-decoration: underline;"><span style="${ZALO_GREEN}">${escapeHtml(reviewDocUrl)}</span></a></p>`);
+    linkHtmlParts.push(`<p style="${ZALO_P}"><span style="${ZALO_GREEN}">${escapeHtml(reviewDocLabel)}: </span><a href="${escapeHtml(reviewDocUrl)}" target="_blank" style="color: rgb(21, 168, 95); text-decoration: underline;"><span style="${ZALO_GREEN}">${escapeHtml(reviewDocUrl)}</span></a></p>`);
   }
+  extraLinks.forEach(item => {
+    const lbl = (item.label && String(item.label).trim()) ? String(item.label).trim() : 'Tài liệu bổ sung';
+    const url = String(item.url).trim();
+    linkHtmlParts.push(`<p style="${ZALO_P}"><span style="${ZALO_GREEN}">${escapeHtml(lbl)}: </span><a href="${escapeHtml(url)}" target="_blank" style="color: rgb(21, 168, 95); text-decoration: underline;"><span style="${ZALO_GREEN}">${escapeHtml(url)}</span></a></p>`);
+  });
   if (studentBookUrl) {
     linkHtmlParts.push(`<p style="${ZALO_P}"><span style="${ZALO_GREEN}">Tài liệu StudentBook: </span><a href="${escapeHtml(studentBookUrl)}" target="_blank" style="color: rgb(21, 168, 95); text-decoration: underline;"><span style="${ZALO_GREEN}">${escapeHtml(studentBookUrl)}</span></a></p>`);
   }
 
   // 1. Rich Text HTML theo đúng chuẩn Whitelist RGB của Zalo PC
   const richLines = [
-    `<p style="${ZALO_P}"><span style="${ZALO_ORANGE}">Xin chào quý phụ huynh! Em là ${escapeHtml(teacherName)} giáo viên chủ nhiệm của lớp ${escapeHtml(classCode)}, xin phép gửi nội dung buổi học ${sessionNum} như sau:</span></p>`,
+    `<p style="${ZALO_P}"><span style="${ZALO_ORANGE}">Xin chào quý phụ huynh! Em là ${escapeHtml(resolvedTeacher)} giáo viên chủ nhiệm của lớp ${escapeHtml(resolvedClassCode)}, xin phép gửi nội dung buổi học ${sessionNum} như sau:</span></p>`,
     `<p style="${ZALO_P}"><br></p>`,
     `<p style="${ZALO_P}"><span style="${ZALO_RED}">Tóm tắt buổi học: ${escapeHtml(title)}.</span></p>`,
     `<p style="${ZALO_P}"><span style="${ZALO_TEXT}">- ${escapeHtml(summary)}</span></p>`,
@@ -263,6 +292,11 @@ export function renderZaloReportPreview() {
     `<p style="${ZALO_P}"><br></p>`,
     `<p style="${ZALO_P}"><span style="${ZALO_RED}">Mục tiêu buổi học:</span></p>`,
     ...objectivesList.map(o => `<p style="${ZALO_P}"><span style="${ZALO_TEXT}">- ${escapeHtml(o)}</span></p>`),
+    ...(parentQuestions.length > 0 ? [
+      `<p style="${ZALO_P}"><br></p>`,
+      `<p style="${ZALO_P}"><span style="${ZALO_RED}">Gợi ý ba mẹ trò chuyện cùng con:</span></p>`,
+      ...parentQuestions.map((q, idx) => `<p style="${ZALO_P}"><span style="${ZALO_TEXT}">${idx + 1}. ${escapeHtml(q)}</span></p>`)
+    ] : []),
     ...(linkHtmlParts.length > 0 ? [
       `<p style="${ZALO_P}"><br></p>`,
       `<p style="${ZALO_P}"><span style="${ZALO_RED}">Tài liệu buổi học:</span></p>`,
@@ -278,11 +312,15 @@ export function renderZaloReportPreview() {
   // 2. Plain Text
   const plainLinkParts = [];
   if (slideUrl) plainLinkParts.push(`Slide bài học: ${slideUrl}`);
-  if (reviewDocUrl) plainLinkParts.push(`Tài liệu ôn tập / Bài tập: ${reviewDocUrl}`);
+  if (reviewDocUrl) plainLinkParts.push(`${reviewDocLabel}: ${reviewDocUrl}`);
+  extraLinks.forEach(item => {
+    const lbl = (item.label && String(item.label).trim()) ? String(item.label).trim() : 'Tài liệu bổ sung';
+    plainLinkParts.push(`${lbl}: ${String(item.url).trim()}`);
+  });
   if (studentBookUrl) plainLinkParts.push(`Tài liệu StudentBook: ${studentBookUrl}`);
 
   const plainLines = [
-    `Xin chào quý phụ huynh! Em là ${teacherName} giáo viên chủ nhiệm của lớp ${classCode}, xin phép gửi nội dung buổi học ${sessionNum} như sau:`,
+    `Xin chào quý phụ huynh! Em là ${resolvedTeacher} giáo viên chủ nhiệm của lớp ${resolvedClassCode}, xin phép gửi nội dung buổi học ${sessionNum} như sau:`,
     ``,
     `📌 TÓM TẮT BUỔI HỌC: ${title}.`,
     `- ${summary}`,
@@ -291,6 +329,12 @@ export function renderZaloReportPreview() {
     `🎯 MỤC TIÊU BUỔI HỌC:`,
     ...objectivesList.map(o => `- ${o}`)
   ];
+
+  if (parentQuestions.length > 0) {
+    plainLines.push(``);
+    plainLines.push(`💬 GỢI Ý BA MẸ TRÒ CHUYỆN CÙNG CON:`);
+    parentQuestions.forEach((q, idx) => plainLines.push(`${idx + 1}. ${q}`));
+  }
 
   if (plainLinkParts.length > 0) {
     plainLines.push(``);
@@ -304,6 +348,35 @@ export function renderZaloReportPreview() {
   plainLines.push(`Em xin chân thành cảm ơn quý phụ huynh đã dành chút thời gian để xem thông tin này! Trong quá trình học tập các bạn học viên có thắc mắc về kiến thức bài học phụ huynh có thể liên hệ trực tiếp với giáo viên để được hỗ trợ ạ!`);
 
   const plainText = plainLines.join('\n').replace(/\n{3,}/g, '\n\n');
+
+  return { richHtml, plainText };
+}
+
+export function renderZaloReportPreview() {
+  const courseSel = document.getElementById('select-zalo-course');
+  const sessionSel = document.getElementById('select-zalo-session');
+  const teacherInp = document.getElementById('input-zalo-teacher-name');
+  const classCodeInp = document.getElementById('input-zalo-class-code');
+  const editor = document.getElementById('zalo-message-editor');
+  const textarea = document.getElementById('textarea-zalo-message');
+  if ((!editor && !textarea) || !courseSel || !sessionSel) return;
+
+  const courseCode = courseSel.value || 'ARMA';
+  const sessionNum = parseInt(sessionSel.value, 10) || 1;
+  const teacherName = (teacherInp && teacherInp.value.trim()) ? teacherInp.value.trim() : (getTeacherNameFromConfig() || 'Giáo viên');
+  const classCode = (classCodeInp && classCodeInp.value.trim()) ? classCodeInp.value.trim() : courseCode;
+
+  const course = allCurriculaData && allCurriculaData.courses ? allCurriculaData.courses[courseCode] : null;
+  const sessionData = (course && course.sessions) ? course.sessions.find(s => s.sessionNumber === sessionNum) : null;
+
+  const { richHtml, plainText } = buildZaloReportContent({
+    courseCode,
+    sessionNum,
+    teacherName,
+    classCode,
+    course,
+    sessionData
+  });
 
   if (editor) editor.innerHTML = richHtml;
   if (textarea) textarea.value = plainText;

@@ -13,13 +13,98 @@ import {
   loadCommentStyleConfig,
   saveCommentStyleConfig
 } from '../config/commentStyles.js';
+import {
+  getProviderConfig,
+  detectProviderFromKey,
+  pickBestEconomicalModel
+} from '../config/aiProviders.js';
 
 const STORAGE_KEY_LMS = 'mindx_lms_config';
 const STORAGE_KEY_GEMINI = 'mindx_gemini_config';
 const STORAGE_KEY_GEMINI_MODELS = 'mindx_gemini_models_cache';
+const STORAGE_KEY_AI_MODELS_BY_PROVIDER = 'mindx_ai_models_by_provider';
+
+const DEFAULT_API_KEYS = { gemini: '', openai: '', groq: '', deepseek: '', openrouter: '' };
+const DEFAULT_PROVIDER_MODELS = { gemini: 'auto', openai: 'auto', groq: 'auto', deepseek: 'auto', openrouter: 'auto' };
 
 let currentCommentStyleConfig = { ...DEFAULT_COMMENT_STYLE_CONFIG };
 let isCommentStyleBound = false;
+let manualProviderSelected = false;
+let autoFetchTimer = null;
+let aiState = {
+  provider: 'gemini',
+  apiKeys: { ...DEFAULT_API_KEYS },
+  models: { ...DEFAULT_PROVIDER_MODELS }
+};
+let modelsByProvider = {};
+
+function readChromeStorage(key) {
+  return new Promise((resolve) => {
+    try {
+      if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+        chrome.storage.local.get(key, (res) => resolve(res ? res[key] : undefined));
+        return;
+      }
+    } catch (_) {}
+    resolve(undefined);
+  });
+}
+
+function writeChromeStorage(key, value) {
+  try {
+    if (typeof chrome !== 'undefined' && chrome.storage && chrome.storage.local) {
+      chrome.storage.local.set({ [key]: value });
+    }
+  } catch (_) {}
+}
+
+function persistAiConfig() {
+  const activeProvider = aiState.provider || 'gemini';
+  const payload = {
+    provider: activeProvider,
+    key: aiState.apiKeys[activeProvider] || '',
+    model: aiState.models[activeProvider] || 'auto',
+    apiKeys: { ...DEFAULT_API_KEYS, ...aiState.apiKeys },
+    models: { ...DEFAULT_PROVIDER_MODELS, ...aiState.models }
+  };
+  try {
+    localStorage.setItem(STORAGE_KEY_GEMINI, JSON.stringify(payload));
+  } catch (_) {}
+  writeChromeStorage(STORAGE_KEY_GEMINI, payload);
+}
+
+function persistModelsCache(providerId, models) {
+  modelsByProvider[providerId] = models;
+  try {
+    localStorage.setItem(STORAGE_KEY_AI_MODELS_BY_PROVIDER, JSON.stringify(modelsByProvider));
+    if (providerId === 'gemini') {
+      localStorage.setItem(STORAGE_KEY_GEMINI_MODELS, JSON.stringify(models));
+    }
+  } catch (_) {}
+  writeChromeStorage(STORAGE_KEY_AI_MODELS_BY_PROVIDER, modelsByProvider);
+}
+
+function updateProviderUI(providerId) {
+  const cfg = getProviderConfig(providerId);
+  const badge = document.getElementById('cfg-ai-provider-badge');
+  const keyInp = document.getElementById('cfg-gemini-key');
+  const providerSel = document.getElementById('cfg-ai-provider');
+  if (providerSel && providerSel.value !== cfg.id) providerSel.value = cfg.id;
+  if (badge) badge.textContent = cfg.badge || cfg.name;
+  if (keyInp) keyInp.placeholder = cfg.placeholder || 'Nhập API Key...';
+}
+
+function setAutoModelNote(modelName = '') {
+  const noteEl = document.getElementById('cfg-ai-auto-model-note');
+  if (!noteEl) return;
+  if (!modelName) {
+    noteEl.style.display = 'none';
+    noteEl.textContent = '';
+    return;
+  }
+  noteEl.style.display = 'block';
+  noteEl.textContent = `✨ Tự động chọn: ${modelName} (Tối ưu tốc độ & tiết kiệm token)`;
+}
 
 function populateGeminiModelOptions(models = [], preferredValue = null) {
   const modelSel = document.getElementById('cfg-gemini-model');
@@ -30,7 +115,7 @@ function populateGeminiModelOptions(models = [], preferredValue = null) {
 
   const autoOpt = document.createElement('option');
   autoOpt.value = 'auto';
-  autoOpt.textContent = 'Tự động (Khuyên dùng — Chọn Flash mới nhất)';
+  autoOpt.textContent = 'Tự động (Khuyên dùng — Tối ưu tốc độ & token)';
   modelSel.appendChild(autoOpt);
 
   models.forEach((m) => {
@@ -46,14 +131,14 @@ function populateGeminiModelOptions(models = [], preferredValue = null) {
 }
 
 export async function initConfigTab() {
-  loadSavedConfigs();
+  await loadSavedConfigs();
   bindConfigEvents();
   currentCommentStyleConfig = await loadCommentStyleConfig();
   renderCommentStyleUI();
   bindCommentStyleEvents();
 }
 
-function loadSavedConfigs() {
+async function loadSavedConfigs() {
   try {
     const lmsRaw = localStorage.getItem(STORAGE_KEY_LMS);
     if (lmsRaw) {
@@ -69,28 +154,51 @@ function loadSavedConfigs() {
       if (passInp && lms.pass) passInp.value = lms.pass;
     }
 
-    const cachedModelsRaw = localStorage.getItem(STORAGE_KEY_GEMINI_MODELS);
-    if (cachedModelsRaw) {
-      const cachedModels = JSON.parse(cachedModelsRaw);
-      if (Array.isArray(cachedModels) && cachedModels.length > 0) {
-        populateGeminiModelOptions(cachedModels);
+    const chromeModels = await readChromeStorage(STORAGE_KEY_AI_MODELS_BY_PROVIDER);
+    if (chromeModels && typeof chromeModels === 'object') {
+      modelsByProvider = chromeModels;
+    } else {
+      const localModelsRaw = localStorage.getItem(STORAGE_KEY_AI_MODELS_BY_PROVIDER);
+      if (localModelsRaw) {
+        modelsByProvider = JSON.parse(localModelsRaw) || {};
+      } else {
+        const legacyRaw = localStorage.getItem(STORAGE_KEY_GEMINI_MODELS);
+        if (legacyRaw) {
+          const legacyModels = JSON.parse(legacyRaw);
+          if (Array.isArray(legacyModels) && legacyModels.length > 0) {
+            modelsByProvider.gemini = legacyModels;
+          }
+        }
       }
     }
 
-    const geminiRaw = localStorage.getItem(STORAGE_KEY_GEMINI);
-    if (geminiRaw) {
-      const gemini = JSON.parse(geminiRaw);
-      const keyInp = document.getElementById('cfg-gemini-key');
-      const modelSel = document.getElementById('cfg-gemini-model');
+    const chromeCfg = await readChromeStorage(STORAGE_KEY_GEMINI);
+    const localCfgRaw = localStorage.getItem(STORAGE_KEY_GEMINI);
+    const saved = chromeCfg || (localCfgRaw ? JSON.parse(localCfgRaw) : null);
 
-      if (keyInp && gemini.key) keyInp.value = gemini.key;
-      if (modelSel && gemini.model) {
-        const hasOption = Array.from(modelSel.options).some(opt => opt.value === gemini.model);
-        modelSel.value = hasOption ? gemini.model : 'auto';
+    if (saved && typeof saved === 'object') {
+      const provider = saved.provider || 'gemini';
+      aiState.provider = provider;
+      aiState.apiKeys = { ...DEFAULT_API_KEYS, ...(saved.apiKeys || {}) };
+      aiState.models = { ...DEFAULT_PROVIDER_MODELS, ...(saved.models || {}) };
+      if (saved.key && !aiState.apiKeys[provider]) {
+        aiState.apiKeys[provider] = saved.key;
+      }
+      if (saved.model && !saved.models?.[provider]) {
+        aiState.models[provider] = saved.model;
       }
     }
+
+    const activeProvider = aiState.provider || 'gemini';
+    updateProviderUI(activeProvider);
+
+    const keyInp = document.getElementById('cfg-gemini-key');
+    if (keyInp) keyInp.value = aiState.apiKeys[activeProvider] || '';
+
+    const cachedList = modelsByProvider[activeProvider] || [];
+    populateGeminiModelOptions(cachedList, aiState.models[activeProvider] || 'auto');
   } catch (err) {
-    console.warn('[Config] Lỗi đọc cấu hình localStorage:', err);
+    console.warn('[Config] Lỗi đọc cấu hình:', err);
   }
 }
 
@@ -109,28 +217,34 @@ export function getLmsConfig() {
 }
 
 export function getGeminiConfig() {
+  const providerSel = document.getElementById('cfg-ai-provider');
   const keyInp = document.getElementById('cfg-gemini-key');
   const modelSel = document.getElementById('cfg-gemini-model');
 
-  let key = keyInp ? keyInp.value.trim() : '';
-  let model = modelSel ? modelSel.value : 'auto';
+  const provider = (providerSel ? providerSel.value : aiState.provider) || 'gemini';
+  let key = keyInp ? keyInp.value.trim() : (aiState.apiKeys[provider] || '');
+  let model = modelSel ? modelSel.value : (aiState.models[provider] || 'auto');
 
   if (!key) {
     try {
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY_GEMINI) || '{}');
-      if (saved && typeof saved.key === 'string' && saved.key.trim()) {
-        key = saved.key.trim();
+      const savedKey = (saved.apiKeys && saved.apiKeys[provider]) || (saved.provider === provider ? saved.key : '') || '';
+      if (typeof savedKey === 'string' && savedKey.trim()) {
+        key = savedKey.trim();
         if (keyInp) keyInp.value = key;
       }
-      if ((!model || model === 'auto') && saved && saved.model) {
-        model = saved.model;
+      const savedModel = (saved.models && saved.models[provider]) || saved.model;
+      if ((!model || model === 'auto') && savedModel) {
+        model = savedModel;
       }
     } catch (_) {}
   }
 
   return {
+    provider,
     key,
-    model: model || 'auto'
+    model: model || 'auto',
+    apiKeys: { ...DEFAULT_API_KEYS, ...aiState.apiKeys, [provider]: key }
   };
 }
 
@@ -167,15 +281,126 @@ function bindConfigEvents() {
     }
   });
 
-  const geminiInputs = ['cfg-gemini-key', 'cfg-gemini-model'];
-  geminiInputs.forEach(id => {
-    const el = document.getElementById(id);
-    if (el) {
-      el.addEventListener('input', () => {
-        localStorage.setItem(STORAGE_KEY_GEMINI, JSON.stringify(getGeminiConfig()));
-      });
+  const providerSel = document.getElementById('cfg-ai-provider');
+  const modelSel = document.getElementById('cfg-gemini-model');
+
+  async function fetchAndSelectOptimalModels(providerId, apiKey, { silent = false } = {}) {
+    const cleanKey = String(apiKey || '').trim();
+    if (!cleanKey) return;
+
+    const btnRefresh = document.getElementById('btn-cfg-refresh-models');
+    const oldText = btnRefresh ? btnRefresh.textContent : '↻ Tải model';
+    if (btnRefresh) {
+      btnRefresh.disabled = true;
+      btnRefresh.textContent = '⏳ Đang tải...';
     }
-  });
+
+    try {
+      const data = await apiRequest('/api/gemini/models', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ provider: providerId, apiKey: cleanKey, forceRefresh: true })
+      });
+
+      if (data.success && Array.isArray(data.models) && data.models.length > 0) {
+        const bestModel = pickBestEconomicalModel(providerId, data.models) || data.recommendedModel;
+        persistModelsCache(providerId, data.models);
+        populateGeminiModelOptions(data.models, bestModel);
+        aiState.models[providerId] = bestModel;
+        persistAiConfig();
+
+        const matchedObj = data.models.find((m) => m.id === bestModel);
+        const displayLabel = matchedObj && matchedObj.displayName && matchedObj.displayName !== matchedObj.id
+          ? `${matchedObj.displayName} (${matchedObj.id})`
+          : bestModel;
+        setAutoModelNote(displayLabel);
+        if (!silent) {
+          toast.success(`Đã tải ${data.models.length} model (Tự động chọn: ${bestModel}).`);
+        }
+      } else if (!silent) {
+        toast.error(`Không thể tải danh sách model: ${data.error || 'Vui lòng kiểm tra lại API Key.'}`);
+      }
+    } catch (err) {
+      if (!silent) toast.error(`Lỗi tải model: ${err.message}`);
+    } finally {
+      if (btnRefresh) {
+        btnRefresh.disabled = false;
+        btnRefresh.textContent = oldText;
+      }
+    }
+  }
+
+  function scheduleAutoDetectAndFetch(rawKey) {
+    const cleanKey = String(rawKey || '').trim();
+    if (!cleanKey) return;
+
+    if (!manualProviderSelected) {
+      const detected = detectProviderFromKey(cleanKey);
+      if (detected && detected !== aiState.provider) {
+        aiState.provider = detected;
+        updateProviderUI(detected);
+      }
+    }
+
+    const activeProvider = aiState.provider || 'gemini';
+    aiState.apiKeys[activeProvider] = cleanKey;
+    persistAiConfig();
+
+    if (autoFetchTimer) clearTimeout(autoFetchTimer);
+    autoFetchTimer = setTimeout(() => {
+      fetchAndSelectOptimalModels(aiState.provider, cleanKey, { silent: true });
+    }, 600);
+  }
+
+  if (providerSel) {
+    providerSel.addEventListener('change', () => {
+      manualProviderSelected = true;
+      const nextProvider = providerSel.value || 'gemini';
+      aiState.provider = nextProvider;
+      updateProviderUI(nextProvider);
+
+      const savedKey = aiState.apiKeys[nextProvider] || '';
+      if (geminiKeyInp) geminiKeyInp.value = savedKey;
+
+      const cachedList = modelsByProvider[nextProvider] || [];
+      populateGeminiModelOptions(cachedList, aiState.models[nextProvider] || 'auto');
+      setAutoModelNote('');
+      persistAiConfig();
+
+      if (savedKey && cachedList.length === 0) {
+        scheduleAutoDetectAndFetch(savedKey);
+      }
+    });
+  }
+
+  if (geminiKeyInp) {
+    geminiKeyInp.addEventListener('input', () => {
+      const activeProvider = aiState.provider || 'gemini';
+      aiState.apiKeys[activeProvider] = geminiKeyInp.value.trim();
+      persistAiConfig();
+    });
+
+    geminiKeyInp.addEventListener('paste', () => {
+      setTimeout(() => scheduleAutoDetectAndFetch(geminiKeyInp.value), 0);
+    });
+
+    ['blur', 'change'].forEach((evtName) => {
+      geminiKeyInp.addEventListener(evtName, () => {
+        scheduleAutoDetectAndFetch(geminiKeyInp.value);
+      });
+    });
+  }
+
+  if (modelSel) {
+    modelSel.addEventListener('change', () => {
+      const activeProvider = aiState.provider || 'gemini';
+      aiState.models[activeProvider] = modelSel.value || 'auto';
+      persistAiConfig();
+      if (modelSel.value !== 'auto') {
+        setAutoModelNote('');
+      }
+    });
+  }
 
   // Nút Mở trình duyệt & Đăng nhập LMS
   const btnLoginLms = document.getElementById('btn-cfg-login-lms');
@@ -224,57 +449,35 @@ function bindConfigEvents() {
     };
   }
 
-  // Nút Tải danh sách model mới nhất từ Gemini API
+  // Nút Tải danh sách model mới nhất từ nhà cung cấp AI
   const btnRefreshModels = document.getElementById('btn-cfg-refresh-models');
   if (btnRefreshModels) {
-    btnRefreshModels.onclick = async () => {
+    btnRefreshModels.addEventListener('click', async () => {
       const config = getGeminiConfig();
       if (!config.key) {
-        toast.warning('Vui lòng nhập Gemini API Key trước khi tải danh sách model.');
+        toast.warning('Vui lòng nhập API Key trước khi tải danh sách model.');
         return;
       }
-
-      btnRefreshModels.disabled = true;
-      const oldText = btnRefreshModels.textContent;
-      btnRefreshModels.textContent = '⏳ Đang tải...';
-      try {
-        const data = await apiRequest('/api/gemini/models', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ apiKey: config.key, forceRefresh: true })
-        });
-        if (data.success && Array.isArray(data.models) && data.models.length > 0) {
-          localStorage.setItem(STORAGE_KEY_GEMINI_MODELS, JSON.stringify(data.models));
-          populateGeminiModelOptions(data.models, config.model);
-          localStorage.setItem(STORAGE_KEY_GEMINI, JSON.stringify(getGeminiConfig()));
-          toast.success(`Đã tải ${data.models.length} model Gemini mới nhất (Khuyên dùng: ${data.recommendedModel}).`);
-        } else {
-          toast.error(`Không thể tải danh sách model: ${data.error || 'Vui lòng kiểm tra lại API Key.'}`);
-        }
-      } catch (err) {
-        toast.error(`Lỗi tải model: ${err.message}`);
-      } finally {
-        btnRefreshModels.disabled = false;
-        btnRefreshModels.textContent = oldText;
-      }
-    };
+      await fetchAndSelectOptimalModels(config.provider, config.key, { silent: false });
+    });
   }
 
   // Nút Kiểm tra kết nối AI
   const btnTestAi = document.getElementById('btn-cfg-test-ai');
   const statusAi = document.getElementById('cfg-ai-status');
   if (btnTestAi) {
-    btnTestAi.onclick = async () => {
+    btnTestAi.addEventListener('click', async () => {
       const config = getGeminiConfig();
       if (!config.key) {
-        toast.warning('Vui lòng nhập Gemini API Key.');
+        toast.warning('Vui lòng nhập API Key AI.');
         return;
       }
 
+      const providerCfg = getProviderConfig(config.provider);
       btnTestAi.disabled = true;
       if (statusAi) {
         statusAi.style.display = 'inline-block';
-        statusAi.textContent = '⏳ Đang kiểm tra kết nối Google Gemini API...';
+        statusAi.textContent = `⏳ Đang kiểm tra kết nối ${providerCfg.name}...`;
         statusAi.className = 'tag tag-blue';
       }
 
@@ -282,24 +485,23 @@ function bindConfigEvents() {
         const data = await apiRequest('/api/gemini/test', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ apiKey: config.key, model: config.model })
+          body: JSON.stringify({ provider: config.provider, apiKey: config.key, model: config.model })
         });
 
         if (data.success) {
           if (statusAi) {
             statusAi.textContent = data.resolvedModel
-              ? `Kết nối thành công (${data.resolvedModel})! ✓`
-              : 'Kết nối Gemini API thành công! ✓';
+              ? `Kết nối ${providerCfg.badge} thành công (${data.resolvedModel})! ✓`
+              : `Kết nối ${providerCfg.badge} thành công! ✓`;
             statusAi.className = 'tag tag-green';
           }
-          // Tự động cập nhật danh sách model mới nhất nếu đang kết nối thành công
           const modelsRes = await apiRequest('/api/gemini/models', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ apiKey: config.key, forceRefresh: false })
+            body: JSON.stringify({ provider: config.provider, apiKey: config.key, forceRefresh: false })
           }).catch(() => null);
           if (modelsRes && modelsRes.success && Array.isArray(modelsRes.models) && modelsRes.models.length > 0) {
-            localStorage.setItem(STORAGE_KEY_GEMINI_MODELS, JSON.stringify(modelsRes.models));
+            persistModelsCache(config.provider, modelsRes.models);
             populateGeminiModelOptions(modelsRes.models, config.model);
           }
         } else {
@@ -316,7 +518,7 @@ function bindConfigEvents() {
       } finally {
         btnTestAi.disabled = false;
       }
-    };
+    });
   }
 }
 

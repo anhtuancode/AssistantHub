@@ -152,7 +152,7 @@ function renderTpStudentsTable() {
     let statusHtml = '<span class="tag tag-gray">Chờ gửi</span>';
     if (st.tpStatus === 'sending') statusHtml = `<span class="tag tag-blue">${ICONS.clock(12)} Đang gửi...</span>`;
     else if (st.tpStatus === 'sent') statusHtml = `<span class="tag tag-green">${ICONS.check(12)} Đã gửi</span>`;
-    else if (st.tpStatus === 'error') statusHtml = `<span class="tag tag-red">${ICONS.x(12)} Lỗi</span>`;
+    else if (st.tpStatus === 'error') statusHtml = `<span class="tag tag-red" title="${escapeHtml(st.tpError || 'Lỗi gửi Form')}">${ICONS.x(12)} Lỗi</span>`;
 
     return `
       <tr data-tp-idx="${idx}">
@@ -235,10 +235,12 @@ function bindTeacherPointEvents() {
       btnSubmitAll.disabled = true;
       let sentCount = 0;
       let errCount = 0;
+      let firstError = '';
 
       for (let k = 0; k < targets.length; k++) {
         const { s } = targets[k];
         s.tpStatus = 'sending';
+        s.tpError = '';
         renderTpStudentsTable();
         updateTpProgress(true, `Đang gửi ${k + 1}/${targets.length}: ${s.name}...`, Math.round((k / targets.length) * 100));
 
@@ -259,10 +261,14 @@ function bindTeacherPointEvents() {
             sentCount++;
           } else {
             s.tpStatus = 'error';
+            s.tpError = data.error || 'Không rõ lỗi';
+            if (!firstError) firstError = s.tpError;
             errCount++;
           }
-        } catch (_) {
+        } catch (err) {
           s.tpStatus = 'error';
+          s.tpError = err.message || 'Lỗi kết nối';
+          if (!firstError) firstError = s.tpError;
           errCount++;
         }
 
@@ -277,7 +283,7 @@ function bindTeacherPointEvents() {
       if (errCount === 0) {
         toast.success(`Đã gửi Teacher Point thành công cho ${sentCount}/${targets.length} học viên.`);
       } else {
-        toast.warning(`Đã gửi ${sentCount} thành công, ${errCount} lỗi.`);
+        toast.warning(`Đã gửi ${sentCount} thành công, ${errCount} lỗi.${firstError ? ` Lý do: ${firstError}` : ''}`, 8000);
       }
     };
   }

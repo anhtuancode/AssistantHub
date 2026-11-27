@@ -4,23 +4,43 @@
  */
 
 import { buildStylePrompt, normalizeStyleConfig, parseCustomCriteria } from '../config/commentStyles.js';
+import {
+  getProviderConfig,
+  filterEconomicalModels,
+  pickBestEconomicalModel
+} from '../config/aiProviders.js';
 
 class GeminiClient {
   constructor() {
     this.defaultModel = 'auto';
-    this.fallbackModel = 'gemini-3.8-flash';
-    this._modelsCache = { apiKey: '', models: [], fetchedAt: 0 };
+    this.fallbackModel = 'gemini-3.5-flash-lite';
+    this._modelsCache = new Map();
     this._lastUsedFallback = false;
   }
 
-  async _fetchWithTimeout(url, options = {}, timeoutMs = 15000) {
+  _compactText(text = '') {
+    return String(text || '')
+      .replace(/[ \t]+\n/g, '\n')
+      .replace(/\n{3,}/g, '\n\n')
+      .replace(/[ \t]{2,}/g, ' ')
+      .trim();
+  }
+
+  async _fetchWithTimeout(url, options = {}, timeoutMs = 25000) {
     const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
-    const timer = controller ? setTimeout(() => controller.abort(), timeoutMs) : null;
+    const timer = controller
+      ? setTimeout(() => controller.abort(new Error(`Hết thời gian chờ phản hồi (${Math.round(timeoutMs / 1000)}s).`)), timeoutMs)
+      : null;
     try {
       return await fetch(url, {
         ...options,
         signal: controller ? controller.signal : undefined
       });
+    } catch (err) {
+      if (err && (err.name === 'AbortError' || /aborted/i.test(String(err.message || '')))) {
+        throw new Error(`Hết thời gian chờ phản hồi từ API (${Math.round(timeoutMs / 1000)}s).`);
+      }
+      throw err;
     } finally {
       if (timer) clearTimeout(timer);
     }
@@ -50,15 +70,11 @@ class GeminiClient {
       return { success: false, error: 'API Key không được để trống.', models: [] };
     }
 
+    const cacheKey = `legacy_gemini:${cleanKey}`;
+    const cached = this._modelsCache.get(cacheKey);
     const now = Date.now();
-    if (
-      !forceRefresh &&
-      this._modelsCache.apiKey === cleanKey &&
-      this._modelsCache.models.length > 0 &&
-      now - this._modelsCache.fetchedAt < 10 * 60 * 1000
-    ) {
-      const models = this._modelsCache.models;
-      return { success: true, models, recommendedModel: this.pickBestAutoModel(models) };
+    if (!forceRefresh && cached && cached.models.length > 0 && now - cached.fetchedAt < 10 * 60 * 1000) {
+      return { success: true, models: cached.models, recommendedModel: this.pickBestAutoModel(cached.models) };
     }
 
     const url = 'https://generativelanguage.googleapis.com/v1beta/models';
@@ -93,7 +109,7 @@ class GeminiClient {
         })
         .sort((a, b) => this._scoreModelForAuto(b.id) - this._scoreModelForAuto(a.id));
 
-      this._modelsCache = { apiKey: cleanKey, models: filtered, fetchedAt: now };
+      this._modelsCache.set(cacheKey, { models: filtered, fetchedAt: now });
       return {
         success: true,
         models: filtered,
@@ -104,15 +120,232 @@ class GeminiClient {
     }
   }
 
-  async resolveModel(apiKey, requestedModel) {
+  async fetchModels(provider = 'gemini', apiKey, { forceRefresh = false } = {}) {
+    const cleanKey = String(apiKey || '').trim();
+    if (!cleanKey) {
+      return { success: false, error: 'API Key không được để trống.', models: [] };
+    }
+
+    const cfg = getProviderConfig(provider);
+    const cacheKey = `${cfg.id}:${cleanKey}`;
+    const cached = this._modelsCache.get(cacheKey);
+    const now = Date.now();
+    if (!forceRefresh && cached && cached.models.length > 0 && now - cached.fetchedAt < 10 * 60 * 1000) {
+      return {
+        success: true,
+        provider: cfg.id,
+        models: cached.models,
+        recommendedModel: pickBestEconomicalModel(cfg.id, cached.models)
+      };
+    }
+
+    try {
+      let rawList = [];
+      if (cfg.type === 'gemini') {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models?key=${encodeURIComponent(cleanKey)}`;
+        const response = await this._fetchWithTimeout(url, { method: 'GET' }, 12000);
+        const data = await response.json().catch(() => null);
+        if (!response.ok || !data) {
+          return { success: false, error: data?.error?.message || `HTTP ${response.status}`, models: [] };
+        }
+        const rawModels = Array.isArray(data.models) ? data.models : [];
+        rawList = rawModels
+          .filter((m) => {
+            const id = String(m.name || '').replace(/^models\//, '');
+            const methods = Array.isArray(m.supportedGenerationMethods) ? m.supportedGenerationMethods : [];
+            return methods.includes('generateContent') && id.startsWith('gemini-');
+          })
+          .map((m) => {
+            const id = String(m.name || '').replace(/^models\//, '');
+            return { id, displayName: m.displayName || id, description: m.description || '' };
+          });
+      } else {
+        const response = await this._fetchWithTimeout(cfg.modelsEndpoint, {
+          method: 'GET',
+          headers: { Authorization: `Bearer ${cleanKey}` }
+        }, 12000);
+        const data = await response.json().catch(() => null);
+        if (!response.ok || !data) {
+          return { success: false, error: data?.error?.message || `HTTP ${response.status}`, models: [] };
+        }
+        const arr = Array.isArray(data.data) ? data.data : (Array.isArray(data.models) ? data.models : []);
+        rawList = arr
+          .map((m) => ({
+            id: m.id || String(m.name || ''),
+            displayName: m.name || m.id || '',
+            description: m.description || ''
+          }))
+          .filter((m) => m.id);
+      }
+
+      const filtered = filterEconomicalModels(cfg.id, rawList);
+      const recommendedModel = pickBestEconomicalModel(cfg.id, filtered);
+      // Đưa recommendedModel lên đầu nếu có trong danh sách
+      filtered.sort((a, b) => {
+        if (a.id === recommendedModel) return -1;
+        if (b.id === recommendedModel) return 1;
+        return a.id.localeCompare(b.id);
+      });
+
+      this._modelsCache.set(cacheKey, { models: filtered, fetchedAt: now });
+      return {
+        success: true,
+        provider: cfg.id,
+        models: filtered,
+        recommendedModel
+      };
+    } catch (err) {
+      return { success: false, error: err.message, models: [] };
+    }
+  }
+
+  async resolveModel(apiKey, requestedModel, provider = 'gemini') {
     if (requestedModel && requestedModel !== 'auto') {
       return requestedModel;
     }
-    const listRes = await this.listModels(apiKey);
+    if (provider === 'gemini') {
+      const listRes = await this.listModels(apiKey);
+      if (listRes.success && listRes.recommendedModel) {
+        return listRes.recommendedModel;
+      }
+      return getProviderConfig('gemini').defaultModel;
+    }
+    const listRes = await this.fetchModels(provider, apiKey);
     if (listRes.success && listRes.recommendedModel) {
       return listRes.recommendedModel;
     }
-    return this.fallbackModel;
+    return getProviderConfig(provider).defaultModel;
+  }
+
+  async _callOpenAICompatible({
+    provider = 'openai',
+    apiKey,
+    model,
+    systemPrompt = '',
+    userPrompt = '',
+    maxTokens = 1536,
+    temperature = 0.7,
+    stream = false,
+    onChunk = null,
+    timeoutMs = 25000
+  }) {
+    const cfg = getProviderConfig(provider);
+    const url = `${cfg.baseUrl}/chat/completions`;
+    const messages = [];
+    if (systemPrompt) messages.push({ role: 'system', content: this._compactText(systemPrompt) });
+    messages.push({ role: 'user', content: this._compactText(userPrompt) });
+
+    const headers = {
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${apiKey}`
+    };
+    if (cfg.id === 'openrouter') {
+      headers['HTTP-Referer'] = 'https://lms.mindx.edu.vn';
+      headers['X-Title'] = 'MindX Teacher Assistant';
+    }
+
+    const response = await this._fetchWithTimeout(url, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({
+        model,
+        messages,
+        max_tokens: maxTokens,
+        temperature,
+        stream: Boolean(stream)
+      })
+    }, timeoutMs);
+
+    if (!response.ok) {
+      const errData = await response.json().catch(() => null);
+      const errMsg = errData?.error?.message || `HTTP ${response.status}`;
+      throw new Error(`${cfg.name} lỗi (${model}): ${errMsg}`);
+    }
+
+    if (stream && response.body && typeof response.body.getReader === 'function') {
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder('utf-8');
+      let sseBuffer = '';
+      let fullText = '';
+
+      while (true) {
+        const { value, done } = await reader.read();
+        if (done) break;
+        sseBuffer += decoder.decode(value, { stream: true });
+        const lines = sseBuffer.split(/\r?\n/);
+        sseBuffer = lines.pop() || '';
+        for (const line of lines) {
+          const trimmed = line.trim();
+          if (!trimmed.startsWith('data:')) continue;
+          const payloadStr = trimmed.slice(5).trim();
+          if (!payloadStr || payloadStr === '[DONE]') continue;
+          try {
+            const chunk = JSON.parse(payloadStr);
+            const delta = chunk?.choices?.[0]?.delta?.content || '';
+            if (delta) {
+              fullText += delta;
+              if (typeof onChunk === 'function') onChunk(delta, fullText);
+            }
+          } catch (_) {}
+        }
+      }
+      return fullText.trim();
+    }
+
+    const data = await response.json().catch(() => null);
+    const text = data?.choices?.[0]?.message?.content;
+    if (!text || !text.trim()) {
+      throw new Error(`${cfg.name} không trả về nội dung.`);
+    }
+    return text.trim();
+  }
+
+  async _callGeminiWithRetry({ apiKey, model, payload, timeoutMs = 25000 }) {
+    const geminiFallbacks = ['gemini-3.5-flash-lite', 'gemini-3.8-flash', 'gemini-3.6-flash', 'gemini-2.5-flash-lite', 'gemini-2.5-flash'];
+    const candidates = [model, ...geminiFallbacks.filter((m) => m !== model)];
+    let lastError = null;
+
+    for (let i = 0; i < candidates.length; i++) {
+      const target = candidates[i];
+      const url = `https://generativelanguage.googleapis.com/v1beta/models/${target}:generateContent`;
+      const bodyPayload = {
+        ...payload,
+        generationConfig: this._buildGenerationConfig(target, payload.generationConfig?.maxOutputTokens || 1536, payload.generationConfig || {})
+      };
+
+      let response;
+      try {
+        response = await this._fetchWithTimeout(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-goog-api-key': apiKey
+          },
+          body: JSON.stringify(bodyPayload)
+        }, timeoutMs);
+      } catch (err) {
+        const reason = err && err.name === 'AbortError'
+          ? 'Hết thời gian chờ phản hồi từ Gemini API (timeout).'
+          : (err && err.message ? err.message : 'Lỗi kết nối mạng.');
+        throw new Error(`Không thể kết nối tới Gemini API (${target}): ${reason}`);
+      }
+
+      const data = await response.json().catch(() => null);
+      if (response.ok) {
+        return { data, usedModel: target };
+      }
+
+      const apiErrMsg = data?.error?.message || `HTTP ${response.status}`;
+      const is503 = response.status === 503 || /high demand|overloaded|unavailable/i.test(apiErrMsg);
+      lastError = new Error(`Gemini API lỗi (${target}): ${apiErrMsg}`);
+
+      if (!is503 || i >= candidates.length - 1) {
+        throw lastError;
+      }
+      this._log('WARN', `[GeminiClient] Model ${target} quá tải (503), tự động chuyển sang ${candidates[i + 1]}...`);
+    }
+
+    throw lastError || new Error('Gemini API lỗi không xác định.');
   }
 
   _log(level, message) {
@@ -123,91 +356,118 @@ class GeminiClient {
     } catch (_) {}
   }
 
-  async testConnection(apiKey, model = this.defaultModel) {
+  async testConnection(apiKey, model = this.defaultModel, provider = 'gemini') {
     if (!apiKey || !apiKey.trim()) {
       return { success: false, error: 'API Key không được để trống.' };
     }
 
     const cleanKey = apiKey.trim();
-    const targetModel = await this.resolveModel(cleanKey, model || this.defaultModel);
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${targetModel}:generateContent`;
+    const cfg = getProviderConfig(provider);
+    const targetModel = await this.resolveModel(cleanKey, model || this.defaultModel, cfg.id);
 
     try {
-      this._log('INFO', `[GeminiClient] Đang kiểm tra kết nối tới mô hình ${targetModel}...`);
-      const response = await this._fetchWithTimeout(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-goog-api-key': cleanKey
-        },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: 'Trả về chữ "OK" để xác nhận kết nối thành công.' }] }]
-        })
-      }, 15000);
+      this._log('INFO', `[AIClient] Đang kiểm tra kết nối ${cfg.name} (${targetModel})...`);
+      if (cfg.type === 'openai-compatible') {
+        await this._callOpenAICompatible({
+          provider: cfg.id,
+          apiKey: cleanKey,
+          model: targetModel,
+          userPrompt: 'Trả lời: OK',
+          maxTokens: 10,
+          temperature: 0,
+          timeoutMs: 15000
+        });
+      } else {
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/${targetModel}:generateContent`;
+        const isGemini3 = String(targetModel || '').toLowerCase().startsWith('gemini-3');
+        const response = await this._fetchWithTimeout(url, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-goog-api-key': cleanKey
+          },
+          body: JSON.stringify({
+            contents: [{ parts: [{ text: 'Trả lời: OK' }] }],
+            generationConfig: this._buildGenerationConfig(
+              targetModel,
+              isGemini3 ? 64 : 10,
+              isGemini3 ? {} : { temperature: 0 }
+            )
+          })
+        }, 25000);
 
-      const data = await response.json().catch(() => null);
-      if (!response.ok) {
-        const errMsg = (data && data.error && data.error.message) ? data.error.message : `HTTP ${response.status}`;
-        this._log('ERROR', `[GeminiClient] Lỗi kết nối API: ${errMsg}`);
-        return { success: false, error: errMsg, resolvedModel: targetModel };
+        const data = await response.json().catch(() => null);
+        if (!response.ok) {
+          const errMsg = (data && data.error && data.error.message) ? data.error.message : `HTTP ${response.status}`;
+          this._log('ERROR', `[AIClient] Lỗi kết nối API: ${errMsg}`);
+          return { success: false, error: errMsg, resolvedModel: targetModel, provider: cfg.id };
+        }
       }
 
-      this._log('INFO', `[GeminiClient] Kết nối Google Gemini API (${targetModel}) thành công! ✓`);
+      this._log('INFO', `[AIClient] Kết nối ${cfg.name} (${targetModel}) thành công! ✓`);
       return {
         success: true,
+        provider: cfg.id,
         resolvedModel: targetModel,
         message: `Kết nối thành công (${targetModel})!`
       };
     } catch (err) {
-      this._log('ERROR', `[GeminiClient] Ngoại lệ kiểm tra kết nối: ${err.message}`);
-      return { success: false, error: err.message };
+      this._log('ERROR', `[AIClient] Ngoại lệ kiểm tra kết nối: ${err.message}`);
+      return { success: false, error: err.message, resolvedModel: targetModel, provider: cfg.id };
     }
   }
 
-  async generateSummary(lessonData, apiKey, model = this.defaultModel) {
+  async generateSummary(lessonData, apiKey, model = this.defaultModel, provider = 'gemini') {
     const { title = '', sessionNumber = 1, objectives = [], hardwareAndCommands = '', summary = '' } = lessonData || {};
 
     if (!apiKey || !apiKey.trim()) {
-      this._log('INFO', '[GeminiClient] Không có API Key, sử dụng mẫu chuẩn giáo trình MindX.');
+      this._log('INFO', '[AIClient] Không có API Key, sử dụng mẫu chuẩn giáo trình MindX.');
       return this._fallbackSummary(lessonData);
     }
 
     const cleanKey = apiKey.trim();
-    const targetModel = await this.resolveModel(cleanKey, model || this.defaultModel);
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${targetModel}:generateContent`;
+    const cfg = getProviderConfig(provider);
+    const targetModel = await this.resolveModel(cleanKey, model || this.defaultModel, cfg.id);
 
-    const prompt = `Bạn là Giảng viên Công nghệ tại MindX Technology School. Hãy soạn nội dung tóm tắt buổi học (Summary) gửi lên hệ thống LMS MindX theo chuẩn mực sư phạm, ngắn gọn, rõ ràng, truyền cảm hứng.
+    const prompt = this._compactText(`Bạn là Giảng viên Công nghệ tại MindX Technology School. Hãy soạn nội dung tóm tắt buổi học (Summary) gửi lên hệ thống LMS MindX theo chuẩn mực sư phạm, ngắn gọn, rõ ràng, truyền cảm hứng.
 Thông tin buổi học:
 - Buổi số: ${sessionNumber}
 - Tên bài học: ${title}
 - Tóm tắt gốc: ${summary}
 - Kiến thức & Câu lệnh / Linh kiện: ${hardwareAndCommands}
 - Mục tiêu bài học: ${Array.isArray(objectives) ? objectives.join('; ') : objectives}
-
 Yêu cầu output:
 - Viết bằng tiếng Việt, chia các mục rõ ràng (Nội dung trọng tâm, Kỹ năng đạt được, Hướng dẫn rèn luyện thêm).
-- Độ dài khoảng 3 - 5 câu cô đọng, không dùng ký tự Markdown lạ, văn phong sư phạm ấm áp.`;
+- Độ dài khoảng 3 - 5 câu cô đọng, không dùng ký tự Markdown lạ, văn phong sư phạm ấm áp.`);
 
     try {
-      const response = await this._fetchWithTimeout(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-goog-api-key': cleanKey
-        },
-        body: JSON.stringify({
+      if (cfg.type === 'openai-compatible') {
+        return await this._callOpenAICompatible({
+          provider: cfg.id,
+          apiKey: cleanKey,
+          model: targetModel,
+          userPrompt: prompt,
+          maxTokens: 600,
+          temperature: 0.7,
+          timeoutMs: 20000
+        });
+      }
+
+      const { data } = await this._callGeminiWithRetry({
+        apiKey: cleanKey,
+        model: targetModel,
+        payload: {
           contents: [{ parts: [{ text: prompt }] }],
           generationConfig: { maxOutputTokens: 600, temperature: 0.7 }
-        })
-      }, 20000);
-
-      const data = await response.json();
-      if (response.ok && data.candidates && data.candidates[0] && data.candidates[0].content) {
+        },
+        timeoutMs: 20000
+      });
+      if (data?.candidates?.[0]?.content?.parts?.[0]?.text) {
         return data.candidates[0].content.parts[0].text.trim();
       }
       return this._fallbackSummary(lessonData);
     } catch (err) {
-      this._log('WARN', `[GeminiClient] Lỗi gọi Gemini Summary (${err.message}), dùng fallback.`);
+      this._log('WARN', `[AIClient] Lỗi gọi AI Summary (${err.message}), dùng fallback.`);
       return this._fallbackSummary(lessonData);
     }
   }
@@ -256,17 +516,22 @@ Yêu cầu output:
     return { strengths, improvements };
   }
 
-  _buildGenerationConfig(targetModel, maxOutputTokens = 2048, extra = {}) {
+  _buildGenerationConfig(targetModel, maxOutputTokens = 1536, extra = {}) {
+    const lowerModel = String(targetModel || '').toLowerCase();
     const generationConfig = {
       maxOutputTokens,
-      temperature: 0.8,
       ...extra
     };
-    const lowerModel = String(targetModel || '').toLowerCase();
     if (lowerModel.startsWith('gemini-3')) {
+      delete generationConfig.temperature;
+      delete generationConfig.topP;
+      delete generationConfig.topK;
       generationConfig.thinkingConfig = { thinkingLevel: 'MINIMAL' };
-    } else if (lowerModel.startsWith('gemini-2.5-flash')) {
-      generationConfig.thinkingConfig = { thinkingBudget: 0 };
+    } else {
+      if (generationConfig.temperature === undefined) generationConfig.temperature = 0.8;
+      if (lowerModel.startsWith('gemini-2.5-flash')) {
+        generationConfig.thinkingConfig = { thinkingBudget: 0 };
+      }
     }
     return generationConfig;
   }
@@ -317,7 +582,7 @@ Yêu cầu output:
     return items;
   }
 
-  async generateStudentComment(student, lessonData, apiKey, model = this.defaultModel, style = 'standard') {
+  async generateStudentComment(student, lessonData, apiKey, model = this.defaultModel, style = 'standard', provider = 'gemini') {
     const rating = student.rating || 'Khá';
     const note = student.note || '';
     const studentIndex = typeof student.studentIndex === 'number'
@@ -332,9 +597,10 @@ Yêu cầu output:
 
     const cleanKey = String(apiKey || '').trim();
     if (!cleanKey) {
-      throw new Error('Chưa cấu hình Gemini API Key. Vui lòng vào tab Cấu hình để nhập API Key.');
+      throw new Error('Chưa cấu hình API Key AI. Vui lòng vào tab Cấu hình để nhập API Key.');
     }
 
+    const cfg = getProviderConfig(provider);
     const lessonTopic = String(title || `Buổi ${sessionNumber}`).trim();
     const lessonContext = String(summary || '').trim();
     const courseType = this.classifyCourseType(classCode || title);
@@ -342,8 +608,7 @@ Yêu cầu output:
     const customCriteria = normalizedStyle.mode === 'custom' ? parseCustomCriteria(normalizedStyle.customCriteria) : [];
     const stylePrompt = buildStylePrompt(normalizedStyle);
 
-    const targetModel = await this.resolveModel(cleanKey, model || this.defaultModel);
-    const url = `https://generativelanguage.googleapis.com/v1beta/models/${targetModel}:generateContent`;
+    const targetModel = await this.resolveModel(cleanKey, model || this.defaultModel, cfg.id);
 
     const openingStyles = [
       'Mở đầu bằng nhận xét trực tiếp về tinh thần hứng thú và sự tập trung trong giờ học.',
@@ -395,62 +660,51 @@ Bắt buộc nhận xét phải bám sát đủ 4 tiêu chí sau:
       ? `- BẮT BUỘC xuất ra đúng ${customCriteria.length} dòng gạch đầu dòng theo mẫu:\n${customCriteria.map(c => `  - ${c}: [nội dung nhận xét]`).join('\n')}\n- TUYỆT ĐỐI KHÔNG gộp thành đoạn văn, KHÔNG bỏ sót hoặc thêm bớt mục nào.`
       : '- Viết thành đoạn văn mượt mà, tự nhiên bằng tiếng Việt, không dùng ký tự Markdown.';
 
-    const systemInstructionText = `Bạn là Giảng viên tại MindX Technology School. Nhiệm vụ của bạn là viết nhận xét buổi học cá nhân hóa cho học viên, tuân thủ TUYỆT ĐỐI cấu hình phong cách và định dạng dưới đây:
+    const systemInstructionText = this._compactText(`Bạn là Giảng viên tại MindX Technology School. Viết nhận xét buổi học cá nhân hóa cho học viên, tuân thủ TUYỆT ĐỐI cấu hình phong cách và định dạng dưới đây:
+${stylePrompt}`);
 
-${stylePrompt}`;
-
-    const prompt = `Hãy viết nhận xét cá nhân hóa (Biến thể phong cách #${(studentIndex % 8) + 1}) cho học viên trong Buổi ${sessionNumber} (Mã lớp: ${classCode || 'N/A'}).
-- Tên buổi học: ${lessonTopic}
-- Ngữ cảnh / Tóm tắt nội dung bài học (chỉ dùng để tổng hợp tự nhiên, KHÔNG trích nguyên văn cả khối vào ngoặc kép):
-${lessonContext || 'Thực hành theo tiến trình buổi học.'}
-- Xếp loại (thang 5 mức Giỏi / Khá / Trung bình khá / Trung bình / Yếu): ${rating}
-- Sắc thái theo xếp loại: ${ratingTone}
-- Ghi chú riêng của thầy cô: ${note || 'Học tập chăm chỉ, tích cực thực hành'}
-- Hướng mở đầu & diễn đạt: ${styleVariation}
-
+    const prompt = this._compactText(`Viết nhận xét cá nhân hóa (Biến thể #${(studentIndex % 8) + 1}) cho học viên Buổi ${sessionNumber} (Lớp: ${classCode || 'N/A'}).
+- Chủ đề: ${lessonTopic}
+- Ngữ cảnh bài học (chỉ tổng hợp tự nhiên, KHÔNG trích nguyên văn): ${lessonContext || 'Thực hành theo tiến trình buổi học.'}
+- Xếp loại: ${rating} (${ratingTone})
+- Ghi chú riêng: ${note || 'Học tập chăm chỉ, tích cực thực hành'}
+- Mở đầu: ${styleVariation}
 ${criteriaInstructions}
-
 Quy tắc bắt buộc:
-- TUYỆT ĐỐI KHÔNG chèn họ tên hay tên riêng của học viên vào nội dung nhận xét.
-- Chỉ dùng đại từ xưng hô là "con" (viết hoa "Con" ở đầu câu).
-- Lồng ghép ghi chú riêng và nội dung bài học thành câu văn tự nhiên, TUYỆT ĐỐI KHÔNG liệt kê thô kiểu "Điểm ghi nhận riêng: ..." hay chép nguyên khối "- Nội dung trọng tâm: ...".
-${formatRule}`;
+- TUYỆT ĐỐI KHÔNG chèn tên học viên; chỉ xưng "con"/"Con".
+- Lồng ghép ghi chú tự nhiên, không liệt kê thô.
+${formatRule}`);
 
-    const generationConfig = this._buildGenerationConfig(targetModel, 2048);
-
-    let response;
-    try {
-      response = await this._fetchWithTimeout(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-goog-api-key': cleanKey
-        },
-        body: JSON.stringify({
-          systemInstruction: { parts: [{ text: systemInstructionText }] },
-          contents: [{ parts: [{ text: prompt }] }],
-          generationConfig
-        })
-      }, 25000);
-    } catch (err) {
-      const reason = err && err.name === 'AbortError'
-        ? 'Hết thời gian chờ phản hồi từ Gemini API (timeout).'
-        : (err && err.message ? err.message : 'Lỗi kết nối mạng.');
-      this._log('ERROR', `[GeminiClient] Lỗi kết nối Gemini API (${targetModel}): ${reason}`);
-      throw new Error(`Không thể kết nối tới Gemini API (${targetModel}): ${reason}`);
+    if (cfg.type === 'openai-compatible') {
+      const text = await this._callOpenAICompatible({
+        provider: cfg.id,
+        apiKey: cleanKey,
+        model: targetModel,
+        systemPrompt: systemInstructionText,
+        userPrompt: prompt,
+        maxTokens: 1536,
+        temperature: 0.8,
+        timeoutMs: 25000
+      });
+      this._lastUsedFallback = false;
+      return text;
     }
 
-    const data = await response.json().catch(() => null);
-    if (!response.ok) {
-      const apiErrMsg = data?.error?.message || `HTTP ${response.status}`;
-      this._log('ERROR', `[GeminiClient] Gemini API lỗi (${targetModel}): ${apiErrMsg}`);
-      throw new Error(`Gemini API lỗi (${targetModel}): ${apiErrMsg}`);
-    }
+    const { data } = await this._callGeminiWithRetry({
+      apiKey: cleanKey,
+      model: targetModel,
+      payload: {
+        systemInstruction: { parts: [{ text: systemInstructionText }] },
+        contents: [{ parts: [{ text: prompt }] }],
+        generationConfig: this._buildGenerationConfig(targetModel, 1536)
+      },
+      timeoutMs: 25000
+    });
 
     const text = data?.candidates?.[0]?.content?.parts?.[0]?.text;
     if (!text || !text.trim()) {
       const finishReason = data?.candidates?.[0]?.finishReason || 'NO_CANDIDATES';
-      this._log('ERROR', `[GeminiClient] Gemini API không trả về nội dung (${finishReason}).`);
+      this._log('ERROR', `[AIClient] Gemini API không trả về nội dung (${finishReason}).`);
       throw new Error(`Gemini API không trả về nội dung nhận xét (${finishReason}).`);
     }
 
@@ -458,13 +712,14 @@ ${formatRule}`;
     return text.trim();
   }
 
-  async generateBatchComments(students = [], lessonData, apiKey, model = this.defaultModel, style = 'standard', onProgress = null, onStream = null) {
+  async generateBatchComments(students = [], lessonData, apiKey, model = this.defaultModel, style = 'standard', onProgress = null, onStream = null, provider = 'gemini') {
     const cleanKey = String(apiKey || '').trim();
     if (!cleanKey) {
-      throw new Error('Chưa cấu hình Gemini API Key. Vui lòng vào tab Cấu hình để nhập API Key.');
+      throw new Error('Chưa cấu hình API Key AI. Vui lòng vào tab Cấu hình để nhập API Key.');
     }
 
-    const resolvedModel = await this.resolveModel(cleanKey, model || this.defaultModel);
+    const cfg = getProviderConfig(provider);
+    const resolvedModel = await this.resolveModel(cleanKey, model || this.defaultModel, cfg.id);
 
     const results = new Array(students.length);
     const presentTasks = [];
@@ -512,9 +767,9 @@ ${formatRule}`;
       ? `Mỗi comment BẮT BUỘC đúng ${customCriteria.length} dòng gạch đầu dòng (- ${customCriteria.join(', - ')}), KHÔNG gộp đoạn.`
       : 'Mỗi comment là 1 đoạn văn tự nhiên, KHÔNG Markdown.';
 
-    const systemInstructionText = `Bạn là Giảng viên MindX. Viết nhận xét cá nhân hóa cho từng học viên trong danh sách, trả về JSON array [{"id": số, "comment": chuỗi}].
+    const systemInstructionText = this._compactText(`Bạn là Giảng viên MindX. Viết nhận xét cá nhân hóa cho từng học viên trong danh sách, chỉ trả về JSON array [{"id": số, "comment": chuỗi}].
 ${stylePrompt}
-Quy tắc: Không chèn tên học viên, chỉ xưng "con"/"Con", không sao chép nguyên khối Summary. ${courseHint} ${formatHint}`.trim();
+Quy tắc: Không chèn tên học viên, chỉ xưng "con"/"Con", không sao chép nguyên khối Summary. ${courseHint} ${formatHint}`);
 
     const compactStudents = presentTasks.map(({ st, studentIndex, batchId }) => ({
       id: batchId,
@@ -523,59 +778,10 @@ Quy tắc: Không chèn tên học viên, chỉ xưng "con"/"Con", không sao ch
       variant: (studentIndex % 8) + 1
     }));
 
-    const batchPrompt = `Buổi ${sessionNumber} | Lớp: ${classCode || 'N/A'} | Chủ đề: ${lessonTopic}
+    const batchPrompt = this._compactText(`Buổi ${sessionNumber} | Lớp: ${classCode || 'N/A'} | Chủ đề: ${lessonTopic}
 Ngữ cảnh bài học: ${lessonContext || 'Thực hành theo tiến trình buổi học.'}
 Danh sách học viên (giữ đúng id, viết khác nhau theo variant/note/rating):
-${JSON.stringify(compactStudents)}`;
-
-    const generationConfig = this._buildGenerationConfig(resolvedModel, 8192, {
-      responseMimeType: 'application/json',
-      responseSchema: {
-        type: 'ARRAY',
-        items: {
-          type: 'OBJECT',
-          properties: {
-            id: { type: 'INTEGER' },
-            comment: { type: 'STRING' }
-          },
-          required: ['id', 'comment']
-        }
-      }
-    });
-
-    const streamUrl = `https://generativelanguage.googleapis.com/v1beta/models/${resolvedModel}:streamGenerateContent?alt=sse`;
-    if (typeof onProgress === 'function') {
-      onProgress({ current: 1, total: totalPresent, studentName: presentTasks[0].st.name || presentTasks[0].st.studentName || '' });
-    }
-
-    let response;
-    try {
-      response = await this._fetchWithTimeout(streamUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'x-goog-api-key': cleanKey
-        },
-        body: JSON.stringify({
-          systemInstruction: { parts: [{ text: systemInstructionText }] },
-          contents: [{ parts: [{ text: batchPrompt }] }],
-          generationConfig
-        })
-      }, 45000);
-    } catch (err) {
-      const reason = err && err.name === 'AbortError'
-        ? 'Hết thời gian chờ phản hồi từ Gemini API (timeout).'
-        : (err && err.message ? err.message : 'Lỗi kết nối mạng.');
-      this._log('ERROR', `[GeminiClient] Lỗi kết nối Gemini API (${resolvedModel}): ${reason}`);
-      throw new Error(`Không thể kết nối tới Gemini API (${resolvedModel}): ${reason}`);
-    }
-
-    if (!response.ok) {
-      const errData = await response.json().catch(() => null);
-      const apiErrMsg = errData?.error?.message || `HTTP ${response.status}`;
-      this._log('ERROR', `[GeminiClient] Gemini API lỗi (${resolvedModel}): ${apiErrMsg}`);
-      throw new Error(`Gemini API lỗi (${resolvedModel}): ${apiErrMsg}`);
-    }
+${JSON.stringify(compactStudents)}`);
 
     let fullJsonText = '';
     const lastEmittedText = new Map();
@@ -609,47 +815,117 @@ ${JSON.stringify(compactStudents)}`;
       }
     };
 
-    if (response.body && typeof response.body.getReader === 'function') {
-      const reader = response.body.getReader();
-      const decoder = new TextDecoder('utf-8');
-      let sseBuffer = '';
+    if (typeof onProgress === 'function') {
+      onProgress({ current: 1, total: totalPresent, studentName: presentTasks[0].st.name || presentTasks[0].st.studentName || '' });
+    }
 
-      while (true) {
-        const { value, done } = await reader.read();
-        if (done) break;
-        sseBuffer += decoder.decode(value, { stream: true });
-
-        const lines = sseBuffer.split(/\r?\n/);
-        sseBuffer = lines.pop() || '';
-        for (const line of lines) {
-          const trimmed = line.trim();
-          if (!trimmed.startsWith('data:')) continue;
-          const payloadStr = trimmed.slice(5).trim();
-          if (!payloadStr || payloadStr === '[DONE]') continue;
-          try {
-            const chunk = JSON.parse(payloadStr);
-            const partText = chunk?.candidates?.[0]?.content?.parts?.[0]?.text || '';
-            if (partText) {
-              fullJsonText += partText;
-              emitStreamingUpdates(fullJsonText);
-            }
-          } catch (_) {}
-        }
-      }
-    } else {
-      const data = await response.json().catch(() => null);
-      if (Array.isArray(data)) {
-        fullJsonText = data.map(c => c?.candidates?.[0]?.content?.parts?.[0]?.text || '').join('');
-      } else {
-        fullJsonText = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
-      }
+    if (cfg.type === 'openai-compatible') {
+      fullJsonText = await this._callOpenAICompatible({
+        provider: cfg.id,
+        apiKey: cleanKey,
+        model: resolvedModel,
+        systemPrompt: systemInstructionText,
+        userPrompt: batchPrompt,
+        maxTokens: Math.min(8192, Math.max(1536, totalPresent * 320)),
+        temperature: 0.8,
+        stream: true,
+        onChunk: (_delta, accumulated) => emitStreamingUpdates(accumulated),
+        timeoutMs: 45000
+      });
       emitStreamingUpdates(fullJsonText);
+    } else {
+      const generationConfig = this._buildGenerationConfig(resolvedModel, 8192, {
+        responseMimeType: 'application/json',
+        responseSchema: {
+          type: 'ARRAY',
+          items: {
+            type: 'OBJECT',
+            properties: {
+              id: { type: 'INTEGER' },
+              comment: { type: 'STRING' }
+            },
+            required: ['id', 'comment']
+          }
+        }
+      });
+
+      const streamUrl = `https://generativelanguage.googleapis.com/v1beta/models/${resolvedModel}:streamGenerateContent?alt=sse`;
+      let response;
+      try {
+        response = await this._fetchWithTimeout(streamUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-goog-api-key': cleanKey
+          },
+          body: JSON.stringify({
+            systemInstruction: { parts: [{ text: systemInstructionText }] },
+            contents: [{ parts: [{ text: batchPrompt }] }],
+            generationConfig
+          })
+        }, 45000);
+      } catch (err) {
+        const reason = err && err.name === 'AbortError'
+          ? 'Hết thời gian chờ phản hồi từ Gemini API (timeout).'
+          : (err && err.message ? err.message : 'Lỗi kết nối mạng.');
+        this._log('ERROR', `[AIClient] Lỗi kết nối Gemini API (${resolvedModel}): ${reason}`);
+        throw new Error(`Không thể kết nối tới Gemini API (${resolvedModel}): ${reason}`);
+      }
+
+      if (!response.ok) {
+        const errData = await response.json().catch(() => null);
+        const apiErrMsg = errData?.error?.message || `HTTP ${response.status}`;
+        this._log('ERROR', `[AIClient] Gemini API lỗi (${resolvedModel}): ${apiErrMsg}`);
+        throw new Error(`Gemini API lỗi (${resolvedModel}): ${apiErrMsg}`);
+      }
+
+      if (response.body && typeof response.body.getReader === 'function') {
+        const reader = response.body.getReader();
+        const decoder = new TextDecoder('utf-8');
+        let sseBuffer = '';
+
+        while (true) {
+          const { value, done } = await reader.read();
+          if (done) break;
+          sseBuffer += decoder.decode(value, { stream: true });
+
+          const lines = sseBuffer.split(/\r?\n/);
+          sseBuffer = lines.pop() || '';
+          for (const line of lines) {
+            const trimmed = line.trim();
+            if (!trimmed.startsWith('data:')) continue;
+            const payloadStr = trimmed.slice(5).trim();
+            if (!payloadStr || payloadStr === '[DONE]') continue;
+            try {
+              const chunk = JSON.parse(payloadStr);
+              const partText = chunk?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+              if (partText) {
+                fullJsonText += partText;
+                emitStreamingUpdates(fullJsonText);
+              }
+            } catch (_) {}
+          }
+        }
+      } else {
+        const data = await response.json().catch(() => null);
+        if (Array.isArray(data)) {
+          fullJsonText = data.map(c => c?.candidates?.[0]?.content?.parts?.[0]?.text || '').join('');
+        } else {
+          fullJsonText = data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+        }
+        emitStreamingUpdates(fullJsonText);
+      }
     }
 
     let parsedArray = [];
     try {
       const cleaned = fullJsonText.trim().replace(/^```json\s*/i, '').replace(/```\s*$/, '').trim();
-      const parsed = JSON.parse(cleaned);
+      const firstBracket = cleaned.indexOf('[');
+      const lastBracket = cleaned.lastIndexOf(']');
+      const jsonSlice = firstBracket !== -1 && lastBracket > firstBracket
+        ? cleaned.slice(firstBracket, lastBracket + 1)
+        : cleaned;
+      const parsed = JSON.parse(jsonSlice);
       if (Array.isArray(parsed)) parsedArray = parsed;
     } catch (_) {}
 
@@ -682,7 +958,8 @@ ${JSON.stringify(compactStudents)}`;
           lessonData,
           cleanKey,
           resolvedModel,
-          style
+          style,
+          cfg.id
         );
         results[task.originalIndex] = {
           name: task.st.name || task.st.studentName,

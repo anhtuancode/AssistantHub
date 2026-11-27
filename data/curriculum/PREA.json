@@ -7,120 +7,225 @@
   "sessions": {
     "1": {
       "sessionNumber": 1,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
-      "slideUrl": "",
-      "reviewDocUrl": ""
+      "title": "Cuộc dạo chơi thảo cầm viên",
+      "summary": "Ôn tập kiến thức học phần trước; lắp ráp mô hình theo mẫu xoay quanh chủ đề Khu vườn bách thú; sử dụng thẻ lệnh đã học và vòng lặp để lập trình mô hình hoạt động.",
+      "hardwareAndCommands": "VEX GO Kit; thẻ lệnh đã học và vòng lặp.",
+      "objectives": [
+        "Học viên ghi nhớ tên gọi các thành phần có trong bộ VEX GO Kit.",
+        "Học viên hoàn thành mô hình.",
+        "Học viên vận dụng kiến thức lập trình trong học phần trước lập trình mô hình hoạt động."
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1DVc1LNJTP0xyf3yb2986VE3IVBezZbHM/edit?usp=sharing&ouid=111038164751870348560&rtpof=true&sd=true",
+      "reviewDocUrl": "https://docs.google.com/document/d/1ia16JXOpJY09ysaJGLywcNWmOluHlasz/edit?usp=sharing&ouid=111038164751870348560&rtpof=true&sd=true",
+      "nextLesson": "Cánh cổng thần kỳ"
     },
     "2": {
       "sessionNumber": 2,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
-      "slideUrl": "",
-      "reviewDocUrl": ""
+      "title": "Cánh cổng thần kỳ",
+      "summary": "Tìm hiểu cơ chế hoạt động của mô hình cánh cổng tự động đóng/mở khi kích hoạt đèn LED Bumper; lắp ráp hoàn thiện mô hình cánh cổng tích hợp động cơ theo bản thiết kế gợi ý; lập trình cánh cổng tự động nhận diện tín hiệu từ LED Bumper hoặc cảm biến mắt để đóng/mở thông minh.",
+      "hardwareAndCommands": "Não bộ Brain, động cơ, LED Bumper, cảm biến mắt; thẻ lệnh nhận tín hiệu cảm biến và điều khiển mô hình tự động hóa.",
+      "objectives": [
+        "Kiến thức thiết bị: Ghi nhớ tên gọi và phân biệt chính xác chức năng các linh kiện điện tử trong bộ VEX GO Kit (não bộ Brain, động cơ, LED Bumper, cảm biến mắt...).",
+        "Kỹ năng lắp ráp: Lắp ráp mô hình chắc chắn, kết nối động cơ chuẩn xác để cánh cổng vận hành trơn tru, hiệu quả.",
+        "Tư duy lập trình: Hiểu rõ logic nhận tín hiệu cảm biến và sử dụng thành thạo thẻ lệnh điều khiển mô hình tự động hóa."
+      ],
+      "slideUrl": "https://drive.google.com/file/d/1sitII8Fh8MlS9RG91vYpcmtgiIcXdYfV/view",
+      "reviewDocUrl": "https://drive.google.com/file/d/1V8f91Fr5qba2LUE3E4WF7nvdSXtmEcV8/view",
+      "parentQuestions": [
+        "Con kể tên giúp ba/mẹ những thiết bị điện tử nào có trong bộ VEX GO hôm nay mà con đã dùng để làm Cánh cổng thần kỳ?",
+        "Làm thế nào để cánh cổng biết khi nào cần tự động mở ra hoặc đóng lại?",
+        "Giữa việc bấm nút LED Bumper và dùng cảm biến mắt để mở cổng, con thích cách nào hơn và vì sao?"
+      ],
+      "nextLesson": "Chiếc hộp kỳ bí"
     },
     "3": {
       "sessionNumber": 3,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
-      "slideUrl": "",
-      "reviewDocUrl": ""
+      "title": "Chiếc hộp kỳ bí",
+      "summary": "Thảo luận mô hình thùng rác thông minh đóng/mở khi phát hiện vật cản; lắp ráp mô hình thùng rác thông minh trang bị 1 động cơ và cảm biến mắt; lập trình mô hình tự động đóng/mở khi thấy vật cản và nhận diện màu sắc của vật cản.",
+      "hardwareAndCommands": "01 động cơ, cảm biến mắt (Eye Sensor); thẻ lệnh phát hiện vật cản và nhận diện màu sắc.",
+      "objectives": [
+        "Học viên ghi nhớ tên gọi và phân biệt thành phần điện tử có trong bộ VEX GO.",
+        "Học viên hoàn thành mô hình dưới sự hướng dẫn của giáo viên.",
+        "Học viên hiểu thẻ lệnh lập trình mô hình theo đề bài."
+      ],
+      "slideUrl": "https://drive.google.com/file/d/1ZZuw2-e4JM4LJCtsPRlPEKEStnTIyH1n/view",
+      "extraLinks": [
+        {
+          "label": "Slide bài học (phần 2)",
+          "url": "https://drive.google.com/file/d/1wpc4bWEV84Opk1Vnmk3LAhSRDZ41kdiV/view"
+        }
+      ],
+      "reviewDocUrl": "https://drive.google.com/file/d/1myk5NYwfcJNduvvwR3ESY9xE2Cr48G8V/view",
+      "nextLesson": "Công xưởng sáng tạo"
     },
     "4": {
       "sessionNumber": 4,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
-      "slideUrl": "",
-      "reviewDocUrl": ""
+      "title": "Công xưởng sáng tạo",
+      "summary": "Thảo luận ý tưởng thiết kế mô hình Robot chủ đề Khu vườn bách thú; giới thiệu và ôn tập cơ cấu truyền động; lắp ráp mô hình Robot sử dụng bánh răng theo hai mẫu và lập trình mô hình chuyển động.",
+      "hardwareAndCommands": "Cơ cấu truyền động bánh răng, pin, switch, động cơ; kiến thức lập trình các bài học trước.",
+      "objectives": [
+        "Hoàn thiện kỹ năng lắp ráp mô hình; thao tác kết nối pin, switch, động cơ.",
+        "Học viên ghi nhớ kiến thức lập trình các bài học trước.",
+        "Học viên biết cách lắp ráp mô hình hoạt động hiệu quả."
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1-Vpn4IJdU7NUECUFkTcOd6NnaUMgAIPK/edit?slide=id.p1#slide=id.p1",
+      "reviewDocUrl": "",
+      "nextLesson": "Voi con khát nước"
     },
     "5": {
       "sessionNumber": 5,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
-      "slideUrl": "",
-      "reviewDocUrl": ""
+      "title": "Voi con khát nước",
+      "summary": "Giới thiệu cấu tạo và chuyển động chiếc vòi của Voi; lắp ráp mô hình mô phỏng vòi của Voi; tùy chỉnh thông số động cơ trên ứng dụng VEXcode GO; lập trình theo trình tự mô hình voi lắc đầu sang trái–phải, vòi voi di chuyển lên–xuống với nhóm thẻ lệnh Motion kết hợp vòng lặp.",
+      "hardwareAndCommands": "02 động cơ, cấu hình và đặt tên động cơ trên VEXcode GO; nhóm thẻ lệnh Motion và vòng lặp.",
+      "objectives": [
+        "Học viên ghi nhớ thao tác đặt tên và cấu hình động cơ trên ứng dụng VEXcode GO.",
+        "Học viên lắp ráp mô hình động cơ hoạt động hiệu quả.",
+        "Học viên hiểu nội dung lập trình theo trình tự 2 động cơ."
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1lttcKve_wP-wi3M1YkCbdLUWa4hjWQUo/edit?rtpof=true",
+      "extraLinks": [
+        {
+          "label": "Slide bài học (phần 2)",
+          "url": "https://docs.google.com/presentation/d/1Ih3aj1JJeSk-zQYeOaarE0jrOkZgAd6B/edit?slide=id.p11#slide=id.p11"
+        }
+      ],
+      "reviewDocUrl": "https://docs.google.com/document/d/106K__J3TmPSmDni4Aj_DfWqns0B1nbAi/edit?usp=sharing&ouid=111038164751870348560&rtpof=true&sd=true",
+      "nextLesson": "Sói con lạc mẹ"
     },
     "6": {
       "sessionNumber": 6,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
-      "slideUrl": "",
-      "reviewDocUrl": ""
+      "title": "Sói con lạc mẹ",
+      "summary": "Tìm hiểu cách di chuyển của loài Sói; lắp ráp mô hình mô phỏng loài Sói sử dụng 2 động cơ và cảm biến mắt; lập trình mô hình di chuyển, dừng lại và đổi hướng khi thấy vật cản hoặc màu sắc của vật cản với thẻ lệnh điều kiện if ... else và vòng lặp.",
+      "hardwareAndCommands": "02 động cơ, cảm biến mắt; thẻ lệnh điều kiện if ... else và vòng lặp.",
+      "objectives": [
+        "Học viên ghi nhớ các ý tưởng thiết kế Robot.",
+        "Học viên hiểu ý nghĩa lập trình theo trình tự và ghi nhớ thẻ lệnh điều kiện liên quan đến cảm biến mắt khi phát hiện vật cản."
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1jmQTNnGtXtvwfOzUvwuHUcB8XBhJJPWy/edit",
+      "reviewDocUrl": "",
+      "nextLesson": "Bạn kiến tìm đường"
     },
     "7": {
       "sessionNumber": 7,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
-      "slideUrl": "",
-      "reviewDocUrl": ""
+      "title": "Bạn kiến tìm đường",
+      "summary": "Tìm hiểu cách di chuyển theo đàn của loài Kiến; lắp ráp mô hình mô phỏng loài Kiến sử dụng não, pin, 2 động cơ và cảm biến mắt (gắn bên dưới thân Kiến); lập trình mô hình dừng lại khi thấy vạch màu đỏ, xanh lá cây hoặc xanh dương với vòng lặp Forever và câu lệnh điều kiện if ... else.",
+      "hardwareAndCommands": "Não, pin, 02 động cơ, cảm biến mắt, LED Bumper; thẻ lệnh Forever và câu lệnh điều kiện if ... else nhận diện màu sắc.",
+      "objectives": [
+        "Học viên ghi nhớ nguyên tắc hoạt động của cảm biến và LED Bumper.",
+        "Học viên hiểu thẻ lệnh Forever.",
+        "Học viên hiểu ý nghĩa thẻ lệnh điều kiện if ... else liên quan đến cảm biến mắt khi nhận thấy sự thay đổi của màu sắc (đỏ, xanh dương, xanh lá cây)."
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1fzZAKmbnIspj1bjBcJZi5o9mkisbuH_h/edit?slide=id.p1#slide=id.p1",
+      "extraLinks": [
+        {
+          "label": "Slide bài học (phần 2)",
+          "url": "https://docs.google.com/presentation/d/1bGID6-AwZn1rhO2o3T4JfP6Cj4LUEtS7/edit"
+        }
+      ],
+      "reviewDocUrl": "",
+      "nextLesson": "Công xưởng sáng tạo"
     },
     "8": {
       "sessionNumber": 8,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
-      "slideUrl": "",
-      "reviewDocUrl": ""
+      "title": "Công xưởng sáng tạo",
+      "summary": "Thảo luận mô hình Robot chủ đề Khu vườn bách thú; giới thiệu cơ cấu truyền động; lắp ráp mô hình Robot sử dụng bánh răng theo hai mẫu và lập trình mô hình chuyển động.",
+      "hardwareAndCommands": "Cơ cấu truyền động bánh răng, não, pin, động cơ; kiến thức lập trình các bài học trước.",
+      "objectives": [
+        "Học viên ghi nhớ kiến thức lập trình các bài học trước.",
+        "Học viên biết cách lắp ráp mô hình hoạt động hiệu quả."
+      ],
+      "slideUrl": "https://drive.google.com/file/d/1n_PupKYuw5yPKFpdNPVvIrzEd2i9yBw_/view",
+      "reviewDocUrl": "https://drive.google.com/file/d/1EyhllQnVzDUt9oTC3W0rV9Z6mK3SdIwC/view",
+      "nextLesson": "Nhà vô địch nhảy cao"
     },
     "9": {
       "sessionNumber": 9,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
-      "slideUrl": "",
-      "reviewDocUrl": ""
+      "title": "Nhà vô địch nhảy cao",
+      "summary": "Giới thiệu bước nhảy của một số loài động vật; lắp ráp mô hình Ếch theo mẫu sử dụng não, pin, 1 động cơ, LED Bumper và cảm biến mắt; lập trình mô hình bật nhảy khi nhận tín hiệu từ LED Bumper, cảm biến mắt kết hợp nhóm thẻ lệnh Motion, Looks, if ... else và vòng lặp.",
+      "hardwareAndCommands": "Não, pin, 01 động cơ, LED Bumper, cảm biến mắt; nhóm thẻ lệnh Motion, Looks, if ... else và vòng lặp.",
+      "objectives": [
+        "Học viên hoàn thành mô hình.",
+        "Học viên hiểu nhiệm vụ lập trình.",
+        "Học viên hiểu ý nghĩa nội dung thẻ lệnh lập trình."
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1LegBNFP0PMdpe6oHwphEBNHF6-qkgbAV/edit?usp=drive_web&ouid=111038164751870348560&rtpof=true",
+      "reviewDocUrl": "",
+      "nextLesson": "Tay ai khỏe nhất?"
     },
     "10": {
       "sessionNumber": 10,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
-      "slideUrl": "",
-      "reviewDocUrl": ""
+      "title": "Tay ai khỏe nhất?",
+      "summary": "Giới thiệu ý tưởng thiết kế Robot từ cánh tay của một số loài động vật; lắp ráp mô hình cần trục có sử dụng ròng rọc, 1 động cơ, cảm biến mắt và LED Bumper; lập trình mô hình hoạt động.",
+      "hardwareAndCommands": "Hệ ròng rọc, 01 động cơ, cảm biến mắt, LED Bumper; lập trình điều khiển mô hình cần trục.",
+      "objectives": [
+        "Học viên ghi nhớ nguyên tắc hoạt động của hệ ròng rọc.",
+        "Học viên hiểu nhiệm vụ lập trình.",
+        "Học viên hiểu ý nghĩa nội dung thẻ lệnh lập trình."
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1IoHPmbN8al-k2UgfPj1Bs7bmvcX2aBqR/edit?usp=sharing&ouid=111038164751870348560&rtpof=true&sd=true",
+      "reviewDocUrl": "",
+      "nextLesson": "Báo đốm dũng mãnh"
     },
     "11": {
       "sessionNumber": 11,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
-      "slideUrl": "",
-      "reviewDocUrl": ""
+      "title": "Báo đốm dũng mãnh",
+      "summary": "Giới thiệu tốc độ của một số loài động vật; tìm hiểu cách bố trí bánh răng chủ động và thụ động để thay đổi tốc độ; lắp ráp mô hình Báo đốm và lập trình di chuyển với nhiều tốc độ khác nhau.",
+      "hardwareAndCommands": "Bánh răng chủ động và bánh răng thụ động; lập trình điều chỉnh tốc độ di chuyển.",
+      "objectives": [
+        "Học viên hiểu nguyên tắc sắp xếp bánh răng tùy thuộc vào mục đích.",
+        "Học viên hiểu nhiệm vụ lập trình.",
+        "Học viên hiểu ý nghĩa nội dung lập trình."
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1ErYByrHpOKXLJ2afT7YwvyyT0QNxMZZC/edit?usp=sharing&ouid=111038164751870348560&rtpof=true&sd=true",
+      "reviewDocUrl": "",
+      "nextLesson": "Công xưởng sáng tạo"
     },
     "12": {
       "sessionNumber": 12,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
-      "slideUrl": "",
-      "reviewDocUrl": ""
+      "title": "Công xưởng sáng tạo (Giải đề cuối khóa)",
+      "summary": "Ôn tập kiến thức đã học và lựa chọn mô hình thiết kế theo chủ đề bài học; tham gia giải đề cuối khóa xoay quanh chủ đề Khu vườn bách thú; hướng dẫn thuyết trình và quy trình trong buổi Demo.",
+      "hardwareAndCommands": "02 động cơ, cảm biến mắt, LED Bumper; tổng hợp kiến thức lập trình VEXcode GO và quy trình Demo.",
+      "objectives": [
+        "Học viên lên ý tưởng lắp ráp mô hình gồm 02 động cơ, cảm biến mắt, LED Bumper.",
+        "Học viên lập trình vận hành mô hình.",
+        "Học viên hiểu được quy trình Demo và các mục tiêu của phần thuyết trình."
+      ],
+      "slideUrl": "https://drive.google.com/file/d/1rc7izjuIVl-ZpjLZqMcuTO5Vqt4RQCUZ/view",
+      "reviewDocUrl": "",
+      "nextLesson": "Chuẩn bị DEMO Robot"
     },
     "13": {
       "sessionNumber": 13,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
+      "title": "Chuẩn bị DEMO Robot",
+      "summary": "Ôn tập kiến thức các thẻ lệnh đã học và hoàn thiện mô hình/chương trình Robot cuối khóa; hướng dẫn học viên luyện tập thuyết trình và trả lời các câu hỏi của ban giám khảo.",
+      "hardwareAndCommands": "Ôn tập kiến thức linh kiện, thẻ lệnh VEXcode GO và kỹ năng thuyết trình Demo.",
+      "objectives": [
+        "Học viên hiểu được quy trình Demo và nắm rõ kiến thức linh kiện/lập trình để trả lời câu hỏi từ ban giám khảo.",
+        "Tự tin luyện tập trình bày sản phẩm trước lớp."
+      ],
       "slideUrl": "",
-      "reviewDocUrl": ""
+      "reviewDocUrl": "https://drive.google.com/file/d/1H19wZjiF6W0pKmn3shTempMsjn60NUP4/view?usp=sharing",
+      "reviewDocLabel": "Tài liệu ôn tập kiến thức",
+      "extraLinks": [
+        {
+          "label": "Tài liệu ôn thuyết trình",
+          "url": "https://www.canva.com/design/DAGuQ3Red5g/HM7POidOqFBH4kl_tD30PA/edit?utm_content=DAGuQ3Red5g&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
+        }
+      ],
+      "nextLesson": "Demo Day — Báo cáo sản phẩm cuối khóa"
+    },
+    "14": {
+      "sessionNumber": 14,
+      "title": "Demo Day — Báo cáo sản phẩm cuối khóa & Tổng kết",
+      "summary": "Học viên trình diễn vận hành mô hình Robot cuối khóa chủ đề Khu vườn bách thú trước lớp, Ban giám khảo và Phụ huynh; thuyết trình ý tưởng thiết kế, giải thích cơ cấu truyền động/cảm biến và thuật toán lập trình if ... else, vòng lặp, đồng thời trả lời câu hỏi Q&A; tổng kết khóa học PREA, nhận xét thành tích và trao chứng nhận hoàn thành khóa học.",
+      "hardwareAndCommands": "Tổng hợp cơ cấu truyền động, cảm biến VEX GO và lập trình VEXcode GO nâng cao (if ... else, vòng lặp).",
+      "objectives": [
+        "Học viên tự tin thuyết trình, làm chủ sản phẩm Robot và vận dụng tổng hợp kiến thức đã học trong suốt 14 buổi.",
+        "Ghi nhận sự tiến bộ về tư duy cơ khí, lập trình VEXcode GO nâng cao và kỹ năng làm việc nhóm."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": "",
+      "nextLesson": "Hoàn thành khóa học PREA (Lộ trình tiếp theo: PREI / Robotics chuyên sâu)"
     }
   }
 }

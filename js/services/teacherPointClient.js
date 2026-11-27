@@ -109,18 +109,51 @@ class TeacherPointClient {
     return campuses[0] || '';
   }
 
+  _sendBg(type, payload = {}) {
+    return new Promise((resolve) => {
+      if (typeof chrome !== 'undefined' && chrome.runtime && chrome.runtime.sendMessage) {
+        chrome.runtime.sendMessage({ type, payload }, (res) => {
+          if (chrome.runtime.lastError) {
+            resolve({ success: false, error: chrome.runtime.lastError.message });
+            return;
+          }
+          resolve(res || { success: false, error: 'Không nhận được phản hồi từ Background Service Worker.' });
+        });
+      } else {
+        resolve(null);
+      }
+    });
+  }
+
   async parseGoogleForm(formUrl = DEFAULT_FORM_URL, forceRefresh = false) {
     const targetUrl = (formUrl && formUrl.trim()) ? formUrl.trim() : DEFAULT_FORM_URL;
     if (!forceRefresh && this.schemaCache.has(targetUrl)) {
       return this.schemaCache.get(targetUrl);
     }
 
-    const res = await fetch(targetUrl);
-    if (!res.ok) {
-      throw new Error(`Không thể tải Google Form (HTTP ${res.status}).`);
+    let html = '';
+    let finalUrl = targetUrl;
+
+    const bgRes = await this._sendBg('TEACHER_POINT_FETCH_FORM', { formUrl: targetUrl });
+    if (bgRes !== null) {
+      if (!bgRes.success) {
+        throw new Error(bgRes.error || `Không thể tải Google Form (HTTP ${bgRes.status || 0}).`);
+      }
+      html = bgRes.html || '';
+      finalUrl = bgRes.finalUrl || targetUrl;
+    } else {
+      const res = await fetch(targetUrl, { credentials: 'omit', redirect: 'follow' });
+      if (!res.ok) {
+        throw new Error(`Không thể tải Google Form (HTTP ${res.status}).`);
+      }
+      html = await res.text();
+      finalUrl = res.url || targetUrl;
     }
 
-    const html = await res.text();
+    if (/accounts\.google\.com/i.test(finalUrl) || /ServiceLogin/i.test(html)) {
+      throw new Error('Google Form yêu cầu đăng nhập tài khoản Google MindX trên trình duyệt.');
+    }
+
     const m = html.match(/var\s+FB_PUBLIC_LOAD_DATA_\s*=\s*(\[[\s\S]*?\]);\s*<\/script>/);
     if (!m) {
       throw new Error('Không tìm thấy dữ liệu FB_PUBLIC_LOAD_DATA_ trong Google Form.');
@@ -154,10 +187,10 @@ class TeacherPointClient {
     });
 
     const pageHistory = Array.from({ length: pageBreaks + 1 }, (_, i) => i).join(',');
-    const submitUrl = targetUrl.replace(/\/viewform(\?.*)?$/i, '/formResponse');
+    const submitUrl = finalUrl.replace(/\/viewform(\?.*)?$/i, '/formResponse').replace(/(\?.*)$/, '');
 
     const schema = {
-      formUrl: targetUrl,
+      formUrl: finalUrl,
       submitUrl,
       fbzx,
       pageHistory,
@@ -264,23 +297,38 @@ class TeacherPointClient {
       usedMessageIdx || new Set()
     );
 
-    const res = await fetch(schema.submitUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded'
-      },
+    const bgRes = await this._sendBg('TEACHER_POINT_SUBMIT', {
+      submitUrl: schema.submitUrl,
       body: params.toString()
     });
 
     const elapsedMs = Date.now() - t0;
-    const html = await res.text();
-    const confirmed =
-      res.status === 200 &&
-      (/freebirdFormviewerViewResponseConfirmationMessage/i.test(html) ||
-       /đã ghi lại câu trả lời|câu trả lời của bạn đã được ghi lại|your response has been recorded/i.test(html));
 
-    if (!confirmed) {
-      throw new Error(`Google Form không xác nhận đã lưu câu trả lời (HTTP ${res.status}).`);
+    if (bgRes !== null) {
+      if (!bgRes.success) {
+        throw new Error(bgRes.error || `Google Form không xác nhận đã lưu câu trả lời (HTTP ${bgRes.status || 0}).`);
+      }
+    } else {
+      const res = await fetch(schema.submitUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+        },
+        body: params.toString(),
+        credentials: 'omit',
+        redirect: 'follow'
+      });
+
+      const html = await res.text();
+      const hasFormReRender = /<form[^>]+action="[^"]*formResponse"/i.test(html);
+      const hasConfirmText =
+        /freebirdFormviewerViewResponseConfirmationMessage|class="[^"]*vHW8K[^"]*"/i.test(html) ||
+        /đã ghi lại câu trả lời|câu trả lời của bạn đã được ghi lại|your response has been recorded|gửi ý kiến phản hồi khác|gửi phản hồi khác|submit another response|chỉnh sửa câu trả lời|edit your response/i.test(html);
+      const confirmed = res.status === 200 && (hasConfirmText || !hasFormReRender);
+
+      if (!confirmed) {
+        throw new Error(`Google Form không xác nhận đã lưu câu trả lời (HTTP ${res.status}).`);
+      }
     }
 
     return {

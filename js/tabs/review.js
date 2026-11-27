@@ -709,6 +709,7 @@ export async function runReviewAiStreaming({ cls = reviewClass, session = review
           sessionNumber: reviewSession ? reviewSession.sessionNumber : 1,
           summary: reviewSummary
         },
+        provider: geminiConfig.provider,
         apiKey: geminiConfig.key,
         model: geminiConfig.model,
         styleConfig

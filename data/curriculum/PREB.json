@@ -4,123 +4,229 @@
   "category": "ROBOTICS",
   "platform": "VEX GO",
   "cluster": "PRE",
+  "slideFolderUrl": "https://drive.google.com/drive/folders/1gT_JMi6OGl28QShozGbsW-RrgBBKE2vO",
   "sessions": {
     "1": {
       "sessionNumber": 1,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
-      "slideUrl": "",
-      "reviewDocUrl": ""
+      "title": "Bệ phóng tên lửa",
+      "summary": "Học viên được giới thiệu VEX GO Kit và sử dụng tất cả các chi tiết nhựa có trong bộ Kit lắp ráp các mô hình đơn giản. Thử thách lắp ráp xoay quanh chủ đề Hành trình sao Hỏa.",
+      "hardwareAndCommands": "VEX GO Kit (chi tiết nhựa, não điều khiển, pin, switch, động cơ, cảm biến mắt, LED Bumper).",
+      "objectives": [
+        "Học viên ghi nhớ các thành phần điện tử của bộ Kit VEX GO bao gồm não, pin, switch, động cơ, cảm biến mắt và LED Bumper.",
+        "Học viên biết cách lắp ráp mô hình hoạt động hiệu quả.",
+        "Học viên ghi nhớ nguyên tắc hoạt động."
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1b3ergNl3Cw4H8ZKmppkd6KbNyf8xenzz/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "reviewDocUrl": "https://docs.google.com/document/d/128jE81vrOxp9GFllW0UPq_dK3wjyZ12Y/edit",
+      "nextLesson": "Dấu ấn sao Hỏa"
     },
     "2": {
       "sessionNumber": 2,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
-      "slideUrl": "",
-      "reviewDocUrl": ""
+      "title": "Dấu ấn sao Hỏa",
+      "summary": "Khám phá các linh kiện điện tử (não điều khiển, pin, động cơ, công tắc Switch) trong bộ VEX GO Kit và thực hành kết nối thành hệ thống hoàn chỉnh. Tìm hiểu nguyên lý hoạt động của động cơ, làm quen với môi trường lập trình VEXcode GO và thực hành sử dụng nhóm thẻ lệnh Motion để điều khiển chuyển động.",
+      "hardwareAndCommands": "Não điều khiển, pin, động cơ, công tắc (Switch); phần mềm VEXcode GO và nhóm thẻ lệnh Motion.",
+      "objectives": [
+        "Ghi nhớ tên gọi, nhận biết và phân biệt chức năng của các linh kiện điện tử trong bộ VEX GO Kit.",
+        "Hoàn thiện mô hình, biết cách kết nối các bộ phận để đảm bảo mô hình có thể hoạt động.",
+        "Thành thạo thao tác bật/tắt nguồn não điều khiển và kết nối thiết bị với phần mềm VEXcode GO.",
+        "Bước đầu vận dụng các thẻ lệnh lập trình để điều khiển chuyển động của mô hình."
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1OgbI98eWMS1ckoX0x6wvWabq3IZ6VDfE/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "reviewDocUrl": "https://docs.google.com/document/d/1bTfZneFd7BAFzQacFCj1VFsO0K8nwpmX/edit",
+      "nextLesson": "Phương tiện di chuyển trên sao Hỏa"
     },
     "3": {
       "sessionNumber": 3,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
-      "slideUrl": "",
-      "reviewDocUrl": ""
+      "title": "Phương tiện di chuyển trên sao Hỏa",
+      "summary": "Thảo luận đặc điểm và cách thiết kế mô hình Robot hoạt động hiệu quả trên bề mặt gồ ghề của Sao Hỏa; tìm hiểu nguyên lý cơ cấu truyền động; lắp ráp mô hình Robot “Ed” ứng dụng hệ thống bánh răng theo hai mẫu và lập trình điều khiển chuyển động.",
+      "hardwareAndCommands": "Cơ cấu truyền động bánh răng, mô hình Robot “Ed”; thẻ lệnh lập trình cơ bản điều khiển động cơ.",
+      "objectives": [
+        "Ghi nhớ nguyên lý hoạt động và ứng dụng của cơ cấu truyền động bánh răng.",
+        "Tự tin lắp ráp hoàn chỉnh mô hình Robot đảm bảo độ chắc chắn và vận hành mượt mà.",
+        "Làm chủ các thẻ lệnh lập trình cơ bản để điều khiển động cơ theo ý muốn."
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1bKb4shzsnx-i2zDBhIqqcf_55FVLxJ5H/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "reviewDocUrl": "https://drive.google.com/file/d/1wpc4bWEV84Opk1Vnmk3LAhSRDZ41kdiV/view",
+      "parentQuestions": [
+        "Theo con, bề mặt Sao Hỏa có gì đặc biệt khiến Robot cần phải thiết kế khác với xe chạy trên đường bình thường?",
+        "Trong mô hình hôm nay, cơ cấu truyền động và các bánh răng giúp Robot di chuyển như thế nào?",
+        "Con đã dùng thẻ lệnh lập trình nào để điều khiển động cơ giúp Robot chạy tiến/lùi trên Sao Hỏa?"
+      ],
+      "nextLesson": "Công xưởng sáng tạo"
     },
     "4": {
       "sessionNumber": 4,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
-      "slideUrl": "",
-      "reviewDocUrl": ""
+      "title": "Công xưởng sáng tạo",
+      "summary": "Dưới sự hướng dẫn của giáo viên, học viên thảo luận mô hình Robot có thể hoạt động trên bề mặt Sao Hỏa; làm quen cơ cấu truyền động; lắp ráp mô hình Robot sử dụng bánh răng theo hai mẫu và lập trình mô hình chuyển động.",
+      "hardwareAndCommands": "Cơ cấu truyền động bánh răng, pin, switch, động cơ; kiến thức lập trình các buổi học trước.",
+      "objectives": [
+        "Hoàn thiện kỹ năng lắp ráp mô hình; thao tác kết nối pin, switch, động cơ.",
+        "Học viên ghi nhớ kiến thức lập trình các bài học trước.",
+        "Học viên biết cách lắp ráp mô hình hoạt động hiệu quả."
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/17Mt4npZUyqZkGO54k7YjDOZ9IC99n2s1/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "reviewDocUrl": "https://drive.google.com/file/d/1wpc4bWEV84Opk1Vnmk3LAhSRDZ41kdiV/view",
+      "nextLesson": "Siêu xe tránh bão"
     },
     "5": {
       "sessionNumber": 5,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
-      "slideUrl": "",
-      "reviewDocUrl": ""
+      "title": "Siêu xe tránh bão",
+      "summary": "Giới thiệu những cơn bão cát trên Sao Hỏa; lắp ráp mô hình Siêu xe có sử dụng hệ thống bánh răng theo trình tự không động cơ (áp dụng lực đàn hồi) và có động cơ.",
+      "hardwareAndCommands": "Hệ thống bánh răng, lực đàn hồi, pin, switch, động cơ; VEXcode GO với thao tác kéo thả lệnh di chuyển và gia tốc.",
+      "objectives": [
+        "Hoàn thiện kỹ năng lắp ráp mô hình xe tránh bão.",
+        "Thao tác kết nối pin, switch, động cơ.",
+        "Thao tác tắt mở nguồn cho bộ não và kết nối vào phần mềm lập trình VEXcode GO.",
+        "Thực hiện thao tác kéo thả lệnh di chuyển và gia tốc."
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1q1R6x5_oYDqCyYaLRSI3Xrl72sKu38Uq/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "reviewDocUrl": "https://drive.google.com/file/d/19XJPKQ4QxRf4W-OprQCU1TDFcCk3Qp2o/view",
+      "nextLesson": "Xe di chuyển trên địa hình gồ ghề"
     },
     "6": {
       "sessionNumber": 6,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
-      "slideUrl": "",
-      "reviewDocUrl": ""
+      "title": "Xe di chuyển trên địa hình gồ ghề",
+      "summary": "Giới thiệu các ý tưởng thiết kế Robot; lựa chọn mô hình Robot di chuyển trên địa hình gồ ghề; lắp ráp mô hình Xe sử dụng hệ thống bánh răng, não, pin và 1 động cơ; lập trình theo trình tự sử dụng thẻ lệnh Wait và nhóm thẻ lệnh Motion.",
+      "hardwareAndCommands": "Hệ thống bánh răng, não, pin, 01 động cơ; thẻ lệnh Wait và nhóm thẻ lệnh Motion.",
+      "objectives": [
+        "Hoàn thiện kỹ năng lắp ráp mô hình di chuyển trên địa hình gồ ghề.",
+        "Thao tác tắt mở nguồn cho bộ não và kết nối vào phần mềm lập trình VEXcode GO.",
+        "Học viên ghi nhớ kiến thức lập trình các bài học trước.",
+        "Học viên biết cách lắp ráp mô hình hoạt động hiệu quả."
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1320eKpDvGCrlgZQs_dQvU3WeTVgwjmCy/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "reviewDocUrl": "https://drive.google.com/file/d/1Ua1HBatfLu_4HBSjVDpdCh3qcprjN3ue/view",
+      "nextLesson": "Hủy bỏ nhiệm vụ khẩn cấp"
     },
     "7": {
       "sessionNumber": 7,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
-      "slideUrl": "",
-      "reviewDocUrl": ""
+      "title": "Hủy bỏ nhiệm vụ khẩn cấp",
+      "summary": "Giới thiệu cảm biến LED Bumper; lắp ráp mô hình Robot có sử dụng LED Bumper; lập trình theo trình tự mô hình hoạt động và ngưng hoạt động khi nhận tín hiệu từ LED Bumper với thẻ lệnh Wait Until.",
+      "hardwareAndCommands": "Não, pin, động cơ, cảm biến LED Bumper; thẻ lệnh Wait Until.",
+      "objectives": [
+        "Hoàn thiện kỹ năng lắp ráp mô hình hủy bỏ nhiệm vụ khẩn cấp.",
+        "Thao tác kết nối não, pin, động cơ.",
+        "Học viên ghi nhớ kiến thức lập trình các bài học trước.",
+        "Học viên biết cách lắp ráp mô hình hoạt động hiệu quả.",
+        "Học viên ghi nhớ nguyên tắc hoạt động của LED Bumper."
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/12lke974DzxV3c0-E0uym7RWrwz0Hx2Kv/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "reviewDocUrl": "https://docs.google.com/document/d/1t2xTTM3ZNvYikiS--IRa78lIsZXnhhgv/edit?usp=sharing&ouid=111038164751870348560&rtpof=true&sd=true",
+      "nextLesson": "Công xưởng sáng tạo"
     },
     "8": {
       "sessionNumber": 8,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
-      "slideUrl": "",
-      "reviewDocUrl": ""
+      "title": "Công xưởng sáng tạo",
+      "summary": "Dưới sự hướng dẫn của giáo viên, học viên thảo luận mô hình Robot hoạt động trên bề mặt Sao Hỏa; ôn tập cơ cấu truyền động; lắp ráp mô hình Robot sử dụng bánh răng theo hai mẫu và lập trình mô hình chuyển động.",
+      "hardwareAndCommands": "Cơ cấu truyền động bánh răng, não, pin, động cơ; kiến thức lập trình các buổi học trước.",
+      "objectives": [
+        "Học viên ghi nhớ kiến thức lập trình các bài học trước.",
+        "Học viên biết cách lắp ráp mô hình hoạt động hiệu quả."
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1uqR-yDptAWbYmhSp6nNkZIYxDr5AsFZ8/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "reviewDocUrl": "https://drive.google.com/file/d/1EyhllQnVzDUt9oTC3W0rV9Z6mK3SdIwC/view",
+      "nextLesson": "Thu thập mẫu vật"
     },
     "9": {
       "sessionNumber": 9,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
-      "slideUrl": "",
-      "reviewDocUrl": ""
+      "title": "Thu thập mẫu vật",
+      "summary": "Giới thiệu nhiệm vụ chiếc Rover tự hành Perseverance trên Sao Hỏa và kiến thức về nam châm, nam châm điện; lắp ráp mô hình Robot có sử dụng nam châm điện; hiểu ý nghĩa thẻ lệnh Energize.",
+      "hardwareAndCommands": "Nam châm, nam châm điện, não, pin, động cơ; thẻ lệnh Energize.",
+      "objectives": [
+        "Học viên ghi nhớ kiến thức lập trình các bài học trước.",
+        "Học viên hiểu ý nghĩa thẻ lệnh Energize.",
+        "Hoàn thiện kỹ năng lắp ráp mô hình thu thập mẫu vật.",
+        "Thao tác kết nối não, pin, động cơ."
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1i1DO99n5_lII_V_4Q4rEqxbYIOdp11Xj/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "reviewDocUrl": "https://drive.google.com/file/d/1rE_xfctOPtL1ugnZ-BnmuxYVmYzb0HZp/view",
+      "nextLesson": "Những hòn đá đầy màu sắc"
     },
     "10": {
       "sessionNumber": 10,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
-      "slideUrl": "",
-      "reviewDocUrl": ""
+      "title": "Những hòn đá đầy màu sắc",
+      "summary": "Giới thiệu Cảm biến mắt (Eye Sensor) và lắp ráp mô hình có sử dụng Cảm biến mắt; ôn tập các thẻ lệnh Energize; lập trình theo trình tự mô hình hoạt động và ngưng hoạt động khi nhận tín hiệu màu sắc.",
+      "hardwareAndCommands": "Cảm biến mắt (Eye Sensor), não, pin, động cơ; thẻ lệnh Energize và lập trình nhận tín hiệu màu sắc.",
+      "objectives": [
+        "Học viên ghi nhớ số lượng màu sắc mà cảm biến mắt có thể nhận dạng.",
+        "Học viên biết cách lắp ráp mô hình hoạt động hiệu quả.",
+        "Hoàn thiện kỹ năng lắp ráp mô hình thu thập.",
+        "Thao tác tắt mở nguồn cho bộ não và kết nối vào phần mềm lập trình VEXcode GO."
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1Irz2firrgClnqsK5SCkRVkoaSJVQ8tca/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "reviewDocUrl": "https://docs.google.com/document/d/1Rbk9EhIodXANwv3ZWwjiGCvZtF3DI4eT/edit",
+      "nextLesson": "Đèn tín hiệu nguy cấp"
     },
     "11": {
       "sessionNumber": 11,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
-      "slideUrl": "",
-      "reviewDocUrl": ""
+      "title": "Đèn tín hiệu nguy cấp",
+      "summary": "Giới thiệu cảm biến và tính năng thay đổi theo màu sắc của LED Bumper; lắp ráp mô hình Robot có sử dụng LED Bumper; lập trình theo trình tự mô hình hoạt động và ngưng hoạt động khi nhận tín hiệu từ LED Bumper với thẻ lệnh Wait Until.",
+      "hardwareAndCommands": "Cảm biến LED Bumper; thẻ lệnh Wait Until, thẻ lệnh thay đổi màu sắc LED Bumper và thẻ lệnh Repeat.",
+      "objectives": [
+        "Học viên ghi nhớ nguyên tắc hoạt động của LED Bumper và số lượng màu sắc LED Bumper có thể thay đổi.",
+        "Học viên biết ý nghĩa thẻ lệnh thay đổi màu sắc LED Bumper và hiểu ý nghĩa thẻ lệnh Repeat."
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/1gZix23zDFNT4vS8BGdXP64CJ0AAXy-2t/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "reviewDocUrl": "https://drive.google.com/file/d/1Ydq5FqbsweTeDxtUWQNSO93cy3deMSxN/view",
+      "nextLesson": "Công xưởng sáng tạo"
     },
     "12": {
       "sessionNumber": 12,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
-      "slideUrl": "",
-      "reviewDocUrl": ""
+      "title": "Công xưởng sáng tạo (Giải đề cuối khóa)",
+      "summary": "Ôn tập kiến thức đã học và lựa chọn mô hình thiết kế theo chủ đề bài học; tham gia giải đề cuối khóa xoay quanh chủ đề Hành trình thám hiểm Sao Hỏa; hướng dẫn thuyết trình và quy trình trong buổi Demo.",
+      "hardwareAndCommands": "02 động cơ, cảm biến mắt, LED Bumper; tổng hợp kiến thức lập trình VEXcode GO và quy trình Demo.",
+      "objectives": [
+        "Học viên lên ý tưởng lắp ráp mô hình gồm 02 động cơ, cảm biến mắt, LED Bumper.",
+        "Học viên lập trình vận hành mô hình.",
+        "Học viên hiểu được quy trình Demo và các mục tiêu của phần thuyết trình."
+      ],
+      "slideUrl": "https://docs.google.com/presentation/d/10WdXGrkU4LQLGZOvDZM0nbh5MrVFzH0K/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "reviewDocUrl": "https://docs.google.com/document/d/19XeTiGp4mVjTECy4yYIo0wc9dKmC7GmD/edit?usp=sharing&ouid=111038164751870348560&rtpof=true&sd=true",
+      "reviewDocLabel": "Tài liệu ôn tập (Linh kiện & Thẻ lệnh)",
+      "extraLinks": [
+        {
+          "label": "Hướng dẫn thuyết trình",
+          "url": "https://www.canva.com/design/DAG8U-o52U8/HnTOqovtVM1XW44r9bV-XQ/edit?utm_content=DAG8U-o52U8&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
+        }
+      ],
+      "nextLesson": "Chuẩn bị DEMO Robot"
     },
     "13": {
       "sessionNumber": 13,
-      "title": "",
-      "summary": "",
-      "hardwareAndCommands": "",
-      "objectives": [],
+      "title": "Chuẩn bị DEMO Robot",
+      "summary": "Ôn tập kiến thức các thẻ lệnh đã học và hoàn thiện mô hình/chương trình Robot cuối khóa; hướng dẫn học viên luyện tập thuyết trình và trả lời các câu hỏi của ban giám khảo.",
+      "hardwareAndCommands": "Ôn tập công dụng linh kiện điện tử, thẻ lệnh VEXcode GO và kỹ năng thuyết trình Demo.",
+      "objectives": [
+        "Học viên hiểu được quy trình Demo và nắm rõ kiến thức linh kiện/lập trình để trả lời câu hỏi từ ban giám khảo.",
+        "Tự tin luyện tập trình bày sản phẩm theo cá nhân/nhóm."
+      ],
       "slideUrl": "",
-      "reviewDocUrl": ""
+      "reviewDocUrl": "https://www.canva.com/design/DAGUoXyaa2s/wMyF14hYbVXqYoRYffe6OQ/edit?utm_content=DAGUoXyaa2s&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
+      "reviewDocLabel": "Tài liệu ôn công dụng linh kiện điện tử",
+      "extraLinks": [
+        {
+          "label": "Tài liệu ôn thuyết trình (Mẫu Nhóm)",
+          "url": "https://canva.link/fv8qli46cgresec"
+        },
+        {
+          "label": "Tài liệu ôn thuyết trình (Mẫu Cá nhân)",
+          "url": "https://canva.link/rve6x45weaol44q"
+        }
+      ],
+      "nextLesson": "Demo Day — Báo cáo sản phẩm cuối khóa"
+    },
+    "14": {
+      "sessionNumber": 14,
+      "title": "Demo Day — Báo cáo sản phẩm cuối khóa & Tổng kết",
+      "summary": "Học viên trình diễn vận hành mô hình Robot cuối khóa chủ đề Hành trình thám hiểm Sao Hỏa trước lớp và Ban giám khảo/Phụ huynh; thuyết trình ý tưởng thiết kế, giải thích cơ cấu lắp ráp/thẻ lệnh lập trình và trả lời câu hỏi Q&A; tổng kết khóa học PREB, nhận xét thành tích và trao chứng nhận hoàn thành khóa học.",
+      "hardwareAndCommands": "Tổng hợp linh kiện VEX GO và kiến thức lập trình VEXcode GO trong suốt 14 buổi.",
+      "objectives": [
+        "Học viên tự tin thuyết trình, làm chủ sản phẩm Robot và vận dụng tổng hợp kiến thức đã học trong suốt 14 buổi.",
+        "Ghi nhận sự tiến bộ về tư duy kỹ thuật, lập trình VEXcode GO và kỹ năng làm việc nhóm."
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": "",
+      "nextLesson": "Hoàn thành khóa học PREB (Lộ trình tiếp theo: PREA / Robotics nâng cao)"
     }
   }
 }

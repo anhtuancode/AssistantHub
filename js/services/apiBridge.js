@@ -199,15 +199,18 @@ export async function apiRequest(endpoint, options = {}) {
       return await sendToBackground('API_LOGS', { limit });
     }
 
-    // --- Gemini AI Routes ---
+    // --- AI Multi-Provider Routes ---
     if (path === '/api/gemini/models' && method === 'POST') {
+      if (body.provider) {
+        return await geminiClient.fetchModels(body.provider, body.apiKey, { forceRefresh: body.forceRefresh !== false });
+      }
       return await geminiClient.listModels(body.apiKey, { forceRefresh: body.forceRefresh !== false });
     }
     if (path === '/api/gemini/test' && method === 'POST') {
-      return await geminiClient.testConnection(body.apiKey, body.model);
+      return await geminiClient.testConnection(body.apiKey, body.model, body.provider || 'gemini');
     }
     if (path === '/api/gemini/summary' && method === 'POST') {
-      const summary = await geminiClient.generateSummary(body.lessonData, body.apiKey, body.model);
+      const summary = await geminiClient.generateSummary(body.lessonData, body.apiKey, body.model, body.provider || 'gemini');
       return { success: true, summary };
     }
     if (path === '/api/gemini/comment' && method === 'POST') {
@@ -216,7 +219,8 @@ export async function apiRequest(endpoint, options = {}) {
         body.lessonData,
         body.apiKey,
         body.model,
-        body.styleConfig || body.style
+        body.styleConfig || body.style,
+        body.provider || 'gemini'
       );
       return { success: true, comment, usedFallback: Boolean(geminiClient._lastUsedFallback) };
     }
@@ -228,7 +232,8 @@ export async function apiRequest(endpoint, options = {}) {
         body.model,
         body.styleConfig || body.style,
         typeof options.onProgress === 'function' ? options.onProgress : null,
-        typeof options.onStream === 'function' ? options.onStream : null
+        typeof options.onStream === 'function' ? options.onStream : null,
+        body.provider || 'gemini'
       );
       return { success: true, results, usedFallback: Boolean(geminiClient._lastUsedFallback) };
     }

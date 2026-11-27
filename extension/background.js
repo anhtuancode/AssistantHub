@@ -720,6 +720,90 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         return;
       }
 
+      if (type === 'TEACHER_POINT_FETCH_FORM') {
+        const targetUrl = String(payload?.formUrl || '').trim();
+        if (!targetUrl) {
+          sendResponse({ success: false, error: 'Thiếu URL Google Form.' });
+          return;
+        }
+        let res = await fetch(targetUrl, {
+          method: 'GET',
+          credentials: 'omit',
+          redirect: 'follow'
+        });
+        if (/accounts\.google\.com/i.test(res.url || '')) {
+          res = await fetch(targetUrl, {
+            method: 'GET',
+            credentials: 'include',
+            redirect: 'follow'
+          });
+        }
+        const html = await res.text();
+        sendResponse({
+          success: res.ok,
+          status: res.status,
+          finalUrl: res.url || targetUrl,
+          html,
+          error: res.ok ? undefined : `Không thể tải Google Form (HTTP ${res.status}).`
+        });
+        return;
+      }
+
+      if (type === 'TEACHER_POINT_SUBMIT') {
+        const formResponseUrl = String(payload?.submitUrl || '').trim();
+        const bodyStr = String(payload?.body || '');
+        if (!formResponseUrl || !bodyStr) {
+          sendResponse({ success: false, error: 'Thiếu URL hoặc dữ liệu gửi Google Form.' });
+          return;
+        }
+        let res = await fetch(formResponseUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+          },
+          body: bodyStr,
+          credentials: 'omit',
+          redirect: 'follow'
+        });
+        if (/accounts\.google\.com/i.test(res.url || '')) {
+          res = await fetch(formResponseUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+            },
+            body: bodyStr,
+            credentials: 'include',
+            redirect: 'follow'
+          });
+        }
+        const html = await res.text();
+        const finalUrl = res.url || formResponseUrl;
+
+        if (/accounts\.google\.com/i.test(finalUrl) || /ServiceLogin/i.test(html)) {
+          const msg = 'Google Form yêu cầu đăng nhập tài khoản Google MindX trên Chrome.';
+          await appendLog('ERROR', `[TeacherPoint] ${msg}`);
+          sendResponse({ success: false, status: res.status, error: msg });
+          return;
+        }
+
+        const hasFormReRender = /<form[^>]+action="[^"]*formResponse"/i.test(html);
+        const hasConfirmText =
+          /freebirdFormviewerViewResponseConfirmationMessage|class="[^"]*vHW8K[^"]*"/i.test(html) ||
+          /đã ghi lại câu trả lời|câu trả lời của bạn đã được ghi lại|your response has been recorded|gửi ý kiến phản hồi khác|gửi phản hồi khác|submit another response|chỉnh sửa câu trả lời|edit your response/i.test(html);
+        const confirmed = res.status === 200 && (hasConfirmText || !hasFormReRender);
+
+        if (!confirmed) {
+          const titleMatch = html.match(/<title>([^<]+)<\/title>/i);
+          const msg = `Google Form không xác nhận đã lưu câu trả lời (HTTP ${res.status}${titleMatch ? ` — ${titleMatch[1].trim()}` : ''}).`;
+          await appendLog('ERROR', `[TeacherPoint] ${msg} (${finalUrl})`);
+          sendResponse({ success: false, status: res.status, error: msg });
+          return;
+        }
+
+        sendResponse({ success: true, status: res.status, finalUrl });
+        return;
+      }
+
       sendResponse({ success: false, error: `Unknown message type: ${type}` });
     } catch (err) {
       await appendLog('ERROR', `[Background] ${err.message}`);

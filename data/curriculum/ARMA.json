@@ -15,7 +15,7 @@
         "Hiểu được chức năng, nhiệm vụ và lợi ích của cánh tay Robot trong thực tế.",
         "Phát triển tư duy kỹ thuật, sự khéo léo và kỹ năng giải quyết vấn đề thông qua lắp ráp."
       ],
-      "slideUrl": "",
+      "slideUrl": "https://docs.google.com/presentation/d/1h89IOyPCo4FSDIwqbj1UyoTyyyxFy2_T/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
       "reviewDocUrl": ""
     },
     "2": {
@@ -28,7 +28,7 @@
         "Hiểu ý nghĩa thẻ lệnh repeat ... until và phân biệt sự giống/khác nhau với vòng lặp thông thường.",
         "Hiểu nhiệm vụ và lập trình cánh tay Robot di chuyển đồ vật chính xác."
       ],
-      "slideUrl": "",
+      "slideUrl": "https://docs.google.com/presentation/d/1qKn--eumiEBH77xBzebXLuiVx37DRRzV/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
       "reviewDocUrl": ""
     },
     "3": {
@@ -40,7 +40,7 @@
         "Vận dụng thành thạo biến số, toán tử logic và thẻ lệnh repeat ... until.",
         "Phân tích, đánh giá và tự sửa các lỗi chương trình thường gặp."
       ],
-      "slideUrl": "",
+      "slideUrl": "https://docs.google.com/presentation/d/1vcs2-fGzFDqFBHT2ZF10CtdHTmbhdS2g/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
       "reviewDocUrl": ""
     },
     "4": {
@@ -52,7 +52,7 @@
         "Ghi nhớ kiến thức lập trình và quy trình thiết kế, lắp ráp Robot.",
         "Lắp ráp, tối ưu mô hình hoạt động ổn định và phối hợp nhóm thi đấu."
       ],
-      "slideUrl": "",
+      "slideUrl": "https://docs.google.com/presentation/d/1VrtLb6XD811RU5xSJsORXpX4ZyR1WbZa/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
       "reviewDocUrl": ""
     },
     "5": {
@@ -65,7 +65,7 @@
         "Hoàn thiện mô hình sử dụng 03 động cơ và cảm biến mắt.",
         "Thành thạo thao tác thiết lập, kết nối và kéo thả câu lệnh."
       ],
-      "slideUrl": "",
+      "slideUrl": "https://docs.google.com/presentation/d/1mC2fS_dxIb5Jl9UHHZP7ITpdvnKUxfW0/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
       "reviewDocUrl": ""
     },
     "6": {
@@ -77,7 +77,7 @@
         "Hoàn thiện mô hình sử dụng 03 động cơ, cảm biến mắt và LED Bumper.",
         "Hiểu và vận dụng câu lệnh rẽ nhánh <if ... elif ... else> vào lập trình điều khiển."
       ],
-      "slideUrl": "",
+      "slideUrl": "https://docs.google.com/presentation/d/1DnThP36PoR03-MWvofV98zCcC3AaZqWv/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
       "reviewDocUrl": ""
     },
     "7": {
@@ -89,7 +89,7 @@
         "Hoàn thiện mô hình trực thăng sử dụng 03 động cơ, cảm biến mắt, LED Bumper.",
         "Thành thạo kéo thả và vận dụng <if ... elif ... else> vào nhiệm vụ thực tế."
       ],
-      "slideUrl": "",
+      "slideUrl": "https://docs.google.com/presentation/d/1G2eQ08jWymFIqEmYE94aEImVDvhQhKJd/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
       "reviewDocUrl": ""
     },
     "8": {
@@ -101,7 +101,7 @@
         "Lên ý tưởng và lắp ráp mô hình gồm 02-03 động cơ, cảm biến mắt, LED Bumper.",
         "Lập trình vận hành mô hình hoàn thành nhiệm vụ thi đấu nhóm."
       ],
-      "slideUrl": "",
+      "slideUrl": "https://docs.google.com/presentation/d/1JZz5nYlOXRyGa0Zxfg-oPP0r0IEsoiGi/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
       "reviewDocUrl": ""
     },
     "9": {
@@ -113,7 +113,7 @@
         "Hoàn thiện mô hình Cỗ máy biết vẽ kết hợp LED Bumper và cảm biến mắt.",
         "Hiểu và vận dụng thẻ lệnh <repeat ... until> để lập trình vẽ hình đối xứng."
       ],
-      "slideUrl": "",
+      "slideUrl": "https://docs.google.com/presentation/d/1o2ObKgq4Ef_MHMiCFqiqYefG6lDI2v0m/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
       "reviewDocUrl": ""
     },
     "10": {
@@ -125,7 +125,7 @@
         "Vận hành hoàn chỉnh mô hình Cỗ máy biết vẽ.",
         "Thành thạo thiết lập, kết nối và lập trình với <repeat ... until>."
       ],
-      "slideUrl": "",
+      "slideUrl": "https://docs.google.com/presentation/d/16MI7akEzi9Pb-XiQQsEJ8Gj7yKEYuVSy/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
       "reviewDocUrl": ""
     },
     "11": {
@@ -137,7 +137,7 @@
         "Hiểu thuật toán bám tường và nhóm thẻ lệnh điều kiện lồng nhau.",
         "Sáng tạo mô hình và lập trình hoàn thành thử thách thoát khỏi mê cung."
       ],
-      "slideUrl": "",
+      "slideUrl": "https://docs.google.com/presentation/d/1cJ9pHNrnevIOF6laT6KwAEsKyTmf3kJv/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
       "reviewDocUrl": ""
     },
     "12": {
@@ -149,7 +149,7 @@
         "Lên ý tưởng, lắp ráp và lập trình vận hành mô hình giải đề cuối khóa.",
         "Hiểu rõ quy trình Demo và các tiêu chí của phần thuyết trình."
       ],
-      "slideUrl": "",
+      "slideUrl": "https://docs.google.com/presentation/d/1HfEwx2myZboErYR_PpB7ZXoTOmOrafBu/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
       "reviewDocUrl": ""
     },
     "13": {
@@ -163,6 +163,19 @@
       ],
       "slideUrl": "",
       "reviewDocUrl": ""
+    },
+    "14": {
+      "sessionNumber": 14,
+      "title": "Thuyết trình Robot",
+      "summary": "Học viên trình diễn và thuyết trình sản phẩm Robot cuối khóa trước lớp, Ban giám khảo và Phụ huynh; giải thích cơ cấu cánh tay/truyền động, cảm biến và thuật toán lập trình; tổng kết khóa học ARMA.",
+      "hardwareAndCommands": "Sản phẩm Robot dự án cuối khóa, kỹ năng thuyết trình và trả lời câu hỏi Q&A.",
+      "objectives": [
+        "Tự tin thuyết trình và vận hành sản phẩm Robot hoàn chỉnh",
+        "Tổng hợp kiến thức cơ khí và lập trình VEXcode GO trong suốt 14 buổi"
+      ],
+      "slideUrl": "",
+      "reviewDocUrl": "",
+      "nextLesson": "Hoàn thành khóa học ARMA (Lộ trình tiếp theo: ARMI)"
     }
   }
 }

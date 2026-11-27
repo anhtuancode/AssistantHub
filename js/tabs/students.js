@@ -500,7 +500,7 @@ function renderStudentsTable() {
 
       const geminiConfig = getGeminiConfig();
       if (!geminiConfig.key) {
-        toast.error('Chưa cấu hình Gemini API Key. Vui lòng vào tab Cấu hình để nhập API Key.');
+        toast.error('Chưa cấu hình API Key AI. Vui lòng vào tab Cấu hình để nhập API Key.');
         return;
       }
 
@@ -524,6 +524,7 @@ function renderStudentsTable() {
               sessionNumber: currentSession ? currentSession.sessionNumber : 1,
               summary: summaryText
             },
+            provider: geminiConfig.provider,
             apiKey: geminiConfig.key,
             model: geminiConfig.model,
             styleConfig: currentStyleConfig
@@ -595,6 +596,7 @@ function bindStudentsEvents() {
               sessionNumber: currentSession ? currentSession.sessionNumber : 1,
               summary: summaryBox.value
             },
+            provider: geminiConfig.provider,
             apiKey: geminiConfig.key,
             model: geminiConfig.model
           })
