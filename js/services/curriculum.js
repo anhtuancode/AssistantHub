@@ -133,8 +133,11 @@ export class CurriculumService {
       courseData.sessions = Object.values(courseData.sessions);
     }
 
-    // Sắp xếp các buổi học theo sessionNumber tăng dần
+    // Sắp xếp các buổi học theo sessionNumber tăng dần và chuẩn hóa trường tùy chọn buildUrl
     if (Array.isArray(courseData.sessions)) {
+      courseData.sessions.forEach(s => {
+        if (s && typeof s.buildUrl !== 'string') s.buildUrl = '';
+      });
       courseData.sessions.sort((a, b) => (parseInt(a.sessionNumber, 10) || 0) - (parseInt(b.sessionNumber, 10) || 0));
     }
 

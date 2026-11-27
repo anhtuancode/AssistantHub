@@ -16,6 +16,9 @@
         "Phân tích và bố trí bánh răng phù hợp mục đích truyền động"
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1jms60ZNpZ0j-NZ1NcwpcKiyN5TvLmlb4/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "builds": [
+        { "label": "Mô hình Crab", "url": "https://drive.google.com/file/d/1Rl4faVuSxZOub9MLIdPiPgY-UcC9D4ID/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": ""
     },
     "2": {
@@ -29,6 +32,9 @@
         "Hiểu và vận dụng thẻ lệnh repeat () và wait until <>"
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1YfvNy3EAUqM7JRre5AfqakaYbsfpJke7/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "builds": [
+        { "label": "Hướng dẫn lắp ráp", "url": "https://drive.google.com/file/d/13vfQrou0UA5af00oHsGFizq8PNb2oNyt/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": ""
     },
     "3": {
@@ -41,6 +47,9 @@
         "Hiểu và vận dụng câu lệnh điều kiện if ... else kết hợp cảm biến mắt và LED Bumper"
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1gUDhnF--e4xJVsSEeB5_Nuuifn86JqhB/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "builds": [
+        { "label": "Hướng dẫn lắp ráp", "url": "https://drive.google.com/file/d/1jIoGlFWQF6FGuLokzog9F1HBSnfYG6HD/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": ""
     },
     "4": {
@@ -53,6 +62,7 @@
         "Phối hợp làm việc nhóm và thi đấu sản phẩm"
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1zsjZ_-Hotr3GNTHqGHosj-GL8InKWzT7/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "builds": [],
       "reviewDocUrl": ""
     },
     "5": {
@@ -65,6 +75,10 @@
         "Hoàn thiện mô hình có tốc độ và lực kéo tốt"
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1qT4vxCzH7F09MRh61xVccB_0ja_8QvBQ/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "builds": [
+        { "label": "Mô hình 1 động cơ", "url": "https://drive.google.com/file/d/1EOrH8lIGmtoUBAwF9KQOQi9yMmRkokfw/view?usp=drivesdk" },
+        { "label": "Mô hình 2 động cơ", "url": "https://drive.google.com/file/d/1g8aHkaZebjKNCEx0rlIO7bNV6fPR8rjh/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": ""
     },
     "6": {
@@ -77,6 +91,9 @@
         "Hiểu nhiệm vụ lập trình kết hợp đa điều kiện if-then và wait until"
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1-xlyz_CFh_lSFn9KSdqzNHJM0PzifqYz/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "builds": [
+        { "label": "Hướng dẫn lắp ráp", "url": "https://drive.google.com/file/d/1GqunX2TU_X4evmSb_vUQrUU4dj9ZjvUq/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": ""
     },
     "7": {
@@ -89,6 +106,9 @@
         "Thành thạo thiết lập, kết nối, kéo thả lệnh và vận dụng <if ... then ... else>"
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1on49snFfJXYYagEnuHFlkw-LamhDaNp6/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "builds": [
+        { "label": "Hướng dẫn lắp ráp", "url": "https://drive.google.com/file/d/1eYQRn7qI9KbrmOMvw17P0QcJjPl9eW7f/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": ""
     },
     "8": {
@@ -101,6 +121,7 @@
         "Lập trình vận hành mô hình và hoàn thành thuyết trình nhóm"
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1X97-qvI7Scdc4yXdfimafXqgw98aX7Vx/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "builds": [],
       "reviewDocUrl": ""
     },
     "9": {
@@ -113,6 +134,9 @@
         "Vận dụng câu lệnh điều kiện if ... else kết hợp LED Bumper"
       ],
       "slideUrl": "https://docs.google.com/presentation/d/16IsRmKpdFHtySQFGo2umbisBT3JpEKJv/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "builds": [
+        { "label": "Hướng dẫn lắp ráp", "url": "https://drive.google.com/file/d/1cLRiE6Vw5dXedn1N9KYnROy2FJHZgYnk/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": ""
     },
     "10": {
@@ -125,6 +149,9 @@
         "Hoàn thiện mô hình và vận dụng câu lệnh điều kiện vào nhiệm vụ"
       ],
       "slideUrl": "https://docs.google.com/presentation/d/13Kat6c2jEqbB33UoGtH_jH7zhrBMhs4q/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "builds": [
+        { "label": "Hướng dẫn lắp ráp", "url": "https://drive.google.com/file/d/1YAL3vYHbpHzYDgDFsG4KV4J_QXN2W1kV/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": ""
     },
     "11": {
@@ -137,6 +164,10 @@
         "Hoàn thiện mô hình và chương trình điều khiển"
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1_zy-6xb83nxqw6KI5MVhMxXHkbvVWhKv/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "builds": [
+        { "label": "Mô hình cơ bản", "url": "https://drive.google.com/file/d/1ULHKA0bEHmFYZpxI90ojqoUHHi2sAzpN/view?usp=drivesdk" },
+        { "label": "Mô hình cải tiến", "url": "https://drive.google.com/file/d/1LwlWvHWn9mOfr5A7b-hyca_7jgXBTp4u/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": ""
     },
     "12": {
@@ -149,6 +180,7 @@
         "Hiểu rõ quy trình Demo và tiêu chí thuyết trình"
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1sv_l2Q6EmGixp_b1bdHvf1waMQCmLeLt/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "builds": [],
       "reviewDocUrl": ""
     },
     "13": {
@@ -161,6 +193,11 @@
         "Hoàn thành thuyết trình thử tự tin, rõ ràng"
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1NaRzoka0ulFMMiUixdXEC45eW2U76pOk/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "builds": [
+        { "label": "Mô hình Rev3", "url": "https://drive.google.com/file/d/1did693eLuVK-Nnl0joO5qEEmPxzo1d2s/view?usp=drivesdk" },
+        { "label": "Mô hình Rev6", "url": "https://drive.google.com/file/d/1h6V7XIjhomC1oV5QjtsLewqLIhu-1r5d/view?usp=drivesdk" },
+        { "label": "Mô hình Rev6 cải tiến", "url": "https://drive.google.com/file/d/1k6qGJ3MvP6HHgc30E_xuyJ3OH5F6f-G4/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": ""
     },
     "14": {
@@ -173,6 +210,7 @@
         "Tổng hợp kiến thức cơ khí và lập trình VEXcode GO trong suốt 14 buổi"
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1PO_rpYDPOljiMq4wpU-VEOFLOfL0lJvn/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "builds": [],
       "reviewDocUrl": "",
       "nextLesson": "Hoàn thành khóa học ARMB (Lộ trình tiếp theo: ARMA)"
     }

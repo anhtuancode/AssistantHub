@@ -77,7 +77,11 @@
           <h1 id="page-title">Cấu hình & Bảo mật</h1>
           <p id="page-subtitle">Quản lý thông tin tài khoản LMS MindX và cấu hình Google Gemini API.</p>
         </div>
-        <div>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div id="topbar-curriculum-switcher" class="curriculum-cat-segmented" role="tablist" aria-label="Nhóm khóa học" style="display: none;">
+            <button type="button" id="cat-btn-robotics" class="btn-cat-tab active" data-category="ROBOTICS">Robotics</button>
+            <button type="button" id="cat-btn-coding" class="btn-cat-tab" data-category="CODING">Coding - C4K</button>
+          </div>
           <button type="button" id="btn-open-log-drawer" class="btn-log-counter">
             <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>
             Nhật ký (<span id="log-counter-number">0</span>)
@@ -477,100 +481,98 @@
         </section>
 
         <!-- ========================================================
-             PAGE 5: GIÁO TRÌNH (Bảo tồn toàn bộ 24 khóa học chuẩn)
+             PAGE 5: GIÁO TRÌNH (Bento Grid 2 cột + Link lắp ráp + QR)
              ======================================================== -->
         <section id="tab-curriculum" class="tab-pane">
-          <div class="curriculum-master-detail-container">
-            <div class="curriculum-master-col">
-              <div style="padding: 10px 10px 6px 10px;">
-                <div class="search-input-wrapper">
-                  <span class="search-icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
-                  </span>
-                  <input type="text" id="input-curriculum-search" class="form-control" placeholder="Tìm mã khóa (ARMA, CSB...) hoặc tên bài..." style="font-size: 12.5px; padding-top: 7px; padding-bottom: 7px; padding-right: 10px;">
-                </div>
-              </div>
-              <div class="category-toggle-tabs">
-                <button id="cat-btn-robotics" class="btn-cat-tab active" data-category="ROBOTICS">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>
-                  Robotics (9 khóa)
-                </button>
-                <button id="cat-btn-coding" class="btn-cat-tab" data-category="CODING">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
-                  Coding - C4K (15 khóa)
-                </button>
-              </div>
-              <div id="course-list-container" class="course-list-tree"></div>
+          <div class="curriculum-bento-shell">
+            <!-- Top Control Bar (Course Filter Pills) -->
+            <div class="curriculum-top-bar">
+              <div id="course-pills-container" class="curriculum-course-pills" aria-label="Danh sách khóa học"></div>
             </div>
 
-            <div class="curriculum-detail-col">
-              <div id="curriculum-detail-empty" class="empty-state-box">
-                <div class="empty-icon" style="display: flex; justify-content: center; color: #94A3B8;">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
-                </div>
-                <h3>Chưa chọn khóa học</h3>
-                <p class="text-muted">Vui lòng nhấp vào một mã khóa học ở danh mục bên trái để xem thông tin StudentBook và chi tiết các buổi học.</p>
+            <!-- Empty State -->
+            <div id="curriculum-detail-empty" class="empty-state-box" style="display: none;">
+              <div class="empty-icon" style="display: flex; justify-content: center; color: #94A3B8;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
               </div>
+              <h3>Không tìm thấy khóa học</h3>
+              <p class="text-muted">Thử thay đổi từ khóa tìm kiếm hoặc chọn nhóm khóa học khác.</p>
+            </div>
 
-              <div id="curriculum-detail-content" style="display: none;">
-                <div class="card" style="margin-bottom: 16px;">
-                  <div class="card-header space-between">
-                    <div>
-                      <div style="display: flex; align-items: center; gap: 8px;">
-                        <h3 id="detail-course-title" style="margin: 0;">-</h3>
-                        <span id="detail-course-category-tag" class="tag tag-purple">-</span>
-                      </div>
-                      <span id="detail-course-cluster-info" class="text-muted" style="font-size: 13px;">-</span>
-                    </div>
-                  </div>
-                  <div class="card-body" style="padding-top: 10px; padding-bottom: 12px;">
-                    <div id="student-book-compact-view" style="display: none; align-items: center; justify-content: space-between; gap: 10px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 8px; padding: 8px 12px;">
-                      <div style="display: flex; align-items: center; gap: 8px; min-width: 0; flex: 1;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
-                        <span style="font-weight: 600; font-size: 12.5px; color: #334155; white-space: nowrap;">StudentBook:</span>
-                        <span id="student-book-compact-url" style="font-size: 12.5px; color: #0284C7; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"></span>
-                      </div>
-                      <div style="display: flex; align-items: center; gap: 6px; flex-shrink: 0;">
-                        <a id="btn-open-student-book" href="#" target="_blank" class="btn btn-secondary btn-xs" style="white-space: nowrap;">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" x2="16" y1="12" y2="12"/></svg>
-                          Mở Drive
-                        </a>
-                        <button type="button" id="btn-edit-student-book" class="btn btn-secondary btn-xs" style="white-space: nowrap;">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z"/><path d="m15 5 4 4"/></svg>
-                          Sửa
-                        </button>
-                      </div>
-                    </div>
+            <!-- Course Title + 2-Column Bento Card Grid -->
+            <div id="curriculum-detail-content" style="display: none;">
+              <div class="curriculum-course-heading">
+                <h2 id="detail-course-title" class="curriculum-course-title">-</h2>
+                <button type="button" id="btn-open-studentbook-modal" class="btn-studentbook-red">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H19a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H6.5a1 1 0 0 1 0-5H20"/></svg>
+                  <span>StudentBook</span>
+                </button>
+              </div>
+              <div id="sessions-bento-grid" class="sessions-bento-grid"></div>
+            </div>
+          </div>
 
-                    <div id="student-book-edit-view" class="form-group" style="margin-bottom: 0;">
-                      <label for="input-cluster-student-book" style="display: flex; align-items: center; gap: 6px; font-weight: 600; font-size: 12.5px;">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
-                        <span>Link StudentBook (Dùng chung cho cụm B - A - I):</span>
-                      </label>
-                      <div style="display: flex; gap: 8px; margin-top: 6px;">
-                        <input type="text" id="input-cluster-student-book" class="form-control" placeholder="https://drive.google.com/... (link tài liệu StudentBook)">
-                        <button type="button" id="btn-save-student-book" class="btn btn-primary btn-sm" style="white-space: nowrap;">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7"/><path d="M7 3v4a1 1 0 0 0 1 1h7"/></svg>
-                          Lưu StudentBook
-                        </button>
-                        <button type="button" id="btn-cancel-student-book" class="btn btn-secondary btn-sm" style="display: none; white-space: nowrap;">
-                          Hủy
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+          <!-- Modal StudentBook -->
+          <div id="modal-studentbook" class="curriculum-modal-backdrop" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="sb-modal-title">
+            <div class="curriculum-modal-card">
+              <div class="curriculum-modal-header">
+                <h3 id="sb-modal-title">StudentBook</h3>
+                <button type="button" id="btn-close-studentbook-modal" class="curriculum-modal-close" aria-label="Đóng">&times;</button>
+              </div>
+              <div class="curriculum-modal-body">
+                <p id="sb-modal-cluster-label" class="text-muted" style="font-size: 12.5px; margin-top: 0;">Link dùng chung cho cụm khóa học:</p>
+                <div class="form-group" style="margin-bottom: 12px;">
+                  <input type="text" id="input-cluster-student-book" class="form-control" placeholder="https://drive.google.com/... (link tài liệu StudentBook)">
                 </div>
+              </div>
+              <div class="curriculum-modal-footer">
+                <a id="btn-open-student-book" href="#" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm" style="display: none;">Mở Link</a>
+                <button type="button" id="btn-save-student-book" class="btn btn-primary btn-sm">Lưu StudentBook</button>
+              </div>
+            </div>
+          </div>
 
-                <div class="card">
-                  <div class="card-header space-between">
-                    <div>
-                      <h3 style="margin-bottom: 0;">Danh sách buổi học (<span id="detail-sessions-count">0</span> buổi)</h3>
-                    </div>
-                  </div>
-                  <div class="card-body" style="padding: 14px 16px;">
-                    <div id="sessions-accordion-container" class="sessions-accordion"></div>
-                  </div>
+          <!-- Modal Gắn Link lắp ráp -->
+          <div id="modal-build-url" class="curriculum-modal-backdrop" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="build-modal-title">
+            <div class="curriculum-modal-card">
+              <div class="curriculum-modal-header">
+                <h3 id="build-modal-title">Gắn Link lắp ráp</h3>
+                <button type="button" id="btn-close-build-modal" class="curriculum-modal-close" aria-label="Đóng">&times;</button>
+              </div>
+              <div class="curriculum-modal-body">
+                <p id="build-modal-subtitle" class="text-muted" style="font-size: 12.5px; margin-top: 0;">Dán đường dẫn hướng dẫn lắp ráp cho buổi học:</p>
+                <div class="form-group" style="margin-bottom: 12px;">
+                  <input type="text" id="input-build-url" class="form-control" placeholder="https://drive.google.com/... hoặc link hướng dẫn lắp ráp">
                 </div>
+              </div>
+              <div class="curriculum-modal-footer">
+                <button type="button" id="btn-cancel-build-modal" class="btn btn-secondary btn-sm">Đóng</button>
+                <button type="button" id="btn-save-build-url" class="btn btn-primary btn-sm">Lưu Link lắp ráp</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal Mã QR -->
+          <div id="modal-qr" class="curriculum-modal-backdrop" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="qr-modal-title">
+            <div class="curriculum-modal-card curriculum-qr-modal-card">
+              <div class="curriculum-modal-header">
+                <h3 id="qr-modal-title">Mã QR</h3>
+                <button type="button" id="btn-qr-close-x" class="curriculum-modal-close" aria-label="Đóng">&times;</button>
+              </div>
+              <div class="curriculum-modal-body" style="text-align: center;">
+                <div id="qr-modal-tabs" class="curriculum-qr-tabs" style="display: none;">
+                  <button type="button" id="btn-qr-tab-build" class="curriculum-qr-tab active" data-qr-type="build">QR Link lắp ráp</button>
+                  <button type="button" id="btn-qr-tab-slide" class="curriculum-qr-tab" data-qr-type="slide">QR Slide bài giảng</button>
+                </div>
+                <div id="qr-modal-build-tabs" class="curriculum-qr-tabs curriculum-qr-build-tabs" style="display: none;"></div>
+                <div id="qr-modal-type-badge" class="curriculum-qr-type-badge"></div>
+                <div id="qr-modal-canvas" class="curriculum-qr-canvas"></div>
+                <div id="qr-modal-url" class="curriculum-qr-url"></div>
+              </div>
+              <div class="curriculum-modal-footer" style="justify-content: center;">
+                <button type="button" id="btn-qr-open-link" class="btn btn-secondary btn-sm">Mở link PDF</button>
+                <button type="button" id="btn-qr-copy-link" class="btn btn-secondary btn-sm">Copy link</button>
+                <button type="button" id="btn-qr-close" class="btn btn-primary btn-sm">Đóng</button>
               </div>
             </div>
           </div>

@@ -62,10 +62,20 @@ export function switchTab(tabId, params = null) {
   // Cập nhật tiêu đề Topbar
   const titleEl = document.getElementById('page-title');
   const subEl = document.getElementById('page-subtitle');
+  const logBtn = document.getElementById('btn-open-log-drawer');
+  const currSwitcher = document.getElementById('topbar-curriculum-switcher');
+  const isCurrTab = tabId === 'tab-curriculum';
+
   if (titleEl) titleEl.textContent = TAB_METADATA[tabId].title;
   if (subEl) {
     subEl.textContent = TAB_METADATA[tabId].subtitle;
-    subEl.style.display = 'block';
+    subEl.style.display = isCurrTab ? 'none' : 'block';
+  }
+  if (logBtn) {
+    logBtn.style.display = isCurrTab ? 'none' : 'inline-flex';
+  }
+  if (currSwitcher) {
+    currSwitcher.style.display = isCurrTab ? 'inline-flex' : 'none';
   }
 
   // Khởi chạy controller của tab tương ứng

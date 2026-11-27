@@ -1706,6 +1706,105 @@ async function main() {
     assert.strictEqual(s14.slideUrl, '');
   });
 
+  // 28. Curriculum Bento Grid UI & CSP check
+  await runTest('Curriculum Tab Bento Grid: no Zalo/Copy/EditSlide/counts, has 3 actions (Slide, Build, QR), and 0 inline events', async () => {
+    const htmlContent = fs.readFileSync(path.join(ROOT, 'index.html'), 'utf8');
+    const currTabJs = fs.readFileSync(path.join(ROOT, 'js/tabs/curriculum.js'), 'utf8');
+
+    // Extract #tab-curriculum section from index.html
+    const startIdx = htmlContent.indexOf('<section id="tab-curriculum"');
+    const endIdx = htmlContent.indexOf('</section>', startIdx);
+    const currHtml = htmlContent.slice(startIdx, endIdx);
+
+    assert.strictEqual(currHtml.includes('(9 khóa)'), false, 'index.html must not contain (9 khóa)');
+    assert.strictEqual(currHtml.includes('(15 khóa)'), false, 'index.html must not contain (15 khóa)');
+    assert.strictEqual(currTabJs.includes('Báo bài Zalo'), false, 'curriculum.js must not contain Báo bài Zalo');
+    assert.strictEqual(currTabJs.includes('Copy Tóm tắt'), false, 'curriculum.js must not contain Copy Tóm tắt');
+    assert.strictEqual(currTabJs.includes('btn-slide-edit-inline'), false, 'curriculum.js must not contain slide edit pencil');
+    assert.strictEqual(/\bon(click|change)\s*=\s*["']/i.test(currTabJs), false, 'curriculum.js must have 0 inline events');
+    assert.strictEqual(/\bon(click|change)\s*=\s*["']/i.test(currHtml), false, 'curriculum HTML must have 0 inline events');
+
+    // Verify 3 actions in curriculum.js card template
+    assert.ok(currTabJs.includes('Mở Slide'));
+    assert.ok(currTabJs.includes('Link lắp ráp'));
+    assert.ok(currTabJs.includes('Mã QR'));
+    assert.ok(currHtml.includes('sessions-bento-grid'));
+  });
+
+  // 29. QR Code Generator & Modal switching (buildUrl & slideUrl)
+  await runTest('Curriculum QR Modal: generates 240x240 SVG offline and switches between buildUrl and slideUrl', async () => {
+    const rawQr = fs.readFileSync(path.join(ROOT, 'js/services/qrGenerator.js'), 'utf8');
+    const qrUrl = `data:text/javascript;base64,${Buffer.from(rawQr, 'utf8').toString('base64')}`;
+    const { generateQrSvg } = await import(qrUrl);
+
+    const sampleSlide = 'https://docs.google.com/presentation/d/1b3ergNl3Cw4H8ZKmppkd6KbNyf8xenzz/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true';
+    const sampleBuild = 'https://drive.google.com/file/d/1wpc4bWEV84Opk1Vnmk3LAhSRDZ41kdiV/view';
+
+    const svg1 = generateQrSvg(sampleSlide, 240);
+    assert.ok(svg1.startsWith('<svg ') && svg1.includes('width="240"') && svg1.includes('height="240"'));
+    assert.ok(svg1.includes('<path d="M'));
+
+    // Mock DOM for openQrModal & switchQrType
+    const elements = {};
+    const makeEl = (id) => {
+      const cls = new Set();
+      return {
+        id,
+        style: {},
+        textContent: '',
+        innerHTML: '',
+        title: '',
+        classList: {
+          toggle: (c, force) => { if (force) cls.add(c); else cls.delete(c); },
+          contains: (c) => cls.has(c)
+        },
+        addEventListener: () => {}
+      };
+    };
+    [
+      'modal-qr', 'qr-modal-title', 'qr-modal-tabs', 'btn-qr-tab-build',
+      'btn-qr-tab-slide', 'qr-modal-type-badge', 'qr-modal-canvas', 'qr-modal-url'
+    ].forEach(id => { elements[id] = makeEl(id); });
+
+    global.document = {
+      getElementById: (id) => elements[id] || null,
+      querySelectorAll: () => []
+    };
+
+    const rawCurr = fs.readFileSync(path.join(ROOT, 'js/services/curriculum.js'), 'utf8');
+    const currSvcUrl = `data:text/javascript;base64,${Buffer.from(rawCurr, 'utf8').toString('base64')}`;
+    const rawToast = fs.readFileSync(path.join(ROOT, 'js/services/toast.js'), 'utf8');
+    const toastUrl = `data:text/javascript;base64,${Buffer.from(rawToast, 'utf8').toString('base64')}`;
+    const rawIcons = fs.readFileSync(path.join(ROOT, 'js/services/icons.js'), 'utf8');
+    const iconsUrl = `data:text/javascript;base64,${Buffer.from(rawIcons, 'utf8').toString('base64')}`;
+
+    const rawCurrTab = fs.readFileSync(path.join(ROOT, 'js/tabs/curriculum.js'), 'utf8')
+      .replace("from '../services/curriculum.js'", `from '${currSvcUrl}'`)
+      .replace("from '../services/toast.js'", `from '${toastUrl}'`)
+      .replace("from '../services/icons.js'", `from '${iconsUrl}'`)
+      .replace("from '../services/qrGenerator.js'", `from '${qrUrl}'`);
+    const currTabUrl = `data:text/javascript;base64,${Buffer.from(rawCurrTab, 'utf8').toString('base64')}`;
+    const { openQrModal, switchQrType } = await import(currTabUrl);
+
+    openQrModal({
+      sessionNumber: 3,
+      title: 'Phương tiện di chuyển trên sao Hỏa',
+      buildUrl: sampleBuild,
+      slideUrl: sampleSlide
+    });
+
+    assert.strictEqual(elements['modal-qr'].style.display, 'flex');
+    assert.strictEqual(elements['qr-modal-tabs'].style.display, 'inline-flex');
+    assert.strictEqual(elements['qr-modal-type-badge'].textContent, 'QR Link lắp ráp');
+    assert.strictEqual(elements['qr-modal-url'].textContent, sampleBuild);
+    assert.ok(elements['qr-modal-canvas'].innerHTML.includes('width="240"'));
+
+    switchQrType('slide');
+    assert.strictEqual(elements['qr-modal-type-badge'].textContent, 'QR Slide bài giảng');
+    assert.strictEqual(elements['qr-modal-url'].textContent, sampleSlide);
+    assert.ok(elements['qr-modal-canvas'].innerHTML.includes('width="240"'));
+  });
+
   console.log(`\nSummary: ${passed} passed, ${failed} failed.`);
   if (failed > 0) process.exit(1);
 }

@@ -1,19 +1,46 @@
 /**
  * Tab Giáo trình (Curriculum Tab ES Module)
- * Quản lý tra cứu 24 khóa học Robotics & Coding, tìm kiếm nhanh, thao tác nhanh Zalo/Copy,
- * chỉnh sửa StudentBook gọn 1 dòng và gắn/mở Slide trực tiếp trên từng buổi học.
+ * Giao diện Bento Grid 2 cột gọn gàng: Top Control Bar + Thanh khóa học ngang +
+ * Thẻ buổi học (Mở Slide, Link lắp ráp, Mã QR) + Modal StudentBook & Modal QR offline.
  */
 
 import { curriculumService } from '../services/curriculum.js';
-import { switchTab } from '../main.js';
 import { toast } from '../services/toast.js';
 import { ICONS } from '../services/icons.js';
+import { generateQrSvg } from '../services/qrGenerator.js';
 
 let currentCategory = 'ROBOTICS';
 let selectedCourseCode = null;
 let allCurriculaData = null;
-let searchQuery = '';
-let isEditingStudentBook = false;
+
+let activeBuildModalSession = null;
+let activeQrState = {
+  sessionNumber: null,
+  title: '',
+  builds: [],
+  selectedBuildIdx: 0,
+  buildUrl: '',
+  slideUrl: '',
+  activeType: 'build'
+};
+
+function getSessionBuilds(sessionObj) {
+  if (!sessionObj) return [];
+  if (Array.isArray(sessionObj.builds) && sessionObj.builds.length > 0) {
+    return sessionObj.builds
+      .filter(b => b && typeof b.url === 'string' && b.url.trim())
+      .map((b, idx) => ({
+        label: (b.label || `Mô hình ${idx + 1}`).trim(),
+        url: b.url.trim()
+      }));
+  }
+  const singleUrl = (sessionObj.buildUrl || '').trim();
+  return singleUrl ? [{ label: 'Hướng dẫn lắp ráp', url: singleUrl }] : [];
+}
+
+function closeAllBuildDropdowns() {
+  document.querySelectorAll('.build-dropdown-menu.open').forEach(el => el.classList.remove('open'));
+}
 
 function escapeHtml(str) {
   if (!str) return '';
@@ -28,46 +55,16 @@ function escapeHtml(str) {
 export async function initCurriculumTab(defaultCourse = null) {
   allCurriculaData = await curriculumService.getAllCourses();
 
-  // Khởi tạo các sự kiện nút chuyển nhóm môn học
   const robBtn = document.getElementById('cat-btn-robotics');
   const codBtn = document.getElementById('cat-btn-coding');
-  if (robBtn) robBtn.onclick = () => switchCategory('ROBOTICS');
-  if (codBtn) codBtn.onclick = () => switchCategory('CODING');
+  if (robBtn) robBtn.addEventListener('click', () => switchCategory('ROBOTICS'));
+  if (codBtn) codBtn.addEventListener('click', () => switchCategory('CODING'));
 
-  // Thanh tìm kiếm nhanh (Quick Search)
-  const searchInp = document.getElementById('input-curriculum-search');
-  if (searchInp) {
-    searchInp.value = searchQuery;
-    searchInp.oninput = () => {
-      searchQuery = searchInp.value.trim();
-      renderCourseList(currentCategory);
-    };
-  }
+  bindModalsEvents();
 
-  // Sự kiện StudentBook: Lưu / Sửa / Hủy
-  const saveSbBtn = document.getElementById('btn-save-student-book');
-  if (saveSbBtn) saveSbBtn.onclick = handleSaveStudentBook;
-
-  const editSbBtn = document.getElementById('btn-edit-student-book');
-  if (editSbBtn) {
-    editSbBtn.onclick = () => {
-      isEditingStudentBook = true;
-      updateStudentBookUI(allCurriculaData.courses[selectedCourseCode]);
-    };
-  }
-
-  const cancelSbBtn = document.getElementById('btn-cancel-student-book');
-  if (cancelSbBtn) {
-    cancelSbBtn.onclick = () => {
-      isEditingStudentBook = false;
-      updateStudentBookUI(allCurriculaData.courses[selectedCourseCode]);
-    };
-  }
-
-  // Tự động nhận diện khóa học từ lớp đang chọn ở Lớp & Buổi học nếu chưa chỉ định
   let resolvedDefault = defaultCourse;
   if (!resolvedDefault) {
-    let activeClassCode = window.__mindxActiveClassCode || '';
+    let activeClassCode = (typeof window !== 'undefined' && window.__mindxActiveClassCode) || '';
     if (!activeClassCode) {
       try { activeClassCode = localStorage.getItem('mindx_active_class_code') || ''; } catch (_) {}
     }
@@ -84,15 +81,114 @@ export async function initCurriculumTab(defaultCourse = null) {
     const c = allCurriculaData.courses[resolvedDefault];
     currentCategory = (c.category || '').toUpperCase().startsWith('ROB') ? 'ROBOTICS' : 'CODING';
   } else if (!selectedCourseCode) {
-    selectedCourseCode = 'ARMA';
+    selectedCourseCode = 'PREI';
     currentCategory = 'ROBOTICS';
   }
 
   updateCategoryTabsUI();
-  renderCourseList(currentCategory);
+  renderCoursePills(currentCategory);
 
   if (selectedCourseCode && allCurriculaData.courses[selectedCourseCode]) {
     selectCourse(selectedCourseCode);
+  }
+}
+
+function bindModalsEvents() {
+  // StudentBook Modal
+  const openSbModalBtn = document.getElementById('btn-open-studentbook-modal');
+  const sbModal = document.getElementById('modal-studentbook');
+  const closeSbModalBtn = document.getElementById('btn-close-studentbook-modal');
+  const saveSbBtn = document.getElementById('btn-save-student-book');
+
+  if (openSbModalBtn) {
+    openSbModalBtn.addEventListener('click', openStudentBookModal);
+  }
+  if (closeSbModalBtn) {
+    closeSbModalBtn.addEventListener('click', () => {
+      if (sbModal) sbModal.style.display = 'none';
+    });
+  }
+  if (sbModal) {
+    sbModal.addEventListener('click', (e) => {
+      if (e.target === sbModal) sbModal.style.display = 'none';
+    });
+  }
+  if (saveSbBtn) {
+    saveSbBtn.addEventListener('click', handleSaveStudentBook);
+  }
+
+  // Build URL Modal
+  const buildModal = document.getElementById('modal-build-url');
+  const closeBuildBtn = document.getElementById('btn-close-build-modal');
+  const cancelBuildBtn = document.getElementById('btn-cancel-build-modal');
+  const saveBuildBtn = document.getElementById('btn-save-build-url');
+  const closeBuildModal = () => {
+    if (buildModal) buildModal.style.display = 'none';
+    activeBuildModalSession = null;
+  };
+  if (closeBuildBtn) closeBuildBtn.addEventListener('click', closeBuildModal);
+  if (cancelBuildBtn) cancelBuildBtn.addEventListener('click', closeBuildModal);
+  if (buildModal) {
+    buildModal.addEventListener('click', (e) => {
+      if (e.target === buildModal) closeBuildModal();
+    });
+  }
+  if (saveBuildBtn) saveBuildBtn.addEventListener('click', handleSaveBuildUrl);
+
+  // QR Modal
+  const qrModal = document.getElementById('modal-qr');
+  const closeQrBtn = document.getElementById('btn-qr-close');
+  const closeQrXBtn = document.getElementById('btn-qr-close-x');
+  const tabBuildBtn = document.getElementById('btn-qr-tab-build');
+  const tabSlideBtn = document.getElementById('btn-qr-tab-slide');
+  const openQrLinkBtn = document.getElementById('btn-qr-open-link');
+  const copyQrBtn = document.getElementById('btn-qr-copy-link');
+
+  const closeQrModal = () => {
+    if (qrModal) qrModal.style.display = 'none';
+  };
+  if (closeQrBtn) closeQrBtn.addEventListener('click', closeQrModal);
+  if (closeQrXBtn) closeQrXBtn.addEventListener('click', closeQrModal);
+  if (qrModal) {
+    qrModal.addEventListener('click', (e) => {
+      if (e.target === qrModal) closeQrModal();
+    });
+  }
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.session-split-wrap')) {
+      closeAllBuildDropdowns();
+    }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    closeAllBuildDropdowns();
+    if (qrModal && qrModal.style.display === 'flex') closeQrModal();
+    if (buildModal && buildModal.style.display === 'flex') closeBuildModal();
+    if (sbModal && sbModal.style.display === 'flex') sbModal.style.display = 'none';
+  });
+  if (tabBuildBtn) {
+    tabBuildBtn.addEventListener('click', () => switchQrType('build'));
+  }
+  if (tabSlideBtn) {
+    tabSlideBtn.addEventListener('click', () => switchQrType('slide'));
+  }
+  if (openQrLinkBtn) {
+    openQrLinkBtn.addEventListener('click', () => {
+      const targetUrl = activeQrState.activeType === 'build' ? activeQrState.buildUrl : activeQrState.slideUrl;
+      if (targetUrl) window.open(targetUrl, '_blank', 'noopener,noreferrer');
+    });
+  }
+  if (copyQrBtn) {
+    copyQrBtn.addEventListener('click', async () => {
+      const targetUrl = activeQrState.activeType === 'build' ? activeQrState.buildUrl : activeQrState.slideUrl;
+      if (!targetUrl) return;
+      try {
+        await navigator.clipboard.writeText(targetUrl);
+        toast.success('Đã sao chép!');
+      } catch (_) {
+        toast.warning('Không thể tự động sao chép, vui lòng copy thủ công.');
+      }
+    });
   }
 }
 
@@ -106,53 +202,51 @@ function updateCategoryTabsUI() {
 function switchCategory(category) {
   currentCategory = category;
   updateCategoryTabsUI();
-  renderCourseList(category);
+  renderCoursePills(category);
+
+  if (allCurriculaData && allCurriculaData.courses) {
+    const firstMatch = getFilteredCourses(category)[0];
+    if (firstMatch) {
+      selectCourse(firstMatch.code);
+    }
+  }
 }
 
-function renderCourseList(category) {
-  const container = document.getElementById('course-list-container');
-  if (!container || !allCurriculaData || !allCurriculaData.courses) return;
-
-  container.innerHTML = '';
+function getFilteredCourses(category) {
+  if (!allCurriculaData || !allCurriculaData.courses) return [];
   const courses = Object.values(allCurriculaData.courses);
-  const q = searchQuery.toLowerCase();
 
-  // Nếu có từ khóa tìm kiếm -> tìm trên toàn bộ 24 khóa (theo mã khóa, tên khóa hoặc tên bài học)
-  const filteredCourses = courses.filter(c => {
-    if (q) {
-      const codeMatch = (c.code || '').toLowerCase().includes(q);
-      const nameMatch = (c.name || '').toLowerCase().includes(q);
-      const lessonMatch = (c.sessions || []).some(s => (s.title || '').toLowerCase().includes(q));
-      return codeMatch || nameMatch || lessonMatch;
-    }
+  return courses.filter(c => {
     const cat = (c.category || '').toUpperCase();
     if (category === 'ROBOTICS') return cat.startsWith('ROB');
     return cat.startsWith('COD') || cat === 'C4K';
   });
+}
+
+function renderCoursePills(category) {
+  const container = document.getElementById('course-pills-container');
+  const emptyEl = document.getElementById('curriculum-detail-empty');
+  const contentEl = document.getElementById('curriculum-detail-content');
+  if (!container) return;
+
+  container.innerHTML = '';
+  const filteredCourses = getFilteredCourses(category);
 
   if (filteredCourses.length === 0) {
-    container.innerHTML = `<div style="padding: 24px 12px; text-align: center; color: #64748B; font-size: 12.5px;">Không tìm thấy khóa học phù hợp "${escapeHtml(searchQuery)}".</div>`;
+    if (emptyEl) emptyEl.style.display = 'block';
+    if (contentEl) contentEl.style.display = 'none';
     return;
   }
 
-  // Gom nhóm theo cụm khóa học
+  if (emptyEl) emptyEl.style.display = 'none';
+  if (contentEl) contentEl.style.display = 'block';
+
   const clustersMap = {};
   filteredCourses.forEach(c => {
     const cluster = c.cluster || 'OTHER';
     if (!clustersMap[cluster]) clustersMap[cluster] = [];
     clustersMap[cluster].push(c);
   });
-
-  const clusterDisplayNames = {
-    PRE: 'Cụm PRE (VEX GO): PREB - PREA - PREI',
-    ARM: 'Cụm ARM (VEX GO): ARMB - ARMA - ARMI',
-    SEMI: 'Cụm SEMI (VEX IQ): SEMIB - SEMIA - SEMII',
-    SCRATCH: 'Cụm Scratch: SB - SA - SI',
-    GAMEMAKER: 'Cụm Game Maker: GB - GA - GI',
-    PYTHON: 'Cụm Python: PTB - PTA - PTI',
-    WEB_JS: 'Cụm Web / JS: JSB - JSA - JSI',
-    COMPUTER_SCIENCE: 'Cụm CS: CSB - CSA - CSI'
-  };
 
   const clusterOrder = ['PRE', 'ARM', 'SEMI', 'SCRATCH', 'GAMEMAKER', 'PYTHON', 'WEB_JS', 'COMPUTER_SCIENCE'];
   const sortedClusters = Object.keys(clustersMap).sort((a, b) => {
@@ -164,283 +258,193 @@ function renderCourseList(category) {
     return a.localeCompare(b);
   });
 
-  sortedClusters.forEach(clusterKey => {
-    const clusterCourses = clustersMap[clusterKey];
-    const groupDiv = document.createElement('div');
-    groupDiv.className = 'cluster-group';
-
-    const titleDiv = document.createElement('div');
-    titleDiv.className = 'cluster-title';
-    titleDiv.textContent = clusterDisplayNames[clusterKey] || `Cụm ${clusterKey}`;
-    groupDiv.appendChild(titleDiv);
-
-    clusterCourses.forEach(c => {
-      const item = document.createElement('div');
-      item.className = `course-tree-item ${selectedCourseCode === c.code ? 'active' : ''}`;
-      item.setAttribute('data-code', c.code);
-      item.innerHTML = `
-        <div style="display: flex; align-items: center; min-width: 0;">
-          <span class="course-code-badge">${escapeHtml(c.code)}</span>
-          <span class="course-name-sub" title="${escapeHtml(c.name)}">${escapeHtml(c.name)}</span>
-        </div>
-        <span class="tag ${c.category === 'ROBOTICS' ? 'tag-purple' : 'tag-blue'}" style="font-size: 11px;">
-          ${c.sessionsCount || 14}b
-        </span>
-      `;
-      item.addEventListener('click', () => selectCourse(c.code));
-      groupDiv.appendChild(item);
-    });
-
-    container.appendChild(groupDiv);
-  });
-}
-
-function updateStudentBookUI(course) {
-  const compactView = document.getElementById('student-book-compact-view');
-  const editView = document.getElementById('student-book-edit-view');
-  const compactUrlEl = document.getElementById('student-book-compact-url');
-  const openSbBtn = document.getElementById('btn-open-student-book');
-  const sbInput = document.getElementById('input-cluster-student-book');
-  const cancelBtn = document.getElementById('btn-cancel-student-book');
-
-  const url = (course && course.studentBookUrl) ? course.studentBookUrl.trim() : '';
-  if (sbInput) sbInput.value = url;
-
-  if (url && !isEditingStudentBook) {
-    if (compactView) compactView.style.display = 'flex';
-    if (editView) editView.style.display = 'none';
-    if (compactUrlEl) {
-      compactUrlEl.textContent = url;
-      compactUrlEl.title = url;
+  sortedClusters.forEach((clusterKey, clusterIdx) => {
+    if (clusterIdx > 0) {
+      const divider = document.createElement('span');
+      divider.className = 'curriculum-pill-divider';
+      divider.setAttribute('aria-hidden', 'true');
+      container.appendChild(divider);
     }
-    if (openSbBtn) openSbBtn.href = url;
-  } else {
-    if (compactView) compactView.style.display = 'none';
-    if (editView) editView.style.display = 'block';
-    if (cancelBtn) cancelBtn.style.display = url ? 'inline-flex' : 'none';
+
+    clustersMap[clusterKey].forEach(c => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = `course-pill-btn ${selectedCourseCode === c.code ? 'active' : ''}`;
+      btn.setAttribute('data-code', c.code);
+      btn.textContent = c.code;
+      btn.title = c.name || c.code;
+      btn.addEventListener('click', () => selectCourse(c.code));
+      container.appendChild(btn);
+    });
+  });
+
+  // Nếu khóa đang chọn không nằm trong kết quả lọc, tự động chọn khóa đầu tiên khớp
+  if (!filteredCourses.some(c => c.code === selectedCourseCode)) {
+    selectCourse(filteredCourses[0].code);
   }
 }
 
 export function selectCourse(courseCode) {
   selectedCourseCode = courseCode;
-  isEditingStudentBook = false;
   if (!allCurriculaData || !allCurriculaData.courses) return;
-
   const course = allCurriculaData.courses[courseCode];
   if (!course) return;
 
-  document.querySelectorAll('.course-tree-item').forEach(el => {
+  document.querySelectorAll('.course-pill-btn').forEach(el => {
     el.classList.toggle('active', el.getAttribute('data-code') === courseCode);
   });
 
-  const emptyState = document.getElementById('curriculum-detail-empty');
-  const detailContent = document.getElementById('curriculum-detail-content');
-  if (emptyState) emptyState.style.display = 'none';
-  if (detailContent) detailContent.style.display = 'block';
-
-  const titleEl = document.getElementById('detail-course-title');
-  if (titleEl) titleEl.textContent = `${course.code} - ${course.name}`;
-
-  const tagEl = document.getElementById('detail-course-category-tag');
-  if (tagEl) {
-    tagEl.textContent = course.category === 'ROBOTICS'
-      ? `Robotics - ${course.platform || 'VEX'}`
-      : `Coding - ${course.platform || 'C4K'}`;
-    tagEl.className = `tag ${course.category === 'ROBOTICS' ? 'tag-purple' : 'tag-blue'}`;
-  }
-
-  const clusterInfo = document.getElementById('detail-course-cluster-info');
-  if (clusterInfo) {
-    clusterInfo.textContent = `Cụm khóa học: ${course.cluster} (Dùng chung 1 link StudentBook cho cả 3 khóa B-A-I)`;
-  }
-
-  updateStudentBookUI(course);
-  renderSessionsAccordion(course);
+  renderCourseSessions(courseCode);
 }
 
-function renderSessionsAccordion(course) {
-  const container = document.getElementById('sessions-accordion-container');
-  if (!container) return;
-  container.innerHTML = '';
+function renderCourseSessions(courseCode) {
+  const course = allCurriculaData && allCurriculaData.courses ? allCurriculaData.courses[courseCode] : null;
+  if (!course) return;
 
-  const countEl = document.getElementById('detail-sessions-count');
+  const emptyEl = document.getElementById('curriculum-detail-empty');
+  const contentEl = document.getElementById('curriculum-detail-content');
+  if (emptyEl) emptyEl.style.display = 'none';
+  if (contentEl) contentEl.style.display = 'block';
+
   const sessions = course.sessions || [];
-  if (countEl) countEl.textContent = sessions.length;
+  const titleEl = document.getElementById('detail-course-title');
+  if (titleEl) {
+    titleEl.textContent = course.name || course.code;
+  }
+
+  const grid = document.getElementById('sessions-bento-grid');
+  if (!grid) return;
+  grid.innerHTML = '';
+
+  const isRobotics = (course.category || '').toUpperCase().startsWith('ROB');
 
   sessions.forEach(s => {
-    const item = document.createElement('div');
-    item.className = 'session-item';
-    item.setAttribute('data-session-num', s.sessionNumber);
+    const slideUrl = (s.slideUrl || '').trim();
+    const builds = isRobotics ? getSessionBuilds(s) : [];
+    const hasSlide = Boolean(slideUrl);
+    const hasBuilds = builds.length > 0;
+    const isMultiBuild = builds.length >= 2;
 
-    const hasSlide = Boolean(s.slideUrl && s.slideUrl.trim().length > 0);
-    const slideControlHtml = hasSlide
-      ? `<button type="button" class="btn btn-xs btn-slide-open-inline" title="Mở Slide bài giảng">${ICONS.link2(13)} Mở Slide</button>
-         <button type="button" class="btn btn-secondary btn-xs btn-slide-edit-inline" title="Sửa link Slide">${ICONS.pencil(13)}</button>`
-      : `<button type="button" class="btn btn-xs btn-slide-add-inline">${ICONS.plus(13)} Gắn Slide</button>`;
+    const card = document.createElement('div');
+    card.className = 'session-bento-card';
+    card.setAttribute('data-session-num', s.sessionNumber);
 
-    item.innerHTML = `
-      <div class="session-item-header">
-        <div class="session-header-left">
-          <span class="session-num-badge">Buổi ${s.sessionNumber}</span>
-          <span class="session-title-preview">${escapeHtml(s.title || '(Chưa cập nhật tên bài học)')}</span>
-        </div>
-        <div class="session-header-right" style="display: flex; align-items: center; gap: 6px;">
-          ${slideControlHtml}
-          <button type="button" class="btn btn-secondary btn-xs btn-quick-copy-summary" title="Copy Tóm tắt buổi học">${ICONS.copy(13)} Copy Tóm tắt</button>
-          <button type="button" class="btn btn-primary btn-xs btn-quick-zalo" title="Mở Báo bài Zalo cho buổi này">${ICONS.send(13)} Báo bài Zalo</button>
-          <span class="accordion-chevron">${ICONS.chevronDown(14)}</span>
-        </div>
-      </div>
-      <div class="quick-slide-popover" style="display: none;">
-        <input type="text" class="form-control inp-quick-slide" value="${escapeHtml(s.slideUrl || '')}" placeholder="Dán link Slide (Canva / Google Slides)..." style="font-size: 12px; padding: 5px 8px;">
-        <button type="button" class="btn btn-primary btn-xs btn-save-quick-slide">Lưu</button>
-        <button type="button" class="btn btn-secondary btn-xs btn-cancel-quick-slide">Hủy</button>
-      </div>
-      <div class="session-item-body" style="display: none;">
-        <div class="form-group">
-          <label style="font-weight: 600;">Tên bài học:</label>
-          <input type="text" class="form-control inp-session-title" value="${escapeHtml(s.title || '')}" placeholder="Ví dụ: Cánh tay Robot hoặc Lập trình Game">
-        </div>
-        <div class="form-row">
-          <div class="form-group flex-2">
-            <label style="font-weight: 600;">Link Slide bài giảng:</label>
-            <div style="display: flex; gap: 6px;">
-              <input type="text" class="form-control inp-session-slide" value="${escapeHtml(s.slideUrl || '')}" placeholder="https://canva.com/... hoặc link slide">
-              <button type="button" class="btn btn-secondary btn-xs btn-open-slide" ${!hasSlide ? 'disabled' : ''}>${ICONS.link2(13)} Mở</button>
-            </div>
-          </div>
-          <div class="form-group flex-2">
-            <label style="font-weight: 600;">Link Tài liệu ôn tập / Bài tập:</label>
-            <div style="display: flex; gap: 6px;">
-              <input type="text" class="form-control inp-session-review" value="${escapeHtml(s.reviewDocUrl || '')}" placeholder="https://drive.google.com/... (nếu có)">
-              <button type="button" class="btn btn-secondary btn-xs btn-open-review" ${!s.reviewDocUrl ? 'disabled' : ''}>${ICONS.link2(13)} Mở</button>
-            </div>
-          </div>
-        </div>
-        <div class="form-group">
-          <label style="font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">${ICONS.bookOpen(14)} Tóm tắt nội dung bài học:</label>
-          <textarea class="form-control inp-session-summary" rows="2" placeholder="Tóm tắt nội dung thực hành...">${escapeHtml(s.summary || '')}</textarea>
-        </div>
-        <div class="form-group">
-          <label style="font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">${ICONS.cpu(14)} Linh kiện & Câu lệnh / Kiến thức trọng tâm:</label>
-          <textarea class="form-control inp-session-hardware" rows="2" placeholder="Linh kiện cơ khí hoặc câu lệnh lập trình...">${escapeHtml(s.hardwareAndCommands || '')}</textarea>
-        </div>
-        <div class="form-group">
-          <label style="font-weight: 600; display: inline-flex; align-items: center; gap: 6px;">${ICONS.target(14)} Mục tiêu bài học (mỗi mục tiêu trên 1 dòng):</label>
-          <textarea class="form-control inp-session-objectives" rows="2" placeholder="Mục tiêu kiến thức, kỹ năng...">${escapeHtml((s.objectives || []).join('\n'))}</textarea>
-        </div>
-        <div style="display: flex; justify-content: flex-end; align-items: center; gap: 10px; margin-top: 10px;">
-          <button type="button" class="btn btn-primary btn-sm btn-save-session" data-session="${s.sessionNumber}">
-            ${ICONS.save(14)} Lưu cập nhật buổi học
+    let roboticsActionsHtml = '';
+    if (hasBuilds) {
+      const dropdownItemsHtml = isMultiBuild
+        ? `<div class="build-dropdown-menu">${builds.map((b, idx) => `
+            <button type="button" class="build-dropdown-item" data-build-idx="${idx}">
+              ${ICONS.wrench(13)}
+              <span>${escapeHtml(b.label)}</span>
+            </button>`).join('')}
+          </div>`
+        : '';
+
+      const buildLabelHtml = isMultiBuild
+        ? `<span>Lắp ráp (${builds.length})</span>${ICONS.chevronDown(13)}`
+        : `<span>Lắp ráp</span>`;
+
+      roboticsActionsHtml = `
+        <div class="${isMultiBuild ? 'session-split-wrap' : 'session-split-group'}">
+          ${isMultiBuild ? '<div class="session-split-group">' : ''}
+          <button type="button" class="btn-bento-build">
+            ${ICONS.wrench(14)}
+            ${buildLabelHtml}
           </button>
-        </div>
+          <button type="button" class="btn-bento-qr" title="Hiện mã QR lắp ráp" aria-label="Mã QR">
+            ${ICONS.qrCode(16)}
+          </button>
+          ${isMultiBuild ? '</div>' : ''}
+          ${dropdownItemsHtml}
+        </div>`;
+    }
+
+    card.innerHTML = `
+      <div class="session-bento-header">
+        <span class="session-bento-badge">Buổi ${s.sessionNumber}</span>
+        <span class="session-bento-title">${escapeHtml(s.title || '(Chưa cập nhật tên bài học)')}</span>
+      </div>
+      <div class="session-bento-actions">
+        <button type="button" class="btn-bento-slide" ${!hasSlide ? 'disabled' : ''}>
+          ${ICONS.presentation(15)}
+          <span>Mở Slide</span>
+        </button>${roboticsActionsHtml}
       </div>
     `;
 
-    // Đóng/Mở accordion khi nhấp vào header (trừ các nút action nhanh)
-    const header = item.querySelector('.session-item-header');
-    const body = item.querySelector('.session-item-body');
-    header.addEventListener('click', (e) => {
-      if (e.target.closest('button')) return;
-      const isOpen = item.classList.contains('open');
-      item.classList.toggle('open', !isOpen);
-      body.style.display = isOpen ? 'none' : 'block';
+    const slideBtn = card.querySelector('.btn-bento-slide');
+    slideBtn.addEventListener('click', () => {
+      if (slideUrl) window.open(slideUrl, '_blank', 'noopener,noreferrer');
     });
 
-    // Quick Slide Popover (Mở Slide / + Gắn Slide / Sửa Slide)
-    const quickPopover = item.querySelector('.quick-slide-popover');
-    const quickSlideInp = item.querySelector('.inp-quick-slide');
-    const slideInp = item.querySelector('.inp-session-slide');
-    const openSlideBtn = item.querySelector('.btn-open-slide');
+    if (hasBuilds) {
+      const buildBtn = card.querySelector('.btn-bento-build');
+      const dropdownMenu = card.querySelector('.build-dropdown-menu');
 
-    const btnOpenInline = item.querySelector('.btn-slide-open-inline');
-    if (btnOpenInline) {
-      btnOpenInline.addEventListener('click', (e) => {
-        e.stopPropagation();
-        if (s.slideUrl && s.slideUrl.trim()) window.open(s.slideUrl.trim(), '_blank');
-      });
+      if (buildBtn) {
+        buildBtn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          if (isMultiBuild && dropdownMenu) {
+            const willOpen = !dropdownMenu.classList.contains('open');
+            closeAllBuildDropdowns();
+            if (willOpen) dropdownMenu.classList.add('open');
+          } else if (builds[0]) {
+            window.open(builds[0].url, '_blank', 'noopener,noreferrer');
+          }
+        });
+      }
+
+      if (dropdownMenu) {
+        dropdownMenu.querySelectorAll('.build-dropdown-item').forEach(itemBtn => {
+          itemBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const idx = Number(itemBtn.getAttribute('data-build-idx'));
+            const targetBuild = builds[idx];
+            closeAllBuildDropdowns();
+            if (targetBuild && targetBuild.url) {
+              window.open(targetBuild.url, '_blank', 'noopener,noreferrer');
+            }
+          });
+        });
+      }
+
+      const qrBtn = card.querySelector('.btn-bento-qr');
+      if (qrBtn) {
+        qrBtn.addEventListener('click', () => {
+          closeAllBuildDropdowns();
+          openQrModal(s);
+        });
+      }
     }
 
-    const openQuickSlideEditor = (e) => {
-      e.stopPropagation();
-      quickPopover.style.display = quickPopover.style.display === 'none' ? 'flex' : 'none';
-      if (quickPopover.style.display === 'flex') quickSlideInp.focus();
-    };
-
-    const btnAddInline = item.querySelector('.btn-slide-add-inline');
-    if (btnAddInline) btnAddInline.addEventListener('click', openQuickSlideEditor);
-
-    const btnEditInline = item.querySelector('.btn-slide-edit-inline');
-    if (btnEditInline) btnEditInline.addEventListener('click', openQuickSlideEditor);
-
-    item.querySelector('.btn-cancel-quick-slide').addEventListener('click', (e) => {
-      e.stopPropagation();
-      quickPopover.style.display = 'none';
-    });
-
-    item.querySelector('.btn-save-quick-slide').addEventListener('click', async (e) => {
-      e.stopPropagation();
-      const newSlide = quickSlideInp.value.trim();
-      slideInp.value = newSlide;
-      s.slideUrl = newSlide;
-      const res = await curriculumService.saveSessionChanges(course.code, s.sessionNumber, { slideUrl: newSlide });
-      if (res && res.success) {
-        toast.success(`Đã cập nhật link Slide Buổi ${s.sessionNumber}.`);
-        renderSessionsAccordion(course);
-      } else {
-        toast.error('Không thể lưu link Slide.');
-      }
-    });
-
-    // Quick Action: Copy Tóm tắt
-    item.querySelector('.btn-quick-copy-summary').addEventListener('click', async (e) => {
-      e.stopPropagation();
-      const textToCopy = (s.summary || s.title || '').trim();
-      if (!textToCopy) {
-        toast.warning(`Buổi ${s.sessionNumber} chưa có nội dung tóm tắt.`);
-        return;
-      }
-      try {
-        await navigator.clipboard.writeText(textToCopy);
-        toast.success(`Đã sao chép tóm tắt Buổi ${s.sessionNumber}.`);
-      } catch (_) {
-        toast.warning('Không thể tự động sao chép, vui lòng copy thủ công.');
-      }
-    });
-
-    // Quick Action: Báo bài Zalo
-    item.querySelector('.btn-quick-zalo').addEventListener('click', (e) => {
-      e.stopPropagation();
-      switchTab('tab-zalo', { courseCode: course.code, sessionNumber: s.sessionNumber });
-    });
-
-    // Mở liên kết Slide & Review trong form chi tiết
-    slideInp.addEventListener('input', () => {
-      openSlideBtn.disabled = !slideInp.value.trim();
-    });
-    openSlideBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (slideInp.value.trim()) window.open(slideInp.value.trim(), '_blank');
-    });
-
-    const reviewInp = item.querySelector('.inp-session-review');
-    const openReviewBtn = item.querySelector('.btn-open-review');
-    reviewInp.addEventListener('input', () => {
-      openReviewBtn.disabled = !reviewInp.value.trim();
-    });
-    openReviewBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      if (reviewInp.value.trim()) window.open(reviewInp.value.trim(), '_blank');
-    });
-
-    const saveBtn = item.querySelector('.btn-save-session');
-    saveBtn.addEventListener('click', async (e) => {
-      e.stopPropagation();
-      await handleSaveSession(course.code, s.sessionNumber, item);
-    });
-
-    container.appendChild(item);
+    grid.appendChild(card);
   });
+}
+
+function openStudentBookModal() {
+  if (!allCurriculaData || !allCurriculaData.courses || !selectedCourseCode) return;
+  const course = allCurriculaData.courses[selectedCourseCode];
+  if (!course) return;
+
+  const modal = document.getElementById('modal-studentbook');
+  const clusterLabel = document.getElementById('sb-modal-cluster-label');
+  const sbInp = document.getElementById('input-cluster-student-book');
+  const openLinkBtn = document.getElementById('btn-open-student-book');
+
+  const url = (course.studentBookUrl || '').trim();
+  if (clusterLabel) {
+    clusterLabel.textContent = `Cụm ${course.cluster} (${course.code} — dùng chung cho cụm):`;
+  }
+  if (sbInp) sbInp.value = url;
+  if (openLinkBtn) {
+    if (url) {
+      openLinkBtn.href = url;
+      openLinkBtn.style.display = 'inline-flex';
+    } else {
+      openLinkBtn.style.display = 'none';
+    }
+  }
+  if (modal) modal.style.display = 'flex';
 }
 
 async function handleSaveStudentBook() {
@@ -449,7 +453,7 @@ async function handleSaveStudentBook() {
   if (!course) return;
 
   const sbInput = document.getElementById('input-cluster-student-book');
-  const newUrl = sbInput.value.trim();
+  const newUrl = sbInput ? sbInput.value.trim() : '';
   const cluster = course.cluster;
 
   const res = await curriculumService.saveStudentBook(cluster, newUrl, course.code);
@@ -463,35 +467,145 @@ async function handleSaveStudentBook() {
       }
     });
 
-    isEditingStudentBook = false;
-    updateStudentBookUI(course);
+    const modal = document.getElementById('modal-studentbook');
+    if (modal) modal.style.display = 'none';
     toast.success('Đã lưu link StudentBook thành công.');
   } else {
     toast.error('Lưu link StudentBook thất bại.');
   }
 }
 
-async function handleSaveSession(courseCode, sessionNumber, itemEl) {
-  const title = itemEl.querySelector('.inp-session-title').value.trim();
-  const slideUrl = itemEl.querySelector('.inp-session-slide').value.trim();
-  const reviewDocUrl = itemEl.querySelector('.inp-session-review').value.trim();
-  const summary = itemEl.querySelector('.inp-session-summary').value.trim();
-  const hardwareAndCommands = itemEl.querySelector('.inp-session-hardware').value.trim();
-  const objectivesText = itemEl.querySelector('.inp-session-objectives').value.trim();
-  const objectives = objectivesText ? objectivesText.split(/\r?\n|;/).map(o => o.trim()).filter(Boolean) : [];
+function openBuildUrlModal(courseCode, sessionObj) {
+  activeBuildModalSession = { courseCode, sessionNumber: sessionObj.sessionNumber };
+  const modal = document.getElementById('modal-build-url');
+  const subtitle = document.getElementById('build-modal-subtitle');
+  const inp = document.getElementById('input-build-url');
 
-  const sessionData = { title, slideUrl, reviewDocUrl, summary, hardwareAndCommands, objectives };
+  if (subtitle) {
+    subtitle.textContent = `Buổi ${sessionObj.sessionNumber} — ${sessionObj.title || ''}`;
+  }
+  if (inp) {
+    inp.value = (sessionObj.buildUrl || '').trim();
+  }
+  if (modal) {
+    modal.style.display = 'flex';
+    if (inp) inp.focus();
+  }
+}
 
-  const res = await curriculumService.saveSessionChanges(courseCode, sessionNumber, sessionData);
+async function handleSaveBuildUrl() {
+  if (!activeBuildModalSession) return;
+  const { courseCode, sessionNumber } = activeBuildModalSession;
+  const inp = document.getElementById('input-build-url');
+  const buildUrl = inp ? inp.value.trim() : '';
+
+  const res = await curriculumService.saveSessionChanges(courseCode, sessionNumber, { buildUrl });
   if (res && res.success) {
-    const course = allCurriculaData.courses[courseCode];
+    const course = allCurriculaData && allCurriculaData.courses ? allCurriculaData.courses[courseCode] : null;
     if (course && course.sessions) {
       const target = course.sessions.find(x => x.sessionNumber === sessionNumber);
-      if (target) Object.assign(target, sessionData);
+      if (target) target.buildUrl = buildUrl;
     }
-    toast.success(`Đã lưu cập nhật Buổi ${sessionNumber}.`);
-    renderSessionsAccordion(allCurriculaData.courses[courseCode]);
+    const modal = document.getElementById('modal-build-url');
+    if (modal) modal.style.display = 'none';
+    activeBuildModalSession = null;
+    renderCourseSessions(courseCode);
+    toast.success(`Đã lưu Link lắp ráp Buổi ${sessionNumber}.`);
   } else {
-    toast.error(`Không thể lưu Buổi ${sessionNumber}.`);
+    toast.error('Không thể lưu Link lắp ráp.');
+  }
+}
+
+export function openQrModal(sessionObj) {
+  const slideUrl = (sessionObj && sessionObj.slideUrl ? String(sessionObj.slideUrl).trim() : '');
+  const builds = getSessionBuilds(sessionObj);
+  const buildUrl = builds.length > 0 ? builds[0].url : '';
+  if (!slideUrl && !buildUrl) return;
+
+  activeQrState = {
+    sessionNumber: sessionObj.sessionNumber,
+    title: sessionObj.title || '',
+    builds,
+    selectedBuildIdx: 0,
+    buildUrl,
+    slideUrl,
+    activeType: buildUrl ? 'build' : 'slide'
+  };
+
+  const modal = document.getElementById('modal-qr');
+  const titleEl = document.getElementById('qr-modal-title');
+  const tabsEl = document.getElementById('qr-modal-tabs');
+
+  if (titleEl) {
+    titleEl.textContent = `Buổi ${activeQrState.sessionNumber} — ${activeQrState.title}`;
+  }
+  if (tabsEl) {
+    tabsEl.style.display = (buildUrl && slideUrl) ? 'inline-flex' : 'none';
+  }
+
+  renderQrModalContent();
+  if (modal) modal.style.display = 'flex';
+}
+
+export function switchQrType(type) {
+  if (type === 'build' && !activeQrState.buildUrl) return;
+  if (type === 'slide' && !activeQrState.slideUrl) return;
+  activeQrState.activeType = type;
+  renderQrModalContent();
+}
+
+function renderQrModalContent() {
+  const tabBuildBtn = document.getElementById('btn-qr-tab-build');
+  const tabSlideBtn = document.getElementById('btn-qr-tab-slide');
+  const buildTabsEl = document.getElementById('qr-modal-build-tabs');
+  const badgeEl = document.getElementById('qr-modal-type-badge');
+  const canvasEl = document.getElementById('qr-modal-canvas');
+  const urlEl = document.getElementById('qr-modal-url');
+
+  const isBuild = activeQrState.activeType === 'build';
+  const builds = activeQrState.builds || [];
+  if (isBuild && builds.length > 0) {
+    const activeBuild = builds[activeQrState.selectedBuildIdx] || builds[0];
+    activeQrState.buildUrl = activeBuild.url;
+  }
+  const currentUrl = isBuild ? activeQrState.buildUrl : activeQrState.slideUrl;
+
+  if (tabBuildBtn) tabBuildBtn.classList.toggle('active', isBuild);
+  if (tabSlideBtn) tabSlideBtn.classList.toggle('active', !isBuild);
+
+  if (buildTabsEl) {
+    if (isBuild && builds.length >= 2) {
+      buildTabsEl.style.display = 'inline-flex';
+      buildTabsEl.innerHTML = '';
+      builds.forEach((b, idx) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = `curriculum-qr-tab ${idx === activeQrState.selectedBuildIdx ? 'active' : ''}`;
+        btn.textContent = b.label;
+        btn.addEventListener('click', () => {
+          activeQrState.selectedBuildIdx = idx;
+          activeQrState.buildUrl = b.url;
+          renderQrModalContent();
+        });
+        buildTabsEl.appendChild(btn);
+      });
+    } else {
+      buildTabsEl.style.display = 'none';
+    }
+  }
+
+  if (badgeEl) {
+    badgeEl.textContent = isBuild ? 'QR Link lắp ráp' : 'QR Slide bài giảng';
+  }
+  if (urlEl) {
+    urlEl.textContent = currentUrl;
+    urlEl.title = currentUrl;
+  }
+  if (canvasEl && currentUrl) {
+    try {
+      canvasEl.innerHTML = generateQrSvg(currentUrl, 240);
+    } catch (err) {
+      canvasEl.innerHTML = `<span style="color:#DC2626;font-size:12px;">${escapeHtml(err.message)}</span>`;
+    }
   }
 }

@@ -16,6 +16,7 @@
         "Phát triển tư duy kỹ thuật, sự khéo léo và kỹ năng giải quyết vấn đề thông qua lắp ráp."
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1h89IOyPCo4FSDIwqbj1UyoTyyyxFy2_T/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "buildUrl": "https://drive.google.com/file/d/1LXM55lWBfSz1vrVme6Zc4NmgSOB90O8q/view?usp=drivesdk",
       "reviewDocUrl": ""
     },
     "2": {
@@ -29,6 +30,7 @@
         "Hiểu nhiệm vụ và lập trình cánh tay Robot di chuyển đồ vật chính xác."
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1qKn--eumiEBH77xBzebXLuiVx37DRRzV/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "buildUrl": "https://drive.google.com/file/d/1lC1gD622Fx8IZMcP34R7SVFUKnIFlLbr/view?usp=drivesdk",
       "reviewDocUrl": ""
     },
     "3": {
@@ -41,6 +43,7 @@
         "Phân tích, đánh giá và tự sửa các lỗi chương trình thường gặp."
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1vcs2-fGzFDqFBHT2ZF10CtdHTmbhdS2g/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "buildUrl": "https://drive.google.com/file/d/1kxrNvWwm8e0elA4irmcv904eEu8Glq1E/view?usp=drivesdk",
       "reviewDocUrl": ""
     },
     "4": {
@@ -53,6 +56,7 @@
         "Lắp ráp, tối ưu mô hình hoạt động ổn định và phối hợp nhóm thi đấu."
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1VrtLb6XD811RU5xSJsORXpX4ZyR1WbZa/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "buildUrl": null,
       "reviewDocUrl": ""
     },
     "5": {
@@ -66,6 +70,7 @@
         "Thành thạo thao tác thiết lập, kết nối và kéo thả câu lệnh."
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1mC2fS_dxIb5Jl9UHHZP7ITpdvnKUxfW0/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "buildUrl": "https://drive.google.com/file/d/1L8maRCdznb5saDvs9aAiE5x-gJ_kDI-J/view?usp=drivesdk",
       "reviewDocUrl": ""
     },
     "6": {
@@ -78,6 +83,7 @@
         "Hiểu và vận dụng câu lệnh rẽ nhánh <if ... elif ... else> vào lập trình điều khiển."
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1DnThP36PoR03-MWvofV98zCcC3AaZqWv/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "buildUrl": "https://drive.google.com/file/d/1uUhuTMAi3r2Th6kXxmQfe4kqv_RNIny-/view?usp=drivesdk",
       "reviewDocUrl": ""
     },
     "7": {
@@ -90,6 +96,7 @@
         "Thành thạo kéo thả và vận dụng <if ... elif ... else> vào nhiệm vụ thực tế."
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1G2eQ08jWymFIqEmYE94aEImVDvhQhKJd/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "buildUrl": "https://drive.google.com/file/d/1yjUpeybI3yEEJSc_XUMGY4lB0-XD9lUz/view?usp=drivesdk",
       "reviewDocUrl": ""
     },
     "8": {
@@ -102,6 +109,7 @@
         "Lập trình vận hành mô hình hoàn thành nhiệm vụ thi đấu nhóm."
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1JZz5nYlOXRyGa0Zxfg-oPP0r0IEsoiGi/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "buildUrl": null,
       "reviewDocUrl": ""
     },
     "9": {
@@ -114,6 +122,7 @@
         "Hiểu và vận dụng thẻ lệnh <repeat ... until> để lập trình vẽ hình đối xứng."
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1o2ObKgq4Ef_MHMiCFqiqYefG6lDI2v0m/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "buildUrl": null,
       "reviewDocUrl": ""
     },
     "10": {
@@ -126,6 +135,7 @@
         "Thành thạo thiết lập, kết nối và lập trình với <repeat ... until>."
       ],
       "slideUrl": "https://docs.google.com/presentation/d/16MI7akEzi9Pb-XiQQsEJ8Gj7yKEYuVSy/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "buildUrl": "https://drive.google.com/file/d/16KmZrxJgZuKpljuTU6aOzntajKhLsBD5/view?usp=drivesdk",
       "reviewDocUrl": ""
     },
     "11": {
@@ -138,6 +148,7 @@
         "Sáng tạo mô hình và lập trình hoàn thành thử thách thoát khỏi mê cung."
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1cJ9pHNrnevIOF6laT6KwAEsKyTmf3kJv/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "buildUrl": "https://drive.google.com/file/d/1gXZBFgABtSaXtsmPJdmJQTZT0y_G6Ppb/view?usp=drivesdk",
       "reviewDocUrl": ""
     },
     "12": {
@@ -150,6 +161,7 @@
         "Hiểu rõ quy trình Demo và các tiêu chí của phần thuyết trình."
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1HfEwx2myZboErYR_PpB7ZXoTOmOrafBu/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "buildUrl": "https://drive.google.com/file/d/1IE3WoAibgSylTOgjgWfcYxbKyju3lXLy/view?usp=drivesdk",
       "reviewDocUrl": ""
     },
     "13": {
@@ -162,6 +174,7 @@
         "Hoàn thành thuyết trình thử mạch lạc, rõ ràng."
       ],
       "slideUrl": "",
+      "buildUrl": null,
       "reviewDocUrl": ""
     },
     "14": {
@@ -174,6 +187,7 @@
         "Tổng hợp kiến thức cơ khí và lập trình VEXcode GO trong suốt 14 buổi"
       ],
       "slideUrl": "",
+      "buildUrl": null,
       "reviewDocUrl": "",
       "nextLesson": "Hoàn thành khóa học ARMA (Lộ trình tiếp theo: ARMI)"
     }
