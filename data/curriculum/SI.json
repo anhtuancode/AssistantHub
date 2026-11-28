@@ -11,7 +11,7 @@
   "sessions": {
     "1": {
       "sessionNumber": 1,
-      "title": "Làm quen với Micro:bit",
+      "title": "Làm quen với Microbit",
       "summary": "Tìm hiểu nội quy, lộ trình khóa học và khái niệm giáo dục STEM; làm quen với bảng mạch Micro:bit cùng các thành phần phần cứng; cài đặt Scratch Link và kết nối Micro:bit điều khiển nhân vật trong Scratch; làm quen giao diện lập trình MakeCode, mô phỏng và nạp chương trình đầu tiên vào mạch Micro:bit.",
       "hardwareAndCommands": "Bảng mạch Micro:bit, cáp kết nối máy tính, phần mềm Scratch Link, extension Micro:bit trên Scratch, môi trường lập trình Microsoft MakeCode.",
       "objectives": [
@@ -31,12 +31,12 @@
         "Làm quen với giao diện MakeCode: trình mô phỏng, khu vực thẻ lệnh, khu vực lập trình và các công cụ quản lý dự án.",
         "Thực hành ghép nối, nạp chương trình vào Micro:bit và lưu file dự án về máy tính."
       ],
-      "slideUrl": "",
+      "slideUrl": "https://docs.google.com/presentation/d/1tXDoF-IQe_SiMl2tBAUyIiGFGFR7j5Zd/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
       "reviewDocUrl": ""
     },
     "2": {
       "sessionNumber": 2,
-      "title": "Game với Micro:bit",
+      "title": "Game với Microbit",
       "summary": "Ôn tập phần cứng Micro:bit; trải nghiệm và phân tích game Pacman trên ma trận LED 5x5; làm quen nhóm lệnh Game trong MakeCode (tạo sprite nhân vật, thức ăn, quái vật); ứng dụng cảm biến gia tốc (Accelerometer) để điều khiển Pacman qua thao tác nghiêng mạch; lập trình thuật toán đuổi bắt, tính điểm và xử lý Game Over.",
       "hardwareAndCommands": "Cảm biến gia tốc tích hợp (tilt x/y, acceleration), ma trận LED 5x5, nhóm lệnh Game MakeCode (create sprite, move, change x/y, touching, score, game over).",
       "objectives": [
@@ -56,12 +56,12 @@
         "Xử lý va chạm Pacman - Food: tăng điểm, đặt Food ở vị trí ngẫu nhiên và đặt lại vị trí Ghost.",
         "Xử lý điều kiện kết thúc game và kiểm thử trò chơi hoàn chỉnh."
       ],
-      "slideUrl": "",
+      "slideUrl": "https://docs.google.com/presentation/d/1n1ZoWxWRnFo3pkRB_IF4c8yPrphcZ36r/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
       "reviewDocUrl": ""
     },
     "3": {
       "sessionNumber": 3,
-      "title": "Cảm biến trên Micro:bit (Phần 1)",
+      "title": "Cảm biến trên Microbit (Phần 1)",
       "summary": "Khám phá các cảm biến tích hợp sẵn trên Micro:bit; lập trình nhiệt kế điện tử đo nhiệt độ môi trường; khai thác cảm biến từ trường làm la bàn số nhận biết 4 hướng (Đông - Tây - Nam - Bắc); tìm hiểu cảm biến âm thanh (Microphone) và lập trình đèn LED thông minh tự động bật/tắt khi có tiếng vỗ tay.",
       "hardwareAndCommands": "Cảm biến nhiệt độ (temperature), la bàn số (compass heading), micro cảm biến âm thanh (sound level, on loud sound), câu lệnh điều kiện phân loại khoảng giá trị (If Else If).",
       "objectives": [
@@ -80,12 +80,12 @@
         "Đọc mức âm thanh và kiểm tra phản hồi của cảm biến.",
         "Lập trình mô phỏng đèn LED tự động bật/tắt bằng tiếng vỗ tay."
       ],
-      "slideUrl": "",
+      "slideUrl": "https://docs.google.com/presentation/d/1ZNrnRtcZaGZ25azf62SGoGG2aQ2oJ78Z/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
       "reviewDocUrl": ""
     },
     "4": {
       "sessionNumber": 4,
-      "title": "Cảm biến trên Micro:bit (Phần 2)",
+      "title": "Cảm biến trên Microbit (Phần 2)",
       "summary": "Tìm hiểu cơ chế cảm biến ánh sáng (Light Level) từ ma trận LED; xử lý ngưỡng sáng/tối tự động bật đèn; làm quen với mạch mở rộng phần cứng (MakerEdu Shield) và các cổng cắm tín hiệu/nguồn; thực hành đấu nối module đèn giao thông ngoài và lập trình chu kỳ đèn giao thông sử dụng Hàm (Function).",
       "hardwareAndCommands": "Cảm biến ánh sáng (light level), mạch mở rộng MakerEdu, module LED giao thông (Đỏ, Vàng, Xanh), chân cắm GPIO (digital write pin), khối lệnh Hàm (Function).",
       "objectives": [
@@ -105,16 +105,16 @@
         "Nhận biết và ghép nối module LED giao thông.",
         "Thực hành lập trình tín hiệu đèn giao thông và ứng dụng Function trong lập trình."
       ],
-      "slideUrl": "",
+      "slideUrl": "https://docs.google.com/presentation/d/14GtoQUc_-kNXljoe64O3xuPVcza3zBze/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
       "reviewDocUrl": ""
     },
     "5": {
       "sessionNumber": 5,
-      "title": "",
+      "title": "Kiểm tra giữa khóa",
       "summary": "",
       "hardwareAndCommands": "",
       "objectives": [],
-      "slideUrl": "",
+      "slideUrl": "https://docs.google.com/presentation/d/1DXHbP7laXFRlfs-ft5k6OneGCQj6qg6t/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
       "reviewDocUrl": ""
     },
     "6": {
@@ -139,7 +139,7 @@
         "Kết nối Micro:bit, mạch mở rộng, Servo và các module liên quan.",
         "Thêm extension Servo trên MakeCode và lập trình điều khiển góc quay của Servo."
       ],
-      "slideUrl": "",
+      "slideUrl": "https://docs.google.com/presentation/d/1Cef0kNgK1zZ-6GTpCro9XUBd9K2BRJCP/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
       "reviewDocUrl": ""
     },
     "7": {
@@ -164,7 +164,7 @@
         "Xây dựng cửa tự động mở khi phát hiện người/vật tiến đến gần và đóng lại khi rời xa.",
         "Tìm hiểu sơ lược cảm biến lửa dùng mắt thu hồng ngoại."
       ],
-      "slideUrl": "",
+      "slideUrl": "https://docs.google.com/presentation/d/1ruAiVszoMfWi3uYmP9DSgmh7cwut2c55/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
       "reviewDocUrl": ""
     },
     "8": {
@@ -188,12 +188,12 @@
         "Thực hiện nhiệm vụ nhận diện động tác giơ tay trái hoặc tay phải.",
         "Vận dụng mô hình AI để đề xuất/triển khai cửa tự động nhận diện người hoặc khuôn mặt được cho phép."
       ],
-      "slideUrl": "",
+      "slideUrl": "https://docs.google.com/presentation/d/172QQ1wTXJJ3s51JzAcfzElbSOXHhxJcV/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
       "reviewDocUrl": ""
     },
     "9": {
       "sessionNumber": 9,
-      "title": "Kiểm tra cuối khóa và lên ý tưởng dự án",
+      "title": "Kiểm tra cuối khóa",
       "summary": "Hệ thống hóa toàn bộ kiến thức lập trình Micro:bit, cảm biến, động cơ và AI; hoàn thành bài kiểm tra cuối khóa (45 phút lý thuyết và thực hành); tìm hiểu lộ trình phát triển dự án công nghệ; thảo luận nhóm đề xuất ý tưởng sáng chế giải quyết bài toán thực tế và chuẩn bị vật liệu triển khai.",
       "hardwareAndCommands": "Đề kiểm tra cuối khóa, bảng mạch Micro:bit và bộ kit cảm biến MakerEdu, phiếu đề xuất ý tưởng sáng chế công nghệ.",
       "objectives": [
@@ -213,12 +213,12 @@
         "Đề xuất ý tưởng sản phẩm, xác định vấn đề thực tế và chức năng chính.",
         "Chia sẻ ý tưởng với cả lớp, tiếp nhận góp ý và lựa chọn hướng triển khai."
       ],
-      "slideUrl": "",
+      "slideUrl": "https://docs.google.com/presentation/d/1IjShODgk9sNgaoRAOzcrHyacYexthVaa/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
       "reviewDocUrl": ""
     },
     "10": {
       "sessionNumber": 10,
-      "title": "Dự án của em (Phần 1)",
+      "title": "Dự án của em",
       "summary": "Bắt tay xây dựng phiên bản mẫu đầu tiên (Prototype) của dự án sáng chế; đấu nối phần cứng cảm biến và cơ cấu chấp hành; lập trình khối chức năng cốt lõi trên MakeCode; kiểm thử hoạt động ban đầu, ghi nhận lỗi kỹ thuật và tạo hình mô hình sản phẩm.",
       "hardwareAndCommands": "Bảng mạch Micro:bit, mạch mở rộng, các module cảm biến và thiết bị đầu ra theo ý tưởng nhóm, vật liệu chế tạo mô hình (bìa carton, mô hình lắp ghép).",
       "objectives": [
@@ -237,12 +237,12 @@
         "Kiểm thử từng chức năng, ghi nhận lỗi và đề xuất hướng xử lý.",
         "Bắt đầu hoàn thiện hình thức, trang trí và bố trí mô hình sản phẩm."
       ],
-      "slideUrl": "",
+      "slideUrl": "https://docs.google.com/presentation/d/1tLsdPDxLZJiKKIUpLvqkVxu5lGooSyif/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
       "reviewDocUrl": ""
     },
     "11": {
       "sessionNumber": 11,
-      "title": "Dự án của em (Phần 2)",
+      "title": "Dự án của em",
       "summary": "Tiếp tục hoàn thiện các tính năng phụ trợ và tăng tính ổn định của thiết bị; tối ưu cơ cấu cơ khí, vị trí đặt cảm biến và đi dây gọn gàng; gia cố mô hình chắc chắn và mang tính thẩm mỹ cao; tổ chức kiểm thử chéo giữa các nhóm để thu thập ý kiến trải nghiệm và tối ưu hóa hệ thống.",
       "hardwareAndCommands": "Tối ưu hóa mã nguồn MakeCode, gia cố đấu nối dây dẫn mạch mở rộng, cảm biến, cơ cấu chấp hành và kết cấu vật liệu mô hình.",
       "objectives": [
@@ -261,12 +261,12 @@
         "Thực hiện kiểm thử chéo giữa các nhóm và thu thập phản hồi.",
         "Sửa lỗi, cải tiến trải nghiệm sử dụng và cập nhật tiến độ dự án."
       ],
-      "slideUrl": "",
+      "slideUrl": "https://docs.google.com/presentation/d/1Bngnpxt27XezGIjG8m9L4t84FVfCNIQq/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
       "reviewDocUrl": ""
     },
     "12": {
       "sessionNumber": 12,
-      "title": "Dự án của em (Phần 3)",
+      "title": "Dự án của em",
       "summary": "Tổng duyệt và kiểm tra toàn diện hoạt động của sản phẩm trong các điều kiện thực tế và tình huống biên; xử lý triệt để các lỗi còn tồn đọng; hoàn tất trang trí và đóng gói mô hình; xây dựng kịch bản demo ngắn gọn giới thiệu vấn đề, giải pháp và nguyên lý hoạt động; sao lưu mã nguồn và thiết lập checklist thiết bị sẵn sàng cho buổi Demo.",
       "hardwareAndCommands": "Kiểm thử toàn diện hệ thống phần cứng Micro:bit, nguồn pin/adapter dự phòng, lưu trữ mã nguồn .hex trên MakeCode, kịch bản demo sản phẩm.",
       "objectives": [
@@ -285,7 +285,7 @@
         "Chuẩn bị nội dung demo: vấn đề, giải pháp, cách hoạt động và điểm nổi bật.",
         "Lưu bản dự phòng mã nguồn, chuẩn bị thiết bị và checklist cho buổi demo sản phẩm."
       ],
-      "slideUrl": "",
+      "slideUrl": "https://docs.google.com/presentation/d/1dIQ09S-m7GFnogaa-xnkLrElviWhQXjL/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
       "reviewDocUrl": ""
     },
     "13": {
@@ -310,7 +310,7 @@
         "Các nhóm lần lượt demo sản phẩm, thuyết trình thử, trả lời câu hỏi và nhận nhận xét.",
         "Chuẩn bị triển lãm và nắm timeline buổi 14: 20 phút setup, 20 phút chinh phục kiến thức, 60 phút triển lãm, 20 phút tổng kết."
       ],
-      "slideUrl": "",
+      "slideUrl": "https://docs.google.com/presentation/d/1fXwhxjoa_oeCP27CdoU0dM1F6c0H-zcU/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
       "reviewDocUrl": ""
     },
     "14": {
@@ -334,7 +334,7 @@
         "Tiếp nhận phản hồi từ Ban giám khảo và khách mời.",
         "Tổng kết quá trình học, ghi nhận tiến bộ và trao thưởng."
       ],
-      "slideUrl": "",
+      "slideUrl": "https://docs.google.com/presentation/d/1QU6TB4j_0REy0kuE2iAJ8bgdDaIey-7d/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
       "reviewDocUrl": ""
     }
   }

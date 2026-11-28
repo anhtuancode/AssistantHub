@@ -6,7 +6,7 @@
 import { switchTab } from '../main.js';
 import { toast, showConfirm } from '../services/toast.js';
 import { handleSessionExpiredIfAny } from '../services/sessionGuard.js';
-import { saveCurrentDraft } from './students.js';
+import { saveCurrentDraft, markSessionSavedToLms, syncStudentStatusesToDraft } from './students.js';
 import { getGeminiConfig } from './config.js';
 import { loadCommentStyleConfig, getStyleSignature } from '../config/commentStyles.js';
 import { checkTeacherPointEligibility } from './teacherPoint.js';
@@ -312,8 +312,12 @@ async function runBatchSave(targetIndices, { skipSummary = false } = {}) {
       updateProgressUI(true, `Hoàn tất ${totalSaved}/${allPresent.length} học viên!`, 100);
 
       if (failedStudents.length === 0) {
+        if (totalSaved > 0) {
+          markSessionSavedToLms(reviewStudents);
+        }
         toast.success(`Đã lưu thành công Summary và ${totalSaved}/${allPresent.length} nhận xét lên LMS.`, 5000);
       } else {
+        syncStudentStatusesToDraft(reviewStudents);
         toast.warning(`Hoàn tất: ${totalSaved} thành công, ${failedStudents.length} lỗi (bấm "Thử lại" tại học viên bị lỗi).`, 5000);
       }
 
@@ -358,7 +362,7 @@ function renderStatusBadge(st, idx) {
     return '<span class="tag tag-green" style="font-size: 10.5px;">✓ Đã lưu</span>';
   }
   if (st.saveStatus === 'error') {
-    return `<span class="tag tag-red" style="font-size: 10.5px;">✗ Lỗi</span>
+    return `<span class="tag tag-red" style="font-size: 10.5px;">! Lỗi</span>
       <button type="button" class="btn btn-secondary btn-xs btn-retry-single" data-idx="${idx}" style="padding: 1px 6px; font-size: 10.5px;">↻ Thử lại</button>`;
   }
   return '<span style="color: #94A3B8; font-size: 11px;">❯</span>';
@@ -482,17 +486,27 @@ async function saveSingleStudentToLms(idx) {
     }
     if (data.success && (data.status === 'VERIFIED' || data.status === 'SAVED_UNVERIFIED')) {
       student.saveStatus = 'saved';
+      const allPresent = reviewStudents.filter(
+        s => (s.attendance || '').toUpperCase() !== 'ABSENT' && s.comment && s.comment.trim()
+      );
+      if (allPresent.length > 0 && allPresent.every(s => s.saveStatus === 'saved')) {
+        markSessionSavedToLms(reviewStudents);
+      } else {
+        syncStudentStatusesToDraft(reviewStudents);
+      }
       renderReviewUI();
       updateProgressUI(true, `Đã lưu thành công nhận xét cho ${student.name}!`, 100);
       toast.success(`Đã lưu và xác minh nhận xét cho "${student.name}" lên LMS.`);
       return true;
     }
     student.saveStatus = 'error';
+    syncStudentStatusesToDraft(reviewStudents);
     renderReviewUI();
     toast.warning(`Kết quả: ${data.message || data.error || 'Chưa lưu được'}`);
     return false;
   } catch (err) {
     student.saveStatus = 'error';
+    syncStudentStatusesToDraft(reviewStudents);
     renderReviewUI();
     toast.error(`Lỗi thực thi: ${err.message}`);
     return false;

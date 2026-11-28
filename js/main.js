@@ -5,7 +5,7 @@
 
 import { initConfigTab } from './tabs/config.js';
 import { initClassesTab } from './tabs/classes.js';
-import { initStudentsTab } from './tabs/students.js';
+import { initStudentsTab, cleanupExpiredSessionDrafts } from './tabs/students.js';
 import { initReviewTab } from './tabs/review.js';
 import { initCurriculumTab } from './tabs/curriculum.js';
 import { initZaloTab } from './tabs/zalo.js';
@@ -143,6 +143,8 @@ function setupLogDrawer() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  cleanupExpiredSessionDrafts();
+
   // Gắn sự kiện chuyển tab trên Sidebar
   document.querySelectorAll('.nav-btn').forEach(btn => {
     btn.addEventListener('click', () => {

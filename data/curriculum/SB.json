@@ -4,284 +4,275 @@
   "category": "CODING",
   "platform": "Scratch",
   "cluster": "SCRATCH",
-  "targetAge": "8 - 10 Tuổi",
+  "targetAge": "8 - 10 tuổi",
   "duration": "120 phút/buổi",
-  "version": "Ver1 – 5.2024",
+  "version": "Ver 2026",
   "studentBookUrl": "https://drive.google.com/file/d/1KEht4y-cw2ynXnf6tJCXKxDu_8GqWBbJ/view",
   "sessions": {
     "1": {
       "sessionNumber": 1,
-      "title": "Tư duy máy tính",
-      "summary": "Tìm hiểu tổng quan khóa học Scratch Basic; khám phá cấu trúc tuần tự trong tư duy máy tính qua trò chơi Rapid Router; làm quen môi trường Scratch (Raise); thực hành khởi tạo nhân vật, phông nền và thiết kế căn phòng của em; học cách quản lý dự án qua quản lý file.",
-      "hardwareAndCommands": "Môi trường lập trình Scratch (Raise), trò chơi Rapid Router; cấu trúc tuần tự, 04 bước và 04 phương thức khởi tạo nhân vật và phông nền, kỹ năng quản lý file dự án.",
+      "title": "Miễn dịch thần kỳ (Buổi 1)",
+      "summary": "Tìm hiểu tổng quan khóa học Scratch Basic; làm quen với giao diện làm việc của Scratch; tìm hiểu cách khởi tạo nhân vật và thông số của nhân vật; giới thiệu một số thẻ lệnh di chuyển; thực hành lập trình nhân vật di chuyển bằng chuột và quản lý dự án thông qua quản lý file.",
+      "hardwareAndCommands": "Môi trường lập trình Scratch, thông số nhân vật, các thẻ lệnh di chuyển theo con trỏ chuột, quản lý file dự án .sb3.",
       "objectives": [
-        "Kiến thức: Trình bày thứ tự thực hiện của các thẻ lệnh trong hoạt động Rapid Router; Trình bày được 04 bước và 04 phương thức khởi tạo nhân vật và phông nền.",
-        "Kỹ năng: Thực hiện khởi tạo nhân vật và phông nền để trang trí căn phòng; Thực hiện quản lý dự án thông qua việc quản lý file.",
-        "Thái độ: Thiết kế được căn phòng với các nhân vật hợp lý từ thư viện có sẵn."
+        "Kiến thức: Phân biệt được các vùng làm việc chính của Scratch; Trình bày được ý nghĩa thẻ lệnh thay đổi vị trí của nhân vật; Trình bày được ý nghĩa của thẻ lệnh di chuyển; Mô tả được các thông số của nhân vật.",
+        "Kỹ năng: Thực hiện được việc khởi tạo nhân vật và phông nền; Lập trình được nhân vật di chuyển theo con trỏ chuột; Thực hiện được thao tác quản lý file .sb3.",
+        "Thái độ: Hứng thú với việc sử dụng chương trình Scratch; Chủ động kiểm tra, đánh giá tính đúng/sai kết quả."
       ],
-      "los": "SLO.I.1, SLO.II.1, SLO.III.1, SLO.V.1",
-      "knowledge": "Trình bày thứ tự thực hiện của các thẻ lệnh trong hoạt động Rapid Router; Trình bày được 04 bước khởi tạo nhân vật và phông nền; Trình bày được 04 phương thức khởi tạo nhân vật và phông nền.",
-      "skills": "Thực hiện khởi tạo nhân vật và phông nền để trang trí căn phòng; Thực hiện quản lý dự án thông qua việc quản lý file.",
-      "attitude": "Thiết kế được căn phòng với các nhân vật hợp lý từ thư viện có sẵn.",
+      "knowledge": "Phân biệt được các vùng làm việc chính của Scratch; Trình bày được ý nghĩa thẻ lệnh thay đổi vị trí của nhân vật; Trình bày được ý nghĩa của thẻ lệnh di chuyển; Mô tả được các thông số của nhân vật.",
+      "skills": "Thực hiện được việc khởi tạo nhân vật và phông nền; Lập trình được nhân vật di chuyển theo con trỏ chuột; Thực hiện được thao tác quản lý file .sb3.",
+      "attitude": "Hứng thú với việc sử dụng chương trình Scratch; Chủ động kiểm tra, đánh giá tính đúng/sai kết quả.",
       "lessonContent": [
-        "Tìm hiểu tổng quan khóa học Scratch Basic, các mốc thời gian quan trọng và nội quy lớp học.",
-        "Tìm hiểu về cấu trúc tuần tự trong tư duy máy tính thông qua trò chơi Rapid Router.",
-        "Tìm hiểu về vai trò của ngôn ngữ lập trình và các sản phẩm lập trình trong cuộc sống.",
-        "Làm quen với môi trường lập trình Scratch (Raise).",
-        "Tìm hiểu và thực hành khởi tạo nhân vật và phông nền.",
-        "Thực hành thiết kế căn phòng của em.",
-        "Tìm hiểu cách quản lý dự án thông qua quản lý file."
+        "Tìm hiểu tổng quan khóa học Scratch Basic.",
+        "Làm quen với giao diện làm việc của Scratch.",
+        "Tìm hiểu cách khởi tạo nhân vật và thông số của nhân vật.",
+        "Giới thiệu một số thẻ lệnh di chuyển.",
+        "Thực hành lập trình nhân vật di chuyển bằng chuột.",
+        "Thực hành quản lý dự án thông qua quản lý file."
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1UriZ9JQ3a2GTVvG_AXRpmiUfp_oiKyiN/edit?slide=id.p1#slide=id.p1",
       "reviewDocUrl": ""
     },
     "2": {
       "sessionNumber": 2,
-      "title": "Thiệp mừng sinh nhật",
-      "summary": "Tìm hiểu về kỷ nguyên số hóa; khám phá trang phục của nhân vật, âm thanh và các thẻ lệnh tương tác; làm quen vòng lặp biết trước số lần và vòng lặp liên tục trong nhóm Control; thực hành thiết kế thiệp chúc mừng sinh nhật với hiệu ứng động và âm thanh sinh động.",
-      "hardwareAndCommands": "Thẻ lệnh trang phục (Looks), thẻ lệnh âm thanh (Sound), vòng lặp lặp lại (repeat) và lặp liên tục (forever) trong nhóm Control, tọa độ x, y trên sân khấu Scratch.",
+      "title": "Miễn dịch thần kỳ (Buổi 2)",
+      "summary": "Giới thiệu một số thẻ lệnh điều chỉnh hướng của nhân vật; tìm hiểu về câu lệnh điều kiện và một số thẻ lệnh cảm biến; hoàn thiện lập trình di chuyển nhân vật chính và lập trình nhân vật phụ xuất hiện, di chuyển; thực hành tạo lập Gmail và luyện tập kỹ năng gõ phím trên Typing.com.",
+      "hardwareAndCommands": "Thẻ lệnh điều chỉnh hướng (Motion), câu lệnh điều kiện (Control), thẻ lệnh cảm biến (Sensing), Gmail và Typing.com.",
       "objectives": [
-        "Kiến thức: Trình bày được chức năng của trang phục và 02 thẻ lệnh tương tác với trang phục; Trình bày chức năng, cách thêm âm thanh và 05 thẻ lệnh âm thanh; Hiểu ý nghĩa vòng lặp biết trước số lần và vòng lặp liên tục.",
-        "Kỹ năng: Phân biệt được giá trị x, y và xác định vị trí nhân vật trên sân khấu; Thực hiện trang trí thiệp chúc mừng sinh nhật và tạo các hiệu ứng động cho thiệp mừng.",
-        "Thái độ: Thiết kế được thiệp mừng sinh nhật với thông điệp ý nghĩa để gửi tặng người thân."
+        "Kiến thức: Trình bày được ý nghĩa thẻ lệnh điều chỉnh hướng; Mô tả được ý nghĩa của câu lệnh điều kiện; Trình bày được ý nghĩa của thẻ lệnh cảm biến.",
+        "Kỹ năng: Lập trình được nhân vật phụ xuất hiện và di chuyển; Thực hành thành thạo thao tác gõ phím.",
+        "Thái độ: Cẩn thận trong việc lập trình; Chủ động kiểm tra, đánh giá tính đúng/sai kết quả; Tích cực trao đổi, phản biện khi hoạt động nhóm."
       ],
-      "los": "SLO.I.2, SLO.II.1, SLO.III.1, SLO.IV.1",
-      "knowledge": "Trình bày được chức năng của trang phục và 02 thẻ lệnh tương tác với trang phục; Trình bày về chức năng, cách để thêm âm thanh vào dự án Scratch và 05 thẻ lệnh tương tác với âm thanh trong Scratch; Trình bày được ý nghĩa của vòng lặp với số lần biết trước và vòng lặp liên tục trong Scratch.",
-      "skills": "Phân biệt được giá trị x, y và xác định được vị trí của nhân vật trên sân khấu thông qua giá trị x, y; Thực hiện trang trí thiệp chúc mừng sinh nhật và tạo các hiệu ứng động cho thiệp mừng.",
-      "attitude": "Thiết kế được thiệp mừng sinh nhật với thông điệp ý nghĩa để gửi tặng người thân.",
+      "knowledge": "Trình bày được ý nghĩa thẻ lệnh điều chỉnh hướng; Mô tả được ý nghĩa của câu lệnh điều kiện; Trình bày được ý nghĩa của thẻ lệnh cảm biến.",
+      "skills": "Lập trình được nhân vật phụ xuất hiện và di chuyển; Thực hành thành thạo thao tác gõ phím.",
+      "attitude": "Cẩn thận trong việc lập trình; Chủ động kiểm tra, đánh giá tính đúng/sai kết quả; Tích cực trao đổi, phản biện khi hoạt động nhóm.",
       "lessonContent": [
-        "Tìm hiểu về kỷ nguyên số hóa các công việc thông dụng trong cuộc sống.",
-        "Tìm hiểu về các trang phục của nhân vật, các thẻ lệnh tương tác với trang phục và chức năng của các trang phục.",
-        "Tìm hiểu về âm thanh, cách thêm âm thanh và các thẻ lệnh tương tác với âm thanh trong Scratch.",
-        "Tìm hiểu vòng lặp với số lần biết trước và vòng lặp liên tục trong nhóm lệnh Control.",
-        "Thực hành tạo hành động của nhân vật và thêm âm thanh vào dự án.",
-        "Thực hành thiết kế thiệp chúc mừng sinh nhật và nhân vật gửi lời chúc đến người nhận."
+        "Giới thiệu một số thẻ lệnh điều chỉnh hướng của nhân vật.",
+        "Tìm hiểu về câu lệnh điều kiện.",
+        "Giới thiệu một số thẻ lệnh cảm biến.",
+        "Hoàn thiện lập trình di chuyển nhân vật chính.",
+        "Thực hành lập trình nhân vật phụ xuất hiện và di chuyển.",
+        "Thực hành tạo lập Gmail.",
+        "Luyện tập kỹ năng gõ phím trên Typing.com."
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1rMVEMeqv_IuKOZNNh7LzV9tWn1HEfQQl/edit?slide=id.p1#slide=id.p1",
       "reviewDocUrl": ""
     },
     "3": {
       "sessionNumber": 3,
-      "title": "Gà mẹ tìm con",
-      "summary": "Tìm hiểu hướng của nhân vật và 08 góc cơ bản trong Scratch; làm quen cấu trúc câu lệnh rẽ nhánh (if then), khái niệm điều kiện và giá trị logic; thực hành sử dụng thẻ lệnh cảm biến kiểm tra va chạm (touching) và hoàn thiện dự án trò chơi 'Gà mẹ tìm con'.",
-      "hardwareAndCommands": "Thẻ lệnh điều chỉnh hướng (point in direction), cấu trúc rẽ nhánh (if then), thẻ lệnh cảm biến va chạm (touching mouse-pointer/sprite), các khối lệnh Sensing và Motion.",
+      "title": "Giao thông an toàn (Buổi 1)",
+      "summary": "Giới thiệu một số thẻ lệnh di chuyển và đặt hướng; tìm hiểu về cơ chế tạo bản sao và ứng dụng; thực hành lập trình nhân vật chính di chuyển bằng bàn phím và nhân vật phụ xuất hiện, di chuyển liên tục bằng tạo bản sao; luyện tập kỹ năng sử dụng Công cụ AI của MindX.",
+      "hardwareAndCommands": "Thẻ lệnh di chuyển, đặt hướng, điều khiển bằng bàn phím, cơ chế tạo bản sao (create clone, when I start as a clone, delete this clone), Công cụ AI MindX.",
       "objectives": [
-        "Kiến thức: Trình bày góc độ của 08 góc cơ bản; Trình bày ý nghĩa cấu trúc rẽ nhánh trong Scratch; Liệt kê 02 giá trị trả về của điều kiện (True/False) và ý nghĩa thẻ lệnh kiểm tra va chạm.",
-        "Kỹ năng: Phân biệt 08 góc độ cơ bản của nhân vật; Sử dụng thẻ lệnh rẽ nhánh để giải quyết tình huống theo điều kiện; Thực hiện lập trình dự án 'Gà mẹ tìm con'.",
-        "Thái độ: Sáng tạo dự án 'Gà mẹ tìm con' với những tính năng, nhân vật hỗ trợ độc đáo."
+        "Kiến thức: Trình bày được ý nghĩa thẻ lệnh di chuyển và đặt hướng; Giải thích được cơ chế tạo bản sao; Trình bày được ý nghĩa của thẻ lệnh tạo bản sao.",
+        "Kỹ năng: Lập trình được nhân vật chính di chuyển bằng bàn phím; Lập trình được nhân vật phụ và di chuyển; Truy cập được công cụ AI MindX và thực hiện được việc tóm tắt kiến thức.",
+        "Thái độ: Tập trung tiếp nhận kiến thức mới; Chủ động vận dụng kiến thức; Tích cực thực hành, kiểm thử và sửa lỗi trong quá trình thực hành."
       ],
-      "los": "SLO.I.2, SLO.II.1, SLO.III.1, SLO.IV.1",
-      "knowledge": "Trình bày được góc độ của 08 góc cơ bản và thực hiện thay đổi hướng của nhân vật theo hướng yêu cầu; Trình bày được ý nghĩa của cấu trúc rẽ nhánh trong Scratch; Liệt kê được 02 giá trị trả về của thẻ lệnh điều kiện và trình bày ý nghĩa của thẻ lệnh kiểm tra va chạm.",
-      "skills": "Phân biệt được 08 góc độ cơ bản được áp dụng cho nhân vật; Sử dụng được thẻ lệnh rẽ nhánh để giải quyết các tình huống phụ thuộc vào điều kiện; Thực hiện lập trình dự án 'Gà mẹ tìm con' theo hướng dẫn của GV.",
-      "attitude": "Sáng tạo dự án 'Gà mẹ tìm con' với những tính năng, nhân vật hỗ trợ độc đáo.",
+      "knowledge": "Trình bày được ý nghĩa thẻ lệnh di chuyển và đặt hướng; Giải thích được cơ chế tạo bản sao; Trình bày được ý nghĩa của thẻ lệnh tạo bản sao.",
+      "skills": "Lập trình được nhân vật chính di chuyển bằng bàn phím; Lập trình được nhân vật phụ và di chuyển; Truy cập được công cụ AI MindX và thực hiện được việc tóm tắt kiến thức.",
+      "attitude": "Tập trung tiếp nhận kiến thức mới; Chủ động vận dụng kiến thức; Tích cực thực hành, kiểm thử và sửa lỗi trong quá trình thực hành.",
       "lessonContent": [
-        "Tìm hiểu về tập tính của loài gà và công việc chăm con của gà mái.",
-        "Tìm hiểu về hướng của nhân vật, các hướng cơ bản và các thẻ lệnh để điều chỉnh hướng của nhân vật trong Scratch.",
-        "Tìm hiểu về câu lệnh rẽ nhánh, ứng dụng của câu lệnh rẽ nhánh trong thực tế.",
-        "Tìm hiểu về điều kiện và giá trị trả về từ điều kiện trong Scratch.",
-        "Thực hành sử dụng thẻ lệnh kiểm tra va chạm giữa hai nhân vật.",
-        "Thực hành lập trình dự án 'Gà mẹ tìm con'."
+        "Giới thiệu một số thẻ lệnh di chuyển và đặt hướng.",
+        "Tìm hiểu về cơ chế tạo bản sao và ứng dụng.",
+        "Giới thiệu một số thẻ lệnh tạo bản sao.",
+        "Thực hành lập trình nhân vật chính di chuyển bằng bàn phím.",
+        "Thực hành lập trình nhân vật phụ xuất hiện và di chuyển liên tục bằng tạo bản sao.",
+        "Luyện tập kỹ năng sử dụng Công cụ AI của MindX."
       ],
       "slideUrl": "https://docs.google.com/presentation/d/187J5yGM5tNkGQaboKtjZCZBTknMoX5Cz/edit?slide=id.p1#slide=id.p1",
       "reviewDocUrl": ""
     },
     "4": {
       "sessionNumber": 4,
-      "title": "Giao thông an toàn",
-      "summary": "Tìm hiểu về an toàn giao thông; làm quen với khái niệm biến (Variable), 04 bước tạo biến và các lệnh tương tác với biến; lập trình điều khiển nhân vật bằng các phím mũi tên; ứng dụng điều kiện lồng nhau và hoàn thiện dự án 'Giao thông an toàn' có tính điểm.",
-      "hardwareAndCommands": "Khối lệnh Biến số (Variables: set to, change by, show/hide variable), sự kiện phím bấm (when key pressed, key pressed?), điều kiện lồng nhau (nested if), phím điều hướng.",
+      "title": "Giao thông an toàn (Buổi 2)",
+      "summary": "Tìm hiểu về cách hoạt động của hiệu ứng animation của nhân vật; tìm hiểu về biến và ý nghĩa của biến trong lập trình; thực hành lập trình xử lý va chạm giữa các nhân vật và sử dụng tính năng chỉnh sửa hình ảnh trên Scratch; luyện tập kỹ năng sử dụng Công cụ AI của MindX.",
+      "hardwareAndCommands": "Hiệu ứng animation (trang phục nhân vật), Biến (Variables), xử lý va chạm, trình chỉnh sửa hình ảnh Scratch, Công cụ AI MindX.",
       "objectives": [
-        "Kiến thức: Trình bày ứng dụng của biến và ý nghĩa 04 thẻ lệnh tương tác với biến; Trình bày 04 bước khởi tạo biến; Hiểu ý nghĩa thẻ lệnh nhận sự kiện nhấn phím.",
-        "Kỹ năng: Điều khiển nhân vật thông qua phím điều hướng; Sử dụng biến để ghi nhận số điểm đạt được; Thực hiện lập trình dự án 'Giao thông an toàn'.",
-        "Thái độ: Sáng tạo dự án 'Giao thông an toàn' với những tính năng, nhân vật hỗ trợ độc đáo."
+        "Kiến thức: Trình bày được ý nghĩa thẻ lệnh về biến; Giải thích được cách hoạt động của hiệu ứng animation.",
+        "Kỹ năng: Lập trình được hiệu ứng chuyển động của nhân vật; Lập trình xử lý va chạm giữa các nhân vật; Truy cập công cụ AI MindX và thực hiện được việc kiểm thử, sửa lỗi; Thành thạo chỉnh sửa hình ảnh trên Scratch.",
+        "Thái độ: Tập trung tiếp nhận kiến thức mới; Chủ động vận dụng kiến thức; Tích cực thực hành, kiểm thử và sửa lỗi trong quá trình thực hành."
       ],
-      "los": "SLO.I.3, SLO.II.1, SLO.III.1, SLO.IV.1",
-      "knowledge": "Trình bày ứng dụng của biến và ý nghĩa của 04 thẻ lệnh tương tác với biến; Trình bày được 04 bước khởi tạo biến trong Scratch; Thực hiện sử dụng biến để đếm số lần nhấn chuột; Trình bày được ý nghĩa của thẻ lệnh nhận sự kiện nhấn phím trong Scratch.",
-      "skills": "Thực hiện điều khiển nhân vật thông qua các phím điều hướng; Thực hiện sử dụng biến để ghi nhận số điểm đạt được; Thực hiện lập trình dự án 'Giao thông an toàn' theo hướng dẫn của GV.",
-      "attitude": "Sáng tạo dự án 'Giao thông an toàn' với những tính năng, nhân vật hỗ trợ độc đáo.",
+      "knowledge": "Trình bày được ý nghĩa thẻ lệnh về biến; Giải thích được cách hoạt động của hiệu ứng animation.",
+      "skills": "Lập trình được hiệu ứng chuyển động của nhân vật; Lập trình xử lý va chạm giữa các nhân vật; Truy cập công cụ AI MindX và thực hiện được việc kiểm thử, sửa lỗi; Thành thạo chỉnh sửa hình ảnh trên Scratch.",
+      "attitude": "Tập trung tiếp nhận kiến thức mới; Chủ động vận dụng kiến thức; Tích cực thực hành, kiểm thử và sửa lỗi trong quá trình thực hành.",
       "lessonContent": [
-        "Tìm hiểu về các hậu quả của tai nạn giao thông và các biện pháp tham gia giao thông an toàn.",
-        "Tìm hiểu về biến, ứng dụng của biến và các thẻ lệnh tương tác với biến trong Scratch.",
-        "Thực hành sử dụng biến để đếm số lần nhấn chuột.",
-        "Thực hành lập trình điều khiển nhân vật thông qua các phím điều hướng.",
-        "Ôn tập câu điều kiện, tìm hiểu về điều kiện lồng và các thẻ lệnh kết hợp điều kiện trong Scratch.",
-        "Thực hành lập trình dự án 'Giao thông an toàn'."
+        "Tìm hiểu về cách hoạt động của hiệu ứng animation của nhân vật.",
+        "Tìm hiểu về biến và ý nghĩa của biến trong lập trình.",
+        "Giới thiệu một số thẻ lệnh về biến.",
+        "Thực hành lập trình xử lý va chạm giữa các nhân vật.",
+        "Thực hành sử dụng tính năng chỉnh sửa hình ảnh của nhân vật.",
+        "Luyện tập kỹ năng sử dụng Công cụ AI của MindX."
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1ibYwxKeBWtXfkqgA9AvjSNWf1TT6ydo1/edit?slide=id.p1#slide=id.p1",
       "reviewDocUrl": ""
     },
     "5": {
       "sessionNumber": 5,
-      "title": "Workshop kỹ năng",
-      "summary": "Thực hiện bài kiểm tra định kỳ lần 1 (Checkpoint 1) đánh giá kiến thức từ buổi 1 đến 4; tìm hiểu vai trò thiết kế đồ họa trong dự án game; khám phá công cụ AI tạo hình ảnh (Craiyon) và thực hành viết prompt tạo nhân vật, bối cảnh cho dự án Scratch.",
-      "hardwareAndCommands": "Bài kiểm tra Checkpoint 1, công cụ AI tạo ảnh (Craiyon/AI Image Generator), kỹ thuật đặt câu lệnh nhắc (Prompt Engineering), xuất nhập ảnh vào Scratch.",
+      "title": "Hà Nội 1972 (Buổi 1)",
+      "summary": "Thực hiện bài kiểm tra định kỳ lần 1 - Checkpoint 1; tìm hiểu về giao diện trong dự án và cơ chế Phát tin - Nhận tin cùng ứng dụng; lập trình chuyển màn từ Màn bắt đầu sang Màn chơi chính và lập trình nhân vật chính di chuyển bằng bàn phím.",
+      "hardwareAndCommands": "Kiểm tra Checkpoint 1; giao diện màn hình dự án, thẻ lệnh Phát tin - Nhận tin (broadcast / when I receive), điều khiển nhân vật bằng bàn phím.",
       "objectives": [
-        "Kiến thức: Trình bày tầm quan trọng của hình ảnh trong dự án; Trình bày cách viết prompt để tạo ra các hình ảnh theo yêu cầu.",
-        "Kỹ năng: Thực hiện bài kiểm tra định kỳ Checkpoint 1 nghiêm túc; Thực hành viết prompt tạo hình ảnh nhân vật bằng công cụ AI.",
-        "Thái độ: Đánh giá được tính ứng dụng của công cụ AI trong việc xây dựng dự án sáng tạo."
+        "Kiến thức: Trình bày được ý nghĩa thẻ lệnh Phát tin - Nhận tin; Mô tả được cơ chế Phát tin - Nhận tin.",
+        "Kỹ năng: Lập trình được việc chuyển màn từ Màn bắt đầu sang Màn chơi chính; Lập trình được nhân vật chính di chuyển bằng bàn phím.",
+        "Thái độ: Tập trung tiếp nhận kiến thức mới; Chủ động vận dụng kiến thức; Tích cực thực hành, kiểm thử và sửa lỗi trong quá trình thực hành."
       ],
-      "los": "SLO.III.1, SLO.V.2",
-      "knowledge": "Trình bày được tầm quan trọng của hình ảnh trong dự án; Trình bày cách viết prompt để có thể tạo ra các hình ảnh theo yêu cầu.",
-      "skills": "Thực hiện bài kiểm tra định kỳ - checkpoint 1; Thực hiện viết prompt tạo hình ảnh bằng công cụ AI.",
-      "attitude": "Đánh giá được tính ứng dụng của công cụ AI trong việc xây dựng dự án.",
+      "knowledge": "Trình bày được ý nghĩa thẻ lệnh Phát tin - Nhận tin; Mô tả được cơ chế Phát tin - Nhận tin.",
+      "skills": "Lập trình được việc chuyển màn từ Màn bắt đầu sang Màn chơi chính; Lập trình được nhân vật chính di chuyển bằng bàn phím.",
+      "attitude": "Tập trung tiếp nhận kiến thức mới; Chủ động vận dụng kiến thức; Tích cực thực hành, kiểm thử và sửa lỗi trong quá trình thực hành.",
       "lessonContent": [
-        "Thực hiện bài kiểm tra định kỳ lần 1 - checkpoint 1.",
-        "Tìm hiểu về tầm quan trọng của hình ảnh trong dự án.",
-        "Tìm hiểu về công cụ AI tạo hình ảnh.",
-        "Thực hành viết prompt để tạo hình ảnh."
+        "Thực hiện bài kiểm tra định kỳ lần 1 - Checkpoint 1.",
+        "Tìm hiểu về giao diện trong dự án.",
+        "Tìm hiểu về cơ chế Phát tin - Nhận tin và ứng dụng.",
+        "Lập trình chuyển màn từ Màn bắt đầu sang Màn chơi chính.",
+        "Lập trình nhân vật chính di chuyển bằng bàn phím."
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1mYu3g-dk76TX5vhuQzkI5rVunBjDBYYq/edit?slide=id.p1#slide=id.p1",
       "reviewDocUrl": ""
     },
     "6": {
       "sessionNumber": 6,
-      "title": "Bảo vệ khủng long",
-      "summary": "Tìm hiểu về loài khủng long; khám phá cơ chế tạo bản sao (Cloning) trong Scratch, so sánh ưu điểm bản sao với tạo nhiều nhân vật; tìm hiểu 03 thẻ lệnh bản sao; thực hành lập trình thiên thạch rơi ngẫu nhiên và hoàn thiện trò chơi 'Bảo vệ Khủng long' bằng tài nguyên đồ họa AI.",
-      "hardwareAndCommands": "Cơ chế bản sao (Clones): create clone of, when I start as a clone, delete this clone; tạo tọa độ ngẫu nhiên (pick random), thẻ lệnh Control.",
+      "title": "Hà Nội 1972 (Buổi 2)",
+      "summary": "Ôn tập các thẻ lệnh di chuyển, điều hướng, cơ chế tạo bản sao, câu lệnh điều kiện, cảm biến, toán tử và biến; lập trình chức năng bắn đạn của nhân vật, nhân vật phụ xuất hiện/di chuyển và xử lý va chạm giữa các nhân vật.",
+      "hardwareAndCommands": "Tổng hợp Motion, Clone, Control (if/else), Sensing, Operators, Variables; cơ chế bắn đạn và xử lý va chạm.",
       "objectives": [
-        "Kiến thức: So sánh sự khác biệt của tạo bản sao so với tạo nhiều nhân vật; Trình bày vai trò, ứng dụng và ý nghĩa 03 thẻ lệnh tạo/tương tác với bản sao.",
-        "Kỹ năng: Thực hành dùng cơ chế bản sao lập trình hiệu ứng bóng bay và thiên thạch rơi; Thực hiện lập trình hoàn thiện trò chơi 'Bảo vệ Khủng long'.",
-        "Thái độ: Sáng tạo dự án 'Bảo vệ khủng long' bằng hình ảnh nhân vật được tạo ra bằng Craiyon."
+        "Kiến thức: Trình bày được ý nghĩa các thẻ lệnh đã học về di chuyển, tạo bản sao và các thẻ lệnh xử lý va chạm; Hiểu được các lưu ý để có một phần thuyết trình hiệu quả.",
+        "Kỹ năng: Lập trình nhân vật phụ xuất hiện và di chuyển; Lập trình chức năng bắn đạn của nhân vật; Lập trình va chạm giữa các nhân vật; Thực hành thuyết trình cơ bản.",
+        "Thái độ: Tập trung tiếp nhận kiến thức mới; Chủ động vận dụng kiến thức; Tích cực thực hành, kiểm thử và sửa lỗi trong quá trình thực hành."
       ],
-      "los": "SLO.I.4, SLO.II.2, SLO.III.2, SLO.IV.2, SLO.V.2",
-      "knowledge": "So sánh được sự khác biệt của việc tạo bản sao so với tạo nhiều nhân vật; Trình bày được vai trò và ứng dụng của cơ chế tạo bản sao; Trình bày được ý nghĩa của 03 thẻ lệnh tạo, tương tác với bản sao.",
-      "skills": "Thực hành dùng cơ chế tạo bản sao để lập trình bóng bay; Thực hành dùng cơ chế tạo bản sao để lập trình cho nhân vật thiên thạch rơi; Thực hiện lập trình dự án 'Bảo vệ Khủng long'.",
-      "attitude": "Sáng tạo dự án 'Bảo vệ khủng long' bằng hình ảnh nhân vật được tạo ra bằng Craiyon.",
+      "knowledge": "Trình bày được ý nghĩa các thẻ lệnh đã học về di chuyển, tạo bản sao và các thẻ lệnh xử lý va chạm; Hiểu được các lưu ý để có một phần thuyết trình hiệu quả.",
+      "skills": "Lập trình nhân vật phụ xuất hiện và di chuyển; Lập trình chức năng bắn đạn của nhân vật; Lập trình va chạm giữa các nhân vật; Thực hành thuyết trình cơ bản.",
+      "attitude": "Tập trung tiếp nhận kiến thức mới; Chủ động vận dụng kiến thức; Tích cực thực hành, kiểm thử và sửa lỗi trong quá trình thực hành.",
       "lessonContent": [
-        "Tìm hiểu về các loài khủng long và nguyên nhân tuyệt chủng của khủng long.",
-        "Tìm hiểu về tạo bản sao, cơ chế của tạo bản sao và các thẻ lệnh để tạo, tương tác với bản sao trong Scratch.",
-        "Thực hành dùng cơ chế bản sao để lập trình tạo hiệu ứng bóng bay.",
-        "Thực hành sử dụng cơ chế tạo bản sao để tạo nhiều thiên thạch.",
-        "Thực hành tạo trò chơi 'Bảo vệ Khủng long'."
+        "Ôn tập các thẻ lệnh di chuyển và điều hướng.",
+        "Ôn tập cơ chế tạo bản sao.",
+        "Ôn tập Câu lệnh điều kiện, các thẻ lệnh Cảm biến và Toán tử.",
+        "Ôn tập kiến thức về biến.",
+        "Lập trình chức năng bắn đạn của nhân vật.",
+        "Lập trình nhân vật phụ xuất hiện và di chuyển.",
+        "Lập trình xử lý va chạm giữa các nhân vật."
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1xDOpn-d3X-yU80lX0xRM32Mq1Cy7CByT/edit?slide=id.p1#slide=id.p1",
       "reviewDocUrl": ""
     },
     "7": {
       "sessionNumber": 7,
-      "title": "Đại chiến không trung (Phần 1)",
-      "summary": "Tìm hiểu chiến thắng Điện Biên Phủ trên không (1972); khám phá 07 dạng hiệu ứng đồ họa (Graphic Effects) trong Scratch; thực hành tạo hiệu ứng ẩn/hiện, lập trình cơ chế di chuyển của máy bay chiến đấu và bắn đạn trong dự án 'Đại chiến không trung'.",
-      "hardwareAndCommands": "Khối lệnh hiệu ứng đồ họa (change/set effect: color, fisheye, whirl, pixelate, mosaic, brightness, ghost, clear graphic effects), cơ chế bắn đạn với bản sao.",
+      "title": "Hà Nội 1972 (Buổi 3)",
+      "summary": "Tìm hiểu về tầm quan trọng của âm thanh trong dự án; giới thiệu một số thẻ lệnh liên quan đến âm thanh; thực hành lập trình âm thanh, xử lý điều kiện thắng thua, xây dựng các màn kết thúc và chỉnh sửa âm thanh cho dự án.",
+      "hardwareAndCommands": "Thẻ lệnh Sound, xử lý và chỉnh sửa âm thanh trên Scratch, câu lệnh điều kiện kiểm tra thắng/thua và chuyển màn kết thúc.",
       "objectives": [
-        "Kiến thức: Trình bày ý nghĩa 07 dạng hiệu ứng trong Scratch và ứng dụng trong trò chơi; Chọn lựa hiệu ứng phù hợp cho từng trường hợp cụ thể.",
-        "Kỹ năng: Thực hiện tạo hiệu ứng ẩn/hiện nhân vật; Thực hiện lập trình hiệu ứng di chuyển và cơ chế bắn đạn cho nhân vật.",
-        "Thái độ: Đánh giá được sự khác biệt và tính thẩm mỹ của việc sử dụng hiệu ứng trong trò chơi."
+        "Kiến thức: Trình bày được ý nghĩa các thẻ lệnh liên quan đến âm thanh; Trình bày được ý nghĩa một số thẻ lệnh điều kiện đã học.",
+        "Kỹ năng: Lập trình được âm thanh cho dự án; Lập trình được điều kiện thắng thua và các màn kết thúc cho dự án; Thực hành được việc xử lý và chỉnh sửa âm thanh; Thực hành thuyết trình cơ bản.",
+        "Thái độ: Tập trung tiếp nhận kiến thức mới; Chủ động vận dụng kiến thức; Tích cực thực hành, kiểm thử và sửa lỗi trong quá trình thực hành."
       ],
-      "los": "SLO.I.4, SLO.III.2, SLO.IV.2, SLO.V.2",
-      "knowledge": "Trình bày được ý nghĩa của 07 dạng hiệu ứng trong Scratch và ứng dụng của hiệu ứng trong trò chơi; Trình bày được hiệu ứng phù hợp để sử dụng cho các trường hợp cụ thể.",
-      "skills": "Thực hiện tạo hiệu ứng ẩn/hiện nhân vật bằng các hiệu ứng có sẵn; Thực hiện tạo hiệu ứng di chuyển và hiệu ứng bắn đạn cho các nhân vật.",
-      "attitude": "Đánh giá được trường hợp lập trình có sử dụng và không có sử dụng các hiệu ứng.",
+      "knowledge": "Trình bày được ý nghĩa các thẻ lệnh liên quan đến âm thanh; Trình bày được ý nghĩa một số thẻ lệnh điều kiện đã học.",
+      "skills": "Lập trình được âm thanh cho dự án; Lập trình được điều kiện thắng thua và các màn kết thúc cho dự án; Thực hành được việc xử lý và chỉnh sửa âm thanh; Thực hành thuyết trình cơ bản.",
+      "attitude": "Tập trung tiếp nhận kiến thức mới; Chủ động vận dụng kiến thức; Tích cực thực hành, kiểm thử và sửa lỗi trong quá trình thực hành.",
       "lessonContent": [
-        "Tìm hiểu về chiến thắng Điện Biên Phủ trên không (1972) và anh hùng Phạm Tuân.",
-        "Tìm hiểu về các hiệu ứng trong Scratch.",
-        "Thực hành tạo hiệu ứng ẩn/hiện nhân vật bằng các hiệu ứng trong Scratch.",
-        "Thực hành lập trình dự án 'Đại chiến không trung'."
+        "Tìm hiểu về tầm quan trọng của âm thanh trong dự án.",
+        "Giới thiệu một số thẻ lệnh liên quan đến âm thanh.",
+        "Thực hành lập trình âm thanh cho dự án.",
+        "Lập trình xử lý điều kiện thắng thua và xây dựng các màn kết thúc.",
+        "Thực hành kỹ năng xử lý âm thanh."
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1g36Kk3CLEPfYAEeaoAWxRI1opEM8ABEL/edit?slide=id.p1#slide=id.p1",
       "reviewDocUrl": ""
     },
     "8": {
       "sessionNumber": 8,
-      "title": "Đại chiến không trung (Phần 2)",
-      "summary": "Tìm hiểu cơ chế phát tin - nhận tin (Broadcast Message) trong Scratch; xây dựng hệ thống trạng thái game gồm màn hình bắt đầu (Start/Play), màn hình chơi và màn hình kết thúc (Game Over/Replay); lập trình tăng độ khó theo thời gian và đóng gói hoàn thiện dự án.",
-      "hardwareAndCommands": "Thẻ lệnh Sự kiện phát tin (broadcast, broadcast and wait, when I receive message), nút bấm Play/Replay, quản lý trạng thái trò chơi (Game State).",
+      "title": "Công xưởng phát minh",
+      "summary": "Tìm hiểu tiêu chí đánh giá sản phẩm cuối khóa; thực hành tìm kiếm ý tưởng xây dựng dự án cá nhân; tìm kiếm và xây dựng tài nguyên cho dự án.",
+      "hardwareAndCommands": "Bảng tiêu chí đánh giá sản phẩm cuối khóa, công cụ tìm kiếm ý tưởng, tài nguyên đồ họa/âm thanh và quản lý tiến độ dự án.",
       "objectives": [
-        "Kiến thức: Trình bày vai trò và cơ chế của chức năng phát tin - nhận tin; Trình bày vai trò của giao diện mở đầu và kết thúc trò chơi.",
-        "Kỹ năng: Thực hiện lập trình giao diện bắt đầu/kết thúc với nút Play, Replay; Hoàn thiện và đóng gói dự án 'Đại chiến không trung'.",
-        "Thái độ: Sáng tạo dự án 'Đại chiến không trung' với những tính năng, nhân vật hỗ trợ độc đáo."
+        "Kiến thức: Trình bày được bảng tiêu chí đánh giá sản phẩm cuối khóa là căn cứ tính điểm dự án cá nhân.",
+        "Kỹ năng: Thực hiện tìm kiếm ý tưởng xây dựng dự án cá nhân; Tìm kiếm và xây dựng tài nguyên cho dự án.",
+        "Thái độ: Lựa chọn được công cụ hỗ trợ quản lý tiến độ của dự án."
       ],
-      "los": "SLO.II.2, SLO.III.2, SLO.IV.2, SLO.V.2",
-      "knowledge": "Trình bày được vai trò và cơ chế của chức năng phát tin - nhận tin; Trình bày được vai trò của giao diện mở đầu và giao diện kết thúc trò chơi.",
-      "skills": "Thực hiện lập trình giao diện bắt đầu và giao diện kết thúc với nút Play, Replay cho dự án; Thực hành hoàn thiện và đóng gói dự án 'Đại chiến không trung'.",
-      "attitude": "Sáng tạo dự án 'Đại chiến không trung' với những tính năng, nhân vật hỗ trợ độc đáo.",
+      "knowledge": "Trình bày được bảng tiêu chí đánh giá sản phẩm cuối khóa là căn cứ tính điểm dự án cá nhân.",
+      "skills": "Thực hiện tìm kiếm ý tưởng xây dựng dự án cá nhân; Tìm kiếm và xây dựng tài nguyên cho dự án.",
+      "attitude": "Lựa chọn được công cụ hỗ trợ quản lý tiến độ của dự án.",
       "lessonContent": [
-        "Tìm hiểu về vai trò của màn hình chờ, màn hình bắt đầu và màn hình kết thúc trò chơi.",
-        "Tìm hiểu về phát tin - nhận tin và ứng dụng của phát tin - nhận tin trong Scratch.",
-        "Thực hành tạo giao diện bắt đầu và giao diện kết thúc cho trò chơi.",
-        "Thực hành lập trình tăng độ khó cho trò chơi.",
-        "Thực hành lập trình hoàn thiện dự án 'Đại chiến không trung'."
+        "Tìm hiểu tiêu chí đánh giá sản phẩm cuối khóa.",
+        "Thực hành tìm kiếm ý tưởng xây dựng dự án cá nhân.",
+        "Tìm kiếm và xây dựng tài nguyên cho dự án."
       ],
       "slideUrl": "https://docs.google.com/presentation/d/17rtlRfFqZ0uOagp9nAFeVWwC2tBMJZu3/edit?slide=id.p1#slide=id.p1",
       "reviewDocUrl": ""
     },
     "9": {
       "sessionNumber": 9,
-      "title": "Công xưởng phát minh",
-      "summary": "Thực hiện bài kiểm tra định kỳ lần 2 (Checkpoint 2) tổng hợp kiến thức lập trình Scratch; tìm hiểu bộ tiêu chí đánh giá sản phẩm cuối khóa; brainstorm tìm kiếm ý tưởng và lập kế hoạch xây dựng sản phẩm cá nhân.",
-      "hardwareAndCommands": "Bài kiểm tra Checkpoint 2, bảng tiêu chí đánh giá sản phẩm cuối khóa (Rubric), biểu mẫu lập kế hoạch dự án cá nhân.",
+      "title": "Dự án của em (Phần 1)",
+      "summary": "Thực hiện bài kiểm tra định kỳ lần 2 - Checkpoint 2; thực hiện lập trình các chức năng chính cho dự án cá nhân.",
+      "hardwareAndCommands": "Kiểm tra Checkpoint 2, lập trình Scratch cho các chức năng chính của dự án cá nhân.",
       "objectives": [
-        "Kiến thức: Trình bày được bảng tiêu chí đánh giá sản phẩm cuối khóa là căn cứ tính điểm dự án cá nhân.",
-        "Kỹ năng: Thực hiện bài kiểm tra định kỳ lần 2 Checkpoint 2 nghiêm túc; Thực hành tìm kiếm ý tưởng và lên kế hoạch dự án cá nhân.",
-        "Thái độ: Lựa chọn công cụ hỗ trợ quản lý tiến độ dự án phù hợp và chủ động."
+        "Kiến thức: Trình bày được tầm quan trọng của việc lập kế hoạch trong việc thực hiện dự án.",
+        "Kỹ năng: Thực hiện lập trình các chức năng chính cho dự án.",
+        "Thái độ: Đánh giá được tiến độ của dự án so với timeline đề ra."
       ],
-      "los": "SLO.IV.2, SLO.V.2",
-      "knowledge": "Trình bày được bảng tiêu chí đánh giá sản phẩm cuối khóa là căn cứ tính điểm dự án cá nhân.",
-      "skills": "Thực hiện kiểm tra định kỳ lần 2 - checkpoint 2; Thực hiện tìm kiếm ý tưởng xây dựng dự án cá nhân.",
-      "attitude": "Lựa chọn được công cụ hỗ trợ quản lý tiến độ của dự án.",
+      "knowledge": "Trình bày được tầm quan trọng của việc lập kế hoạch trong việc thực hiện dự án.",
+      "skills": "Thực hiện lập trình các chức năng chính cho dự án.",
+      "attitude": "Đánh giá được tiến độ của dự án so với timeline đề ra.",
       "lessonContent": [
-        "Thực hiện bài kiểm tra định kỳ lần 2 - checkpoint 2.",
-        "Tìm hiểu tiêu chí đánh giá sản phẩm cuối khóa.",
-        "Thực hành tìm kiếm ý tưởng xây dựng dự án cá nhân."
+        "Thực hiện bài kiểm tra định kỳ lần 2 - Checkpoint 2.",
+        "Thực hiện lập trình cho dự án."
       ],
       "slideUrl": "https://docs.google.com/presentation/d/14JxirO-YQLOBZ2QKf-ycSWsMPKYHDOBn/edit?slide=id.p1#slide=id.p1",
       "reviewDocUrl": ""
     },
     "10": {
       "sessionNumber": 10,
-      "title": "Dự án của em (Phần 1)",
-      "summary": "Khởi động giai đoạn phát triển dự án cá nhân cuối khóa; thiết kế nhân vật, phông nền và bắt tay vào lập trình khung cơ bản cùng các chức năng chính của trò chơi hoặc ứng dụng.",
-      "hardwareAndCommands": "Thiết kế đồ họa Scratch, tổ chức kịch bản khối lệnh, các chức năng tương tác cốt lõi của dự án cá nhân.",
+      "title": "Dự án của em (Phần 2)",
+      "summary": "Tiếp tục thực hiện lập trình các chức năng chính cho dự án cá nhân và theo dõi tiến độ theo timeline.",
+      "hardwareAndCommands": "Lập trình Scratch cho các chức năng chính của dự án cá nhân.",
       "objectives": [
         "Kiến thức: Trình bày được tầm quan trọng của việc lập kế hoạch trong việc thực hiện dự án.",
-        "Kỹ năng: Thực hiện lập trình các chức năng chính cho dự án cá nhân theo kế hoạch.",
-        "Thái độ: Tự giác đánh giá tiến độ của dự án so với timeline đề ra."
+        "Kỹ năng: Thực hiện lập trình các chức năng chính cho dự án.",
+        "Thái độ: Đánh giá được tiến độ của dự án so với timeline đề ra."
       ],
-      "los": "SLO.I.4",
       "knowledge": "Trình bày được tầm quan trọng của việc lập kế hoạch trong việc thực hiện dự án.",
       "skills": "Thực hiện lập trình các chức năng chính cho dự án.",
       "attitude": "Đánh giá được tiến độ của dự án so với timeline đề ra.",
       "lessonContent": [
-        "Thực hiện lập trình các chức năng chính cho dự án cá nhân theo kịch bản đã chọn."
+        "Thực hiện lập trình cho dự án."
       ],
       "slideUrl": "https://docs.google.com/presentation/d/19EZk4k3LCczWcqnoBWdbtmREvS5S7phN/edit?slide=id.p1#slide=id.p1",
       "reviewDocUrl": ""
     },
     "11": {
       "sessionNumber": 11,
-      "title": "Dự án của em (Phần 2)",
-      "summary": "Tiếp tục phát triển dự án cá nhân; lập trình các tính năng nâng cao như cơ chế bản sao, điểm số, hiệu ứng âm thanh và xử lý va chạm phức tạp; kiểm thử và sửa lỗi logic.",
-      "hardwareAndCommands": "Biến số tính điểm, cơ chế bản sao nâng cao, hiệu ứng đồ họa, âm thanh và xử lý điều kiện lồng nhau.",
+      "title": "Dự án của em (Phần 3)",
+      "summary": "Tiếp tục hoàn thiện lập trình các chức năng chính cho dự án cá nhân; nắm vững dàn ý thuyết trình và sử dụng Canva để làm slide thuyết trình.",
+      "hardwareAndCommands": "Lập trình Scratch, công cụ Canva thiết kế slide thuyết trình.",
       "objectives": [
-        "Kiến thức: Trình bày được tầm quan trọng của việc lập kế hoạch trong việc thực hiện dự án.",
-        "Kỹ năng: Thực hiện lập trình hoàn thiện các chức năng nâng cao và kiểm thử tính năng của dự án.",
-        "Thái độ: Đánh giá được tiến độ của dự án so với timeline đề ra và chủ động sửa lỗi."
+        "Kiến thức: Trình bày được tầm quan trọng của việc lập kế hoạch trong việc thực hiện dự án; Hiểu được dàn ý cơ bản của một bài thuyết trình.",
+        "Kỹ năng: Thực hiện lập trình các chức năng chính cho dự án; Thành thạo việc sử dụng Canva để làm slide thuyết trình.",
+        "Thái độ: Đánh giá được tiến độ của dự án so với timeline đề ra."
       ],
-      "los": "SLO.I.4",
-      "knowledge": "Trình bày được tầm quan trọng của việc lập kế hoạch trong việc thực hiện dự án.",
-      "skills": "Thực hiện lập trình các chức năng chính cho dự án.",
+      "knowledge": "Trình bày được tầm quan trọng của việc lập kế hoạch trong việc thực hiện dự án; Hiểu được dàn ý cơ bản của một bài thuyết trình.",
+      "skills": "Thực hiện lập trình các chức năng chính cho dự án; Thành thạo việc sử dụng Canva để làm slide thuyết trình.",
       "attitude": "Đánh giá được tiến độ của dự án so với timeline đề ra.",
       "lessonContent": [
-        "Tiếp tục thực hiện lập trình các chức năng nâng cao và hoàn thiện kịch bản trò chơi."
+        "Thực hiện lập trình cho dự án."
       ],
       "slideUrl": "https://docs.google.com/presentation/d/13VB69q8JE3tZ8hcJatvuxBZPdnosXPd1/edit?slide=id.p1#slide=id.p1",
       "reviewDocUrl": ""
     },
     "12": {
       "sessionNumber": 12,
-      "title": "Dự án của em (Phần 3)",
-      "summary": "Hoàn thiện các màn chơi, giao diện mở đầu (Start), màn hình kết thúc (Game Over/Victory); bổ sung nhạc nền và trau chuốt trải nghiệm người dùng; kiểm thử toàn diện toàn bộ dự án.",
-      "hardwareAndCommands": "Phát tin - nhận tin chuyển cảnh, giao diện người dùng (UI), âm thanh nền và tối ưu kịch bản lập trình Scratch.",
+      "title": "Luyện tập thuyết trình",
+      "summary": "Hoàn thiện và đóng gói sản phẩm cuối khóa; thực hành sử dụng Canva để làm slide thuyết trình; thực hành kỹ năng thuyết trình cơ bản và thuyết trình thử trước lớp.",
+      "hardwareAndCommands": "Đóng gói sản phẩm Scratch (.sb3), Canva, kỹ năng thuyết trình cơ bản.",
       "objectives": [
-        "Kiến thức: Trình bày được tầm quan trọng của việc lập kế hoạch trong việc thực hiện dự án.",
-        "Kỹ năng: Thực hiện lập trình các chức năng chính, hoàn thiện chuyển cảnh và âm thanh cho dự án.",
-        "Thái độ: Đánh giá được tiến độ của dự án so với timeline đề ra và trau chuốt sản phẩm."
+        "Kiến thức: Hiểu được các lưu ý để có một phần thuyết trình hiệu quả.",
+        "Kỹ năng: Thực hành được việc thuyết trình thử sản phẩm trước cả lớp.",
+        "Thái độ: Đánh giá được tiến độ của dự án so với timeline đề ra."
       ],
-      "los": "SLO.I.4",
-      "knowledge": "Trình bày được tầm quan trọng của việc lập kế hoạch trong việc thực hiện dự án.",
-      "skills": "Thực hiện lập trình các chức năng chính cho dự án.",
+      "knowledge": "Hiểu được các lưu ý để có một phần thuyết trình hiệu quả.",
+      "skills": "Thực hành được việc thuyết trình thử sản phẩm trước cả lớp.",
       "attitude": "Đánh giá được tiến độ của dự án so với timeline đề ra.",
       "lessonContent": [
-        "Lập trình hoàn thiện các màn chơi, giao diện chuyển cảnh và trau chuốt trải nghiệm người dùng."
+        "Hoàn thiện và đóng gói sản phẩm cuối khóa.",
+        "Thực hành sử dụng Canva để làm slide thuyết trình.",
+        "Thực hành kỹ năng thuyết trình cơ bản."
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1UF-VyPnsBMT6AiboSXq0347h_XeCbShc/edit?slide=id.p1#slide=id.p1",
       "reviewDocUrl": ""
@@ -289,19 +280,17 @@
     "13": {
       "sessionNumber": 13,
       "title": "Nghiệm thu sản phẩm",
-      "summary": "Kiểm tra nghiệm thu toàn diện dự án; hoàn thiện và đóng gói sản phẩm Scratch; hướng dẫn xây dựng slide thuyết trình giới thiệu sản phẩm và luyện tập kỹ năng báo cáo sản phẩm trước lớp.",
-      "hardwareAndCommands": "Đóng gói file dự án Scratch (.sb3), công cụ trình chiếu (Canva/Google Slides), kỹ năng thuyết trình sản phẩm công nghệ.",
+      "summary": "Hoàn thiện và đóng gói sản phẩm cuối khóa; thiết kế bài trình chiếu hỗ trợ thuyết trình.",
+      "hardwareAndCommands": "Sản phẩm Scratch hoàn thiện (.sb3), bài trình chiếu hỗ trợ thuyết trình.",
       "objectives": [
-        "Kiến thức: Trình bày được tầm quan trọng của việc lập kế hoạch và nghiệm thu sản phẩm.",
-        "Kỹ năng: Hoàn thiện và đóng gói sản phẩm dự án; Thiết kế bài trình chiếu hỗ trợ thuyết trình.",
-        "Thái độ: Đánh giá được tiến độ dự án và tự tin chuẩn bị cho buổi báo cáo cuối khóa."
+        "Kiến thức: Trình bày được tầm quan trọng của việc lập kế hoạch trong việc thực hiện dự án.",
+        "Kỹ năng: Thực hiện lập trình các chức năng chính cho dự án; Thực hiện thiết kế bài trình chiếu.",
+        "Thái độ: Đánh giá được tiến độ của dự án so với timeline đề ra."
       ],
-      "los": "SLO.I.4, SLO.V.3",
       "knowledge": "Trình bày được tầm quan trọng của việc lập kế hoạch trong việc thực hiện dự án.",
       "skills": "Thực hiện lập trình các chức năng chính cho dự án; Thực hiện thiết kế bài trình chiếu.",
       "attitude": "Đánh giá được tiến độ của dự án so với timeline đề ra.",
       "lessonContent": [
-        "Thực hiện lập trình cho dự án.",
         "Hoàn thiện và đóng gói sản phẩm.",
         "Thiết kế bài trình chiếu hỗ trợ thuyết trình."
       ],
@@ -311,19 +300,18 @@
     "14": {
       "sessionNumber": 14,
       "title": "Thuyết trình cuối khóa",
-      "summary": "Tổ chức buổi báo cáo thuyết trình cuối khóa; học viên tự tin trình bày sản phẩm lập trình Scratch cá nhân trước phụ huynh và thầy cô; trả lời câu hỏi phản biện và nhận chứng chỉ hoàn thành khóa học.",
-      "hardwareAndCommands": "Kỹ năng thuyết trình trước đám đông, trình diễn demo sản phẩm Scratch, phản biện và trả lời câu hỏi.",
+      "summary": "Học viên thực hiện thuyết trình sản phẩm cá nhân cuối khóa, trình bày các kiến thức đã học áp dụng vào dự án và tự đánh giá sản phẩm của bản thân.",
+      "hardwareAndCommands": "Sản phẩm dự án Scratch cá nhân, slide thuyết trình.",
       "objectives": [
-        "Kiến thức: Trình bày được các kiến thức đã học được áp dụng vào trong sản phẩm dự án.",
-        "Kỹ năng: Tự tin thuyết trình sản phẩm cá nhân và trả lời câu hỏi phản biện.",
-        "Thái độ: Đánh giá khách quan sản phẩm của bản thân và tôn trọng sản phẩm của bạn bè."
+        "Kiến thức: Trình bày được các kiến thức đã học được áp dụng vào trong dự án.",
+        "Kỹ năng: Thực hiện thuyết trình sản phẩm cá nhân.",
+        "Thái độ: Đánh giá được sản phẩm của bản thân so với sản phẩm khác."
       ],
-      "los": "SLO.V.3",
       "knowledge": "Trình bày được các kiến thức đã học được áp dụng vào trong dự án.",
       "skills": "Thực hiện thuyết trình sản phẩm cá nhân.",
       "attitude": "Đánh giá được sản phẩm của bản thân so với sản phẩm khác.",
       "lessonContent": [
-        "Thực hiện thuyết trình giới thiệu dự án cá nhân trước thầy cô và phụ huynh."
+        "Thực hiện thuyết trình cuối khóa."
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1TjpSplJ7ERA2dezCBl4hE6_WDcfjuaUB/edit?slide=id.p1#slide=id.p1",
       "reviewDocUrl": ""

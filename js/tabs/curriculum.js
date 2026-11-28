@@ -13,6 +13,53 @@ let currentCategory = 'ROBOTICS';
 let selectedCourseCode = null;
 let allCurriculaData = null;
 
+const STORAGE_KEY_SHORT_URL = 'mindx_short_url_cache';
+const shortUrlMemoryCache = new Map();
+
+function loadShortUrlCache() {
+  try {
+    if (typeof localStorage === 'undefined') return {};
+    const raw = localStorage.getItem(STORAGE_KEY_SHORT_URL);
+    return raw ? JSON.parse(raw) : {};
+  } catch (_) {
+    return {};
+  }
+}
+
+function saveShortUrlToCache(longUrl, shortUrl) {
+  shortUrlMemoryCache.set(longUrl, shortUrl);
+  try {
+    if (typeof localStorage === 'undefined') return;
+    const cache = loadShortUrlCache();
+    cache[longUrl] = shortUrl;
+    localStorage.setItem(STORAGE_KEY_SHORT_URL, JSON.stringify(cache));
+  } catch (_) {}
+}
+
+function getCachedShortUrl(longUrl) {
+  if (shortUrlMemoryCache.has(longUrl)) return shortUrlMemoryCache.get(longUrl);
+  const cache = loadShortUrlCache();
+  if (cache && typeof cache[longUrl] === 'string' && cache[longUrl]) {
+    shortUrlMemoryCache.set(longUrl, cache[longUrl]);
+    return cache[longUrl];
+  }
+  return '';
+}
+
+async function resolveShortUrl(longUrl) {
+  const cached = getCachedShortUrl(longUrl);
+  if (cached) return cached;
+
+  if (typeof fetch !== 'function') return '';
+  const apiUrl = `https://tinyurl.com/api-create.php?url=${encodeURIComponent(longUrl)}`;
+  const res = await fetch(apiUrl);
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  const text = (await res.text()).trim();
+  if (!text.startsWith('http')) throw new Error('Invalid short URL');
+  saveShortUrlToCache(longUrl, text);
+  return text;
+}
+
 let activeBuildModalSession = null;
 let activeQrState = {
   sessionNumber: null,
@@ -20,8 +67,7 @@ let activeQrState = {
   builds: [],
   selectedBuildIdx: 0,
   buildUrl: '',
-  slideUrl: '',
-  activeType: 'build'
+  shortUrl: ''
 };
 
 function getSessionBuilds(sessionObj) {
@@ -139,8 +185,6 @@ function bindModalsEvents() {
   const qrModal = document.getElementById('modal-qr');
   const closeQrBtn = document.getElementById('btn-qr-close');
   const closeQrXBtn = document.getElementById('btn-qr-close-x');
-  const tabBuildBtn = document.getElementById('btn-qr-tab-build');
-  const tabSlideBtn = document.getElementById('btn-qr-tab-slide');
   const openQrLinkBtn = document.getElementById('btn-qr-open-link');
   const copyQrBtn = document.getElementById('btn-qr-copy-link');
 
@@ -154,8 +198,19 @@ function bindModalsEvents() {
       if (e.target === qrModal) closeQrModal();
     });
   }
+  const refBuildsBtn = document.getElementById('btn-ref-builds');
+  const refBuildsMenu = document.getElementById('ref-builds-menu');
+  if (refBuildsBtn && refBuildsMenu) {
+    refBuildsBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const willOpen = !refBuildsMenu.classList.contains('open');
+      closeAllBuildDropdowns();
+      if (willOpen) refBuildsMenu.classList.add('open');
+    });
+  }
+
   document.addEventListener('click', (e) => {
-    if (!e.target.closest('.session-split-wrap')) {
+    if (!e.target.closest('.session-build-wrap') && !e.target.closest('.ref-builds-wrap')) {
       closeAllBuildDropdowns();
     }
   });
@@ -166,21 +221,16 @@ function bindModalsEvents() {
     if (buildModal && buildModal.style.display === 'flex') closeBuildModal();
     if (sbModal && sbModal.style.display === 'flex') sbModal.style.display = 'none';
   });
-  if (tabBuildBtn) {
-    tabBuildBtn.addEventListener('click', () => switchQrType('build'));
-  }
-  if (tabSlideBtn) {
-    tabSlideBtn.addEventListener('click', () => switchQrType('slide'));
-  }
   if (openQrLinkBtn) {
     openQrLinkBtn.addEventListener('click', () => {
-      const targetUrl = activeQrState.activeType === 'build' ? activeQrState.buildUrl : activeQrState.slideUrl;
-      if (targetUrl) window.open(targetUrl, '_blank', 'noopener,noreferrer');
+      if (activeQrState.buildUrl) {
+        window.open(activeQrState.buildUrl, '_blank', 'noopener,noreferrer');
+      }
     });
   }
   if (copyQrBtn) {
     copyQrBtn.addEventListener('click', async () => {
-      const targetUrl = activeQrState.activeType === 'build' ? activeQrState.buildUrl : activeQrState.slideUrl;
+      const targetUrl = activeQrState.shortUrl || activeQrState.buildUrl;
       if (!targetUrl) return;
       try {
         await navigator.clipboard.writeText(targetUrl);
@@ -312,11 +362,40 @@ function renderCourseSessions(courseCode) {
     titleEl.textContent = course.name || course.code;
   }
 
+  const refWrap = document.getElementById('ref-builds-wrapper');
+  const refMenu = document.getElementById('ref-builds-menu');
+  if (refWrap && refMenu) {
+    const refBuilds = Array.isArray(course.referenceBuilds) ? course.referenceBuilds.filter(b => b && b.url) : [];
+    if (refBuilds.length > 0) {
+      refWrap.style.display = 'inline-flex';
+      refMenu.innerHTML = '';
+      refBuilds.forEach(item => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'build-dropdown-item';
+        btn.innerHTML = `${ICONS.wrench(13)}<span>${escapeHtml(item.label || 'Tài liệu tham khảo')}</span>`;
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          closeAllBuildDropdowns();
+          window.open(item.url, '_blank', 'noopener,noreferrer');
+        });
+        refMenu.appendChild(btn);
+      });
+    } else {
+      refWrap.style.display = 'none';
+      refMenu.innerHTML = '';
+    }
+  }
+
   const grid = document.getElementById('sessions-bento-grid');
   if (!grid) return;
   grid.innerHTML = '';
 
   const isRobotics = (course.category || '').toUpperCase().startsWith('ROB');
+  const sbBtn = document.getElementById('btn-open-studentbook-modal');
+  if (sbBtn) {
+    sbBtn.style.display = isRobotics ? 'none' : 'inline-flex';
+  }
 
   sessions.forEach(s => {
     const slideUrl = (s.slideUrl || '').trim();
@@ -329,46 +408,37 @@ function renderCourseSessions(courseCode) {
     card.className = 'session-bento-card';
     card.setAttribute('data-session-num', s.sessionNumber);
 
-    let roboticsActionsHtml = '';
+    let buildButtonsHtml = '';
     if (hasBuilds) {
-      const dropdownItemsHtml = isMultiBuild
-        ? `<div class="build-dropdown-menu">${builds.map((b, idx) => `
-            <button type="button" class="build-dropdown-item" data-build-idx="${idx}">
-              ${ICONS.wrench(13)}
-              <span>${escapeHtml(b.label)}</span>
-            </button>`).join('')}
-          </div>`
-        : '';
-
-      const buildLabelHtml = isMultiBuild
-        ? `<span>Lắp ráp (${builds.length})</span>${ICONS.chevronDown(13)}`
-        : `<span>Lắp ráp</span>`;
-
-      roboticsActionsHtml = `
-        <div class="${isMultiBuild ? 'session-split-wrap' : 'session-split-group'}">
-          ${isMultiBuild ? '<div class="session-split-group">' : ''}
-          <button type="button" class="btn-bento-build">
-            ${ICONS.wrench(14)}
-            ${buildLabelHtml}
-          </button>
-          <button type="button" class="btn-bento-qr" title="Hiện mã QR lắp ráp" aria-label="Mã QR">
-            ${ICONS.qrCode(16)}
-          </button>
-          ${isMultiBuild ? '</div>' : ''}
-          ${dropdownItemsHtml}
-        </div>`;
+      buildButtonsHtml = builds.map((b, idx) => {
+        const btnLabel = isMultiBuild ? `Lắp ráp ${idx + 1}` : 'Lắp ráp';
+        return `
+        <button type="button" class="btn-bento-build" data-build-idx="${idx}" title="${escapeHtml(b.label)}">
+          ${ICONS.wrench(15)}
+          <span>${btnLabel}</span>
+        </button>`;
+      }).join('');
     }
+
+    const qrActionHtml = isRobotics
+      ? `<button type="button" class="btn-bento-qr" ${!hasBuilds ? 'disabled' : ''} title="${hasBuilds ? 'Hiện mã QR lắp ráp' : 'Buổi này không có mã QR'}" aria-label="Mã QR">
+          ${ICONS.qrCode(16)}
+          <span>Mã QR</span>
+        </button>`
+      : '';
 
     card.innerHTML = `
       <div class="session-bento-header">
         <span class="session-bento-badge">Buổi ${s.sessionNumber}</span>
         <span class="session-bento-title">${escapeHtml(s.title || '(Chưa cập nhật tên bài học)')}</span>
       </div>
-      <div class="session-bento-actions">
+      <div class="session-bento-actions ${isMultiBuild ? 'has-multi-build' : ''}">
+        ${buildButtonsHtml}
         <button type="button" class="btn-bento-slide" ${!hasSlide ? 'disabled' : ''}>
           ${ICONS.presentation(15)}
           <span>Mở Slide</span>
-        </button>${roboticsActionsHtml}
+        </button>
+        ${qrActionHtml}
       </div>
     `;
 
@@ -378,35 +448,15 @@ function renderCourseSessions(courseCode) {
     });
 
     if (hasBuilds) {
-      const buildBtn = card.querySelector('.btn-bento-build');
-      const dropdownMenu = card.querySelector('.build-dropdown-menu');
-
-      if (buildBtn) {
-        buildBtn.addEventListener('click', (e) => {
-          e.stopPropagation();
-          if (isMultiBuild && dropdownMenu) {
-            const willOpen = !dropdownMenu.classList.contains('open');
-            closeAllBuildDropdowns();
-            if (willOpen) dropdownMenu.classList.add('open');
-          } else if (builds[0]) {
-            window.open(builds[0].url, '_blank', 'noopener,noreferrer');
+      card.querySelectorAll('.btn-bento-build').forEach(buildBtn => {
+        buildBtn.addEventListener('click', () => {
+          const idx = Number(buildBtn.getAttribute('data-build-idx'));
+          const targetBuild = builds[idx];
+          if (targetBuild && targetBuild.url) {
+            window.open(targetBuild.url, '_blank', 'noopener,noreferrer');
           }
         });
-      }
-
-      if (dropdownMenu) {
-        dropdownMenu.querySelectorAll('.build-dropdown-item').forEach(itemBtn => {
-          itemBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const idx = Number(itemBtn.getAttribute('data-build-idx'));
-            const targetBuild = builds[idx];
-            closeAllBuildDropdowns();
-            if (targetBuild && targetBuild.url) {
-              window.open(targetBuild.url, '_blank', 'noopener,noreferrer');
-            }
-          });
-        });
-      }
+      });
 
       const qrBtn = card.querySelector('.btn-bento-qr');
       if (qrBtn) {
@@ -517,64 +567,83 @@ async function handleSaveBuildUrl() {
 }
 
 export function openQrModal(sessionObj) {
-  const slideUrl = (sessionObj && sessionObj.slideUrl ? String(sessionObj.slideUrl).trim() : '');
   const builds = getSessionBuilds(sessionObj);
-  const buildUrl = builds.length > 0 ? builds[0].url : '';
-  if (!slideUrl && !buildUrl) return;
+  if (builds.length === 0) return;
 
   activeQrState = {
     sessionNumber: sessionObj.sessionNumber,
     title: sessionObj.title || '',
     builds,
     selectedBuildIdx: 0,
-    buildUrl,
-    slideUrl,
-    activeType: buildUrl ? 'build' : 'slide'
+    buildUrl: builds[0].url,
+    shortUrl: ''
   };
 
   const modal = document.getElementById('modal-qr');
   const titleEl = document.getElementById('qr-modal-title');
-  const tabsEl = document.getElementById('qr-modal-tabs');
 
   if (titleEl) {
     titleEl.textContent = `Buổi ${activeQrState.sessionNumber} — ${activeQrState.title}`;
-  }
-  if (tabsEl) {
-    tabsEl.style.display = (buildUrl && slideUrl) ? 'inline-flex' : 'none';
   }
 
   renderQrModalContent();
   if (modal) modal.style.display = 'flex';
 }
 
-export function switchQrType(type) {
-  if (type === 'build' && !activeQrState.buildUrl) return;
-  if (type === 'slide' && !activeQrState.slideUrl) return;
-  activeQrState.activeType = type;
-  renderQrModalContent();
+function updateQrUrlDisplay(urlEl, longUrl) {
+  if (!urlEl) return;
+  const cached = getCachedShortUrl(longUrl);
+  if (cached) {
+    activeQrState.shortUrl = cached;
+    urlEl.classList.remove('is-loading', 'is-fallback');
+    urlEl.textContent = cached;
+    urlEl.title = `${cached} (${longUrl})`;
+    return;
+  }
+
+  activeQrState.shortUrl = '';
+  urlEl.classList.remove('is-fallback');
+  urlEl.classList.add('is-loading');
+  urlEl.textContent = 'Đang tạo link ngắn...';
+  urlEl.title = longUrl;
+
+  resolveShortUrl(longUrl)
+    .then((shortUrl) => {
+      if (activeQrState.buildUrl !== longUrl) return;
+      if (shortUrl) {
+        activeQrState.shortUrl = shortUrl;
+        urlEl.classList.remove('is-loading', 'is-fallback');
+        urlEl.textContent = shortUrl;
+        urlEl.title = `${shortUrl} (${longUrl})`;
+      } else {
+        urlEl.classList.remove('is-loading');
+        urlEl.classList.add('is-fallback');
+        urlEl.textContent = longUrl;
+      }
+    })
+    .catch(() => {
+      if (activeQrState.buildUrl !== longUrl) return;
+      activeQrState.shortUrl = '';
+      urlEl.classList.remove('is-loading');
+      urlEl.classList.add('is-fallback');
+      urlEl.textContent = longUrl;
+    });
 }
 
 function renderQrModalContent() {
-  const tabBuildBtn = document.getElementById('btn-qr-tab-build');
-  const tabSlideBtn = document.getElementById('btn-qr-tab-slide');
   const buildTabsEl = document.getElementById('qr-modal-build-tabs');
-  const badgeEl = document.getElementById('qr-modal-type-badge');
   const canvasEl = document.getElementById('qr-modal-canvas');
   const urlEl = document.getElementById('qr-modal-url');
 
-  const isBuild = activeQrState.activeType === 'build';
   const builds = activeQrState.builds || [];
-  if (isBuild && builds.length > 0) {
+  if (builds.length > 0) {
     const activeBuild = builds[activeQrState.selectedBuildIdx] || builds[0];
     activeQrState.buildUrl = activeBuild.url;
   }
-  const currentUrl = isBuild ? activeQrState.buildUrl : activeQrState.slideUrl;
-
-  if (tabBuildBtn) tabBuildBtn.classList.toggle('active', isBuild);
-  if (tabSlideBtn) tabSlideBtn.classList.toggle('active', !isBuild);
+  const currentUrl = activeQrState.buildUrl;
 
   if (buildTabsEl) {
-    if (isBuild && builds.length >= 2) {
+    if (builds.length >= 2) {
       buildTabsEl.style.display = 'inline-flex';
       buildTabsEl.innerHTML = '';
       builds.forEach((b, idx) => {
@@ -594,13 +663,8 @@ function renderQrModalContent() {
     }
   }
 
-  if (badgeEl) {
-    badgeEl.textContent = isBuild ? 'QR Link lắp ráp' : 'QR Slide bài giảng';
-  }
-  if (urlEl) {
-    urlEl.textContent = currentUrl;
-    urlEl.title = currentUrl;
-  }
+  updateQrUrlDisplay(urlEl, currentUrl);
+
   if (canvasEl && currentUrl) {
     try {
       canvasEl.innerHTML = generateQrSvg(currentUrl, 240);

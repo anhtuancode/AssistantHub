@@ -1731,20 +1731,19 @@ async function main() {
     assert.ok(currHtml.includes('sessions-bento-grid'));
   });
 
-  // 29. QR Code Generator & Modal switching (buildUrl & slideUrl)
-  await runTest('Curriculum QR Modal: generates 240x240 SVG offline and switches between buildUrl and slideUrl', async () => {
+  // 29. QR Code Generator & Build-only Modal + Short URL fallback
+  await runTest('Curriculum QR Modal: generates 240x240 SVG offline for buildUrl and handles Short URL caching/fallback', async () => {
     const rawQr = fs.readFileSync(path.join(ROOT, 'js/services/qrGenerator.js'), 'utf8');
     const qrUrl = `data:text/javascript;base64,${Buffer.from(rawQr, 'utf8').toString('base64')}`;
     const { generateQrSvg } = await import(qrUrl);
 
-    const sampleSlide = 'https://docs.google.com/presentation/d/1b3ergNl3Cw4H8ZKmppkd6KbNyf8xenzz/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true';
     const sampleBuild = 'https://drive.google.com/file/d/1wpc4bWEV84Opk1Vnmk3LAhSRDZ41kdiV/view';
 
-    const svg1 = generateQrSvg(sampleSlide, 240);
+    const svg1 = generateQrSvg(sampleBuild, 240);
     assert.ok(svg1.startsWith('<svg ') && svg1.includes('width="240"') && svg1.includes('height="240"'));
     assert.ok(svg1.includes('<path d="M'));
 
-    // Mock DOM for openQrModal & switchQrType
+    // Mock DOM for openQrModal
     const elements = {};
     const makeEl = (id) => {
       const cls = new Set();
@@ -1755,6 +1754,8 @@ async function main() {
         innerHTML: '',
         title: '',
         classList: {
+          add: (...c) => c.forEach(x => cls.add(x)),
+          remove: (...c) => c.forEach(x => cls.delete(x)),
           toggle: (c, force) => { if (force) cls.add(c); else cls.delete(c); },
           contains: (c) => cls.has(c)
         },
@@ -1762,14 +1763,15 @@ async function main() {
       };
     };
     [
-      'modal-qr', 'qr-modal-title', 'qr-modal-tabs', 'btn-qr-tab-build',
-      'btn-qr-tab-slide', 'qr-modal-type-badge', 'qr-modal-canvas', 'qr-modal-url'
+      'modal-qr', 'qr-modal-title', 'qr-modal-build-tabs', 'qr-modal-canvas', 'qr-modal-url'
     ].forEach(id => { elements[id] = makeEl(id); });
 
     global.document = {
       getElementById: (id) => elements[id] || null,
       querySelectorAll: () => []
     };
+    const origFetch = global.fetch;
+    global.fetch = async () => ({ ok: true, text: async () => 'https://tinyurl.com/mock123' });
 
     const rawCurr = fs.readFileSync(path.join(ROOT, 'js/services/curriculum.js'), 'utf8');
     const currSvcUrl = `data:text/javascript;base64,${Buffer.from(rawCurr, 'utf8').toString('base64')}`;
@@ -1784,24 +1786,20 @@ async function main() {
       .replace("from '../services/icons.js'", `from '${iconsUrl}'`)
       .replace("from '../services/qrGenerator.js'", `from '${qrUrl}'`);
     const currTabUrl = `data:text/javascript;base64,${Buffer.from(rawCurrTab, 'utf8').toString('base64')}`;
-    const { openQrModal, switchQrType } = await import(currTabUrl);
+    const { openQrModal } = await import(currTabUrl);
 
     openQrModal({
       sessionNumber: 3,
       title: 'Phương tiện di chuyển trên sao Hỏa',
-      buildUrl: sampleBuild,
-      slideUrl: sampleSlide
+      buildUrl: sampleBuild
     });
 
-    assert.strictEqual(elements['modal-qr'].style.display, 'flex');
-    assert.strictEqual(elements['qr-modal-tabs'].style.display, 'inline-flex');
-    assert.strictEqual(elements['qr-modal-type-badge'].textContent, 'QR Link lắp ráp');
-    assert.strictEqual(elements['qr-modal-url'].textContent, sampleBuild);
-    assert.ok(elements['qr-modal-canvas'].innerHTML.includes('width="240"'));
+    await new Promise(r => setTimeout(r, 20));
+    global.fetch = origFetch;
 
-    switchQrType('slide');
-    assert.strictEqual(elements['qr-modal-type-badge'].textContent, 'QR Slide bài giảng');
-    assert.strictEqual(elements['qr-modal-url'].textContent, sampleSlide);
+    assert.strictEqual(elements['modal-qr'].style.display, 'flex');
+    assert.strictEqual(elements['qr-modal-build-tabs'].style.display, 'none');
+    assert.strictEqual(elements['qr-modal-url'].textContent, 'https://tinyurl.com/mock123');
     assert.ok(elements['qr-modal-canvas'].innerHTML.includes('width="240"'));
   });
 

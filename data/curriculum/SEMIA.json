@@ -4,6 +4,16 @@
   "category": "ROBOTICS",
   "platform": "VEX IQ",
   "cluster": "SEMI",
+  "referenceBuilds": [
+    {
+      "label": "IQ 2nd Gen Basebot Rev12 (PDF)",
+      "url": "https://drive.google.com/file/d/1r79BOANjcxp4QMRnBRGfNhlGjQFxRmjt/view?usp=drivesdk"
+    },
+    {
+      "label": "Một số Link lắp ráp tham khảo (Docx)",
+      "url": "https://docs.google.com/document/d/1whhR09OqGPYOv6t0DAlwcmzz5akh-yIl/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true"
+    }
+  ],
   "sessions": {
     "1": {
       "sessionNumber": 1,
@@ -15,6 +25,9 @@
         "Sử dụng thành thạo thẻ lệnh sự kiện <When Brain_button pressed>"
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1giyKjTl9xk1V_SyR_AEC4SqvSxLrVJJM/edit?slide=id.p1#slide=id.p1",
+      "builds": [
+        { "label": "Vận hành Robot", "url": "https://drive.google.com/file/d/1p64VL7iRJqTNyBSAQ6PFCx-8vz5rksNk/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": ""
     },
     "2": {
@@ -27,6 +40,9 @@
         "Điều khiển robot di chuyển đa hướng và thao tác gắp vật"
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1ThOaBgOsnLFOwUUZFxPk_8fGXbJh9bZe/edit?slide=id.p1#slide=id.p1",
+      "builds": [
+        { "label": "Thống trị Robot", "url": "https://drive.google.com/file/d/1Pr9rTU-FNvz1Joymgl9588J9XUtTbCd4/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": ""
     },
     "3": {
@@ -39,6 +55,9 @@
         "Lập trình tương tác nút bấm và phát nhạc trên Brain"
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1f-Amc0nHjbVYtGfe8tnm-_0isJMHToMJ/edit?usp=sharing&ouid=111038164751870348560&rtpof=true&sd=true",
+      "builds": [
+        { "label": "IQ - Bộ não siêu việt", "url": "https://drive.google.com/file/d/1VtXPhBLKYaX444OR6QnxLkaGlPm292yH/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": ""
     },
     "4": {
@@ -51,6 +70,11 @@
         "Vận dụng thẻ lệnh điều khiển thi đấu hoàn thành nhiệm vụ"
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1cfd9srF0uuC8KPWE8zLBnpTiH_7tWhiG/edit?slide=id.p1#slide=id.p1",
+      "builds": [
+        { "label": "Mô hình cơ bản", "url": "https://drive.google.com/file/d/1MEu_BXm2bj3oqIT6WiOpTuByIg2NI2qT/view?usp=drivesdk" },
+        { "label": "Mô hình cải tiến", "url": "https://drive.google.com/file/d/1b2x6UOp3hE7fXuMMNwzJQ9S4m4N5toe0/view?usp=drivesdk" },
+        { "label": "Mô hình Pallets", "url": "https://drive.google.com/file/d/1wvOMvYf6d5gOu-vWi34NkeI4j8n2BS_i/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": ""
     },
     "5": {
@@ -63,6 +87,10 @@
         "Sử dụng thẻ lệnh Controller <Disable> điều phối chế độ tự động và điều khiển tay"
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1A2xjrebd6Ualx3A7EzbIzqKbpV9OwJr4/edit#slide=id.p1",
+      "builds": [
+        { "label": "Cánh tay Robot (Build)", "url": "https://drive.google.com/file/d/1mhfwUYmU3EeEkh51mhlA0WxyRwyxgsQ9/view?usp=drivesdk" },
+        { "label": "Cánh tay Robot (LS5)", "url": "https://drive.google.com/file/d/1dnXl_XvmV9VSIW93JkF4nTdof6sqDAaY/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": "https://docs.google.com/document/d/1BgQ-3yJJoHtu5Qopegm82rp2zJ7jojUF/edit?tab=t.0#heading=h.30j0zll"
     },
     "6": {
@@ -75,6 +103,10 @@
         "Vận hành mô hình mượt mà"
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1yMsdQJ-IFppGFpxFqzRoBW37ZiwOBwZT/edit?slide=id.p9#slide=id.p9",
+      "builds": [
+        { "label": "Mô hình cơ bản", "url": "https://drive.google.com/file/d/1Cx8KEhwu8H8uPY0Mj3yVj13hF4ZSsOnl/view?usp=drivesdk" },
+        { "label": "Mô hình cải tiến", "url": "https://drive.google.com/file/d/1-8PxndGBX_dqgmRwHMin8h2FRWXP2SWB/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": ""
     },
     "7": {
@@ -99,6 +131,10 @@
         "Lập trình vận hành mô hình theo đúng yêu cầu chức năng"
       ],
       "slideUrl": "https://docs.google.com/presentation/d/16DtcHZgpVQDSchXvtjgh4OEFJq1HFXPl/edit?usp=sharing&ouid=111038164751870348560&rtpof=true&sd=true",
+      "builds": [
+        { "label": "Công xưởng sáng tạo", "url": "https://drive.google.com/file/d/1wa6KH1HQz8niiwQVN1DSx7kP1qzAn8if/view?usp=drivesdk" },
+        { "label": "Clawbot", "url": "https://drive.google.com/file/d/1irSdokB6Wjx0l4mpfJZJ4MU5iRQERIhZ/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": ""
     },
     "9": {
@@ -111,6 +147,10 @@
         "Lập trình điều khiển di chuyển cơ bản thông qua cần điều khiển Joystick"
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1M6Q2Dr8hKupsgrGLtiKrkpEjoULJE0Xo/edit?rtpof=true",
+      "builds": [
+        { "label": "Tối ưu thiết bị điều khiển P1", "url": "https://drive.google.com/file/d/1WyXR-SYI-YmP4Tu9asVmJnnMbvpmOSVF/view?usp=drivesdk" },
+        { "label": "Clawbot", "url": "https://drive.google.com/file/d/10tFZ7G5pCcrHfapsO0amNUAg6QELD8MJ/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": ""
     },
     "10": {
@@ -123,6 +163,9 @@
         "Lập trình vận hành thành thạo nhiệm vụ phức tạp bằng cả hai cần điều khiển"
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1HI0hOy0awS6cOXxSbk5Lt5yXFMXzRGpi/edit?slide=id.p1#slide=id.p1",
+      "builds": [
+        { "label": "Tối ưu thiết bị điều khiển P2", "url": "https://drive.google.com/file/d/1bmQYf18vpbsHBbKwbl6D8oyF5RDqkcCp/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": ""
     },
     "11": {

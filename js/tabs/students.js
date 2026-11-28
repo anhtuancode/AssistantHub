@@ -27,37 +27,147 @@ let currentSession = null;
 let currentStudents = [];
 let currentSummary = '';
 let isRestoredDraft = false;
+let currentDraftStatus = null; // 'draft' | 'saved' | null
+let currentSavedAt = null;
 let currentStyleConfig = { ...DEFAULT_COMMENT_STYLE_CONFIG };
 let isQuickStyleBound = false;
 
+const SEVEN_DAYS_MS = 7 * 24 * 60 * 60 * 1000;
+
 function getDraftKey(cls = currentClass, sess = currentSession) {
   if (!cls || !sess) return null;
-  const cid = cls.classId || cls.id || cls.classCode || cls.code || 'unknown';
-  return `draft_${cid}_${sess.sessionNumber}`;
+  const code = cls.classCode || cls.code || cls.classId || cls.id || 'unknown';
+  return `mindx_session_draft_${code}_${sess.sessionNumber}`;
 }
 
-export function saveCurrentDraft() {
+function getStudentStatusKey(student, idx) {
+  return String((student && (student.id || student.studentId || student.name)) || idx);
+}
+
+function buildStudentStatusesMap(students = currentStudents) {
+  const map = {};
+  (students || []).forEach((s, idx) => {
+    const k = getStudentStatusKey(s, idx);
+    if (s.saveStatus === 'saved') map[k] = 'saved';
+    else if (s.saveStatus === 'error') map[k] = 'error';
+    else map[k] = 'pending';
+  });
+  return map;
+}
+
+function formatSavedAtLabel(ts) {
+  if (!ts) return '✓ Đã lưu lên LMS';
+  const d = new Date(ts);
+  const pad = n => String(n).padStart(2, '0');
+  const timeStr = `${pad(d.getHours())}:${pad(d.getMinutes())}`;
+  const now = new Date();
+  const isSameDay = d.getDate() === now.getDate() && d.getMonth() === now.getMonth() && d.getFullYear() === now.getFullYear();
+  if (isSameDay) {
+    return `✓ Đã lưu lên LMS lúc ${timeStr}`;
+  }
+  return `✓ Đã lưu lên LMS lúc ${timeStr} ${pad(d.getDate())}/${pad(d.getMonth() + 1)}`;
+}
+
+export function saveCurrentDraft(options = {}) {
   const key = getDraftKey();
   if (!key) return;
   try {
     const summaryBox = document.getElementById('students-summary-editor');
     const summaryVal = summaryBox ? summaryBox.value : currentSummary;
+    const nextStatus = options.status || 'draft';
+    if (nextStatus === 'saved') {
+      currentDraftStatus = 'saved';
+      currentSavedAt = options.savedAt || Date.now();
+    } else {
+      currentDraftStatus = 'draft';
+    }
     const payload = {
+      status: currentDraftStatus,
+      savedAt: currentDraftStatus === 'saved' ? currentSavedAt : (currentSavedAt || null),
+      updatedAt: Date.now(),
+      studentStatuses: buildStudentStatusesMap(currentStudents),
       summary: summaryVal,
-      students: currentStudents,
-      updatedAt: Date.now()
+      students: currentStudents
     };
     localStorage.setItem(key, JSON.stringify(payload));
     localStorage.setItem('mindx_last_active_workspace', JSON.stringify({ cls: currentClass, session: currentSession }));
+    updateDraftBannerUI(true, currentDraftStatus === 'draft' && !options.isRestored ? 'Có thay đổi chưa lưu' : null);
   } catch (_) {}
 }
 
-function updateDraftBannerUI(restored) {
-  isRestoredDraft = restored;
+export function markSessionSavedToLms(studentsList = null) {
+  if (Array.isArray(studentsList) && studentsList.length > 0) {
+    currentStudents = studentsList;
+  }
+  saveCurrentDraft({ status: 'saved', savedAt: Date.now() });
+}
+
+export function syncStudentStatusesToDraft(studentsList = null) {
+  if (Array.isArray(studentsList) && studentsList.length > 0) {
+    currentStudents = studentsList;
+  }
+  const key = getDraftKey();
+  if (!key) return;
+  try {
+    const raw = localStorage.getItem(key);
+    const existing = raw ? JSON.parse(raw) : {};
+    const statusToKeep = existing.status || currentDraftStatus || 'draft';
+    const payload = {
+      ...existing,
+      status: statusToKeep,
+      savedAt: existing.savedAt || currentSavedAt || null,
+      updatedAt: Date.now(),
+      studentStatuses: buildStudentStatusesMap(currentStudents),
+      summary: currentSummary,
+      students: currentStudents
+    };
+    localStorage.setItem(key, JSON.stringify(payload));
+  } catch (_) {}
+}
+
+export function cleanupExpiredSessionDrafts() {
+  try {
+    if (typeof localStorage === 'undefined') return 0;
+    const now = Date.now();
+    const keysToRemove = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const k = localStorage.key(i);
+      if (!k || (!k.startsWith('mindx_session_draft_') && !k.startsWith('draft_'))) continue;
+      try {
+        const raw = localStorage.getItem(k);
+        if (!raw) continue;
+        const parsed = JSON.parse(raw);
+        const ts = Number((parsed && (parsed.savedAt || parsed.updatedAt)) || 0);
+        if (ts > 0 && (now - ts) > SEVEN_DAYS_MS) {
+          keysToRemove.push(k);
+        }
+      } catch (_) {}
+    }
+    keysToRemove.forEach(k => localStorage.removeItem(k));
+    return keysToRemove.length;
+  } catch (_) {
+    return 0;
+  }
+}
+
+function updateDraftBannerUI(visible, customDraftLabel = null) {
+  isRestoredDraft = Boolean(visible);
   const badge = document.getElementById('students-draft-badge');
   const resetBtn = document.getElementById('btn-reset-draft-from-lms');
-  if (badge) badge.style.display = restored ? 'inline-block' : 'none';
-  if (resetBtn) resetBtn.style.display = restored ? 'inline-flex' : 'none';
+  if (badge) {
+    if (!visible) {
+      badge.style.display = 'none';
+    } else if (currentDraftStatus === 'saved') {
+      badge.className = 'tag tag-green';
+      badge.textContent = formatSavedAtLabel(currentSavedAt);
+      badge.style.display = 'inline-block';
+    } else {
+      badge.className = 'tag tag-amber';
+      badge.textContent = customDraftLabel || 'Đã khôi phục bản nháp';
+      badge.style.display = 'inline-block';
+    }
+  }
+  if (resetBtn) resetBtn.style.display = visible ? 'inline-flex' : 'none';
 }
 
 function tryRestoreDraftIfExists() {
@@ -75,8 +185,18 @@ function tryRestoreDraftIfExists() {
       if (summaryBox) summaryBox.value = draft.summary;
     }
     if (draft.students.length > 0) {
-      currentStudents = draft.students;
+      const statusMap = draft.studentStatuses && typeof draft.studentStatuses === 'object' ? draft.studentStatuses : {};
+      currentStudents = draft.students.map((s, idx) => {
+        const stKey = getStudentStatusKey(s, idx);
+        const mappedStatus = statusMap[stKey];
+        if (!s.saveStatus && mappedStatus && mappedStatus !== 'pending') {
+          return { ...s, saveStatus: mappedStatus };
+        }
+        return s;
+      });
     }
+    currentDraftStatus = draft.status === 'saved' ? 'saved' : 'draft';
+    currentSavedAt = draft.savedAt || null;
     updateDraftBannerUI(true);
     renderStudentsTable();
     return true;
@@ -122,6 +242,14 @@ async function loadSessionDataFromLms() {
   const tbody = document.getElementById('students-table-body');
   const countBadge = document.getElementById('students-count-header');
   const summaryBox = document.getElementById('students-summary-editor');
+
+  // Reset sạch state của buổi cũ trước khi tải buổi mới
+  currentSummary = '';
+  currentStudents = [];
+  currentDraftStatus = null;
+  currentSavedAt = null;
+  if (summaryBox) summaryBox.value = '';
+  updateDraftBannerUI(false);
 
   if (currentSession && currentSession.isAvailable === false) {
     const msg = 'Buổi học này chưa diễn ra nên chưa có dữ liệu điểm danh và danh sách học viên.';

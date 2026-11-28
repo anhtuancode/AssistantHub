@@ -7,6 +7,7 @@
   "targetAge": "9 - 15 Tuổi",
   "duration": "120 phút/buổi",
   "version": "Ver 2024",
+  "studentBookUrl": "https://drive.google.com/file/d/1eWlRg7K57bMwAAdKzYy4LBseoSxu9XJP/view?usp=drivesdk",
   "sessions": {
     "1": {
       "sessionNumber": 1,

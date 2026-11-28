@@ -7,6 +7,7 @@
   "targetAge": "13 - 16 Tuổi",
   "duration": "120 phút/buổi",
   "version": "Ver 01 - 5.2024 (Hiệu lực)",
+  "studentBookUrl": "https://drive.google.com/file/d/1Hk6tYnpqeu4NtXJ2gMt3_RJKH4SatGdc/view?usp=drivesdk",
   "sessions": {
     "1": {
       "sessionNumber": 1,

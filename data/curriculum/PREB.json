@@ -17,6 +17,10 @@
         "Học viên ghi nhớ nguyên tắc hoạt động."
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1b3ergNl3Cw4H8ZKmppkd6KbNyf8xenzz/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "builds": [
+        { "label": "Mô hình tàu không gian", "url": "https://drive.google.com/file/d/1yV7bN0ThT5qNhuBo7qQ8I_XcsEEqofzB/view?usp=drivesdk" },
+        { "label": "Mô hình xe đàn hồi", "url": "https://drive.google.com/file/d/17s-ddlAJSyeEO-cmvJJtCdS6CtoLxymN/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": "https://docs.google.com/document/d/128jE81vrOxp9GFllW0UPq_dK3wjyZ12Y/edit",
       "nextLesson": "Dấu ấn sao Hỏa"
     },
@@ -32,6 +36,9 @@
         "Bước đầu vận dụng các thẻ lệnh lập trình để điều khiển chuyển động của mô hình."
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1OgbI98eWMS1ckoX0x6wvWabq3IZ6VDfE/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "builds": [
+        { "label": "Dấu ấn Sao Hỏa", "url": "https://drive.google.com/file/d/1j0Aumbpe302Kqjj8OhBHZZ3CE0_tbK_h/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": "https://docs.google.com/document/d/1bTfZneFd7BAFzQacFCj1VFsO0K8nwpmX/edit",
       "nextLesson": "Phương tiện di chuyển trên sao Hỏa"
     },
@@ -46,6 +53,9 @@
         "Làm chủ các thẻ lệnh lập trình cơ bản để điều khiển động cơ theo ý muốn."
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1bKb4shzsnx-i2zDBhIqqcf_55FVLxJ5H/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "builds": [
+        { "label": "Phương tiện di chuyển trên Sao Hỏa", "url": "https://drive.google.com/file/d/1VWDZbIcaS7wFvMWqCi6-LPZKU4peIMib/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": "https://drive.google.com/file/d/1wpc4bWEV84Opk1Vnmk3LAhSRDZ41kdiV/view",
       "parentQuestions": [
         "Theo con, bề mặt Sao Hỏa có gì đặc biệt khiến Robot cần phải thiết kế khác với xe chạy trên đường bình thường?",
@@ -65,6 +75,7 @@
         "Học viên biết cách lắp ráp mô hình hoạt động hiệu quả."
       ],
       "slideUrl": "https://docs.google.com/presentation/d/17Mt4npZUyqZkGO54k7YjDOZ9IC99n2s1/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "builds": [],
       "reviewDocUrl": "https://drive.google.com/file/d/1wpc4bWEV84Opk1Vnmk3LAhSRDZ41kdiV/view",
       "nextLesson": "Siêu xe tránh bão"
     },
@@ -80,6 +91,10 @@
         "Thực hiện thao tác kéo thả lệnh di chuyển và gia tốc."
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1q1R6x5_oYDqCyYaLRSI3Xrl72sKu38Uq/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "builds": [
+        { "label": "Mô hình cải tiến", "url": "https://drive.google.com/file/d/1tiVA8HG5kRm_JXmGk_Uwmyx0aNw_yF-f/view?usp=drivesdk" },
+        { "label": "Mô hình xe không động cơ", "url": "https://drive.google.com/file/d/1HrOXoPaMVdoEX6a4IOZqxDfjTpiLok_b/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": "https://drive.google.com/file/d/19XJPKQ4QxRf4W-OprQCU1TDFcCk3Qp2o/view",
       "nextLesson": "Xe di chuyển trên địa hình gồ ghề"
     },
@@ -95,6 +110,9 @@
         "Học viên biết cách lắp ráp mô hình hoạt động hiệu quả."
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1320eKpDvGCrlgZQs_dQvU3WeTVgwjmCy/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "builds": [
+        { "label": "Mô hình xe di chuyển trên địa hình gồ ghề", "url": "https://drive.google.com/file/d/1YgWnlC3UnrEUa9ElKHOXa-5UGqfXgvWU/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": "https://drive.google.com/file/d/1Ua1HBatfLu_4HBSjVDpdCh3qcprjN3ue/view",
       "nextLesson": "Hủy bỏ nhiệm vụ khẩn cấp"
     },
@@ -111,6 +129,9 @@
         "Học viên ghi nhớ nguyên tắc hoạt động của LED Bumper."
       ],
       "slideUrl": "https://docs.google.com/presentation/d/12lke974DzxV3c0-E0uym7RWrwz0Hx2Kv/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "builds": [
+        { "label": "Mô hình siêu xe thám hiểm", "url": "https://drive.google.com/file/d/1DcwxgVxAjn2ommbz7vgr0n7ZCFK_X7uT/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": "https://docs.google.com/document/d/1t2xTTM3ZNvYikiS--IRa78lIsZXnhhgv/edit?usp=sharing&ouid=111038164751870348560&rtpof=true&sd=true",
       "nextLesson": "Công xưởng sáng tạo"
     },
@@ -124,6 +145,7 @@
         "Học viên biết cách lắp ráp mô hình hoạt động hiệu quả."
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1uqR-yDptAWbYmhSp6nNkZIYxDr5AsFZ8/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "builds": [],
       "reviewDocUrl": "https://drive.google.com/file/d/1EyhllQnVzDUt9oTC3W0rV9Z6mK3SdIwC/view",
       "nextLesson": "Thu thập mẫu vật"
     },
@@ -139,6 +161,9 @@
         "Thao tác kết nối não, pin, động cơ."
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1i1DO99n5_lII_V_4Q4rEqxbYIOdp11Xj/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "builds": [
+        { "label": "Mô hình siêu xe thám hiểm", "url": "https://drive.google.com/file/d/1TorroCTkw4nTc8qyDmanUbAGSBisznJq/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": "https://drive.google.com/file/d/1rE_xfctOPtL1ugnZ-BnmuxYVmYzb0HZp/view",
       "nextLesson": "Những hòn đá đầy màu sắc"
     },
@@ -154,6 +179,9 @@
         "Thao tác tắt mở nguồn cho bộ não và kết nối vào phần mềm lập trình VEXcode GO."
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1Irz2firrgClnqsK5SCkRVkoaSJVQ8tca/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true",
+      "builds": [
+        { "label": "Mô hình xe phân loại theo màu sắc", "url": "https://drive.google.com/file/d/1yBXUOCsStKSxctv1ob968p6W2u-PQBGC/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": "https://docs.google.com/document/d/1Rbk9EhIodXANwv3ZWwjiGCvZtF3DI4eT/edit",
       "nextLesson": "Đèn tín hiệu nguy cấp"
     },
@@ -200,7 +228,7 @@
         "Học viên hiểu được quy trình Demo và nắm rõ kiến thức linh kiện/lập trình để trả lời câu hỏi từ ban giám khảo.",
         "Tự tin luyện tập trình bày sản phẩm theo cá nhân/nhóm."
       ],
-      "slideUrl": "",
+      "slideUrl": "https://docs.google.com/presentation/d/1xP6IP9HXn8RSRAZ8ot94tzQodPUnbVaV/edit?slide=id.g3f2e1dad274_1_146#slide=id.g3f2e1dad274_1_146",
       "reviewDocUrl": "https://www.canva.com/design/DAGUoXyaa2s/wMyF14hYbVXqYoRYffe6OQ/edit?utm_content=DAGUoXyaa2s&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton",
       "reviewDocLabel": "Tài liệu ôn công dụng linh kiện điện tử",
       "extraLinks": [
@@ -224,7 +252,7 @@
         "Học viên tự tin thuyết trình, làm chủ sản phẩm Robot và vận dụng tổng hợp kiến thức đã học trong suốt 14 buổi.",
         "Ghi nhận sự tiến bộ về tư duy kỹ thuật, lập trình VEXcode GO và kỹ năng làm việc nhóm."
       ],
-      "slideUrl": "",
+      "slideUrl": "https://docs.google.com/presentation/d/14xijOYE5GlN5FrmhszZVwSHPJLC_TXAD/edit?slide=id.p1#slide=id.p1",
       "reviewDocUrl": "",
       "nextLesson": "Hoàn thành khóa học PREB (Lộ trình tiếp theo: PREA / Robotics nâng cao)"
     }

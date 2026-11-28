@@ -6,6 +6,7 @@
   "cluster": "GAMEMAKER",
   "targetAge": "9 - 15 Tuổi",
   "duration": "120 phút/buổi",
+  "studentBookUrl": "https://drive.google.com/file/d/1w8e19k2eh8e_ARZKEC3sRfhKDpcNS68l/view?usp=drivesdk",
   "sessions": {
     "1": {
       "sessionNumber": 1,

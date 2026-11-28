@@ -4,6 +4,16 @@
   "category": "ROBOTICS",
   "platform": "VEX IQ",
   "cluster": "SEMI",
+  "referenceBuilds": [
+    {
+      "label": "IQ 2nd Gen Speedbot (PDF)",
+      "url": "https://drive.google.com/file/d/1HeTd1TGmIz8art3XuOVIrVPIqmEEvjUh/view?usp=drivesdk"
+    },
+    {
+      "label": "Một số Link lắp ráp tham khảo (Docx)",
+      "url": "https://docs.google.com/document/d/14x0IthT3BVhbSt1wsiLGkcRDYRUx1LHH/edit?usp=drivesdk&ouid=101545815412274045929&rtpof=true&sd=true"
+    }
+  ],
   "sessions": {
     "1": {
       "sessionNumber": 1,
@@ -29,6 +39,9 @@
         "Thao tác bật/tắt nguồn Brain và kết nối VEXcode IQ"
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1DLLsL4IzFxeQoT-vVjzXdQoigiE4C29Z/edit#slide=id.p13",
+      "builds": [
+        { "label": "Chuyển động Robotics", "url": "https://drive.google.com/file/d/1U6csQJ3wwTWAly7onYpeKfFbWkT-9gqh/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": "https://www.canva.com/design/DAGwS1UkUNg/oDOFIBFNe9igOF5gLFsapQ/edit?utm_content=DAGwS1UkUNg&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
     },
     "3": {
@@ -41,6 +54,10 @@
         "Lắp ráp mô hình hoạt động hiệu quả và làm quen VEXcode VR"
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1mFzSkuvLgTVJWBHA6lD2I1o1uANgoV9_/edit#slide=id.p1",
+      "builds": [
+        { "label": "Tốc độ và sức mạnh", "url": "https://drive.google.com/file/d/1mOdSdi3xxfqdYsW8MuS9w2oULgqQHZVk/view?usp=drivesdk" },
+        { "label": "MAD Box", "url": "https://drive.google.com/file/d/1z3IW18VPu_W2yurPUKqB4B_qEXI3pCqE/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": "https://docs.google.com/document/d/1lka1YRv7g3ECiu-Tws_Hm9k3-7vtFhLd/edit?tab=t.0#heading=h.30j0zll"
     },
     "4": {
@@ -53,6 +70,9 @@
         "Vận dụng kiến thức lập trình điều khiển mô hình hoàn chỉnh"
       ],
       "slideUrl": "https://docs.google.com/presentation/d/16GnFOhq8PbXlFm78cMO3IN0nlJVihtGZ/edit#slide=id.p1",
+      "builds": [
+        { "label": "Công xưởng sáng tạo", "url": "https://drive.google.com/file/d/176VkN0WJp0AadkJ7v4jonjmTLH7kJSta/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": "https://docs.google.com/document/d/1ocb_KlcKeZXQ1aWOHmaZX-bFfkJ9g1e1/edit?tab=t.0#heading=h.30j0zll"
     },
     "5": {
@@ -65,6 +85,9 @@
         "Vận dụng thẻ lệnh điều kiện if..else xử lý tương tác va chạm"
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1A2xjrebd6Ualx3A7EzbIzqKbpV9OwJr4/edit#slide=id.p1",
+      "builds": [
+        { "label": "Chạm và di chuyển", "url": "https://drive.google.com/file/d/1GFq-bAUoXADMkFx6M7eSqmLKx0kn8C1k/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": "https://docs.google.com/document/d/1BgQ-3yJJoHtu5Qopegm82rp2zJ7jojUF/edit?tab=t.0#heading=h.30j0zll"
     },
     "6": {
@@ -77,6 +100,9 @@
         "Lắp ráp mô hình hoạt động hiệu quả"
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1LHSxvy578tA6sjuFP8Grh5qNEMYE5cPg/edit?usp=sharing&ouid=111038164751870348560&rtpof=true&sd=true",
+      "builds": [
+        { "label": "Khoảng cách bao xa", "url": "https://drive.google.com/file/d/17C2TM9OoXH9oeoRkqikO2RQTsbVs6i54/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": ""
     },
     "7": {
@@ -89,6 +115,10 @@
         "Lập trình mô hình phản hồi tín hiệu qua màn hình Brain hoặc Touch LED"
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1Hp4F2rY941kUpF-zPY05QrSx4J_aoI53/edit?usp=sharing&ouid=111038164751870348560&rtpof=true&sd=true",
+      "builds": [
+        { "label": "Mô hình Speedbot", "url": "https://drive.google.com/file/d/1Oo3KgnFC3IovrfxzN6awBwk5UmaPRs68/view?usp=drivesdk" },
+        { "label": "Mô hình cải tiến", "url": "https://drive.google.com/file/d/15AbuqJo6t4EyP2vEa6m7uUp7GKv-exiR/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": ""
     },
     "8": {
@@ -101,6 +131,9 @@
         "Định hình ý tưởng cho sản phẩm dự án"
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1O-z7s2QqkZf7P7jvV5ET2BiFI3gqutj1/edit?slide=id.p1#slide=id.p1",
+      "builds": [
+        { "label": "Công xưởng sáng tạo", "url": "https://drive.google.com/file/d/1fG6TCDBLSKStudav0DN5lxkIaa6AMWDt/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": ""
     },
     "9": {
@@ -113,6 +146,9 @@
         "Hoàn thiện mô hình vận hành tự động hiệu quả"
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1D_rDM6ZpPMMibR4axXg1zN11o7IsqN1E/edit?usp=sharing&ouid=111038164751870348560&rtpof=true&sd=true",
+      "builds": [
+        { "label": "Hành trình tự động", "url": "https://drive.google.com/file/d/1QvF_DtroV849eMJUdxrTcy3IDOKMxIr8/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": ""
     },
     "10": {
@@ -125,6 +161,9 @@
         "Thành thạo kết nối Brain và vận hành mô hình"
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1uCqyKdhqBBbk6PIFLeDPjL7Zd9qvmv3v/edit?slide=id.p1#slide=id.p1",
+      "builds": [
+        { "label": "Tín hiệu thông minh", "url": "https://drive.google.com/file/d/1YGJAe2nfGnFwrnhvpYA0yu9IBG_5XC6l/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": ""
     },
     "11": {
@@ -137,6 +176,9 @@
         "Chuẩn bị nội dung thuyết trình theo dàn ý"
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1T3ZZd6lvDCtkZxy16uoJlPFsywFCbQmb/edit?slide=id.p1#slide=id.p1",
+      "builds": [
+        { "label": "Sáng tạo mô hình", "url": "https://drive.google.com/file/d/1z7AfL-YmyYdfgDvwOAz-8UMsQtxIK779/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": "https://www.canva.com/design/DAGkzDd1nIU/DGo7whySGvMTjFCqu-lcKw/edit?utm_content=DAGkzDd1nIU&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
     },
     "12": {
@@ -149,6 +191,9 @@
         "Nắm rõ quy trình Demo và tiêu chí thuyết trình"
       ],
       "slideUrl": "https://docs.google.com/presentation/d/1Oh8FfFVzij06KiQgF_Kt1XaF50N-4XIo/edit?slide=id.p1#slide=id.p1",
+      "builds": [
+        { "label": "Công xưởng sáng tạo", "url": "https://drive.google.com/file/d/1_MyesoQYAIX6T_OUM2Xc-ppGwULHv1g6/view?usp=drivesdk" }
+      ],
       "reviewDocUrl": "https://www.canva.com/design/DAG8qqycsjs/UcENguKm9feby8UJZ1Oasg/edit?utm_content=DAG8qqycsjs&utm_campaign=designshare&utm_medium=link2&utm_source=sharebutton"
     },
     "13": {

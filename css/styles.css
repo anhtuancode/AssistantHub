@@ -1878,6 +1878,39 @@ textarea.form-control {
   color: #111827;
 }
 
+.curriculum-heading-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.ref-builds-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.btn-ref-builds {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid #E2E8F0;
+  background: #FFFFFF;
+  color: #334155;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-ref-builds:hover {
+  background: #F8FAFC;
+  border-color: #CBD5E1;
+}
+
 .btn-studentbook-red {
   display: inline-flex;
   align-items: center;
@@ -1899,26 +1932,21 @@ textarea.form-control {
 }
 
 .sessions-bento-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
-}
-
-@media (max-width: 820px) {
-  .sessions-bento-grid {
-    grid-template-columns: 1fr;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .session-bento-card {
   background: #FFFFFF;
   border: 1px solid #E2E8F0;
   border-radius: 12px;
-  padding: 16px;
+  padding: 14px 18px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
   justify-content: space-between;
-  gap: 14px;
+  gap: 16px;
   box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03);
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
 }
@@ -1931,51 +1959,61 @@ textarea.form-control {
 .session-bento-header {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 14px;
+  min-width: 0;
+  flex: 1;
 }
 
 .session-bento-badge {
-  background: #FEE2E2;
+  background: #FEF2F2;
   color: #DC2626;
-  font-size: 12px;
-  font-weight: 600;
-  padding: 2px 10px;
+  font-size: 12.5px;
+  font-weight: 700;
+  padding: 5px 12px;
+  min-width: 72px;
+  text-align: center;
   border-radius: 999px;
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .session-bento-title {
-  font-size: 14.5px;
+  font-size: 15.5px;
   font-weight: 700;
   color: #0F172A;
-  line-height: 1.35;
+  line-height: 1.4;
 }
 
 .session-bento-actions {
   display: flex;
-  align-items: stretch;
+  align-items: center;
   gap: 10px;
+  flex-shrink: 0;
 }
 
 .btn-bento-slide {
-  flex: 1 1 54%;
+  min-height: 42px;
+  min-width: 126px;
+  width: 126px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 7px;
-  padding: 8px 12px;
-  border-radius: 8px;
-  font-size: 13px;
-  font-weight: 500;
-  background: #EFF6FF;
-  border: 1px solid #BFDBFE;
-  color: #2563EB;
+  gap: 8px;
+  padding: 0 16px;
+  border-radius: 9px;
+  font-size: 13.5px;
+  font-weight: 600;
+  background: #FEF2F2;
+  border: 1px solid #FECACA;
+  color: #B91C1C;
   cursor: pointer;
+  white-space: nowrap;
   transition: background 0.15s ease, border-color 0.15s ease;
 }
 
 .btn-bento-slide:hover:not(:disabled) {
-  background: #DBEAFE;
+  background: #FEE2E2;
+  border-color: #FCA5A5;
 }
 
 .btn-bento-slide:disabled {
@@ -1983,25 +2021,9 @@ textarea.form-control {
   cursor: not-allowed;
 }
 
-.session-split-wrap {
-  flex: 1 1 46%;
+.session-build-wrap {
   position: relative;
   display: inline-flex;
-}
-
-.session-split-wrap .session-split-group {
-  width: 100%;
-  flex: 1;
-}
-
-.session-split-group {
-  flex: 1 1 46%;
-  display: inline-flex;
-  align-items: stretch;
-  border-radius: 8px;
-  border: 1px solid #E2E8F0;
-  background: #F8FAFC;
-  overflow: hidden;
 }
 
 .build-dropdown-menu {
@@ -2048,49 +2070,99 @@ textarea.form-control {
 }
 
 .btn-bento-build {
-  flex: 1;
+  min-height: 42px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
-  padding: 8px 12px;
-  border: none;
-  border-radius: 0;
-  font-size: 13px;
-  font-weight: 500;
-  background: transparent;
-  color: #334155;
+  gap: 7px;
+  padding: 0 16px;
+  border: 1px solid #BFDBFE;
+  border-radius: 9px;
+  font-size: 13.5px;
+  font-weight: 600;
+  background: #EFF6FF;
+  color: #1D4ED8;
   cursor: pointer;
   white-space: nowrap;
-  transition: background 0.15s ease;
+  transition: background 0.15s ease, border-color 0.15s ease;
 }
 
 .btn-bento-build:hover {
-  background: #F1F5F9;
+  background: #DBEAFE;
+  border-color: #93C5FD;
 }
 
 .btn-bento-qr {
-  flex: 0 0 auto;
+  min-height: 42px;
+  min-width: 108px;
+  width: 108px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0 12px;
-  border: none;
-  border-left: 1px solid #E2E8F0;
-  border-radius: 0;
-  background: transparent;
-  color: #475569;
+  gap: 7px;
+  padding: 0 16px;
+  border: 1px solid #CBD5E1;
+  border-radius: 9px;
+  font-size: 13.5px;
+  font-weight: 600;
+  background: #FFFFFF;
+  color: #334155;
   cursor: pointer;
-  transition: background 0.15s ease;
+  white-space: nowrap;
+  transition: background 0.15s ease, border-color 0.15s ease;
 }
 
 .btn-bento-qr:hover:not(:disabled) {
-  background: #F1F5F9;
+  background: #F8FAFC;
+  border-color: #94A3B8;
 }
 
 .btn-bento-qr:disabled {
-  opacity: 0.4;
+  opacity: 0.45;
+  background: #F1F5F9;
+  border-color: #E2E8F0;
+  color: #94A3B8;
   cursor: not-allowed;
+}
+
+@media (max-width: 768px) {
+  .curriculum-course-pills {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+  }
+
+  .course-pill-btn {
+    flex-shrink: 0;
+  }
+
+  .session-bento-card {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 14px;
+  }
+
+  .session-bento-actions {
+    width: 100%;
+    gap: 8px;
+  }
+
+  .session-bento-actions.has-multi-build {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .btn-bento-slide,
+  .btn-bento-build,
+  .btn-bento-qr {
+    flex: 1;
+    width: auto;
+    min-width: 0;
+    min-height: 44px;
+    padding: 0 10px;
+  }
 }
 
 /* Modals for StudentBook, Build Link & QR */
@@ -2208,10 +2280,29 @@ textarea.form-control {
 }
 
 .curriculum-qr-url {
-  font-size: 11.5px;
-  color: #64748B;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 19px;
+  font-weight: 700;
+  color: #0F172A;
+  letter-spacing: 0.02em;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin-top: 4px;
   word-break: break-all;
-  max-height: 36px;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  user-select: all;
+}
+
+.curriculum-qr-url.is-loading {
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: #64748B;
+}
+
+.curriculum-qr-url.is-fallback {
+  font-size: 12px;
+  font-weight: 500;
+  color: #475569;
 }
